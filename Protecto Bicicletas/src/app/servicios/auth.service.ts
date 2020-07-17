@@ -26,17 +26,21 @@ export class AuthService {
     })
   }
 
-  register(email : string, password : string, name : string){
+  register(email : string, password : string, name : string,apellido:string,telefono:string,cedula:string){
 
     return new Promise ((resolve, reject) => {
       this.AFauth.createUserWithEmailAndPassword(email, password).then( res =>{
           // console.log(res.user.uid);
         const uid = res.user.uid;
-          this.db.collection('users').doc(uid).set({
-            name : name,
-            uid : uid
+          this.db.collection('Usuario').doc(uid).set({
+            uid : uid,
+            nombres : name,
+            apellidos: apellido,
+            telefono: telefono,
+            cedula: cedula,
+            tipo: "Cliente"
+            
           })
-        
         resolve(res)
       }).catch( err => reject(err))
     })
@@ -44,4 +48,7 @@ export class AuthService {
 
   }
 
+  resetPassword(email:string){
+    this.AFauth.sendPasswordResetEmail(email);
+  }
 }

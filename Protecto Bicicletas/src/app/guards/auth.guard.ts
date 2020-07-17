@@ -13,7 +13,8 @@ export class AuthGuard implements CanActivate {
   constructor(private AFauth : AngularFireAuth,private router: Router){}
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+
       return this.AFauth.authState.pipe(map( auth => {
 
         if(isNullOrUndefined(auth)){
@@ -22,10 +23,11 @@ export class AuthGuard implements CanActivate {
         }else{
           return true
         }
-        //console.log(auth);
-        //return false;
+        // console.log(auth);
+        // return false;
       }))
 
+  
   }
   
 }

@@ -1,29 +1,40 @@
 <ion-header>
-  <ion-toolbar color="secondary">
-    <ion-title text-center>Registro</ion-title>
+  <ion-toolbar color="dark">
+    <ion-title text-center>Regístrate</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-
-
-  <ion-item>
-      <ion-label position="floating" > Nombre</ion-label>
-      <ion-input type="text" [(ngModel)]="name" name="name"></ion-input>
+<ion-content class="ion-padding">
+  <form (submit)="OnSubmitRegister()">
+    <ion-item>
+      <ion-label position="floating" >Cedula</ion-label>
+      <ion-input type="number" [(ngModel)]="cedula" name="cedula" required="true"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" >Nombres</ion-label>
+      <ion-input type="text" [(ngModel)]="name" name="name" required="true"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" >Apellidos</ion-label>
+      <ion-input type="text" [(ngModel)]="apellidos" name="apellidos" required="true"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" >Teléfono</ion-label>
+      <ion-input type="tel" [(ngModel)]="telefono" name="telefono" required="true"></ion-input>
     </ion-item>
 
-<ion-item>
-  <ion-label position="floating" > Correo electrónico</ion-label>
-  <ion-input type="text" [(ngModel)]="email" name="email"></ion-input>
-</ion-item>
-<ion-item>
-  <ion-label position="floating" > Contraseña</ion-label>
-  <ion-input  type="password" [(ngModel)]="password" name="password"></ion-input>
-</ion-item>
+    <ion-item>
+      <ion-label position="floating" >Correo electrónico</ion-label>
+      <ion-input type="text" [(ngModel)]="email" name="email" required="true"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" >Contraseña</ion-label>
+      <ion-input  type="password" [(ngModel)]="password" name="password" required="true"></ion-input>
+    </ion-item>
+    <ion-button type="submit" expand="block" color="dark">Registrarse</ion-button>
+  </form>
 <br>
-<ion-button color="secondary" expand="block" (click)="OnSubmitRegister()">Registrarse</ion-button>
-<br>
-<p text-center routerLink="/login">Ya tengo cuenta</p>
-
-
+<div class="ion-text-center ion-margin-top">
+  <a routerLink="/login"><b>Ya tengo cuenta</b></a>
+</div>
 </ion-content>

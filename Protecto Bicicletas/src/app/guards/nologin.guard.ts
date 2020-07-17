@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Router } from "@angular/router";
 import { map } from "rxjs/operators";
@@ -16,18 +16,18 @@ export class NologinGuard implements CanActivate {
   
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      return this.AFauth.authState.pipe(map(auth => {
+    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+      return this.AFauth.authState.pipe(map( auth => {
 
         if(isNullOrUndefined(auth)){
-         
-         return true;
+          this.router.navigate(['/login']);
+          return false
         }else{
-         this.router.navigate(['/home']);
-          return false;
+          return true
         }
- 
-       }))
+        // console.log(auth);
+        // return false;
+      }))
   }
   
 }

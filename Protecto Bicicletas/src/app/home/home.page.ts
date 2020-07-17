@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from "../servicios/auth.service";
+import { Router } from "@angular/router";
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -7,9 +8,13 @@ import { AuthService } from "../servicios/auth.service";
 })
 export class HomePage {
 
-  constructor(public authservice : AuthService, ) {}
+  constructor(public authservice : AuthService, public router: Router) {}
   Onlogout(){
     this.authservice.logout();
+  }
+  perfil()
+  {
+    this.router.navigate(['/home']);
   }
 
 }

@@ -18,9 +18,13 @@ export class LoginPage implements OnInit {
 
   onSubmitLogin()
   {
-    this.authService.login(this.email, this.password).then( res =>{
-      this.router.navigate(['/home']);
-    }).catch(err => alert('Datos incorrectos o no existe el usuario.'))
+    if(this.email==undefined||this.password==undefined||this.email==null||this.password==null||this.email==""||this.password==""){
+      alert('Ingresar todos los campos.');
+    }else{
+      this.authService.login(this.email, this.password).then( res =>{
+        this.router.navigate(['/home']);
+      }).catch(err => alert('Datos incorrectos o no existe el usuario.'))
+    }
   }
 
 }
