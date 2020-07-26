@@ -19,6 +19,13 @@
     <br/>
     <ion-button type="submit" expand="block" color="dark">Entrar</ion-button>
   </form>
+  <ion-grid>
+    <ion-row size="3">
+      <ion-button class="google" (click)="loginGoogle()">
+        <ion-icon name="logo-google"></ion-icon>
+      </ion-button>
+    </ion-row>
+  </ion-grid>
 
   <div class="ion-text-center ion-margin-top">
     <a routerLink="/registro"><b>Crear cuenta</b></a>
