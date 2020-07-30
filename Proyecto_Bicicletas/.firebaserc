@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "proyecto-bicicleta": {
+      "hosting": {
+        "app": [
+          "proyecto-bicicleta"
+        ]
+      }
+    }
+  }
+}

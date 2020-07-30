@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Bienvenido {{ name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col>
+      <button  (click)="pageperfile()" block>
+        <img src="../../../assets/menu/perfil.png">
+        
+      </button>
+      <p style="text-align: center;width: 80%;height: 80%;">Perfil</p>
+    </ion-col>
+    <ion-col>
+      <button  (click)="salir()" block>
+        <img src="../../../assets/menu/salir.png">
+        
+      </button>
+      <p style="text-align: center;width: 80%;height: 80%;">Salir</p>
+    </ion-col>
+  </ion-row>
+  
+</ion-content>
