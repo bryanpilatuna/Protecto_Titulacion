@@ -20,8 +20,7 @@ const routes: Routes = [
   },
   {
     path: 'register',
-    loadChildren: () => import('./page/register/register.module').then( m => m.RegisterPageModule),
-    canActivate: [NoAuthGuard],
+    loadChildren: () => import('./page/register/register.module').then( m => m.RegisterPageModule)
   },
   {
     path: 'menu',
@@ -30,13 +29,11 @@ const routes: Routes = [
   },
   {
     path: 'verify-email',
-    loadChildren: () => import('./page/verify-email/verify-email.module').then( m => m.VerifyEmailPageModule),
-    canActivate: [NoAuthGuard],
+    loadChildren: () => import('./page/verify-email/verify-email.module').then( m => m.VerifyEmailPageModule)
   },
   {
     path: 'forgot-password',
-    loadChildren: () => import('./page/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule),
-    canActivate: [NoAuthGuard],
+    loadChildren: () => import('./page/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
   },
   {
     path: 'profile',
