@@ -8,13 +8,14 @@ import { Router } from '@angular/router';
 })
 export class MenuPage implements OnInit {
   name: string;
-  photo: string;
+  id: string;
+
   constructor(private authservice : AuthService, private router: Router) { }
 
   ngOnInit() {
     this.authservice.getUsuario().subscribe(user => {
-      this.name = user.displayName;
-      this.photo = user.photoURL;
+      this.id = user.uid;
+      
     });
   }
 

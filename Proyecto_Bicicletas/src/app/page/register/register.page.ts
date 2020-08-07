@@ -15,9 +15,9 @@ export class RegisterPage implements OnInit {
   ngOnInit() {
   }
 
-  async onRegister(email, password) {
+  async onRegister(email, password, nombre, apellido, cedula, telefono) {
     try {
-      const user = await this.authSvc.register(email.value, password.value);
+      const user = await this.authSvc.register(email.value, password.value, nombre.value, apellido.value, cedula.value, telefono.value);
       if (user) {
         const isVerified = this.authSvc.isEmailVerified(user);
         this.redirectUser(isVerified);

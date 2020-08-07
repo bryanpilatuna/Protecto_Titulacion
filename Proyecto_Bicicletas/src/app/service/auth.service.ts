@@ -35,17 +35,31 @@ export class AuthService {
   async loginGoogle(): Promise<User> {
     try {
       const { user } = await this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-      this.updateUserData(user);
+      //this.updateUserData(user);
       return user;
     } catch (error) {
       console.log('Error->', error);
     }
   }
 
-  async register(email: string, password: string): Promise<User> {
+  async register(email: string, password: string, nombre: string, apellido: string, cedu: string, tele: string): Promise<User> {
     try {
       const { user } = await this.afAuth.createUserWithEmailAndPassword(email, password);
       //await this.updateUserData(user);
+      const uid = user.uid;
+      const correo = user.email;
+      
+      this.afs.collection('users').doc(uid).set({
+        uid : uid,
+        cedula: cedu,
+        nombres : nombre,
+        apellidos : apellido,
+        correo : correo,
+        telefono : tele,
+        estado : "Activo"
+        
+      })
+      
       await this.sendVerifcationEmail();
       return user;
     } catch (error) {
@@ -56,7 +70,7 @@ export class AuthService {
   async login(email: string, password: string): Promise<User> {
     try {
       const { user } = await this.afAuth.signInWithEmailAndPassword(email, password);
-      this.updateUserData(user);
+      //this.updateUserData(user);
       return user;
     } catch (error) {
       console.log('Error->', error);
@@ -77,7 +91,7 @@ export class AuthService {
 
   async logout(): Promise<void> {
     try {
-      await this.afAuth.signOut();
+      //await this.afAuth.signOut();
       await this.afAuth.signOut().then(() => {
         this.router.navigate(['/login']);
       })
@@ -86,18 +100,19 @@ export class AuthService {
     }
   }
 
-  private updateUserData(user: User) {
+  /*private updateUserData(user: User) {
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
     console.log("entra");
     const data: User = {
       uid: user.uid,
       email: user.email,
       emailVerified: user.emailVerified,
-      displayName: user.displayName,
+      displayName: user.displayName
     };
 
     return userRef.set(data, { merge: true });
-  }
+  }*/
+
 
   getUsuario(){
     return this.afAuth.authState;

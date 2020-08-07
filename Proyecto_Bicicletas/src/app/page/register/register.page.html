@@ -7,16 +7,33 @@
 <ion-content>
   <form>
     <ion-item lines="full">
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input type="text" #nombre required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Apellido</ion-label>
+      <ion-input type="text" #apellido required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Cedula</ion-label>
+      <ion-input type="number" #cedula required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Teléfono</ion-label>
+      <ion-input type="number" #telefono required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
       <ion-label position="floating">Correo electrónico</ion-label>
-      <ion-input type="text" #email required></ion-input>
+      <ion-input type="email" #email required></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Contraseña</ion-label>
       <ion-input type="password" #password required></ion-input>
     </ion-item>
+
     <ion-row>
       <ion-col>
-        <ion-button type="submit" (click)="onRegister(email, password)" expand="block">Registrarse</ion-button>
+        <ion-button type="submit" (click)="onRegister(email, password, nombre, apellido, cedula, telefono)" expand="block">Registrarse</ion-button>
       </ion-col>
     </ion-row>
   </form>
