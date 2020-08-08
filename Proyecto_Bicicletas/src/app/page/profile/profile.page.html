@@ -5,7 +5,36 @@
 </ion-header>
 
 <ion-content padding>
- 
-  <ion-button expand="full" (click)="guardarUsuario()">Guardar</ion-button>
+  <ion-list lines="full" *ngIf="usuario">
 
+    <ion-item >
+      <ion-label position="stacked">Nombre</ion-label>
+      <ion-input required type="string" [(ngModel)]="usuario.nombres"></ion-input>
+    </ion-item>
+    <ion-item >
+      <ion-label position="stacked">Apellidos</ion-label>
+      <ion-input required type="string" [(ngModel)]="usuario.apellidos"></ion-input>
+    </ion-item>
+
+    <ion-item >
+      <ion-label position="stacked">Cedula</ion-label>
+      <ion-input required type="number" [(ngModel)]="usuario.cedula"></ion-input>
+    </ion-item>
+    <ion-item >
+      <ion-label position="stacked">Teléfono</ion-label>
+      <ion-input required type="number" [(ngModel)]="usuario.telefono"></ion-input>
+    </ion-item>
+    <ion-item >
+      <ion-label position="stacked">Correo electrónico</ion-label>
+      <ion-input required type="email" [(ngModel)]="usuario.correo"></ion-input>
+    </ion-item>
+    
+
+  </ion-list>
+  <ion-button expand="full" (click)="guardarUsuario()">Guardar</ion-button>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" color="danger">
+
+    
+      
+    </ion-fab>
 </ion-content>

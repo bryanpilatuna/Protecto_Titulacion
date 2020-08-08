@@ -36,7 +36,7 @@ const routes: Routes = [
     loadChildren: () => import('./page/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
   },
   {
-    path: 'profile',
+    path: 'profile/:id',
     loadChildren: () => import('./page/profile/profile.module').then( m => m.ProfilePageModule),
     canActivate: [AuthGuard],
   },

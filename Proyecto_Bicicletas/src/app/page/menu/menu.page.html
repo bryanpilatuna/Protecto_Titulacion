@@ -1,13 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Bienvenido {{ id }}</ion-title>
+    <ion-title>Bienvenido</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-row>
     <ion-col >
-      <button  (click)="pageperfile()" block>
+      <button  [routerLink]="['/profile', id]" block>
         <img src="../../../assets/menu/perfil.png">
         
       </button>
