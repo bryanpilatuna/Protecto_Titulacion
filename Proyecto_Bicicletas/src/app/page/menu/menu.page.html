@@ -13,6 +13,13 @@
       </button>
       <p style="text-align: center;width: 80%;height: 80%;">Perfil</p>
     </ion-col>
+    <ion-col >
+      <button  [routerLink]="['/formulario-donacion', id]" block>
+        <img src="../../../assets/menu/donar.png">
+        
+      </button>
+      <p style="text-align: center;width: 80%;height: 80%;">Donar Bici</p>
+    </ion-col>
     <ion-col>
       <button  (click)="salir()" block>
         <img src="../../../assets/menu/salir.png">
@@ -20,6 +27,7 @@
       </button>
       <p style="text-align: center;width: 80%;height: 80%;">Salir</p>
     </ion-col>
+    
   </ion-row>
   
 </ion-content>

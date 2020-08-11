@@ -40,6 +40,11 @@ const routes: Routes = [
     loadChildren: () => import('./page/profile/profile.module').then( m => m.ProfilePageModule),
     canActivate: [AuthGuard],
   },
+  {
+    path: 'formulario-donacion/:id',
+    loadChildren: () => import('./page/formulario-donacion/formulario-donacion.module').then( m => m.FormularioDonacionPageModule)
+  },
+
 ];
 
 @NgModule({

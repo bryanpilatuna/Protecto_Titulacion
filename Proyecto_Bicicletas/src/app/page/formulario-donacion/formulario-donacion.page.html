@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/menu"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Formulario Donacion</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+   
+  <ion-item *ngIf="donacion">
+    <ion-label position="stacked"></ion-label>
+    <ion-input required type="text" placeholder="fechadonacion" [(ngModel)]="donacion.fechadonacion"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="donacion">
+    <ion-label position="stacked"></ion-label>
+    <ion-input required type="text" placeholder="nombretienda" [(ngModel)]="donacion.nombretienda"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="donacion">
+    <ion-label position="stacked"></ion-label>
+    <ion-input required type="text" placeholder="estado" [(ngModel)]="donacion.estado"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="donacion">
+    <ion-label position="stacked"></ion-label>
+    <ion-input required type="text" placeholder="descripcion" [(ngModel)]="donacion.descripcion"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="donacion">
+    <ion-label position="stacked"></ion-label>
+    <ion-input required type="text" placeholder="iddonante" [(ngModel)]="donanteid"></ion-input>
+  </ion-item>
+
+  <ion-button expand="full" (click)="crearDonacion()">Realizar Donacion</ion-button>
+  
+
+
+</ion-content>
