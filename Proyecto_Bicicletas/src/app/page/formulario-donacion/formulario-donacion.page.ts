@@ -11,6 +11,7 @@ import { NavController, LoadingController } from '@ionic/angular';
   styleUrls: ['./formulario-donacion.page.scss'],
 })
 export class FormularioDonacionPage implements OnInit {
+  
   donanteid= null;
 
   donacion: datosDonacion = {
@@ -32,12 +33,23 @@ export class FormularioDonacionPage implements OnInit {
   ngOnInit() {
     this.donanteid= this.route.snapshot.params['id'];
     
+    this.donacion= {
+  
+    iddonante: this.donanteid,
+    fechadonacion: '',
+    nombretienda: '',
+    estado: '',
+    descripcion: '',
+    aprobacion: false,
+     };
   }
 
   async crearDonacion(){
     const loading = await this.loadingController.create({
       message: 'Saving....'
     });
+  
+    
     this.donacionService.addDonacion(this.donacion).then(() => {
       loading.dismiss();
       this.nav.navigateForward('/menu');

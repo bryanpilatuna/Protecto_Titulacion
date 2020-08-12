@@ -26,10 +26,8 @@
     <ion-label position="stacked"></ion-label>
     <ion-input required type="text" placeholder="descripcion" [(ngModel)]="donacion.descripcion"></ion-input>
   </ion-item>
-  <ion-item *ngIf="donacion">
-    <ion-label position="stacked"></ion-label>
-    <ion-input required type="text" placeholder="iddonante" [(ngModel)]="donanteid"></ion-input>
-  </ion-item>
+  
+  
 
   <ion-button expand="full" (click)="crearDonacion()">Realizar Donacion</ion-button>
   
