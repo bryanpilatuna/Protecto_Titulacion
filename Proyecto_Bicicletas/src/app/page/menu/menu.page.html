@@ -20,6 +20,7 @@
       </button>
       <p style="text-align: center;width: 80%;height: 80%;">Donar Bici</p>
     </ion-col>
+    
     <ion-col>
       <button  (click)="salir()" block>
         <img src="../../../assets/menu/salir.png">
@@ -29,5 +30,19 @@
     </ion-col>
     
   </ion-row>
+  <ion-row>
+    <ion-col>
+      <button  [routerLink]="['/formulario-alquiler', id]" block>
+        <img src="../../../assets/menu/alquilar.png">
+        
+      </button>
+      <p style="text-align: center;width: 80%;height: 80%;">Alquilar Bicicleta</p>
+    </ion-col>
+    <ion-col></ion-col>
+    <ion-col></ion-col>
+   
+
+  </ion-row>
+  
   
 </ion-content>

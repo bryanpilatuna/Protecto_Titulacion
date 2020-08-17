@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/menu"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Formulario Alquiler</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+   
+  <ion-item *ngIf="alquiler">
+    <ion-label position="stacked"></ion-label>
+    <ion-input required type="text" placeholder="nombretienda" [(ngModel)]="alquiler.nombretienda"></ion-input>
+  </ion-item>
+  
+  <ion-item *ngIf="alquiler">
+    <ion-label position="stacked"></ion-label>
+    <ion-input required type="text" placeholder="fecha" [(ngModel)]="alquiler.fecha"></ion-input>
+  </ion-item>
+  
+  
+
+  <ion-button expand="full" (click)="crearAlquiler()">Realizar Alquiler</ion-button>
+  
+
+
+</ion-content>

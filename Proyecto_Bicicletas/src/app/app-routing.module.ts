@@ -44,6 +44,11 @@ const routes: Routes = [
     path: 'formulario-donacion/:id',
     loadChildren: () => import('./page/formulario-donacion/formulario-donacion.module').then( m => m.FormularioDonacionPageModule)
   },
+  {
+    path: 'formulario-alquiler/:id',
+    loadChildren: () => import('./page/formulario-alquiler/formulario-alquiler.module').then( m => m.FormularioAlquilerPageModule)
+  },
+
 
 ];
 
