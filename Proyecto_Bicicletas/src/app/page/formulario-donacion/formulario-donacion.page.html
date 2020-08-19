@@ -14,9 +14,14 @@
     <ion-label position="stacked"></ion-label>
     <ion-input required type="text" placeholder="fechadonacion" [(ngModel)]="donacion.fechadonacion"></ion-input>
   </ion-item>
-  <ion-item *ngIf="donacion">
-    <ion-label position="stacked"></ion-label>
-    <ion-input required type="text" placeholder="nombretienda" [(ngModel)]="donacion.nombretienda"></ion-input>
+  <ion-item  *ngIf="donacion">
+    <ion-label>Seleccionar Tienda</ion-label>
+    <ion-select [(ngModel)]="donacion.nombretienda" ok-text="Seleccionar" cancel-text="Cancelar" >
+      <ion-select-option *ngFor="let tienda of tiendas" > 
+        {{ tienda.nombre }}<p> Dir:</p> {{ tienda.direccion}}
+
+      </ion-select-option>
+    </ion-select>
   </ion-item>
   <ion-item *ngIf="donacion">
     <ion-label position="stacked"></ion-label>
