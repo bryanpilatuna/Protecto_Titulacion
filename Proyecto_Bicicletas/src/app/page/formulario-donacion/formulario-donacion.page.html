@@ -14,6 +14,19 @@
     <ion-label position="stacked"></ion-label>
     <ion-input required type="text" placeholder="fechadonacion" [(ngModel)]="donacion.fechadonacion"></ion-input>
   </ion-item>
+
+
+  <ion-datetime  [value]="today"></ion-datetime>
+  <ion-item>
+    <ion-label position="stacked">MMMM YY</ion-label>
+    <ion-datetime displayFormat="DD MMMM YYYY" min="1989-06-04" max="2004-08-23" value="1994-12-15T13:47:20.789"></ion-datetime>
+  </ion-item>
+
+
+  
+
+
+
   <ion-item  *ngIf="donacion">
     <ion-label>Seleccionar Tienda</ion-label>
     <ion-select [(ngModel)]="donacion.nombretienda" ok-text="Seleccionar" cancel-text="Cancelar" >

@@ -34,6 +34,7 @@ export class FormularioDonacionPage implements OnInit {
      ) { }
 
   ngOnInit() {
+    
     this.donanteid= this.route.snapshot.params['id'];
     
     this.donacion= {
