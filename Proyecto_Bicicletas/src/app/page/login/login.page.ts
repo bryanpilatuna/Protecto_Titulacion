@@ -15,16 +15,21 @@ export class LoginPage implements OnInit {
   }
 
   async onLogin(email, password) {
+ 
     try {
-      const user = await this.authSvc.login(email.value, password.value);
-      if (user) {
-        
-        const isVerified = this.authSvc.isEmailVerified(user);
-        //console.log('verified->',isVerified);
-        this.redirectUser(isVerified);
+      if(email.value.length > 0){
+        console.log("muy largo");
+      
+        const user = await this.authSvc.login(email.value, password.value);
+        if (user) {
+          
+          const isVerified = this.authSvc.isEmailVerified(user);
+          //console.log('verified->',isVerified);
+          this.redirectUser(isVerified);
+        }
       }
     } catch (error) {
-      console.log('Error->', error);
+      console.log('Error->', error['message']);
     }
 
     

@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'bienvenida',
     pathMatch: 'full'
   },
   {
@@ -48,6 +48,11 @@ const routes: Routes = [
     path: 'formulario-alquiler/:id',
     loadChildren: () => import('./page/formulario-alquiler/formulario-alquiler.module').then( m => m.FormularioAlquilerPageModule)
   },
+  {
+    path: 'bienvenida',
+    loadChildren: () => import('./page/bienvenida/bienvenida.module').then( m => m.BienvenidaPageModule)
+  },
+
 
 
 ];
