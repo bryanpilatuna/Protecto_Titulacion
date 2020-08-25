@@ -15,11 +15,12 @@ import { NavController, LoadingController } from '@ionic/angular';
 export class FormularioDonacionPage implements OnInit {
   tiendas: datosTiendas[];
   donanteid= null;
+  fechaactual: Date = new Date();
 
   donacion: datosDonacion = {
   
     iddonante: '',
-    fechadonacion: '',
+    fechadonacion: this.fechaactual,
     nombretienda: '',
     estado: '',
     descripcion: '',
@@ -33,22 +34,23 @@ export class FormularioDonacionPage implements OnInit {
     private donacionService: DonacionService, private loadingController: LoadingController,
      ) { }
 
+
+
   ngOnInit() {
     
     this.donanteid= this.route.snapshot.params['id'];
-    
+
     this.donacion= {
-  
     iddonante: this.donanteid,
-    fechadonacion: '',
+    fechadonacion: this.fechaactual,
     nombretienda: '',
     estado: '',
     descripcion: '',
     aprobacion: false,
      };
 
-     this.donacionService.getTiendas().subscribe((tiendas) =>{
-      console.log('Todoss', tiendas);
+    this.donacionService.getTiendas().subscribe((tiendas) =>{
+      console.log('Tiendas', tiendas);
       this.tiendas = tiendas;
     })
     
@@ -58,12 +60,13 @@ export class FormularioDonacionPage implements OnInit {
     const loading = await this.loadingController.create({
       message: 'Saving....'
     });
-  
+
+   this.donacionService.addDonacion(this.donacion).then(() => {
+        loading.dismiss();
+        this.nav.navigateForward('/menu');
+      });
     
-    this.donacionService.addDonacion(this.donacion).then(() => {
-      loading.dismiss();
-      this.nav.navigateForward('/menu');
-    });
+
 
 
   }

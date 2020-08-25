@@ -9,19 +9,20 @@
 
 <ion-content>
 
-   
+     
   <ion-item *ngIf="donacion">
-    <ion-label position="stacked"></ion-label>
-    <ion-input required type="text" placeholder="fechadonacion" [(ngModel)]="donacion.fechadonacion"></ion-input>
+    <ion-label position="stacked">Seleccione la fecha para la donacion</ion-label>
+    <ion-datetime displayFormat="DD MMMM YYYY" 
+    placeholder="Dia Mes Año" 
+    
+    min="2020-08-25" 
+    max="2021-12-31" 
+    cancelText="Cancelar"
+    doneText="Seleccionar"
+    [ngModel]="donacion.fechadonacion.toISOString()"
+    >
+    </ion-datetime>
   </ion-item>
-
-
-  <ion-datetime  [value]="today"></ion-datetime>
-  <ion-item>
-    <ion-label position="stacked">MMMM YY</ion-label>
-    <ion-datetime displayFormat="DD MMMM YYYY" min="1989-06-04" max="2004-08-23" value="1994-12-15T13:47:20.789"></ion-datetime>
-  </ion-item>
-
 
   
 
@@ -31,11 +32,11 @@
     <ion-label>Seleccionar Tienda</ion-label>
     <ion-select [(ngModel)]="donacion.nombretienda" ok-text="Seleccionar" cancel-text="Cancelar" >
       <ion-select-option *ngFor="let tienda of tiendas" > 
-        {{ tienda.nombre }}<p> Dir:</p> {{ tienda.direccion}}
-
+        {{ tienda.nombre }}
       </ion-select-option>
     </ion-select>
   </ion-item>
+
   <ion-item *ngIf="donacion">
     <ion-label position="stacked"></ion-label>
     <ion-input required type="text" placeholder="estado" [(ngModel)]="donacion.estado"></ion-input>
