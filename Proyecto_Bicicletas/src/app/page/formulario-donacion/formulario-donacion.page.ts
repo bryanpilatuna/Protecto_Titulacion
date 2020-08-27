@@ -18,15 +18,12 @@ export class FormularioDonacionPage implements OnInit {
   fechaactual: Date = new Date();
 
   donacion: datosDonacion = {
-  
     iddonante: '',
     fechadonacion: this.fechaactual,
-    nombretienda: '',
     estado: '',
     descripcion: '',
     aprobacion: false,
-   
-
+    idtienda: '',
   };
   
   
@@ -43,10 +40,10 @@ export class FormularioDonacionPage implements OnInit {
     this.donacion= {
     iddonante: this.donanteid,
     fechadonacion: this.fechaactual,
-    nombretienda: '',
     estado: '',
     descripcion: '',
     aprobacion: false,
+    idtienda: '',
      };
 
     this.donacionService.getTiendas().subscribe((tiendas) =>{
@@ -66,8 +63,6 @@ export class FormularioDonacionPage implements OnInit {
         this.nav.navigateForward('/menu');
       });
     
-
-
 
   }
 

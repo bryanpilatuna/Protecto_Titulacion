@@ -4,8 +4,8 @@ export interface datosDonacion{
     id?: string;
     iddonante: string;
     fechadonacion: Date;
-    nombretienda: string;
     estado: string;
     descripcion: string;
     aprobacion: boolean;  
+    idtienda:string;
 }

@@ -7,9 +7,22 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content> 
+ 
 
-     
+  <ion-item  *ngIf="donacion">
+    <ion-label>Seleccione la  Tienda</ion-label>
+    <ion-select [(ngModel)]="donacion.idtienda" ok-text="Seleccionar" 
+    cancel-text="Cancelar"  >
+      <ion-select-option *ngFor="let tienda of tiendas" [value]="tienda.id"> 
+        <ion-label>
+        {{ tienda.nombre}}
+      </ion-label>
+      <ion-note slot="end" color="primary">{{ tienda.direccion }}</ion-note>
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
   <ion-item *ngIf="donacion">
     <ion-label position="stacked">Seleccione la fecha para la donacion</ion-label>
     <ion-datetime displayFormat="DD MMMM YYYY" 
@@ -22,19 +35,6 @@
     [ngModel]="donacion.fechadonacion.toISOString()"
     >
     </ion-datetime>
-  </ion-item>
-
-  
-
-
-
-  <ion-item  *ngIf="donacion">
-    <ion-label>Seleccionar Tienda</ion-label>
-    <ion-select [(ngModel)]="donacion.nombretienda" ok-text="Seleccionar" cancel-text="Cancelar" >
-      <ion-select-option *ngFor="let tienda of tiendas" > 
-        {{ tienda.nombre }}
-      </ion-select-option>
-    </ion-select>
   </ion-item>
 
   <ion-item *ngIf="donacion">
