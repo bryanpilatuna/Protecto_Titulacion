@@ -42,7 +42,7 @@ export class ProfilePage implements OnInit {
 
   async cargarUsuario(){
     const loading = await this.loadingController.create({
-      message: 'Loading....'
+      message: 'Cargando....'
     });
     await loading.present();
 
@@ -53,7 +53,7 @@ export class ProfilePage implements OnInit {
   }
   async guardarUsuario() {
     const loading = await this.loadingController.create({
-      message: 'Saving....'
+      message: 'Guardando....'
     });
     await loading.present();
  
