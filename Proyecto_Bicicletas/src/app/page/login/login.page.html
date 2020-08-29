@@ -16,6 +16,9 @@
     <ion-item lines="full">
       <ion-label position="floating">Contraseña</ion-label>
       <ion-input type="password" #password required></ion-input>
+      <button  item-end  class="btn_eye_icon"  (click)="showPassword(password)">
+        <ion-icon name="eye-off-outline"></ion-icon>
+    </button>
     </ion-item>
     <ion-row>
       <ion-col>
@@ -44,9 +47,11 @@
     </ion-row>
 
   </form>
+
+  <!-- 
   <ion-row>
     <ion-col>
       <ion-button color="secondary" expand="block" routerLink="/register">Registrarse</ion-button>
     </ion-col>
-  </ion-row>
+  </ion-row>-->
 </ion-content>

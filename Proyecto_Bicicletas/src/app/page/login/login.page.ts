@@ -56,4 +56,8 @@ export class LoginPage implements OnInit {
     }
   }
 
+  showPassword(input: any): any {
+    input.type = input.type === 'password' ?  'text' : 'password';
+   }
+
 }
