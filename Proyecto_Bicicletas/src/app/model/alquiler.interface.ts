@@ -1,10 +1,10 @@
 export interface datosAlquiler{
     id?: string;
     idusuario: string;
-    nombretienda: string;
-    fechadevolucion: string;
-    fechaalquiler: string;
+    idtienda: string;
+    fechadevolucion: Date;
+    fechaalquiler: Date;
     bicicleta: string;
-    fecha: string;  
+    fecha: Date;  
     aprobacion: boolean; 
 }

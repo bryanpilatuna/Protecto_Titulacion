@@ -4,6 +4,7 @@ import { NavController, LoadingController } from '@ionic/angular';
 import { datosAlquiler } from '../../model/alquiler.interface';
 import { AlquilerService } from '../../service/alquiler.service';
 
+import { datosTiendas } from '../../model/tienda.interface';
 
 @Component({
   selector: 'app-formulario-alquiler',
@@ -13,15 +14,17 @@ import { AlquilerService } from '../../service/alquiler.service';
 export class FormularioAlquilerPage implements OnInit {
 
   usuarioid= null;
+  tiendas: datosTiendas[];
+  fechaactual: Date = new Date();
 
   alquiler: datosAlquiler ={
 
     idusuario :'',
-    nombretienda: '',
-    fechadevolucion: '',
-    fechaalquiler: '',
+    idtienda: '',
+    fechadevolucion: this.fechaactual,
+    fechaalquiler: this.fechaactual,
     bicicleta: '',
-    fecha: '',
+    fecha: this.fechaactual,
     aprobacion: false,
    
 
@@ -32,23 +35,33 @@ export class FormularioAlquilerPage implements OnInit {
 
   ngOnInit() {
     this.usuarioid=this.route.snapshot.params['id'];
+    
     this.alquiler={
 
       idusuario :this.usuarioid,
-      nombretienda: '',
-      fechadevolucion: '',
-      fechaalquiler: '',
+      idtienda: '',
+      fechadevolucion:this.fechaactual,
+      fechaalquiler: this.fechaactual,
       bicicleta: '',
-      fecha: '',
+      fecha: this.fechaactual,
       aprobacion: false,
      
     };
 
+    this.alquilerService.getTiendas().subscribe((tiendas) =>{
+      console.log('Tiendas', tiendas);
+      this.tiendas = tiendas;
+    })
+
   }
   async crearAlquiler(){
     const loading = await this.loadingController.create({
-      message: 'Saving....'
+      message: 'Guardando....'
     });
+
+    console.log('fecha alguiler', this.alquiler.fechaalquiler);
+
+
     this.alquilerService.addAlquiler(this.alquiler).then(() => {
       loading.dismiss();
       this.nav.navigateForward('/menu');

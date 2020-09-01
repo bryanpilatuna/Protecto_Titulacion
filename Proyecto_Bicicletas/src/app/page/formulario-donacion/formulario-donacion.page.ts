@@ -55,7 +55,7 @@ export class FormularioDonacionPage implements OnInit {
 
   async crearDonacion(){
     const loading = await this.loadingController.create({
-      message: 'Saving....'
+      message: 'Guardando....'
     });
 
    this.donacionService.addDonacion(this.donacion).then(() => {
