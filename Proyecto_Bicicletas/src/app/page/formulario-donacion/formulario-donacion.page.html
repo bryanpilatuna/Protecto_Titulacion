@@ -8,7 +8,20 @@
 </ion-header>
 
 <ion-content> 
- 
+  
+  <ion-item *ngIf="donacion">
+    <ion-label position="stacked">Seleccione la fecha para la donación</ion-label>
+    <ion-datetime displayFormat="DD MMMM YYYY" 
+    placeholder="Dia Mes Año" 
+    (ionChange)="cambiofecha($event)"
+    min="2020-08-25" 
+    max="2021-12-31" 
+    cancelText="Cancelar"
+    doneText="Seleccionar"
+  
+    >
+    </ion-datetime>
+  </ion-item>
 
   <ion-item  *ngIf="donacion">
     <ion-label>Seleccione la  Tienda</ion-label>
@@ -23,19 +36,6 @@
     </ion-select>
   </ion-item>
 
-  <ion-item *ngIf="donacion">
-    <ion-label position="stacked">Seleccione la fecha para la donación</ion-label>
-    <ion-datetime displayFormat="DD MMMM YYYY" 
-    placeholder="Dia Mes Año" 
-    
-    min="2020-08-25" 
-    max="2021-12-31" 
-    cancelText="Cancelar"
-    doneText="Seleccionar"
-    [ngModel]="donacion.fechadonacion.toISOString()"
-    >
-    </ion-datetime>
-  </ion-item>
 
   <ion-item *ngIf="donacion">
     <ion-label position="stacked"></ion-label>

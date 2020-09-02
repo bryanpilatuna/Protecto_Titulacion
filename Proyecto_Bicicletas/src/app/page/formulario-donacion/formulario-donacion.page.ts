@@ -66,4 +66,16 @@ export class FormularioDonacionPage implements OnInit {
 
   }
 
+  cambiofecha(event){
+    this.donacion= {
+      iddonante: this.donanteid,
+      fechadonacion: new Date(event.detail.value),
+      estado: '',
+      descripcion: '',
+      aprobacion: false,
+      idtienda: '',
+       };   
+
+  }
+
 }

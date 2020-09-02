@@ -59,12 +59,27 @@ export class FormularioAlquilerPage implements OnInit {
       message: 'Guardando....'
     });
 
-    console.log('fecha alguiler', this.alquiler.fechaalquiler);
 
-
-    this.alquilerService.addAlquiler(this.alquiler).then(() => {
+   this.alquilerService.addAlquiler(this.alquiler).then(() => {
       loading.dismiss();
-      this.nav.navigateForward('/menu');
+      this.nav.navigateForward('/menu'); 
     });
   }
+
+  cambiofecha(event){
+    this.alquiler={
+
+      idusuario :this.usuarioid,
+      idtienda: '',
+      fechadevolucion:this.fechaactual,
+      fechaalquiler: new Date(event.detail.value),
+      bicicleta: '',
+      fecha: this.fechaactual,
+      aprobacion: false,
+     
+    };
+    
+
+  }
+  
 }
