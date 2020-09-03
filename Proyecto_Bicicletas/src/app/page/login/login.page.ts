@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef  } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -8,15 +9,36 @@ import { AuthService } from '../../service/auth.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  @ViewChild('passwordEyeLogin', { read: ElementRef }) passwordEye: ElementRef;
+  formGroup: FormGroup; // declare it here
   passwordTypeInput = 'password';
-  constructor(private authSvc: AuthService, private router: Router) { }
+  constructor(private authSvc: AuthService, private router: Router,public formBuilder: FormBuilder) {
+    this.crearvalidaciones();
+    
+   }
 
   ngOnInit() {
   }
 
+  crearvalidaciones(){
+    // Campo Contraseña
+    const emailControl = new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.email,
+        Validators.minLength(10),
+        Validators.maxLength(40)
+
+    ]));
+    const passwordControl = new FormControl('', Validators.compose([
+      Validators.required,
+      Validators.minLength(8),
+        Validators.maxLength(40)
+    ]));
+    // Añado Propiedades al Form
+    this.formGroup = this.formBuilder.group({emailControl,passwordControl });
+  }
+
   async onLogin(email, password) {
- 
+
     try {
       if(email.value.length > 0){
         console.log("muy largo");
@@ -59,8 +81,8 @@ export class LoginPage implements OnInit {
 
   
 
-   showPassword() {
+  showPassword() {
     this.passwordTypeInput = this.passwordTypeInput === 'text' ? 'password' : 'text';
-    }
+  }
 
 }

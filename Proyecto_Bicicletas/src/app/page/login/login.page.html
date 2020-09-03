@@ -8,47 +8,75 @@
 </ion-header>
 
 <ion-content >
-  <form>
-    <ion-item lines="full" >
-      <ion-label position="stacked"><strong>Correo electrónico</strong></ion-label>
-      <ion-input type="text" #email placeholder="Ejemplo Bryan"></ion-input>
-    </ion-item>
+  <form [formGroup]="formGroup" (ngSubmit)="onLogin(email, password)">
+    <div class="row">
+        <ion-label position="stacked"><strong>Correo electrónico</strong></ion-label>
+        <ion-input formControlName="emailControl" [type]="email" #email placeholder="abc@gmail.com">
+        </ion-input>
+    </div>
 
-    <ion-item lines="full">
+	  <div class="validation-errors">
+        <p class="form-error"
+          *ngIf="formGroup.get('emailControl').hasError('required') && formGroup.get('emailControl').touched">
+          *Requerido
+        </p>
+        <p class="form-error"
+          *ngIf="formGroup.get('emailControl').hasError('email') && formGroup.get('emailControl').touched">
+          *Ingrese un correo valido
+        </p>
+        <p class="form-error"
+          *ngIf="formGroup.get('emailControl').hasError('minlength') && formGroup.get('emailControl').touched">
+          *Mínimo 10 caracteres 
+        </p>
+        <p class="form-error"
+          *ngIf="formGroup.get('emailControl').hasError('maxlength') && formGroup.get('emailControl').touched">
+          *Máximo 40 caracteres  
+        </p>
+    </div>
+
+    <div class="row">
       <ion-label position="stacked"><strong>Contraseña</strong></ion-label>
       <div class="input-container">
-        <ion-input [type]="passwordTypeInput" #password placeholder="***********"></ion-input>
+        <ion-input formControlName="passwordControl" [type]="passwordTypeInput" 
+        #password placeholder="***********"></ion-input>
         <button  item-end class="btn_eye_icon"  (click)="showPassword()">
           <ion-icon [name]="(passwordTypeInput === 'text')?'eye-off':'eye'"></ion-icon>
         </button>
       </div>
-    </ion-item>
+    </div>
+    
+    <div class="validation-errors">
+      <p class="form-error"
+        *ngIf="formGroup.get('passwordControl').hasError('required') && formGroup.get('passwordControl').touched">
+        *Requerido
+      </p>
+      <p class="form-error"
+        *ngIf="formGroup.get('passwordControl').hasError('minlength') && formGroup.get('passwordControl').touched">
+        *Mínimo 8 caracteres 
+      </p>
+      <p class="form-error"
+        *ngIf="formGroup.get('emailControl').hasError('passwordControl') && formGroup.get('passwordControl').touched">
+        *Máximo 40 caracteres  
+      </p>
+  </div>
 
-    <ion-row>
-      <ion-col>
-        <p class="center-span">
-          <a routerLink="/forgot-password">¿Olvidaste tu contraseña?</a>
-        </p>
-      </ion-col>
-    </ion-row>
+	  <div class="row">
+      <p class="center-span">
+        <a routerLink="/forgot-password">¿Olvidaste tu contraseña?</a>
+      </p>
+    </div>
 
-    <ion-row>
-      <ion-col>
-        <ion-button type="submit" (click)="onLogin(email, password)" expand="block">Iniciar sesión</ion-button>
-      </ion-col>
-    </ion-row>
+	  <div class="row">
+      <ion-button [disabled]="!formGroup.valid" type="submit" expand="block">Iniciar sesión</ion-button>
+    </div>
 
-    <ion-row>
-      <ion-col>
-        <span class="center-span" style="text-align:center"> or </span>
-      </ion-col>
-    </ion-row>
+    <div class="row">
+      <span class="center-span" style="text-align:center"> or </span>
+    </div>
 
-    <ion-row>
-      <ion-col>
-        <ion-button type="submit" color="danger" (click)="onLoginGoogle()" expand="block">Iniciar sesión con Google</ion-button>
-      </ion-col>
-    </ion-row>
-
+    <div class="row">
+      <ion-button type="submit" color="danger" (click)="onLoginGoogle()" expand="block">Iniciar sesión con Google</ion-button>
+    </div>
+    
   </form>
 </ion-content>
