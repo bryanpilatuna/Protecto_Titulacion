@@ -24,3 +24,12 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+//estilos para los mensajes de error
+.form-error
+  {
+    color: red;
+    font-size: 14px;
+    margin-left: 10px;
+    margin-top: 10px;
+  }

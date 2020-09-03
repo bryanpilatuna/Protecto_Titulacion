@@ -35,15 +35,29 @@
     </div>
 
     <div class="row">
-      <ion-label position="stacked"><strong>Contraseña</strong></ion-label>
-      <div class="input-container">
-        <ion-input formControlName="passwordControl" [type]="passwordTypeInput" 
-        #password placeholder="***********"></ion-input>
-        <button  item-end class="btn_eye_icon"  (click)="showPassword()">
-          <ion-icon [name]="(passwordTypeInput === 'text')?'eye-off':'eye'"></ion-icon>
-        </button>
-      </div>
+      
+      <ion-label><strong>Contraseña</strong></ion-label>
     </div>
+    <ion-row>
+      <ion-col>
+        <div>
+          <ion-input formControlName="passwordControl" [type]="passwordTypeInput" 
+        #password placeholder="***********"></ion-input>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          <button  item-end class="btn_eye_icon"  (click)="showPassword()">
+            <ion-icon [name]="(passwordTypeInput === 'text')?'eye-off':'eye'"></ion-icon>
+          </button>
+        </div>
+      </ion-col>
+      
+    </ion-row>
+
+ 
+
+    
     
     <div class="validation-errors">
       <p class="form-error"
