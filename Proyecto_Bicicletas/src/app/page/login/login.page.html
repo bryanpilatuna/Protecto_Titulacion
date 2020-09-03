@@ -1,25 +1,37 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar >
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/bienvenida"></ion-back-button>
     </ion-buttons>
-    <ion-title>Login</ion-title>
+    <ion-title><strong>Inicio de Sesión</strong></ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content >
   <form>
-    <ion-item lines="full">
-      <ion-label position="floating">Correo electrónico</ion-label>
-      <ion-input type="text" #email required></ion-input>
+    <ion-item lines="full" >
+      <ion-label position="stacked"><strong>Correo electrónico</strong></ion-label>
+      <ion-input type="text" #email placeholder="Ejemplo Bryan"></ion-input>
     </ion-item>
+
     <ion-item lines="full">
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input type="password" #password required></ion-input>
-      <button  item-end  class="btn_eye_icon"  (click)="showPassword(password)">
-        <ion-icon name="eye-off-outline"></ion-icon>
-    </button>
+      <ion-label position="stacked"><strong>Contraseña</strong></ion-label>
+      <div class="input-container">
+        <ion-input [type]="passwordTypeInput" #password placeholder="***********"></ion-input>
+        <button  item-end class="btn_eye_icon"  (click)="showPassword()">
+          <ion-icon [name]="(passwordTypeInput === 'text')?'eye-off':'eye'"></ion-icon>
+        </button>
+      </div>
     </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <p class="center-span">
+          <a routerLink="/forgot-password">¿Olvidaste tu contraseña?</a>
+        </p>
+      </ion-col>
+    </ion-row>
+
     <ion-row>
       <ion-col>
         <ion-button type="submit" (click)="onLogin(email, password)" expand="block">Iniciar sesión</ion-button>
@@ -28,7 +40,7 @@
 
     <ion-row>
       <ion-col>
-        <span class="center-span"> or </span>
+        <span class="center-span" style="text-align:center"> or </span>
       </ion-col>
     </ion-row>
 
@@ -38,20 +50,5 @@
       </ion-col>
     </ion-row>
 
-    <ion-row>
-      <ion-col>
-        <p class="center-span">
-          <a routerLink="/forgot-password">¿Has olvidado tu contraseña?</a>
-        </p>
-      </ion-col>
-    </ion-row>
-
   </form>
-
-  <!-- 
-  <ion-row>
-    <ion-col>
-      <ion-button color="secondary" expand="block" routerLink="/register">Registrarse</ion-button>
-    </ion-col>
-  </ion-row>-->
 </ion-content>

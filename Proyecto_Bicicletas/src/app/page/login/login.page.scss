@@ -1,6 +1,6 @@
 .center-span {
     display: block;
-    text-align: center;
+    text-align: right;
   }
 
 .btn_eye_icon{
@@ -17,3 +17,12 @@
 .btn_eye_icon:focus{
     outline: none  !important;
 }
+.fondoblanco{
+    --background: #ffffff !important;
+}
+form{
+    margin:10px;
+}
+
+
+

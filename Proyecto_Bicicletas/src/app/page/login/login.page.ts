@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef  } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
 
@@ -8,7 +8,8 @@ import { AuthService } from '../../service/auth.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
+  @ViewChild('passwordEyeLogin', { read: ElementRef }) passwordEye: ElementRef;
+  passwordTypeInput = 'password';
   constructor(private authSvc: AuthService, private router: Router) { }
 
   ngOnInit() {
@@ -56,8 +57,10 @@ export class LoginPage implements OnInit {
     }
   }
 
-  showPassword(input: any): any {
-    input.type = input.type === 'password' ?  'text' : 'password';
-   }
+  
+
+   showPassword() {
+    this.passwordTypeInput = this.passwordTypeInput === 'text' ? 'password' : 'text';
+    }
 
 }
