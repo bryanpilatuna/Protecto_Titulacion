@@ -67,6 +67,9 @@ export class FormularioDonacionPage implements OnInit {
   }
 
   cambiofecha(event){
+    
+   // this.donacion.fechadonacion.setDate= event.detail.value;
+
     this.donacion= {
       iddonante: this.donanteid,
       fechadonacion: new Date(event.detail.value),
@@ -74,7 +77,7 @@ export class FormularioDonacionPage implements OnInit {
       descripcion: '',
       aprobacion: false,
       idtienda: '',
-       };   
+      };   
 
   }
 
