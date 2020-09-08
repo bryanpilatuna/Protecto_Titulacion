@@ -52,6 +52,11 @@ const routes: Routes = [
     path: 'bienvenida',
     loadChildren: () => import('./page/bienvenida/bienvenida.module').then( m => m.BienvenidaPageModule)
   },
+  {
+    path: 'mis-alquileres/:id',
+    loadChildren: () => import('./page/mis-alquileres/mis-alquileres.module').then( m => m.MisAlquileresPageModule)
+  },
+
 
 
 

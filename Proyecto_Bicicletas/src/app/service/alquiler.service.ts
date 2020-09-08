@@ -50,5 +50,13 @@ export class AlquilerService {
   getTiendas(){
     return this.tienda;
   }
+  getAlquileres(id: string){
+
+    return this.alquiler;
+  }
+
+  updateAlquileres(todo:datosAlquiler, id: string){
+    return this.alquilerCollection.doc(id).update(todo);
+  }
   
 }
