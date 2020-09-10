@@ -29,7 +29,6 @@ export class MisAlquileresPage implements OnInit {
     this.alquilerService.getAlquileres(this.usuarioid).subscribe((misalquileres) =>{
     console.log('mis alquileres',misalquileres);
     this.misalquileres= misalquileres;
-    
 
     })
 
