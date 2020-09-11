@@ -1,43 +1,133 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
+      <ion-back-button defaultHref="/menu"></ion-back-button>
     </ion-buttons>
     <ion-title>Editar Usuario</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-list lines="full" *ngIf="usuario">
+<ion-content>
+  <form [formGroup]="formGroup" (ngSubmit)="guardarUsuario()" *ngIf="usuario">
+      <div class="row">
+        <ion-label position="stacked"><strong>Nombre</strong></ion-label>
+        <ion-input formControlName="nombreControl" type="text" #nombre [(ngModel)]="usuario.nombres" placeholder="Bryan"></ion-input>
+      </div>
+      <div class="validation-errors">
+        <p class="form-error"
+          *ngIf="formGroup.get('nombreControl').hasError('required') && formGroup.get('nombreControl').touched">
+          *Requerido
+        </p>
+        <p class="form-error"
+          *ngIf="formGroup.get('nombreControl').hasError('minlength') && formGroup.get('nombreControl').touched">
+          *Mínimo 3 caracteres 
+        </p>
+        <p class="form-error"
+          *ngIf="formGroup.get('nombreControl').hasError('maxlength') && formGroup.get('nombreControl').touched">
+          *Máximo 40 caracteres  
+        </p>
+        <p class="form-error"
+          *ngIf="formGroup.get('nombreControl').hasError('pattern') && formGroup.get('nombreControl').touched">
+          *El nombre debe tener solo letras, la primera letra con mayúscula y sin espacios
+        </p>
+      </div>
+      <div class="row">
+        <ion-label position="stacked"><strong>Apellido</strong></ion-label>
+        <ion-input formControlName="apellidoControl" #apellido type="text" [(ngModel)]="usuario.apellidos" placeholder="Molina"></ion-input>
+      </div>
+      <div class="validation-errors">
+        <p class="form-error"
+          *ngIf="formGroup.get('apellidoControl').hasError('required') && formGroup.get('apellidoControl').touched">
+          *Requerido
+        </p>
+        <p class="form-error"
+          *ngIf="formGroup.get('apellidoControl').hasError('minlength') && formGroup.get('apellidoControl').touched">
+          *Mínimo 3 caracteres 
+        </p>
+        <p class="form-error"
+          *ngIf="formGroup.get('apellidoControl').hasError('maxlength') && formGroup.get('apellidoControl').touched">
+          *Máximo 40 caracteres  
+        </p>
+        <p class="form-error"
+          *ngIf="formGroup.get('apellidoControl').hasError('pattern') && formGroup.get('apellidoControl').touched">
+          *El nombre debe tener solo letras, la primera letra con mayúscula y sin espacios
+        </p>
+      </div>
+  
+      <div class="row">
+        <ion-label position="stacked"><strong>Cédula</strong></ion-label>
+        <ion-input formControlName="cedulaControl" #cedula type="tel" [(ngModel)]="usuario.cedula" placeholder="0400887599"></ion-input>
+      </div>
+      <div class="validation-errors">
+        <p class="form-error"
+          *ngIf="formGroup.get('cedulaControl').hasError('required') && formGroup.get('cedulaControl').touched">
+          *Requerido
+        </p>
+        <p class="form-error"
+          *ngIf="formGroup.get('cedulaControl').hasError('minlength') && formGroup.get('cedulaControl').touched">
+          *Mínimo 10 números 
+        </p>
+        <p class="form-error"
+          *ngIf="formGroup.get('cedulaControl').hasError('maxlength') && formGroup.get('cedulaControl').touched">
+          *Máximo 13 números 
+        </p>
+        <p class="form-error"
+          *ngIf="formGroup.get('cedulaControl').hasError('pattern') && formGroup.get('cedulaControl').touched">
+          *El nombre debe tener solo números
+        </p>
+      </div>
 
-    <ion-item >
-      <ion-label position="stacked">Nombre</ion-label>
-      <ion-input required type="string" [(ngModel)]="usuario.nombres"></ion-input>
-    </ion-item>
-    <ion-item >
-      <ion-label position="stacked">Apellidos</ion-label>
-      <ion-input required type="string" [(ngModel)]="usuario.apellidos"></ion-input>
-    </ion-item>
+      <div class="row">
+        <ion-label position="stacked"><strong>Teléfono</strong></ion-label>
+        <ion-input formControlName="telefonoControl"#telefono  type="tel" [(ngModel)]="usuario.telefono" placeholder="0999999999"></ion-input>
+      </div>
+      <div class="validation-errors">
+        <p class="form-error"
+          *ngIf="formGroup.get('telefonoControl').hasError('required') && formGroup.get('telefonoControl').touched">
+          *Requerido
+        </p>
+        <p class="form-error"
+          *ngIf="formGroup.get('telefonoControl').hasError('minlength') && formGroup.get('telefonoControl').touched">
+          *Mínimo 7 números 
+        </p>
+        <p class="form-error"
+          *ngIf="formGroup.get('telefonoControl').hasError('maxlength') && formGroup.get('telefonoControl').touched">
+          *Máximo 10 números 
+        </p>
+        <p class="form-error"
+          *ngIf="formGroup.get('telefonoControl').hasError('pattern') && formGroup.get('telefonoControl').touched">
+          *El nombre debe tener solo números
+        </p>
+      </div>
 
-    <ion-item >
-      <ion-label position="stacked">Cedula</ion-label>
-      <ion-input required type="number" [(ngModel)]="usuario.cedula"></ion-input>
-    </ion-item>
-    <ion-item >
-      <ion-label position="stacked">Teléfono</ion-label>
-      <ion-input required type="number" [(ngModel)]="usuario.telefono"></ion-input>
-    </ion-item>
-    <ion-item >
-      <ion-label position="stacked">Correo electrónico</ion-label>
-      <ion-input required type="email" [(ngModel)]="usuario.correo"></ion-input>
-    </ion-item>
-    
 
-  </ion-list>
-  <ion-button expand="full" (click)="guardarUsuario()">Guardar</ion-button>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" color="danger">
+      <div class="row">
+        <ion-label position="stacked"><strong>Correo electrónico</strong></ion-label>
+        <ion-input formControlName="emailControl" #email type="email" [(ngModel)]="usuario.correo" placeholder="abc@gmail.com"></ion-input>
+      </div>
+      <div class="validation-errors">
+        <p class="form-error"
+          *ngIf="formGroup.get('emailControl').hasError('required') && formGroup.get('emailControl').touched">
+          *Requerido
+        </p>
+        <p class="form-error"
+          *ngIf="formGroup.get('emailControl').hasError('email') && formGroup.get('emailControl').touched">
+          *Ingrese un correo valido
+        </p>
+        <p class="form-error"
+          *ngIf="formGroup.get('emailControl').hasError('minlength') && formGroup.get('emailControl').touched">
+          *Mínimo 10 caracteres 
+        </p>
+        <p class="form-error"
+          *ngIf="formGroup.get('emailControl').hasError('maxlength') && formGroup.get('emailControl').touched">
+          *Máximo 40 caracteres  
+        </p>
+      </div>
+      <div class="row">
+        <ion-button type="submit" [disabled]="!formGroup.valid" expand="block">Guardar</ion-button>
+    </div>
+  </form>
 
-    
-      
-    </ion-fab>
+  
+
 </ion-content>

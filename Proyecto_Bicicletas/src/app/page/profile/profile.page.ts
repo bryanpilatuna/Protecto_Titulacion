@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {DatosUsuario} from '../../model/user.interface';
-import {UsuarioService} from '../../service/usuario.service';
+import { DatosUsuario } from '../../model/user.interface';
+import { UsuarioService } from '../../service/usuario.service';
 import { ActivatedRoute} from '@angular/router';
 import { NavController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
-
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
+  formGroup: FormGroup;
   usuario: DatosUsuario={
     uid: '',
     correo: '',
@@ -20,15 +21,18 @@ export class ProfilePage implements OnInit {
     cedula: '',
     telefono: '',
     estado: ''
-
-
-
   }
   usuarioId= null;
-  constructor(private route: ActivatedRoute, 
-    private router: Router, private nav: NavController, private usuarioService: UsuarioService, 
-    private loadingController: LoadingController) { 
-    
+  constructor(
+    private route: ActivatedRoute, 
+    private router: Router, 
+    private nav: NavController, 
+    private usuarioService: UsuarioService, 
+    private loadingController: LoadingController,
+    public formBuilder: FormBuilder
+    ) 
+  { 
+    this.crearvalidaciones();
   }
 
   ngOnInit() {
@@ -37,7 +41,50 @@ export class ProfilePage implements OnInit {
 
     if (this.usuarioId){
       this.cargarUsuario();
+     
     } 
+  }
+
+  crearvalidaciones(){
+
+    const nombreControl = new FormControl('', Validators.compose([
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(40),
+      Validators.pattern("(?=[^A-Z]*[A-Z])[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]*"),
+    ]));
+
+    const apellidoControl = new FormControl('', Validators.compose([
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(40),
+      Validators.pattern("(?=[^A-Z]*[A-Z])[a-zA-ZÑñÁÉÍÓÚáéíóú]*"),
+    ]));
+
+    const cedulaControl = new FormControl('', Validators.compose([
+      Validators.required,
+      Validators.minLength(10),
+      Validators.maxLength(13),
+      Validators.pattern("[0-9]*"),
+    ]));
+
+    const telefonoControl = new FormControl('', Validators.compose([
+      Validators.required,
+      Validators.minLength(7),
+      Validators.maxLength(10),
+      Validators.pattern("[0-9]*"),
+    ]));
+
+    const emailControl = new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.email,
+        Validators.minLength(10),
+        Validators.maxLength(40)
+
+    ]));
+    
+    this.formGroup = this.formBuilder.group({nombreControl,apellidoControl,cedulaControl,telefonoControl,emailControl });
+    
   }
 
   async cargarUsuario(){
@@ -49,6 +96,7 @@ export class ProfilePage implements OnInit {
     this.usuarioService.getUsuario(this.usuarioId).subscribe(usuario => {
       loading.dismiss();;
       this.usuario = usuario;
+      console.log(this.usuario.apellidos)
     });
   }
   async guardarUsuario() {

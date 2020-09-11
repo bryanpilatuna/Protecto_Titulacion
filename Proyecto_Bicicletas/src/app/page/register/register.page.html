@@ -34,7 +34,7 @@
 
     <div class="row">
       <ion-label position="stacked"><strong>Apellido</strong></ion-label>
-      <ion-input formControlName="apellidoControl" [type]="text" #apellido placeholder="Molina"></ion-input>
+      <ion-input formControlName="apellidoControl" type="text" #apellido placeholder="Molina"></ion-input>
     </div>
 
     <div class="validation-errors">
@@ -57,8 +57,8 @@
     </div>
 
     <div class="row">
-      <ion-label position="stacked"><strong>Cedula</strong></ion-label>
-      <ion-input formControlName="cedulaControl" [type]="number" #cedula placeholder="0400887599"></ion-input>
+      <ion-label position="stacked"><strong>Cédula</strong></ion-label>
+      <ion-input formControlName="cedulaControl" type="tel" #cedula placeholder="0400887599"></ion-input>
     </div>
 
     <div class="validation-errors">
@@ -82,7 +82,7 @@
 
     <div class="row">
       <ion-label position="stacked"><strong>Teléfono</strong></ion-label>
-      <ion-input formControlName="telefonoControl" [type]="number" #telefono placeholder="0999999999"></ion-input>
+      <ion-input formControlName="telefonoControl" type="tel" #telefono placeholder="0999999999"></ion-input>
     </div>
 
     <div class="validation-errors">
@@ -106,7 +106,7 @@
 
     <div class="row">
       <ion-label position="stacked"><strong>Correo electrónico</strong></ion-label>
-      <ion-input formControlName="emailControl" [type]="email" #email placeholder="abc@gmail.com"></ion-input>
+      <ion-input formControlName="emailControl" type="email" #email placeholder="abc@gmail.com"></ion-input>
     </div>
 
     <div class="validation-errors">
@@ -135,7 +135,7 @@
     <ion-row>
       <ion-col>
         <div>
-          <ion-input formControlName="passwordControl" [type]="passwordTypeInput" 
+          <ion-input formControlName="passwordControl" type="passwordTypeInput" 
         #password placeholder="***********"></ion-input>
         </div>
       </ion-col>
