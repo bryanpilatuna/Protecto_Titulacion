@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../service/auth.service';
 import { Router } from '@angular/router';
-import {User} from '../../model/user.interface';
-import {UsuarioService} from '../../service/usuario.service';
+import { User } from '../../model/user.interface';
+import { UsuarioService } from '../../service/usuario.service';
+import * as firebase from 'firebase';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.page.html',
@@ -10,14 +11,18 @@ import {UsuarioService} from '../../service/usuario.service';
 })
 export class MenuPage implements OnInit {
   name: string;
-  id: string;
+  id: any;
   usuarios: User[];
-  constructor(private authservice : AuthService, private router: Router,private usuarioService:UsuarioService) { }
+  constructor(private authservice : AuthService, private router: Router,private usuarioService:UsuarioService) { 
+    var user = firebase.auth().currentUser.uid;
+    this.id = user;
+    console.log(this.id);
+  }
 
   ngOnInit() {
     
     this.authservice.getUsuario().subscribe(user => {
-      this.id = user.uid;
+     
       //this.name = user.displayName;
     });
 
@@ -32,7 +37,9 @@ export class MenuPage implements OnInit {
     this.router.navigate(['profile']);
   }
   salir(){
+    
     this.authservice.logout();
+    this.id = null;
   }
 
 }

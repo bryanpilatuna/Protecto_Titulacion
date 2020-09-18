@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef  } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { DatosUsuario } from '../../model/user.interface';
 //import { Platform, LoadingController } from '@ionic/angular';
 
 @Component({
@@ -10,8 +11,10 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  todos: DatosUsuario[];
   formGroup: FormGroup; // declare it here
   passwordTypeInput = 'password';
+  id: string;
   constructor(
     private authSvc: AuthService, 
     private router: Router,

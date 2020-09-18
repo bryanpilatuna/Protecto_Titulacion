@@ -16,8 +16,11 @@ export class AlquilerService {
   private tiendaCollection: AngularFirestoreCollection<datosTiendas>;
   private tienda: Observable<datosTiendas[]>;
 
-  constructor(db:AngularFirestore) { 
 
+  private alquileridCollection: AngularFirestoreCollection<datosAlquiler>;
+  private alquilerid: Observable<datosAlquiler[]>;
+
+  constructor(private db:AngularFirestore) { 
     this.alquilerCollection = db.collection<datosAlquiler>('alquiler');
     this.alquiler = this.alquilerCollection.snapshotChanges().pipe(
       map(actions => {
@@ -30,9 +33,20 @@ export class AlquilerService {
       })
     );
 
-
     this.tiendaCollection = db.collection<datosTiendas>('tiendas');
     this.tienda = this.tiendaCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+        
+          return {id, ...data};
+        });
+      })
+    );
+
+    this.alquileridCollection = db.collection<datosAlquiler>('alquiler');
+    this.alquilerid = this.alquilerCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
           const data = a.payload.doc.data();
@@ -48,6 +62,7 @@ export class AlquilerService {
     return this.alquilerCollection.add(alquiler);
   }
   getTiendas(){
+    
     return this.tienda;
   }
   getAlquileres(id: string){
@@ -58,5 +73,23 @@ export class AlquilerService {
   updateAlquileres(todo:datosAlquiler, id: string){
     return this.alquilerCollection.doc(id).update(todo);
   }
+
+  getAlquiler(iduser:string){
+    console.log(iduser);
+    this.alquileridCollection = this.db.collection<datosAlquiler>('alquiler', ref => ref.where('idusuario', '==', iduser));
+    this.alquilerid = this.alquileridCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+        
+          return {id, ...data};
+        });
+      })
+    );
+    console.log(this.alquilerid);
+    return this.alquilerid;
+  }
+
   
 }

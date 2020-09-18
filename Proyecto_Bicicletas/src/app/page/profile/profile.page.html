@@ -10,7 +10,7 @@
 <ion-content>
   <form [formGroup]="formGroup" (ngSubmit)="guardarUsuario()" *ngIf="usuario">
       <div class="row">
-        <ion-label position="stacked"><strong>Nombre</strong></ion-label>
+        <ion-label position="stacked"><strong>Nombres</strong></ion-label>
         <ion-input formControlName="nombreControl" type="text" #nombre [(ngModel)]="usuario.nombres" placeholder="Bryan"></ion-input>
       </div>
       <div class="validation-errors">

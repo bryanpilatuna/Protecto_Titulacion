@@ -49,6 +49,10 @@ const routes: Routes = [
     loadChildren: () => import('./page/formulario-alquiler/formulario-alquiler.module').then( m => m.FormularioAlquilerPageModule)
   },
   {
+    path: 'formulario-alquiler',
+    loadChildren: () => import('./page/formulario-alquiler/formulario-alquiler.module').then( m => m.FormularioAlquilerPageModule)
+  },
+  {
     path: 'bienvenida',
     loadChildren: () => import('./page/bienvenida/bienvenida.module').then( m => m.BienvenidaPageModule)
   },
@@ -56,6 +60,11 @@ const routes: Routes = [
     path: 'mis-alquileres/:id',
     loadChildren: () => import('./page/mis-alquileres/mis-alquileres.module').then( m => m.MisAlquileresPageModule)
   },
+  {
+    path: 'alquiler/:id',
+    loadChildren: () => import('./page/alquiler/alquiler.module').then( m => m.AlquilerPageModule)
+  },
+
 
 
 
