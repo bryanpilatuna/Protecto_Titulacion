@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { DatosUsuario } from '../../model/user.interface';
-//import { Platform, LoadingController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
+import { Placeholder } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
   selector: 'app-login',
@@ -15,19 +16,43 @@ export class LoginPage implements OnInit {
   formGroup: FormGroup; // declare it here
   passwordTypeInput = 'password';
   id: string;
+  mensaje:string;
   constructor(
     private authSvc: AuthService, 
     private router: Router,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    private alertCtrl: AlertController
     //public platform:Platform,
     //public loadingController: LoadingController
     ) {
     this.crearvalidaciones();
+    //this.presentAlertConfirm();
+
+
     
    }
 
   ngOnInit() {
   }
+  async presentAlertConfirm() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Mensaje',
+      message: this.mensaje,
+      buttons: [
+       {
+          text: 'Aceptar',
+          handler: () => {
+            console.log('Confirm Ok');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+ 
+  
 
   crearvalidaciones(){
     // Campo Contraseña
@@ -62,10 +87,22 @@ export class LoginPage implements OnInit {
         //loading.dismiss();
         const isVerified = this.authSvc.isEmailVerified(user);
         this.redirectUser(isVerified);
+      }else{
+        if(this.authSvc.errores=="The password is invalid or the user does not have a password."){
+          //console.log(this.authSvc.errores);}
+          this.mensaje="La contraseña es incorrecta.";
+          this.presentAlertConfirm();
+        }else if(this.authSvc.errores=="There is no user record corresponding to this identifier. The user may have been deleted."){
+          this.mensaje="El usuario no se encuentra registrado.";
+          this.presentAlertConfirm();
+        }
+        
       }
+
     
     } catch (error) {
-      //console.log('Error->', error['message']);
+    
+      console.log('Error->', error['message']);
     }
 
     
@@ -74,10 +111,13 @@ export class LoginPage implements OnInit {
   async onLoginGoogle() {
     try {
       const user = await this.authSvc.loginGoogle();
+      console.log(user);
       if (user) {
         const isVerified = this.authSvc.isEmailVerified(user);
         this.redirectUser(isVerified);
         
+      }else{
+        console.log(this.authSvc.errores);
       }
     } catch (error) {
       console.log('Error->', error);

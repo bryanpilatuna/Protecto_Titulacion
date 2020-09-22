@@ -35,7 +35,9 @@ export class FormularioAlquilerPage implements OnInit {
 
   ngOnInit() {
     this.usuarioid=this.route.snapshot.params['id'];
-    
+    if (this.usuarioid){
+      this.loadTodo();
+    }
     this.alquiler={
 
       idusuario :this.usuarioid,
@@ -51,9 +53,18 @@ export class FormularioAlquilerPage implements OnInit {
     this.alquilerService.getTiendas().subscribe((tiendas) =>{
       console.log('Tiendas', tiendas);
       this.tiendas = tiendas;
+      console.log(this.tiendas[0].id);
     })
 
   }
+
+  async loadTodo(){
+    const loading = await this.loadingController.create({
+      message: 'Loading....'
+    });
+    
+  }
+
   async crearAlquiler(){
     const loading = await this.loadingController.create({
       message: 'Guardando....'

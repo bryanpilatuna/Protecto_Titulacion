@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { datosAlquiler } from '../model/alquiler.interface';
 import { datosTiendas } from '../model/tienda.interface';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,6 +22,9 @@ export class AlquilerService {
   private alquilerid: Observable<datosAlquiler[]>;
 
   constructor(private db:AngularFirestore) { 
+    
+    
+
     this.alquilerCollection = db.collection<datosAlquiler>('alquiler');
     this.alquiler = this.alquilerCollection.snapshotChanges().pipe(
       map(actions => {
@@ -45,21 +49,11 @@ export class AlquilerService {
       })
     );
 
-    this.alquileridCollection = db.collection<datosAlquiler>('alquiler');
-    this.alquilerid = this.alquilerCollection.snapshotChanges().pipe(
-      map(actions => {
-        return actions.map(a => {
-          const data = a.payload.doc.data();
-          const id = a.payload.doc.id;
-        
-          return {id, ...data};
-        });
-      })
-    );
-
   }
   addAlquiler(alquiler: datosAlquiler){
+    
     return this.alquilerCollection.add(alquiler);
+    
   }
   getTiendas(){
     

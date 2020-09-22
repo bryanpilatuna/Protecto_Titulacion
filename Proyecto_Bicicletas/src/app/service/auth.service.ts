@@ -7,12 +7,14 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { error } from 'protractor';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   public user$: Observable<User>;
+  public errores=null;
   constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private router: Router) {
 
     this.user$ = this.afAuth.authState.pipe(
@@ -73,9 +75,11 @@ export class AuthService {
       //this.updateUserData(user);
       return user;
     } catch (error) {
-      console.log('Error->', error);
+      this.errores=error['message'];
+      console.log('Error->', error['message']);
     }
   }
+
 
   async sendVerifcationEmail(): Promise<void> {
     try {
