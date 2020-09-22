@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../service/auth.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -12,10 +12,12 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 export class RegisterPage implements OnInit {
   formGroup: FormGroup;
   passwordTypeInput = 'password';
+  mensaje:string;
   constructor(
     private authSvc: AuthService, 
     private router: Router,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    private alertCtrl: AlertController
     ) {
       this.crearvalidaciones();
     }
@@ -70,12 +72,37 @@ export class RegisterPage implements OnInit {
     this.formGroup = this.formBuilder.group({nombreControl,apellidoControl,cedulaControl,telefonoControl,emailControl,passwordControl });
   }
 
+  async presentAlertConfirm() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Mensaje',
+      message: this.mensaje,
+      buttons: [
+       {
+          text: 'Aceptar',
+          handler: () => {
+            console.log('Confirm Ok');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
   async onRegister(email, password, nombre, apellido, cedula, telefono) {
     try {
       const user = await this.authSvc.register(email.value, password.value, nombre.value, apellido.value, cedula.value, telefono.value);
       if (user) {
         const isVerified = this.authSvc.isEmailVerified(user);
         this.redirectUser(isVerified);
+      }else{
+        if(this.authSvc.errores=="The email address is already in use by another account."){
+          //console.log(this.authSvc.errores);}
+          this.mensaje="El correo ya esta usado por otro usuario.";
+          this.presentAlertConfirm();
+        }
+        
       }
     } catch (error) {
       console.log('Error', error);
