@@ -64,6 +64,32 @@ const routes: Routes = [
     path: 'alquiler/:id',
     loadChildren: () => import('./page/alquiler/alquiler.module').then( m => m.AlquilerPageModule)
   },
+  {
+    path: 'alquiler',
+    loadChildren: () => import('./page/alquiler/alquiler.module').then( m => m.AlquilerPageModule)
+  },
+  {
+    path: 'alquiler-donacion',
+    loadChildren: () => import('./page/alquiler-donacion/alquiler-donacion.module').then( m => m.AlquilerDonacionPageModule)
+  },
+  {
+    path: 'donacion',
+    loadChildren: () => import('./page/donacion/donacion.module').then( m => m.DonacionPageModule)
+  },
+  {
+    path: 'alquileres',
+    loadChildren: () => import('./page/alquileres/alquileres.module').then( m => m.AlquileresPageModule)
+  },
+  {
+    path: 'alquileres/:id',
+    loadChildren: () => import('./page/alquileres/alquileres.module').then( m => m.AlquileresPageModule)
+  },
+  {
+    path: 'alquiler-donacion/:id',
+    loadChildren: () => import('./page/alquiler-donacion/alquiler-donacion.module').then( m => m.AlquilerDonacionPageModule)
+  },
+
+
 
 
 

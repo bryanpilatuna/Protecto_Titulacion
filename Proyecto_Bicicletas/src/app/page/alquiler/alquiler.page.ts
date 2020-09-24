@@ -6,6 +6,8 @@ import * as firebase from 'firebase';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { ActivatedRoute} from '@angular/router';
 
+import { Routes } from '@angular/router';
+
 
 
 @Component({
@@ -14,6 +16,9 @@ import { ActivatedRoute} from '@angular/router';
   styleUrls: ['./alquiler.page.scss'],
 })
 export class AlquilerPage implements OnInit {
+
+
+  
   alquiler: datosAlquiler[];
   usuarioid= null;
   constructor(private Servicio:AlquilerService,
