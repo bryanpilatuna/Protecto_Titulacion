@@ -1,5 +1,3 @@
-import { Timestamp } from 'rxjs/internal/operators/timestamp';
-
 export interface datosDonacion{
     id?: string;
     iddonante: string;

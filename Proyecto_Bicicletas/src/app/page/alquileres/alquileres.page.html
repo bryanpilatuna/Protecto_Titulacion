@@ -10,7 +10,7 @@
 <ion-content>
   <ion-list>
     <ion-item-sliding *ngFor="let alqui of alquiler;let indice=index">
-      <ion-item button routerLink="['/formulario-alquiler',alqui.]">
+      <ion-item button [routerLink]="['/alquiler', alqui.id]" >
         <ion-label>
           <h2>Solicitud {{indice+1}}</h2>
           <h2>Fecha solicitud: {{alqui.fecha.toMillis() | date:'yyyy/MM/dd'}}</h2>
@@ -21,4 +21,5 @@
       </ion-item> 
     </ion-item-sliding>
   </ion-list>
+
 </ion-content>

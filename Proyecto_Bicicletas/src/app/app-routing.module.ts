@@ -88,6 +88,15 @@ const routes: Routes = [
     path: 'alquiler-donacion/:id',
     loadChildren: () => import('./page/alquiler-donacion/alquiler-donacion.module').then( m => m.AlquilerDonacionPageModule)
   },
+  {
+    path: 'donar',
+    loadChildren: () => import('./page/donar/donar.module').then( m => m.DonarPageModule)
+  },
+  {
+    path: 'donar/:id',
+    loadChildren: () => import('./page/donar/donar.module').then( m => m.DonarPageModule)
+  },
+
 
 
 

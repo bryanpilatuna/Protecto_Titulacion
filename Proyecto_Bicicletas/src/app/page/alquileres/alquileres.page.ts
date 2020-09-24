@@ -11,14 +11,10 @@ import { AlquilerService } from 'src/app/service/alquiler.service';
 })
 export class AlquileresPage implements OnInit {
   alquiler: datosAlquiler[];
-  usuarioid= null;
   id: any;
   constructor(private Servicio:AlquilerService,
     private route: ActivatedRoute) { 
-      this.usuarioid="gUFSslYPfrVo99jWdnEUiCA3z9w2";
-      var user = firebase.auth().currentUser.uid;
-      console.log(user);
-    console.log(this.usuarioid);
+    var user = firebase.auth().currentUser.uid;
     this.Servicio.getAlquiler(user).subscribe((alquileres) =>{
       this.alquiler = alquileres;
     })
