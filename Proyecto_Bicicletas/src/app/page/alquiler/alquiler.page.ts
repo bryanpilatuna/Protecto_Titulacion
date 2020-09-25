@@ -19,7 +19,7 @@ export class AlquilerPage implements OnInit {
 
 
   
-  alquiler: datosAlquiler[];
+  alquileres: datosAlquiler;
   usuarioid= null;
   constructor(private Servicio:AlquilerService,
     private route: ActivatedRoute
@@ -30,8 +30,9 @@ export class AlquilerPage implements OnInit {
   ngOnInit() {
     this.usuarioid=this.route.snapshot.params['id'];
     console.log(this.usuarioid);
-    this.Servicio.getAlquiler(this.usuarioid).subscribe((alquileres) =>{
-      this.alquiler = alquileres;
+    this.Servicio.getAlquileres(this.usuarioid).subscribe((alquileres) =>{
+      this.alquileres = alquileres;
+      console.log(this.alquileres.fecha);
     })
   }
 

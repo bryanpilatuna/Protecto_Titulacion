@@ -60,8 +60,8 @@ export class AlquilerService {
     return this.tienda;
   }
   getAlquileres(id: string){
-
-    return this.alquiler;
+    return this.alquilerCollection.doc<datosAlquiler>(id).valueChanges();
+ 
   }
 
   updateAlquileres(todo:datosAlquiler, id: string){

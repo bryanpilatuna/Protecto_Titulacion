@@ -17,6 +17,7 @@ export class AlquileresPage implements OnInit {
     var user = firebase.auth().currentUser.uid;
     this.Servicio.getAlquiler(user).subscribe((alquileres) =>{
       this.alquiler = alquileres;
+      console.log(this.alquiler[0].bicicleta);
     })
     }
 

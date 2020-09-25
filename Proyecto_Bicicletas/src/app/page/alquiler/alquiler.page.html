@@ -8,25 +8,38 @@
 </ion-header>
 
 <ion-content>
+  
 
 
-  <ion-list>
-    <ion-item-sliding *ngFor="let alqui of alquiler;let indice=index">
-      <ion-item button routerLink="['/formulario-alquiler',alqui.]">
-        <ion-label>
-          <h2>Solicitud {{indice+1}}</h2>
-          <h2>Fecha solicitud: {{alqui.fecha.toMillis() | date:'yyyy/MM/dd'}}</h2>
-          <h2>Fecha alquiler : {{alqui.fechaalquiler.toMillis() | date:'yyyy/MM/dd'}}</h2>
-          <h2>Fecha devolución : {{alqui.fechadevolucion.toMillis() | date:'yyyy/MM/dd'}}</h2>
-          <h2>Fecha devolución : {{alqui.id}}</h2>
-        </ion-label>
-      </ion-item> 
-    </ion-item-sliding>
+  <ion-list lines="full" *ngIf="alquileres">
+    <ion-item >
+      <ion-label position="stacked"><strong>Bicicleta</strong></ion-label>
+      <ion-input required type="text" placeholder="Nombre" [(ngModel)]="alquileres.bicicleta"></ion-input>
+    </ion-item>
+
+    <ion-item >
+      <ion-label position="stacked"><strong>Bicicleta</strong></ion-label>
+      <ion-input required type="text" placeholder="Nombre" [(ngModel)]="alquileres.idtienda"></ion-input>
+    </ion-item>
+
+    <ion-item >
+      <ion-label>Fecha solicitud:</ion-label>
+      <ion-datetime value="{{alquileres.fecha.toMillis() | date:'yyyy/MM/dd'}}" [(ngModel)]="alquileres.fecha"></ion-datetime>
+    </ion-item>
+  
+    <ion-item >
+      <ion-label>Fecha alquiler:</ion-label>
+      <ion-datetime value="{{alquileres.fechaalquiler.toMillis() | date:'yyyy/MM/dd'}}" [(ngModel)]="alquileres.fechaalquiler"></ion-datetime>
+    </ion-item>
+
+    <ion-item >
+      <ion-label>Fecha alquiler:</ion-label>
+      <ion-datetime value="{{alquileres.fechaalquiler.toMillis() | date:'yyyy/MM/dd'}}" [(ngModel)]="alquileres.fechaalquiler"></ion-datetime>
+    </ion-item>
+
+    
+
+
   </ion-list>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button routerLink="/formulario-alquiler" routerDirection="forward">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
 
 </ion-content>
