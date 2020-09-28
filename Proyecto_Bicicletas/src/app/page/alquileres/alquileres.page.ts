@@ -10,14 +10,14 @@ import { AlquilerService } from 'src/app/service/alquiler.service';
   styleUrls: ['./alquileres.page.scss'],
 })
 export class AlquileresPage implements OnInit {
-  //alquiler: datosAlquiler[];
-  //id: any;
+  alquiler: datosAlquiler[];
+  id: any;
   constructor(private Servicio:AlquilerService,
     private route: ActivatedRoute) { 
     var user = firebase.auth().currentUser.uid;
     this.Servicio.getAlquiler(user).subscribe((alquileres) =>{
-      //this.alquiler = alquileres;
-      //console.log(alquileres[0].bicicleta);
+      this.alquiler = alquileres;
+      console.log(alquileres[0].bicicleta);
     })
     }
 
