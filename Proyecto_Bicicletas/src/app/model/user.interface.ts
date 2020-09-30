@@ -14,6 +14,7 @@ export interface DatosUsuario {
   cedula: string;
   telefono: string;
   estado:string;
+  foto:string;
 }
 
 

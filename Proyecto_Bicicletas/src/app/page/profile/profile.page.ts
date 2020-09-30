@@ -20,7 +20,8 @@ export class ProfilePage implements OnInit {
     apellidos: '',
     cedula: '',
     telefono: '',
-    estado: ''
+    estado: '',
+    foto: ''
   }
   usuarioId= null;
   constructor(
