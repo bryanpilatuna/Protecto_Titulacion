@@ -36,14 +36,32 @@
     </ion-select>
   </ion-item>
 
+  <ion-item  *ngIf="donacion">
+    <ion-label>Seleccione estado</ion-label>
+    <ion-select [(ngModel)]="donacion.estado" ok-text="Seleccionar" 
+    cancel-text="Cancelar"  >
+      <ion-select-option [value]="Bueno"> 
+        <ion-label>
+          Bueno
+        </ion-label>
+      </ion-select-option>
+      <ion-select-option [value]="Regular"> 
+        <ion-label>
+          Regular
+        </ion-label>
+      </ion-select-option>
+      <ion-select-option [value]="Malo"> 
+        <ion-label>
+          Melo
+        </ion-label>
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
 
   <ion-item *ngIf="donacion">
     <ion-label position="stacked"></ion-label>
-    <ion-input required type="text" placeholder="estado" [(ngModel)]="donacion.estado"></ion-input>
-  </ion-item>
-  <ion-item *ngIf="donacion">
-    <ion-label position="stacked"></ion-label>
-    <ion-input required type="text" placeholder="descripcion" [(ngModel)]="donacion.descripcion"></ion-input>
+    <ion-input required type="text" placeholder="Descripción" [(ngModel)]="donacion.descripcion"></ion-input>
   </ion-item>
   
   
