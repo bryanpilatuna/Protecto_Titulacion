@@ -17,6 +17,7 @@ export class LoginPage implements OnInit {
   passwordTypeInput = 'password';
   id: string;
   mensaje:string;
+  image:any;
   constructor(
     private authSvc: AuthService, 
     private router: Router,
@@ -34,6 +35,7 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
   }
+
   async presentAlertConfirm() {
     const alert = await this.alertCtrl.create({
       cssClass: 'my-custom-class',

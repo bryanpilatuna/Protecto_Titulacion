@@ -10,15 +10,18 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-  formGroup: FormGroup;
-  passwordTypeInput = 'password';
-  mensaje:string;
+  public formGroup: FormGroup;
+  public passwordTypeInput = 'password';
+  public mensaje:string;
+  public image: any;
   constructor(
+
     private authSvc: AuthService, 
     private router: Router,
     public formBuilder: FormBuilder,
     private alertCtrl: AlertController
-    ) {
+    ) 
+    {
       this.crearvalidaciones();
     }
 
@@ -68,9 +71,17 @@ export class RegisterPage implements OnInit {
         Validators.maxLength(40),
       
     ]));
+    const foto = new FormControl('', Validators.required)
 
-    this.formGroup = this.formBuilder.group({nombreControl,apellidoControl,cedulaControl,telefonoControl,emailControl,passwordControl });
+    this.formGroup = this.formBuilder.group({nombreControl,apellidoControl,cedulaControl,telefonoControl,emailControl,passwordControl,foto });
   }
+
+  enviarimagen(event: any): void {
+    this.image = event.target.files[0];
+    console.log(this.image);
+    
+  }
+
 
   async presentAlertConfirm() {
     const alert = await this.alertCtrl.create({
@@ -92,7 +103,7 @@ export class RegisterPage implements OnInit {
 
   async onRegister(email, password, nombre, apellido, cedula, telefono) {
     try {
-      const user = await this.authSvc.register(email.value, password.value, nombre.value, apellido.value, cedula.value, telefono.value);
+      const user = await this.authSvc.register(email.value, password.value, nombre.value, apellido.value, cedula.value, telefono.value,this.image);
       if (user) {
         const isVerified = this.authSvc.isEmailVerified(user);
         this.redirectUser(isVerified);
