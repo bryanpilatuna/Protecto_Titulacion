@@ -11,7 +11,7 @@ import { error } from 'protractor';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { FileI } from '../model/file.interface';
 import { finalize } from 'rxjs/operators';
-import { Imagen } from '../model/user.interface';
+
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,6 @@ export class AuthService {
   user$: Observable<User>;
   errores=null;
   private filePath: string;
-  //photoURL: Observable<Imagen>;
   public photoURL = null;
   
   
@@ -75,8 +74,6 @@ export class AuthService {
         })
       ).subscribe();
      
-
-
   }
 
 
@@ -109,13 +106,6 @@ export class AuthService {
                 foto : this.photoURL
                 
               })
-              //console.log(this.photoURL);
-         
-              //this.grabarimagen();
-              //console.log(this.photoURL );
-              //return this.register(email, password, nombre, apellido, cedu, tele,this.photoURL);
-             
-              //this.saveUserProfile(user);
             });
           })
         ).subscribe();
@@ -129,11 +119,6 @@ export class AuthService {
       console.log('Error->', error);
     }
   }
-
-
-  
-
-  
 
   async login(email: string, password: string): Promise<User> {
     try {
@@ -169,20 +154,6 @@ export class AuthService {
       console.log('Error->', error);
     }
   }
-
-  /*private updateUserData(user: User) {
-    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
-    console.log("entra");
-    const data: User = {
-      uid: user.uid,
-      email: user.email,
-      emailVerified: user.emailVerified,
-      displayName: user.displayName
-    };
-
-    return userRef.set(data, { merge: true });
-  }*/
-
 
   getUsuario(){
     return this.afAuth.authState;

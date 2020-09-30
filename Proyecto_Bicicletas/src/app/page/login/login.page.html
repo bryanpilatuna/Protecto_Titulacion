@@ -46,11 +46,9 @@
         </div>
       </ion-col>
       <ion-col>
-        <div>
-          <button  item-end class="btn_eye_icon"  (click)="showPassword()">
-            <ion-icon [name]="(passwordTypeInput === 'text')?'eye-off':'eye'"></ion-icon>
-          </button>
-        </div>
+        <ion-button item-end class="btn_eye_icon" color="royal" (click)="showPassword()">
+          <ion-icon [name]="(passwordTypeInput === 'text')?'eye-off':'eye'"></ion-icon>
+        </ion-button>
       </ion-col>
       
     </ion-row>
