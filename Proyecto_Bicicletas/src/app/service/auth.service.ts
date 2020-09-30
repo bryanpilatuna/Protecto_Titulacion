@@ -86,7 +86,7 @@ export class AuthService {
       const uid = user.uid;
       const correo = user.email;
       
-      this.filePath = `images/${image.name}`;
+      this.filePath = `perfiles/${uid}`;
       const fileRef = this.storage.ref(this.filePath);
       const task = this.storage.upload(this.filePath, image);
       task.snapshotChanges()
