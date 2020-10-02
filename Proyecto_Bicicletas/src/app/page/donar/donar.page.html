@@ -8,5 +8,32 @@
 </ion-header>
 
 <ion-content>
+  <ion-list lines="full" *ngIf="donaciones">
+    <ion-item >
+      <ion-label position="stacked"><strong>Descripción </strong></ion-label>
+      <ion-input required type="text" placeholder="Nombre" [(ngModel)]="donaciones.descripcion" readonly="readonly"></ion-input>
+    </ion-item>
+
+    <ion-item >
+      <ion-label position="stacked"><strong>Tienda</strong></ion-label>
+      <br>
+      <ion-label *ngFor="let tienda of tiendas;let indice=index">
+        <ion-input *ngIf="tienda.id==donaciones.idtienda" required type="text" placeholder="Nombre" [(ngModel)]="tienda.nombre" readonly="readonly"></ion-input>
+      </ion-label>
+    </ion-item>
+
+    <ion-item >
+      <ion-label>Fecha Donación:</ion-label>
+      <ion-datetime value="{{donaciones.fechadonacion.toMillis() | date:'yyyy/MM/dd'}}" readonly="readonly"></ion-datetime>
+    </ion-item>
+
+    <ion-item >
+      <ion-label position="stacked"><strong>Estado: </strong></ion-label>
+      <ion-input required type="text" placeholder="Nombre" [(ngModel)]="donaciones.estado" readonly="readonly"></ion-input>
+    </ion-item>
+  
+   
+
+  </ion-list>
 
 </ion-content>

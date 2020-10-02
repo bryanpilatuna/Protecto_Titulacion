@@ -55,6 +55,12 @@ export class DonacionService {
     return this.tienda;
   }
 
+  getDonacionid(id: string){
+    return this.donacionCollection.doc<datosDonacion>(id).valueChanges();
+ 
+  }
+
+
   
   getdonacion(iduser:string){
     console.log(iduser);

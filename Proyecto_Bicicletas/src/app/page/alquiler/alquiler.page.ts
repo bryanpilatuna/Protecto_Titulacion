@@ -18,7 +18,7 @@ import { datosTiendas } from 'src/app/model/tienda.interface';
 export class AlquilerPage implements OnInit {
   tiendas:  datosTiendas[];
   alquileres: datosAlquiler;
-  usuarioid= null;
+  idalquiler= null;
   constructor(private Servicio:AlquilerService,
     private route: ActivatedRoute
     ) {
@@ -26,9 +26,9 @@ export class AlquilerPage implements OnInit {
    }
 
   ngOnInit() {
-    this.usuarioid=this.route.snapshot.params['id'];
-    console.log(this.usuarioid);
-    this.Servicio.getAlquileres(this.usuarioid).subscribe((alquileres) =>{
+    this.idalquiler=this.route.snapshot.params['id'];
+    console.log(this.idalquiler);
+    this.Servicio.getAlquileres(this.idalquiler).subscribe((alquileres) =>{
       this.alquileres = alquileres;
       console.log(this.alquileres.fecha);
     })
