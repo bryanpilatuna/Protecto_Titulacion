@@ -16,7 +16,10 @@
           <h2>Fecha solicitud: {{alqui.fecha.toMillis() | date:'yyyy/MM/dd'}}</h2>
           <h2>Fecha alquiler : {{alqui.fechaalquiler.toMillis() | date:'yyyy/MM/dd'}}</h2>
           <h2>Fecha devolución : {{alqui.fechadevolucion.toMillis() | date:'yyyy/MM/dd'}}</h2>
-          <h2>Fecha devolución : {{alqui.id}}</h2>
+          <ion-label *ngFor="let tienda of tiendas;let indice=index">
+            <h2 *ngIf="tienda.id==alqui.idtienda">Tienda : {{tienda.nombre}}</h2>
+          </ion-label>
+          
         </ion-label>
       </ion-item> 
     </ion-item-sliding>

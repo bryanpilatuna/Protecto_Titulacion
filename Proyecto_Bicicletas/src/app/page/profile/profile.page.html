@@ -13,7 +13,7 @@
           <img [src]="usuario.foto" style="width:200px;height:200px;border-radius:150px;display:block;margin:auto;"/>
       </div>
       <div class="row">
-        <ion-label position="stacked"><strong>Nombres</strong></ion-label>
+        <ion-label position="stacked"><strong>Nombre</strong></ion-label>
         <ion-input formControlName="nombreControl" type="text" #nombre [(ngModel)]="usuario.nombres" placeholder="Bryan"></ion-input>
       </div>
       <div class="validation-errors">
@@ -106,7 +106,7 @@
 
       <div class="row">
         <ion-label position="stacked"><strong>Correo electrónico</strong></ion-label>
-        <ion-input formControlName="emailControl" #email type="email" [(ngModel)]="usuario.correo" placeholder="abc@gmail.com"></ion-input>
+        <ion-input formControlName="emailControl" #email type="email" [(ngModel)]="usuario.correo" placeholder="abc@gmail.com" disabled="true"></ion-input>
       </div>
       <div class="validation-errors">
         <p class="form-error"
