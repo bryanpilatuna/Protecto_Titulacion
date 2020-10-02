@@ -1,12 +1,12 @@
 import { Component, OnInit, VERSION  } from '@angular/core';
 import { AlquilerService } from '../../service/alquiler.service';
 import { datosAlquiler } from '../../model/alquiler.interface';
-//import { obtenerfecha } from '../../model/alquiler.interface';
 import * as firebase from 'firebase';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { ActivatedRoute} from '@angular/router';
 
 import { Routes } from '@angular/router';
+import { datosTiendas } from 'src/app/model/tienda.interface';
 
 
 
@@ -16,9 +16,7 @@ import { Routes } from '@angular/router';
   styleUrls: ['./alquiler.page.scss'],
 })
 export class AlquilerPage implements OnInit {
-
-
-  
+  tiendas:  datosTiendas[];
   alquileres: datosAlquiler;
   usuarioid= null;
   constructor(private Servicio:AlquilerService,
@@ -34,6 +32,13 @@ export class AlquilerPage implements OnInit {
       this.alquileres = alquileres;
       console.log(this.alquileres.fecha);
     })
+
+    this.Servicio.getTiendas().subscribe((tiendas) =>{
+      this.tiendas = tiendas;
+      console.log(tiendas[0].id);
+    })
   }
+
+  
 
 }
