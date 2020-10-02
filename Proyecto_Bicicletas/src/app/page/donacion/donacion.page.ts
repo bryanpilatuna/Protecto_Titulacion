@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
 import { datosDonacion } from 'src/app/model/donacion.interface';
+import { datosTiendas } from 'src/app/model/tienda.interface';
 import { ActivatedRoute } from '@angular/router';
 import { DonacionService } from 'src/app/service/donacion.service';
 @Component({
@@ -9,6 +10,7 @@ import { DonacionService } from 'src/app/service/donacion.service';
   styleUrls: ['./donacion.page.scss'],
 })
 export class DonacionPage implements OnInit {
+  tiendas:  datosTiendas[];
   donaciones: datosDonacion[];
   id: any;
   constructor(private Servicio:DonacionService,
@@ -17,6 +19,11 @@ export class DonacionPage implements OnInit {
     this.Servicio.getdonacion(user).subscribe((alquileres) =>{
       this.donaciones = alquileres;
       console.log(alquileres);
+    })
+
+    this.Servicio.getTiendas().subscribe((tiendas) =>{
+      this.tiendas = tiendas;
+      console.log(tiendas[0].id);
     })
    }
 
