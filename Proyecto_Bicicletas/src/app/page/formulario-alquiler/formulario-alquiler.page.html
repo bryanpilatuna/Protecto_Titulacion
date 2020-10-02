@@ -23,6 +23,23 @@
     </ion-datetime>
   </ion-item>
 
+  <ion-item *ngIf="alquiler">
+    <ion-label position="stacked">Seleccione la fecha de devolución</ion-label>
+    <ion-datetime displayFormat="DD MMMM YYYY"   
+    (ionChange)="cambiofecha2($event)"
+    placeholder="Dia Mes Año"    
+    min="{{fechaactual | date: 'yyyy-MM-dd'}}" 
+    max="2021-12-31" 
+    cancelText="Cancelar"
+    doneText="Seleccionar"
+    >
+    </ion-datetime>
+  </ion-item>
+
+  
+
+  
+
   <ion-item  *ngIf="alquiler">
     <ion-label>Seleccione la  Tienda</ion-label>
     <ion-select [(ngModel)]="alquiler.idtienda" ok-text="Seleccionar" cancel-text="Cancelar"  >

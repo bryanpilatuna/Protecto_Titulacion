@@ -5,6 +5,7 @@ import { datosAlquiler } from '../../model/alquiler.interface';
 import { AlquilerService } from '../../service/alquiler.service';
 
 import { datosTiendas } from '../../model/tienda.interface';
+import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'app-formulario-alquiler',
@@ -66,6 +67,13 @@ export class FormularioAlquilerPage implements OnInit {
   }
 
   async crearAlquiler(){
+
+    this.alquiler.idusuario=this.usuarioid;
+    this.alquiler.idtienda='';
+    this.alquiler.bicicleta= '';
+    this.alquiler.aprobacion= false;
+    this.alquiler.fecha= this.fechaactual;
+  
     const loading = await this.loadingController.create({
       message: 'Guardando....'
     });
@@ -78,19 +86,11 @@ export class FormularioAlquilerPage implements OnInit {
   }
 
   cambiofecha(event){
-    this.alquiler={
+    this.alquiler.fechaalquiler= new Date(event.detail.value);
+  }
 
-      idusuario :this.usuarioid,
-      idtienda: '',
-      fechadevolucion:this.fechaactual,
-      fechaalquiler: new Date(event.detail.value),
-      bicicleta: '',
-      fecha: this.fechaactual,
-      aprobacion: false,
-     
-    };
-    
-
+  cambiofecha2(event){
+    this.alquiler.fechadevolucion= new Date(event.detail.value);
   }
   
 }
