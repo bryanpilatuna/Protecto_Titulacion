@@ -10,7 +10,7 @@
 <ion-content>
   <ion-list lines="full" *ngIf="donaciones">
     <ion-item >
-      <ion-label position="stacked"><strong>Descripción </strong></ion-label>
+      <ion-label position="stacked"><strong>Descripción</strong></ion-label>
       <ion-input required type="text" placeholder="Nombre" [(ngModel)]="donaciones.descripcion" readonly="readonly"></ion-input>
     </ion-item>
 
@@ -31,6 +31,8 @@
       <ion-label position="stacked"><strong>Estado: </strong></ion-label>
       <ion-input required type="text" placeholder="Nombre" [(ngModel)]="donaciones.estado" readonly="readonly"></ion-input>
     </ion-item>
+
+    <ion-button *ngIf="donaciones.anular==false" expand="full" (click)="cancelaralquilar()">Anular</ion-button>
   
    
 

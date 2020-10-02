@@ -24,6 +24,7 @@ export class FormularioDonacionPage implements OnInit {
     descripcion: '',
     aprobacion: false,
     idtienda: '',
+    anular:false
   };
   
   
@@ -44,6 +45,7 @@ export class FormularioDonacionPage implements OnInit {
     descripcion: '',
     aprobacion: false,
     idtienda: '',
+    anular:false
      };
 
     this.donacionService.getTiendas().subscribe((tiendas) =>{
@@ -77,6 +79,7 @@ export class FormularioDonacionPage implements OnInit {
       descripcion: '',
       aprobacion: false,
       idtienda: '',
+      anular:false
       };   
 
   }

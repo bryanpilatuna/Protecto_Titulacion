@@ -60,6 +60,10 @@ export class DonacionService {
  
   }
 
+  updateDonacion(todo:datosDonacion, id: string){
+    return this.donacionCollection.doc(id).update(todo);
+  }
+
 
   
   getdonacion(iduser:string){
