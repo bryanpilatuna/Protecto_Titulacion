@@ -64,6 +64,10 @@ export class AlquilerService {
  
   }
 
+  getodosAlquileres(){
+    return this.alquiler;
+  }
+
   updateAlquileres(todo:datosAlquiler, id: string){
     return this.alquilerCollection.doc(id).update(todo);
   }

@@ -35,6 +35,7 @@
       <ion-label>Fecha Devolución:</ion-label>
       <ion-datetime value="{{alquileres.fechadevolucion.toMillis() | date:'yyyy/MM/dd'}}" readonly="readonly"></ion-datetime>
     </ion-item>
+    <ion-button expand="full" (click)="cancelaralquilar()">Anular</ion-button>
 
   </ion-list>
 

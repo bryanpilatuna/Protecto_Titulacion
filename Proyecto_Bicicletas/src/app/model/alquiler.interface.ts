@@ -7,4 +7,5 @@ export interface datosAlquiler{
     bicicleta: string;
     fecha: Date;  
     aprobacion: boolean; 
+    anular:boolean;
 }

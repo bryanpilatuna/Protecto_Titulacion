@@ -27,6 +27,7 @@ export class FormularioAlquilerPage implements OnInit {
     bicicleta: '',
     fecha: this.fechaactual,
     aprobacion: false,
+    anular: false
    
 
   }
@@ -48,6 +49,7 @@ export class FormularioAlquilerPage implements OnInit {
       bicicleta: '',
       fecha: this.fechaactual,
       aprobacion: false,
+      anular: false
      
     };
 
