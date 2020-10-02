@@ -71,7 +71,7 @@ export class FormularioAlquilerPage implements OnInit {
   async crearAlquiler(){
 
     this.alquiler.idusuario=this.usuarioid;
-    this.alquiler.idtienda='';
+    this.alquiler.idtienda=this.alquiler.idtienda;
     this.alquiler.bicicleta= '';
     this.alquiler.aprobacion= false;
     this.alquiler.fecha= this.fechaactual;
