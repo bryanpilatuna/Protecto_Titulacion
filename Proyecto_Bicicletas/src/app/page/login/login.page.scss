@@ -23,4 +23,19 @@
 form{
     margin:10px;
 }
+.btn-gplus {
+    --background: #E04006;
+    color:white;
+    width: 40%;
+  }
+
+  ion-content{
+    --background: url("../../../assets/login/bg.jpg") 0 0/100% 100% no-repeat;
+}
+
+ion-header,ion-toolbar{
+--background:#b2c6fb
+}
+
+ 
 

@@ -3,18 +3,22 @@
     <ion-buttons slot="start">
       <ion-back-button routerLink="/bienvenida"></ion-back-button>
     </ion-buttons>
-    <ion-title><strong>Inicio de Sesión</strong></ion-title>
+    <ion-title>Iniciar Sesión </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content >
-  <form [formGroup]="formGroup" (ngSubmit)="onLogin(email, password)">
-    <div class="row">
-        <ion-label position="stacked"><strong>Correo electrónico</strong></ion-label>
+  <div class="row" style="display: flex;justify-content: center;">
+    <img width="40%" src="../../../assets/login/logo2.png"/>
+  </div>
+  <form [formGroup]="formGroup" (ngSubmit)="onLogin(email, password)" >
+    <ion-item style="border: white 8px groove;">
+        <ion-label position="floating">
+          <strong>Correo electrónico</strong>
+        </ion-label>
         <ion-input formControlName="emailControl" [type]="email" #email placeholder="abc@gmail.com">
         </ion-input>
-    </div>
-
+    </ion-item>
 	  <div class="validation-errors">
         <p class="form-error"
           *ngIf="formGroup.get('emailControl').hasError('required') && formGroup.get('emailControl').touched">
@@ -33,28 +37,17 @@
           *Máximo 40 caracteres  
         </p>
     </div>
-
-    <div class="row">
-      
-      <ion-label><strong>Contraseña</strong></ion-label>
-    </div>
-    <ion-row>
-      <ion-col>
-        <div>
-          <ion-input formControlName="passwordControl" [type]="passwordTypeInput" 
+    <ion-item style="border: white 8px groove;">
+      <ion-label position="floating"><strong>Contraseña</strong></ion-label>
+      <div>
+        <ion-input formControlName="passwordControl" [type]="passwordTypeInput" 
         #password placeholder="***********"></ion-input>
-        </div>
-      </ion-col>
-      <ion-col>
-        <ion-button item-end class="btn_eye_icon" color="royal" (click)="showPassword()">
-          <ion-icon [name]="(passwordTypeInput === 'text')?'eye-off':'eye'"></ion-icon>
-        </ion-button>
-      </ion-col>
+      </div>
       
-    </ion-row>
-
- 
-
+      <button item-end type="button" class="btn_eye_icon" color="royal" style="border: none;" (click)="showPassword()">
+        <ion-icon [name]="(passwordTypeInput === 'text')?'eye-off':'eye'" ></ion-icon>
+      </button>
+    </ion-item>
     
     
     <div class="validation-errors">
@@ -70,27 +63,32 @@
         *ngIf="formGroup.get('emailControl').hasError('passwordControl') && formGroup.get('passwordControl').touched">
         *Máximo 40 caracteres  
       </p>
-  </div>
+    </div>
 
 	  <div class="row">
       <p class="center-span">
-        <a routerLink="/forgot-password">¿Olvidaste tu contraseña?</a>
+        <a routerLink="/forgot-password">
+          ¿Olvidaste tu contraseña?
+        </a>
       </p>
     </div>
 
 	  <div class="row">
-      <ion-button [disabled]="!formGroup.valid" type="submit" expand="block">Iniciar sesión</ion-button>
+      <ion-button [disabled]="!formGroup.valid" type="submit" expand="block">
+        Iniciar sesión
+      </ion-button>
     </div>
+    <br/>
 
     <div class="row">
-      <span class="center-span" style="text-align:center"> or </span>
+      <span class="center-span" style="text-align:center"> o Iniciar sesión con:</span>
     </div>
+    <br/>
 
-    <div class="row">
-      <ion-button type="submit" color="danger" (click)="onLoginGoogle()" expand="block">Iniciar sesión con Google</ion-button>
+    <div class="row" style="display: flex;justify-content: center;">
+      <ion-button type="submit" class="btn-gplus" (click)="onLoginGoogle()">
+        <ion-icon name="logo-google"></ion-icon>
+      </ion-button>
     </div>
-    
   </form>
-
-  
 </ion-content>
