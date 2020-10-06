@@ -23,20 +23,40 @@ export class LoginPage implements OnInit {
     private router: Router,
     public formBuilder: FormBuilder,
     private alertCtrl: AlertController
-    //public platform:Platform,
-    //public loadingController: LoadingController
+ 
     ) {
     this.crearvalidaciones();
-    //this.presentAlertConfirm();
-
-
-    
    }
 
   ngOnInit() {
   }
 
-  async presentAlertConfirm() {
+  /*async presentPrompt() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Recuperar contraseña',
+      message: this.mensaje,
+      inputs: [
+        {
+          name: 'username',
+          placeholder: 'Correo',
+          type: 'email'
+        }
+      ],
+      buttons: [
+       {
+          text: 'Enviar',
+          handler: data => {
+            console.log(data.username);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }*/
+
+  async mensajeerror() {
     const alert = await this.alertCtrl.create({
       cssClass: 'my-custom-class',
       header: 'Mensaje',
@@ -55,9 +75,8 @@ export class LoginPage implements OnInit {
   }
  
   
-
+  //Crear validaciones para el form 
   crearvalidaciones(){
-    // Campo Contraseña
     const emailControl = new FormControl('', Validators.compose([
         Validators.required,
         Validators.email,
@@ -70,54 +89,37 @@ export class LoginPage implements OnInit {
       Validators.minLength(8),
         Validators.maxLength(40)
     ]));
-    // Añado Propiedades al Form
     this.formGroup = this.formBuilder.group({emailControl,passwordControl });
   }
 
+  //Login con un registro
   async onLogin(email, password) {
-
     try {
-      /*const loading = await this.loadingController.create({
-        message: 'Verificando......',
-      
-      });*/
-      //await loading.present();  
-      //const { role, data } = await loading.onDidDismiss();
       const user = await this.authSvc.login(email.value, password.value);
-      
       if (user) {
-        //loading.dismiss();
         const isVerified = this.authSvc.isEmailVerified(user);
         this.redirectUser(isVerified);
       }else{
         if(this.authSvc.errores=="The password is invalid or the user does not have a password."){
-          //console.log(this.authSvc.errores);}
           this.mensaje="La contraseña es incorrecta.";
-          this.presentAlertConfirm();
+          this.mensajeerror();
         }else if(this.authSvc.errores=="There is no user record corresponding to this identifier. The user may have been deleted."){
           this.mensaje="El usuario no se encuentra registrado.";
-          this.presentAlertConfirm();
+          this.mensajeerror();
         }
-        
       }
-
-    
-    } catch (error) {
-    
+    }catch (error) {
       console.log('Error->', error['message']);
     }
-
-    
   }
 
+  //Login a través de Google
   async onLoginGoogle() {
     try {
       const user = await this.authSvc.loginGoogle();
-      console.log(user);
       if (user) {
         const isVerified = this.authSvc.isEmailVerified(user);
         this.redirectUser(isVerified);
-        
       }else{
         console.log(this.authSvc.errores);
       }
@@ -126,6 +128,7 @@ export class LoginPage implements OnInit {
     }
   }
 
+  //Redireccionar si el correo es verificado
   private redirectUser(isVerified: boolean): void {
     if (isVerified) {
       this.router.navigate(['menu']);
@@ -134,8 +137,7 @@ export class LoginPage implements OnInit {
     }
   }
 
-  
-
+  //Habilitar y deshabilitar la visualización del password
   showPassword() {
     this.passwordTypeInput = this.passwordTypeInput === 'text' ? 'password' : 'text';
   }
