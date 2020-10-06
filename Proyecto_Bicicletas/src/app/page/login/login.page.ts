@@ -31,31 +31,6 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  /*async presentPrompt() {
-    const alert = await this.alertCtrl.create({
-      cssClass: 'my-custom-class',
-      header: 'Recuperar contraseña',
-      message: this.mensaje,
-      inputs: [
-        {
-          name: 'username',
-          placeholder: 'Correo',
-          type: 'email'
-        }
-      ],
-      buttons: [
-       {
-          text: 'Enviar',
-          handler: data => {
-            console.log(data.username);
-          }
-        }
-      ]
-    });
-
-    await alert.present();
-  }*/
-
   async mensajeerror() {
     const alert = await this.alertCtrl.create({
       cssClass: 'my-custom-class',

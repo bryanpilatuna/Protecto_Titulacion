@@ -35,7 +35,10 @@ export class ForgotPasswordPage implements OnInit {
       alert('Se envio un mensaje de recuperacion de contraseña a su correo');
       this.router.navigate(['/login']);
     } catch (error) {
-      console.log('Error->', error);
+      if(error['message']=="There is no user record corresponding to this identifier. The user may have been deleted."){
+        alert("El usuario ingresado no se encuentra registrado.");
+      }
+      console.log('Error->', error['message']);
     }
   }
 
