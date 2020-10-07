@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { datosUbicacion } from '../../model/ubicacion.interface';
 import {UbicacionService} from '../../service/ubicacion.service';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import {LoadingController} from '@ionic/angular';
 declare var google;
 @Component({
   selector: 'app-ubicar-tienda',
@@ -11,16 +13,22 @@ export class UbicarTiendaPage implements OnInit {
   map = null;
   ubicaciones: datosUbicacion[];
 
-  constructor(private UbicacionService: UbicacionService) { }
+  constructor(
+    private UbicacionService: UbicacionService,
+    private geolocation: Geolocation,
+    private loadinCtrl: LoadingController) { }
 
   ngOnInit() {
     this.loadmap();
   }
 
-  loadmap(){
-
+  async loadmap(){
+    const loading= await this.loadinCtrl.create();
+    loading.present();
+    const rta= await this.geolocation.getCurrentPosition();
+    const myLatLng= {lat: rta.coords.latitude, lng: rta.coords.longitude};
     const mapEle: HTMLElement = document.getElementById('map');
-    const myLatLng= {lat: -0.2103968, lng: -78.4910514};
+    
     this.map = new google.maps.Map(mapEle, {
       center: myLatLng,
       zoom:12
@@ -31,7 +39,21 @@ export class UbicarTiendaPage implements OnInit {
       this.renderMarker();
      
     });
+    loading.dismiss();
+    this.miubicacion(rta.coords.latitude,rta.coords.longitude);
     
+    }
+    miubicacion(lat: number, lng: number){
+    
+      return new google.maps.Marker({
+        position: {lat,lng},
+      map: this.map,
+      title: 'ESTAS AQUI',
+      animation: google.maps.Animation.DROP,
+      icon: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+      });
+  
+  
     }
 
     renderMarker(){
@@ -49,6 +71,7 @@ export class UbicarTiendaPage implements OnInit {
       return new google.maps.Marker({
         position: { lat: marker.position.latitude, lng: marker.position.longitude },
         map: this.map,
+        animation: google.maps.Animation.DROP,
         title: marker.title
       });
     }
