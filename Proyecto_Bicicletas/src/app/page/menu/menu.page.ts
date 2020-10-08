@@ -37,7 +37,7 @@ export class MenuPage implements OnInit {
     this.router.navigate(['profile']);
   }
   salir(){
-    
+   
     this.authservice.logout();
     this.id = null;
   }
