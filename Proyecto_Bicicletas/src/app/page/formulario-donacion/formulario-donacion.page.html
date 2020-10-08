@@ -8,8 +8,8 @@
 </ion-header>
 
 <ion-content> 
-  <form [formGroup]="formGroup" *ngIf="donacion" (ngSubmit)="crearDonacion()">
-    <ion-item >
+  <form [formGroup]="formGroup" *ngIf="donacion" (ngSubmit)="crearDonacion()" style="border: white 8px ridge;">
+    <ion-item>
       <ion-label position="stacked">Seleccione la fecha para la donación</ion-label>
       <ion-datetime displayFormat="DD MMMM YYYY" 
       placeholder="Dia Mes Año" 
@@ -22,6 +22,12 @@
       >
       </ion-datetime>
     </ion-item>
+    <div class="validation-errors">
+      <p class="form-error"
+        *ngIf="formGroup.get('fechaControl').hasError('required') && formGroup.get('fechaControl').touched">
+        *Requerido
+      </p>
+    </div>
     <ion-item >
       <ion-label>Seleccione la Tienda</ion-label>
       <ion-select [(ngModel)]="donacion.idtienda" ok-text="Seleccionar" 
@@ -34,6 +40,12 @@
         </ion-select-option>
       </ion-select>
     </ion-item>
+    <div class="validation-errors">
+      <p class="form-error"
+        *ngIf="formGroup.get('tiendaControl').hasError('required') && formGroup.get('tiendaControl').touched">
+        *Requerido
+      </p>
+    </div>
 
     <ion-item >
       <ion-label>Seleccionar estado de la bicicleta</ion-label>
@@ -52,12 +64,33 @@
   
       </ion-select>
     </ion-item>
-
+    <div class="validation-errors">
+      <p class="form-error"
+        *ngIf="formGroup.get('estadoControl').hasError('required') && formGroup.get('estadoControl').touched">
+        *Requerido
+      </p>
+    </div>
+    
     <ion-item>
       <ion-label position="stacked"></ion-label>
       <ion-input required type="text" placeholder="Descripción" [(ngModel)]="donacion.descripcion"
       formControlName="descripcionControl"></ion-input>
     </ion-item>
+
+    <div class="validation-errors">
+      <p class="form-error"
+        *ngIf="formGroup.get('descripcionControl').hasError('required') && formGroup.get('descripcionControl').touched">
+        *Requerido
+      </p>
+      <p class="form-error"
+      *ngIf="formGroup.get('descripcionControl').hasError('minlength') && formGroup.get('descripcionControl').touched">
+      *Mínimo 5 caracteres 
+    </p>
+    <p class="form-error"
+      *ngIf="formGroup.get('descripcionControl').hasError('maxlength') && formGroup.get('descripcionControl').touched">
+      *Máximo 30 caracteres  
+    </p>
+    </div>
 
     <div class="row">
       <ion-button [disabled]="!formGroup.valid" type="submit" expand="full">
