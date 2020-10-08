@@ -8,62 +8,68 @@
 </ion-header>
 
 <ion-content> 
-  
-  <ion-item *ngIf="donacion">
-    <ion-label position="stacked">Seleccione la fecha para la donación</ion-label>
-    <ion-datetime displayFormat="DD MMMM YYYY" 
-    placeholder="Dia Mes Año" 
-    (ionChange)="cambiofecha($event)"
-    min="2020-08-25" 
-    max="2021-12-31" 
-    cancelText="Cancelar"
-    doneText="Seleccionar"
-  
-    >
-    </ion-datetime>
-  </ion-item>
-
-  <ion-item  *ngIf="donacion">
-    <ion-label>Seleccione la  Tienda</ion-label>
-    <ion-select [(ngModel)]="donacion.idtienda" ok-text="Seleccionar" 
-    cancel-text="Cancelar"  >
-      <ion-select-option *ngFor="let tienda of tiendas" [value]="tienda.id"> 
-        <ion-label>
-        {{ tienda.nombre}}
-      </ion-label>
-      <ion-note slot="end" color="primary">{{ tienda.direccion }}</ion-note>
-      </ion-select-option>
-    </ion-select>
-  </ion-item>
-
-  <ion-item  *ngIf="donacion">
-    <ion-label>Seleccionar estado de la bicicleta</ion-label>
-    <ion-select [(ngModel)]="donacion.estado" ok-text="Seleccionar" 
-    cancel-text="Cancelar"  >
-      <ion-select-option [value]="Bueno"> 
-        <ion-label>
-          Bueno
+  <form [formGroup]="formGroup" *ngIf="donacion" (ngSubmit)="crearDonacion()">
+    <ion-item >
+      <ion-label position="stacked">Seleccione la fecha para la donación</ion-label>
+      <ion-datetime displayFormat="DD MMMM YYYY" 
+      placeholder="Dia Mes Año" 
+      (ionChange)="cambiofecha($event)"
+      min="2020-08-25" 
+      max="2021-12-31" 
+      cancelText="Cancelar"
+      doneText="Seleccionar"
+      formControlName="fechaControl"
+      >
+      </ion-datetime>
+    </ion-item>
+    <ion-item >
+      <ion-label>Seleccione la Tienda</ion-label>
+      <ion-select [(ngModel)]="donacion.idtienda" ok-text="Seleccionar" 
+      cancel-text="Cancelar" formControlName="tiendaControl" >
+        <ion-select-option *ngFor="let tienda of tiendas" [value]="tienda.id"> 
+          <ion-label>
+          {{ tienda.nombre}}
         </ion-label>
-      </ion-select-option>
-      <ion-select-option [value]="Reparar"> 
-        <ion-label>
-          Reparar
-        </ion-label>
-      </ion-select-option>
+        <ion-note slot="end" color="primary">{{ tienda.direccion }}</ion-note>
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
 
-    </ion-select>
-  </ion-item>
+    <ion-item >
+      <ion-label>Seleccionar estado de la bicicleta</ion-label>
+      <ion-select [(ngModel)]="donacion.estado" ok-text="Seleccionar" 
+      cancel-text="Cancelar" formControlName="estadoControl" >
+        <ion-select-option [value]="Bueno"> 
+          <ion-label>
+            Bueno
+          </ion-label>
+        </ion-select-option>
+        <ion-select-option [value]="Reparar"> 
+          <ion-label>
+            Reparar
+          </ion-label>
+        </ion-select-option>
+  
+      </ion-select>
+    </ion-item>
 
+    <ion-item>
+      <ion-label position="stacked"></ion-label>
+      <ion-input required type="text" placeholder="Descripción" [(ngModel)]="donacion.descripcion"
+      formControlName="descripcionControl"></ion-input>
+    </ion-item>
 
-  <ion-item *ngIf="donacion">
-    <ion-label position="stacked"></ion-label>
-    <ion-input required type="text" placeholder="Descripción" [(ngModel)]="donacion.descripcion"></ion-input>
-  </ion-item>
+    <div class="row">
+      <ion-button [disabled]="!formGroup.valid" type="submit" expand="full">
+        Realizar Donación
+      </ion-button>
+    </div>
   
   
-
-  <ion-button expand="full" (click)="crearDonacion()">Realizar Donación</ion-button>
   
 
+  
+  
+</form>
 
 </ion-content>

@@ -6,6 +6,7 @@ import { datosTiendas } from '../../model/tienda.interface';
 
 import { ActivatedRoute} from '@angular/router';
 import { NavController, LoadingController } from '@ionic/angular';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-formulario-donacion',
@@ -26,11 +27,14 @@ export class FormularioDonacionPage implements OnInit {
     idtienda: '',
     anular:false
   };
+  formGroup: FormGroup; // declare it here
   
   
   constructor(private route: ActivatedRoute, private nav: NavController,
-    private donacionService: DonacionService, private loadingController: LoadingController,
-     ) { }
+    private donacionService: DonacionService, private loadingController: LoadingController,public formBuilder: FormBuilder,
+     ) {
+      this.crearvalidaciones();
+      }
 
 
 
@@ -53,6 +57,28 @@ export class FormularioDonacionPage implements OnInit {
       this.tiendas = tiendas;
     })
     
+  }
+
+   //Crear validaciones para el form 
+   crearvalidaciones(){
+    const fechaControl = new FormControl('', Validators.compose([
+        Validators.required,
+
+
+    ]));
+    const tiendaControl = new FormControl('', Validators.compose([
+      Validators.required,
+    ]));
+
+    const estadoControl = new FormControl('', Validators.compose([
+      Validators.required,
+    ]));
+
+    const descripcionControl = new FormControl('', Validators.compose([
+      Validators.required,
+    ]));
+    
+    this.formGroup = this.formBuilder.group({fechaControl,tiendaControl,estadoControl,descripcionControl });
   }
 
   async crearDonacion(){

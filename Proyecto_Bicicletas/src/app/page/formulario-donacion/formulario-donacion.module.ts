@@ -7,12 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { FormularioDonacionPageRoutingModule } from './formulario-donacion-routing.module';
 
 import { FormularioDonacionPage } from './formulario-donacion.page';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    ReactiveFormsModule,
     FormularioDonacionPageRoutingModule
   ],
   declarations: [FormularioDonacionPage]
