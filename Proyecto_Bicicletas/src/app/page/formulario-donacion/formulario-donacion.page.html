@@ -37,7 +37,7 @@
   </ion-item>
 
   <ion-item  *ngIf="donacion">
-    <ion-label>Seleccione estado</ion-label>
+    <ion-label>Seleccionar estado de la bicicleta</ion-label>
     <ion-select [(ngModel)]="donacion.estado" ok-text="Seleccionar" 
     cancel-text="Cancelar"  >
       <ion-select-option [value]="Bueno"> 
@@ -45,16 +45,12 @@
           Bueno
         </ion-label>
       </ion-select-option>
-      <ion-select-option [value]="Regular"> 
+      <ion-select-option [value]="Reparar"> 
         <ion-label>
-          Regular
+          Reparar
         </ion-label>
       </ion-select-option>
-      <ion-select-option [value]="Malo"> 
-        <ion-label>
-          Melo
-        </ion-label>
-      </ion-select-option>
+
     </ion-select>
   </ion-item>
 
