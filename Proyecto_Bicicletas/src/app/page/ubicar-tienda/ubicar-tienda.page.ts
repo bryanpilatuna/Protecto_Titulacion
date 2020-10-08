@@ -43,6 +43,7 @@ export class UbicarTiendaPage implements OnInit {
     this.miubicacion(rta.coords.latitude,rta.coords.longitude);
     
     }
+    
     miubicacion(lat: number, lng: number){
     
       return new google.maps.Marker({
