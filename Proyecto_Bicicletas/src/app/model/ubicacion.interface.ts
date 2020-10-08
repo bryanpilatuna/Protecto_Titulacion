@@ -5,4 +5,6 @@ export interface datosUbicacion {
         longitude: number,
       };
       title: string;
+      direccion: string;
+      telefono: number;
 }
