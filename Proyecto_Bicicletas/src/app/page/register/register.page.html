@@ -152,16 +152,11 @@
       <ion-label position="stacked"><strong>Foto</strong></ion-label>
     <ion-row>
       <ion-item>
-        <input formControlName="foto" type="file" accept=".png, .jpg" (change)="enviarimagen($event)" style=""/>
+        <input formControlName="foto" type="file" accept=".png, .jpg" (change)="enviarimagen($event)" style="color:black"/>
       </ion-item>
     </ion-row>
   </div>
 
-  <div class="input__row uploader">
-    <div id="inputval" class="input-value"></div>
-    <label for="file_1"></label>
-    <input id="file_1" class="upload" type="file">
-  </div>
     <div class="row">
         <ion-button type="submit" [disabled]="!formGroup.valid" expand="block">Registrarse</ion-button>
     </div>

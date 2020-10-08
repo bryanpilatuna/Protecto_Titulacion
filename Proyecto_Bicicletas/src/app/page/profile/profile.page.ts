@@ -23,6 +23,7 @@ export class ProfilePage implements OnInit {
     estado: '',
     foto: ''
   }
+  public image: any;
   usuarioId= null;
   constructor(
     private route: ActivatedRoute, 
@@ -44,6 +45,14 @@ export class ProfilePage implements OnInit {
       this.cargarUsuario();
      
     } 
+  }
+
+  async subirImagen(event: any): Promise<void> {
+    this.image = event.target.files[0];
+
+    this.usuarioService.updateImagen(this.usuario,this.usuarioId,this.image);
+    this.cargarUsuario();
+    
   }
 
   crearvalidaciones(){
