@@ -8,6 +8,10 @@
 </ion-header>
 
 <ion-content> 
+  <br/>
+  <div class="row" style="display: flex;justify-content: center;">
+    <img width="40%" src="../../../assets/formulario-donacion/donar.png"/>
+  </div>
   <form [formGroup]="formGroup" *ngIf="donacion" (ngSubmit)="crearDonacion()" style="border: white 8px ridge;">
     <ion-item>
       <ion-label position="stacked">Seleccione la fecha para la donación</ion-label>

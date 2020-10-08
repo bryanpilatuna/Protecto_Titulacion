@@ -8,56 +8,56 @@
 </ion-header>
 
 <ion-content>
-
+  <br/>
+  <div class="row" style="display: flex;justify-content: center;">
+    <img width="60%" src="../../../assets/formulario-alquiler/renta.jpg"/>
+  </div>
+ 
   
-  <ion-item *ngIf="alquiler">
-    <ion-label position="stacked">Seleccione la fecha para el alquiler</ion-label>
-    <ion-datetime displayFormat="DD MMMM YYYY"   
-    (ionChange)="cambiofecha($event)"
-    placeholder="Dia Mes Año"    
-    min="{{fechaactual | date: 'yyyy-MM-dd'}}" 
-    max="2021-12-31" 
-    cancelText="Cancelar"
-    doneText="Seleccionar"
-    >
-    </ion-datetime>
-  </ion-item>
+    <ion-item *ngIf="alquiler">
+      <ion-label position="stacked">Seleccione la fecha para el alquiler</ion-label>
+      <ion-datetime displayFormat="DD MMMM YYYY"   
+      (ionChange)="cambiofecha($event)"
+      placeholder="Dia Mes Año"    
+      min="{{fechaactual | date: 'yyyy-MM-dd'}}" 
+      max="2021-12-31" 
+      cancelText="Cancelar"
+      doneText="Seleccionar"
+      >
+      </ion-datetime>
+    </ion-item>
 
-  <ion-item *ngIf="alquiler">
-    <ion-label position="stacked">Seleccione la fecha de devolución</ion-label>
-    <ion-datetime displayFormat="DD MMMM YYYY"   
-    (ionChange)="cambiofecha2($event)"
-    placeholder="Dia Mes Año"    
-    min="{{fechaactual | date: 'yyyy-MM-dd'}}" 
-    max="2021-12-31" 
-    cancelText="Cancelar"
-    doneText="Seleccionar"
-    >
-    </ion-datetime>
-  </ion-item>
+    <ion-item *ngIf="alquiler">
+      <ion-label position="stacked">Seleccione la fecha de devolución</ion-label>
+      <ion-datetime displayFormat="DD MMMM YYYY"   
+      (ionChange)="cambiofecha2($event)"
+      placeholder="Dia Mes Año"    
+      min="{{fechaactual | date: 'yyyy-MM-dd'}}" 
+      max="2021-12-31" 
+      cancelText="Cancelar"
+      doneText="Seleccionar"
+      >
+      </ion-datetime>
+    </ion-item>
 
-  
+    <ion-item  *ngIf="alquiler">
+      <ion-label>Seleccione la  Tienda</ion-label>
+      <ion-select [(ngModel)]="alquiler.idtienda" ok-text="Seleccionar" cancel-text="Cancelar"  >
+        <ion-select-option *ngFor="let tienda of tiendas" [value]="tienda.id"> 
+          <ion-label>
+          {{ tienda.nombre}}
+        </ion-label>
+        <ion-note slot="end" color="primary">{{ tienda.direccion }}</ion-note>
+        </ion-select-option>
+      </ion-select>
+    </ion-item>    
 
-  
+    <ion-button expand="full" (click)="crearAlquiler()">Realizar Alquiler</ion-button>
 
-  <ion-item  *ngIf="alquiler">
-    <ion-label>Seleccione la  Tienda</ion-label>
-    <ion-select [(ngModel)]="alquiler.idtienda" ok-text="Seleccionar" cancel-text="Cancelar"  >
-      <ion-select-option *ngFor="let tienda of tiendas" [value]="tienda.id"> 
-        <ion-label>
-        {{ tienda.nombre}}
-      </ion-label>
-      <ion-note slot="end" color="primary">{{ tienda.direccion }}</ion-note>
-      </ion-select-option>
-    </ion-select>
-  </ion-item>
+      
 
-  
-  
-  
-
-  
-  <ion-button expand="full" (click)="crearAlquiler()">Realizar Alquiler</ion-button>
+    
+   
   
 
 
