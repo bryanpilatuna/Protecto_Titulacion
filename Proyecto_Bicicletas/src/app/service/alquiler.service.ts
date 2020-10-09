@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { datosAlquiler } from '../model/alquiler.interface';
 import { datosTiendas } from '../model/tienda.interface';
-
+import { datosBicicleta } from '../model/bicicleta.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +20,9 @@ export class AlquilerService {
 
   private alquileridCollection: AngularFirestoreCollection<datosAlquiler>;
   private alquilerid: Observable<datosAlquiler[]>;
+
+  private BicicletaCollection: AngularFirestoreCollection<datosBicicleta>;
+  private bicicleta: Observable<datosBicicleta[]>;
 
   constructor(private db:AngularFirestore) { 
     
@@ -49,6 +52,8 @@ export class AlquilerService {
       })
     );
 
+    
+
   }
   addAlquiler(alquiler: datosAlquiler){
     
@@ -59,6 +64,22 @@ export class AlquilerService {
     
     return this.tienda;
   }
+
+  getBicicletas(idtienda:string){
+    this.BicicletaCollection = this.db.collection<datosBicicleta>('bicicleta', ref => ref.where('idtienda', '==', idtienda));
+    this.bicicleta = this.BicicletaCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+        
+          return {id, ...data};
+        });
+      })
+    );
+    return this.bicicleta;
+  }
+
   getAlquileres(id: string){
     return this.alquilerCollection.doc<datosAlquiler>(id).valueChanges();
  

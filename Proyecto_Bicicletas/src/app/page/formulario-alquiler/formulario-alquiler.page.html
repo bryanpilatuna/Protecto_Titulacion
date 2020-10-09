@@ -14,7 +14,7 @@
   </div>
  
   
-    <ion-item *ngIf="alquiler">
+    <ion-item *ngIf="alquiler" >
       <ion-label position="stacked">Seleccione la fecha para el alquiler</ion-label>
       <ion-datetime displayFormat="DD MMMM YYYY"   
       (ionChange)="cambiofecha($event)"
@@ -42,7 +42,7 @@
 
     <ion-item  *ngIf="alquiler">
       <ion-label>Seleccione la  Tienda</ion-label>
-      <ion-select [(ngModel)]="alquiler.idtienda" ok-text="Seleccionar" cancel-text="Cancelar"  >
+      <ion-select [(ngModel)]="alquiler.idtienda" ok-text="Seleccionar" cancel-text="Cancelar" (ionChange)="onSelectChange()" >
         <ion-select-option *ngFor="let tienda of tiendas" [value]="tienda.id"> 
           <ion-label>
           {{ tienda.nombre}}
@@ -51,6 +51,17 @@
         </ion-select-option>
       </ion-select>
     </ion-item>    
+
+    <ion-item  >
+      <ion-label>Seleccione la Bicicleta</ion-label>
+      <ion-select [(ngModel)]="alquiler.bicicleta" ok-text="Seleccionar" cancel-text="Cancelar"  >
+        <ion-select-option *ngFor="let bicicleta of bicicletas" [value]="bicicleta.id"> 
+          <ion-label>
+          {{ bicicleta.descripcion }}
+        </ion-label>
+        </ion-select-option>
+      </ion-select>
+    </ion-item> 
 
     <ion-button expand="full" (click)="crearAlquiler()">Realizar Alquiler</ion-button>
 

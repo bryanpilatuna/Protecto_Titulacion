@@ -3,9 +3,8 @@ import { ActivatedRoute} from '@angular/router';
 import { NavController, LoadingController } from '@ionic/angular';
 import { datosAlquiler } from '../../model/alquiler.interface';
 import { AlquilerService } from '../../service/alquiler.service';
-
 import { datosTiendas } from '../../model/tienda.interface';
-import { threadId } from 'worker_threads';
+import { datosBicicleta } from '../../model/bicicleta.interface';
 
 @Component({
   selector: 'app-formulario-alquiler',
@@ -16,7 +15,9 @@ export class FormularioAlquilerPage implements OnInit {
 
   usuarioid= null;
   tiendas: datosTiendas[];
+  bicicletas:datosBicicleta[];
   fechaactual: Date = new Date();
+  //disableSelector:boolean;
 
   alquiler: datosAlquiler ={
 
@@ -33,7 +34,10 @@ export class FormularioAlquilerPage implements OnInit {
   }
 
   constructor(private route: ActivatedRoute, private nav: NavController,
-    private alquilerService: AlquilerService, private loadingController: LoadingController) { }
+    private alquilerService: AlquilerService, private loadingController: LoadingController) { 
+      //this.disableSelector = false;
+      
+    }
 
   ngOnInit() {
     this.usuarioid=this.route.snapshot.params['id'];
@@ -53,12 +57,23 @@ export class FormularioAlquilerPage implements OnInit {
      
     };
 
+    
+
     this.alquilerService.getTiendas().subscribe((tiendas) =>{
       console.log('Tiendas', tiendas);
       this.tiendas = tiendas;
       console.log(this.tiendas[0].id);
     })
 
+  }
+
+  async onSelectChange() : Promise<void> {
+    console.log(this.alquiler.idtienda);
+    this.alquilerService.getBicicletas(this.alquiler.idtienda).subscribe((bicicletas) =>{
+      this.bicicletas = bicicletas;
+     
+     
+    })
   }
 
   async loadTodo(){
@@ -72,10 +87,9 @@ export class FormularioAlquilerPage implements OnInit {
 
     this.alquiler.idusuario=this.usuarioid;
     this.alquiler.idtienda=this.alquiler.idtienda;
-    this.alquiler.bicicleta= '';
     this.alquiler.aprobacion= false;
     this.alquiler.fecha= this.fechaactual;
-  
+ 
     const loading = await this.loadingController.create({
       message: 'Guardando....'
     });
