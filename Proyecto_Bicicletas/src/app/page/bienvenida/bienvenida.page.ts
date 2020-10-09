@@ -8,16 +8,16 @@ import { Component, OnInit } from '@angular/core';
 export class BienvenidaPage implements OnInit {
   slides = [
     {
-      img: 'assets/bienvenida/slider1.jpg',
-      titulo: 'Visible Changes<br>in 3 weeks'
+      img: 'assets/bienvenida/alquiler.png',
+      titulo: '¿Necesitas alquilar una bicicleta? <br>Nosotros la conseguimos por ti'
     },
     {
-      img: 'assets/bienvenida/slider2.jpg',
-      titulo: 'Forget about<br>strict diet'
+      img: 'assets/bienvenida/donacion.png',
+      titulo: '¿Tienes una bicicleta que no uses? <br>Puedes donarla'
     },
     {
-      img: 'assets/bienvenida/slider3.jpg',
-      titulo: 'Save money on<br>gym membership'
+      img: 'assets/bienvenida/ubicacion.jpg',
+      titulo: 'Encuentra las tiendas a través <br>del mapa en tiempo real'
     }
   ];
   constructor() { }

@@ -5,9 +5,10 @@
         <img [src]="slide.img" class="slide-img">
       </div>
       <div>
-        <h3 [innerHTML]="slide.titulo"></h3>
+        <h4 [innerHTML]="slide.titulo"></h4>
       </div>
     </ion-slide>
+    <br/>
     
   </ion-slides>
     
@@ -15,20 +16,20 @@
 </ion-content>
 
 <ion-footer>
-  <ion-grid >
+  <ion-grid fixed>
     <ion-row text-center>
       <ion-col class="centrarbotones">
-        <ion-button color="primary" routerLink="/login" expand="block">Iniciar Sesión</ion-button>
+        <ion-button color="primary" routerLink="/login" expand="block" shape="round">Iniciar Sesión</ion-button>
       </ion-col>
     </ion-row>
     <ion-row text-center>
       <ion-col class="centrarbotones">
-        <ion-button color="primary" routerLink="/menu-invitado" expand="block">Iniciar como Invitado</ion-button>
+        <ion-button color="success" routerLink="/menu-invitado" expand="block" shape="round">Iniciar como Invitado</ion-button>
       </ion-col>
     </ion-row>
     <ion-row text-center>
       <ion-col class="centrarbotones">
-        <ion-button color="primary" routerLink="/register" expand="block">Registrarse</ion-button>
+        <ion-button color="warning" routerLink="/register" expand="block" shape="round">Registrarse</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
