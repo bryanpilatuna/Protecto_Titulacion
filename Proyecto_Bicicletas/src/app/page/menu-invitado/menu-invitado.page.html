@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-buttons slot="start">
+      <ion-back-button routerLink="/bienvenida"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Menu</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col >
+      <button  (click)="perfil()" block>
+        <img src="../../../assets/menu/perfil.png">
+        
+      </button>
+      <p style="text-align: center;width: 80%;height: 80%;">Perfil</p>
+    </ion-col>
+    <ion-col >
+      <button  (click)="donar()" block>
+        <img src="../../../assets/menu/donar.png">
+        
+      </button>
+      <p style="text-align: center;width: 80%;height: 80%;">Donar Bici</p>
+    </ion-col>
+    <ion-col>
+      <button  (click)="alquiler()" block>
+        <img src="../../../assets/menu/alquilar.png">
+        
+      </button>
+      <p style="text-align: center;width: 80%;height: 80%;">Alquilar Bicicleta</p>
+    </ion-col>
+    
+  
+  </ion-row>
+  <ion-row>
+    
+    <ion-col>
+      <button (click)="misalquileres()" block>
+        <img src="../../../assets/menu/verificar-alquileres.png">
+        
+      </button>
+      <p style="text-align: center;width: 80%;height: 80%;">Mis Alquileres</p>
+    </ion-col>
+    <ion-col>
+      <button [routerLink]="['/ubicar-tienda']" block>
+        <img src="../../../assets/menu/ubicacion-tienda.jpg">
+        
+      </button>
+      <p style="text-align: center;width: 80%;height: 80%;">Buscar Tienda</p>
+    </ion-col>
+    <ion-col>
+    </ion-col>
+
+  </ion-row>
+</ion-content>

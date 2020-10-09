@@ -95,6 +95,10 @@ const routes: Routes = [
     path: 'ubicar-tienda',
     loadChildren: () => import('./page/ubicar-tienda/ubicar-tienda.module').then( m => m.UbicarTiendaPageModule)
   },
+  {
+    path: 'menu-invitado',
+    loadChildren: () => import('./page/menu-invitado/menu-invitado.module').then( m => m.MenuInvitadoPageModule)
+  },
 
 
 
