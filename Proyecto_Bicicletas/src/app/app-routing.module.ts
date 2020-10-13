@@ -91,8 +91,9 @@ const routes: Routes = [
   {
     path: 'donar/:id',
     loadChildren: () => import('./page/donar/donar.module').then( m => m.DonarPageModule)
-  },  {
-    path: 'ubicar-tienda',
+  },
+  {
+    path: 'ubicar-tienda/:id',
     loadChildren: () => import('./page/ubicar-tienda/ubicar-tienda.module').then( m => m.UbicarTiendaPageModule)
   },
   {

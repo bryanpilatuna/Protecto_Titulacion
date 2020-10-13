@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute} from '@angular/router';
 import { datosUbicacion } from '../../model/ubicacion.interface';
 import {UbicacionService} from '../../service/ubicacion.service';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
@@ -10,15 +11,18 @@ declare var google;
   styleUrls: ['./ubicar-tienda.page.scss'],
 })
 export class UbicarTiendaPage implements OnInit {
+  id= null;
   map = null;
   ubicaciones: datosUbicacion[];
 
   constructor(
     private UbicacionService: UbicacionService,
     private geolocation: Geolocation,
-    private loadinCtrl: LoadingController) { }
+    private loadinCtrl: LoadingController,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.id=this.route.snapshot.params['id'];
     this.loadmap();
   }
 
@@ -82,8 +86,8 @@ export class UbicarTiendaPage implements OnInit {
     '<div id="bodyContent">' +
     "<p>"+'<img src="https://png.pngtree.com/png-vector/20190826/ourlarge/pngtree-house-location-icon-png-image_1701248.jpg" height="25px" width="25px" />'+" <b>Dirección: </b>"+marker.direccion+"</b></p>" +
     "<p>"+'<img src="https://i.pinimg.com/originals/b9/2f/b6/b92fb6bd92b53e40ad90b1a160b33b0d.jpg" height="20px" width="20px" />'+" <b>Teléfono: </b>"+marker.telefono+"</b> </p>" +
-    "<p>"+'<input type="button" onclick="location.href='+"'/formulario-alquiler';"+'" value="Alquilar Bici" />'+
-    '<input type="button" onclick="location.href='+"'/formulario-donacion';"+'" value="Donar Bici" /></p>'+
+    "<p>"+'<input type="button" onclick="location.href='+"'[/formulario-alquiler,id]';"+'" value="Alquilar Bici" />'+
+    '<input type="button" onclick="location.href='+"'[/formulario-donacion,id]';"+'" value="Donar Bici" /></p>'+
     "</div>" +
     "</div>";
 
