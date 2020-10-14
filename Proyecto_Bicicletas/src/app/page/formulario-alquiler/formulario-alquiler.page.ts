@@ -4,8 +4,9 @@ import { NavController, LoadingController } from '@ionic/angular';
 import { datosAlquiler } from '../../model/alquiler.interface';
 import { AlquilerService } from '../../service/alquiler.service';
 import { datosTiendas } from '../../model/tienda.interface';
+import { UsuarioService } from '../../service/usuario.service';
 import { datosBicicleta } from '../../model/bicicleta.interface';
-
+import * as firebase from 'firebase';
 @Component({
   selector: 'app-formulario-alquiler',
   templateUrl: './formulario-alquiler.page.html',
@@ -33,14 +34,29 @@ export class FormularioAlquilerPage implements OnInit {
 
   }
 
-  constructor(private route: ActivatedRoute, private nav: NavController,
-    private alquilerService: AlquilerService, private loadingController: LoadingController) { 
+  constructor(private nav: NavController,
+    private route: ActivatedRoute,
+    private alquilerService: AlquilerService, 
+    private usuarioService:UsuarioService,
+    private loadingController: LoadingController) { 
+
+     
+
       //this.disableSelector = false;
       
     }
 
   ngOnInit() {
-    this.usuarioid=this.route.snapshot.params['id'];
+    this.usuarioService.$getObjeto.subscribe(data=> 
+     {
+       this.usuarioid=data;
+     }).unsubscribe();
+      //this.user = firebase.auth().currentUser.uid;
+      //this.usuarioid = this.user;  
+      //this.usuarioid=this.route.snapshot.params['id'];
+    console.log('id pasado',this.usuarioid)
+    
+   
     if (this.usuarioid){
       this.loadTodo();
     }
@@ -60,15 +76,12 @@ export class FormularioAlquilerPage implements OnInit {
     
 
     this.alquilerService.getTiendas().subscribe((tiendas) =>{
-      console.log('Tiendas', tiendas);
       this.tiendas = tiendas;
-      console.log(this.tiendas[0].id);
     })
 
   }
 
   async onSelectChange() : Promise<void> {
-    console.log(this.alquiler.idtienda);
     this.alquilerService.getBicicletas(this.alquiler.idtienda).subscribe((bicicletas) =>{
       this.bicicletas = bicicletas;
      
@@ -99,6 +112,12 @@ export class FormularioAlquilerPage implements OnInit {
       loading.dismiss();
       this.nav.navigateForward('/menu'); 
     });
+  }
+
+  async cancelarAlquiler(){
+
+     this.nav.navigateForward('/menu');
+
   }
 
   cambiofecha(event){

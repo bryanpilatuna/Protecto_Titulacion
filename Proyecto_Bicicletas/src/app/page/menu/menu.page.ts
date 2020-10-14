@@ -11,15 +11,17 @@ import * as firebase from 'firebase';
 })
 export class MenuPage implements OnInit {
   name: string;
+  idenvio={id:"Bryan"};
   id: any;
   usuarios: User[];
   constructor(private authservice : AuthService, private router: Router,private usuarioService:UsuarioService) { 
     var user = firebase.auth().currentUser.uid;
     this.id = user;
-    console.log(this.id);
   }
 
   ngOnInit() {
+    console.log('usuario de is,',this.id)
+    this.usuarioService.enviarobjeto(this.id);
     
     this.authservice.getUsuario().subscribe(user => {
      

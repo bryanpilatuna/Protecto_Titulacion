@@ -3,7 +3,7 @@ import { ActivatedRoute,Router} from '@angular/router';
 import { datosUbicacion } from '../../model/ubicacion.interface';
 import {UbicacionService} from '../../service/ubicacion.service';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import {LoadingController, NavController} from '@ionic/angular';
+import {LoadingController} from '@ionic/angular';
 
 declare var google;
 @Component({
@@ -14,7 +14,6 @@ declare var google;
 export class UbicarTiendaPage implements OnInit {
   id= null;
   map = null;
-  tiendaenvio;
   ubicaciones: datosUbicacion[];
 
   constructor(
@@ -23,7 +22,6 @@ export class UbicarTiendaPage implements OnInit {
     
     private loadinCtrl: LoadingController,
     private route: ActivatedRoute,
-    private nav: NavController,
     private router:Router) { }
 
   ngOnInit() {
@@ -83,19 +81,15 @@ export class UbicarTiendaPage implements OnInit {
         map: this.map,
         animation: google.maps.Animation.DROP,
       });
-      enviodatos();
       const detallemarker = 
    
-    '<h2 id="firstHeading" class="firstHeading">Empresa de Bicicletas: '+marker.title+'</h2>' +
+    '<h2>Empresa de Bicicletas: '+marker.title+'</h2>' +
     "<p>"+'<img src="https://png.pngtree.com/png-vector/20190826/ourlarge/pngtree-house-location-icon-png-image_1701248.jpg" height="25px" width="25px" />'+" <b>Dirección: </b>"+marker.direccion+"</b></p>" +
     "<p>"+'<img src="https://i.pinimg.com/originals/b9/2f/b6/b92fb6bd92b53e40ad90b1a160b33b0d.jpg" height="20px" width="20px" />'+" <b>Teléfono: </b>"+marker.telefono+"</b> </p>" +
-    "<p>"+'<button  onclick="enviodatos()">Alquilar Bici</button>'+
-    '<input type="button" onclick="location.href='+"'/formulario-donacion';"+'" value="Donar Bici" /></p>';
+    "<p>"+'<input type="button" onclick="window.location='+"'/formulario-alquiler';"+'" value="Ir a Alquiler" />'+
+    '<input type="button" onclick="location.href='+"'/formulario-donacion';"+'" value="ir a Donar" /></p>';
     
-    function enviodatos(){
-    this.envioinfo(marker.id);
 
-    }
     const infowindow = new google.maps.InfoWindow({
       content: detallemarker,
       
@@ -106,12 +100,6 @@ export class UbicarTiendaPage implements OnInit {
     });
     }
 
-
-    envioinfo(idtienda: string){
-this.nav.navigateForward('formulario-donacion');
-console.log(idtienda);
-
-    }
     
 
 }

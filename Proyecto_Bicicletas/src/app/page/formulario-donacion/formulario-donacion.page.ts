@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {datosDonacion} from '../../model/donacion.interface';
 import {DonacionService} from '../../service/donacion.service';
-
 import { datosTiendas } from '../../model/tienda.interface';
-
 import { ActivatedRoute} from '@angular/router';
 import { NavController, LoadingController } from '@ionic/angular';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-formulario-donacion',
@@ -33,6 +32,8 @@ export class FormularioDonacionPage implements OnInit {
   constructor(private route: ActivatedRoute, private nav: NavController,
     private donacionService: DonacionService, private loadingController: LoadingController,public formBuilder: FormBuilder,
      ) {
+      var user = firebase.auth().currentUser.uid;
+      this.donanteid = user;
       this.crearvalidaciones();
       }
 
@@ -40,8 +41,8 @@ export class FormularioDonacionPage implements OnInit {
 
   ngOnInit() {
     
-    this.donanteid= this.route.snapshot.params['id'];
-
+   // this.donanteid= this.route.snapshot.params['id'];
+   console.log("id donante",this.donanteid);
     this.donacion= {
     iddonante: this.donanteid,
     fechadonacion: this.fechaactual,
@@ -110,6 +111,10 @@ export class FormularioDonacionPage implements OnInit {
       anular:false
       };   
 
+  }
+  cancelarDonacion(){
+
+    this.nav.navigateForward('/menu');
   }
 
 }
