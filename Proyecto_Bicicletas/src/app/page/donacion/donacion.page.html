@@ -9,20 +9,54 @@
 
 <ion-content>
   <ion-list>
-    <ion-item-sliding *ngFor="let donacion of donaciones;let indice=index">
+    <div *ngFor="let donacion of donaciones;let indice=index">
       <ion-item button [routerLink]="['/donar', donacion.id]">
         <ion-label>
-          <h2><strong>Solicitud {{indice+1}}</strong></h2>
-          <h2><strong>Fecha solicitud:</strong> {{donacion.fechadonacion.toMillis() | date:'yyyy/MM/dd'}}</h2>
-          <h2><strong>Estado de la Bicicleta:</strong> {{donacion.estado}}</h2>
-          <h2><strong>Descripción de la Bicicleta:</strong> {{donacion.descripcion}}</h2>
-          <ion-label *ngFor="let tienda of tiendas;let indice=index">
-            <h2 *ngIf="tienda.id==donacion.idtienda"><strong>Tienda:</strong> {{tienda.nombre}}</h2>
-          </ion-label>
+          <h2><strong>Donación {{indice+1}}</strong></h2>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <p class="subtitulo">Fecha solicitud:</p>
+              </ion-col>
+              <ion-col>
+                <p>{{donacion.fechadonacion.toMillis() | date:'yyyy/MM/dd'}}</p>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col>
+                <p class="subtitulo">Estado de la Bicicleta:</p>
+              </ion-col>
+              <ion-col>
+                <p>{{donacion.estado}}</p>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col>
+                <p class="subtitulo">Descripción Bicicleta:</p>
+              </ion-col>
+              <ion-col>
+                <p>{{donacion.descripcion}}</p>
+              </ion-col>
+            </ion-row>
+
+            <ion-row *ngFor="let tienda of tiendas;let indice=index" >
+              <ion-col *ngIf="tienda.id==donacion.idtienda">
+                <p class="subtitulo">Tienda:</p>
+              </ion-col>
+              <ion-col *ngIf="tienda.id==donacion.idtienda">
+                <p>{{tienda.nombre}}</p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          
+        
+
    
         </ion-label>
       </ion-item> 
-    </ion-item-sliding>
+    </div>
   </ion-list>
 
 </ion-content>

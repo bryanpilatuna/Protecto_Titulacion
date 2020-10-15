@@ -14,39 +14,39 @@
         <ion-label>
           <h2><strong>Alquiler {{indice+1}}</strong></h2>
           <ion-grid>
-          <ion-row>
-            <ion-col>
-              <p class="subtitulo">Fecha solicitud:</p>
-            </ion-col>
-            <ion-col>
-              <p>{{alqui.fecha.toMillis() | date:'yyyy/MM/dd'}}</p>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <p class="subtitulo">Fecha alquiler:</p>
-            </ion-col>
-            <ion-col>
-              <p>{{alqui.fecha.toMillis() | date:'yyyy/MM/dd'}}</p>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <p class="subtitulo">Fecha devolución:</p>
-            </ion-col>
-            <ion-col>
-              <p>{{alqui.fechadevolucion.toMillis() | date:'yyyy/MM/dd'}}</p>
-            </ion-col>
-          </ion-row>
-          <ion-row *ngFor="let tienda of tiendas;let indice=index" >
-            <ion-col *ngIf="tienda.id==alqui.idtienda">
-              <p class="subtitulo">Tienda:</p>
-            </ion-col>
-            <ion-col *ngIf="tienda.id==alqui.idtienda">
-              <p>{{tienda.nombre}}</p>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+            <ion-row>
+              <ion-col>
+                <p class="subtitulo">Fecha solicitud:</p>
+              </ion-col>
+              <ion-col>
+                <p>{{alqui.fecha.toMillis() | date:'yyyy/MM/dd'}}</p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <p class="subtitulo">Fecha alquiler:</p>
+              </ion-col>
+              <ion-col>
+                <p>{{alqui.fecha.toMillis() | date:'yyyy/MM/dd'}}</p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <p class="subtitulo">Fecha devolución:</p>
+              </ion-col>
+              <ion-col>
+                <p>{{alqui.fechadevolucion.toMillis() | date:'yyyy/MM/dd'}}</p>
+              </ion-col>
+            </ion-row>
+            <ion-row *ngFor="let tienda of tiendas;let indice=index" >
+              <ion-col *ngIf="tienda.id==alqui.idtienda">
+                <p class="subtitulo">Tienda:</p>
+              </ion-col>
+              <ion-col *ngIf="tienda.id==alqui.idtienda">
+                <p>{{tienda.nombre}}</p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
                    
         </ion-label>
       </ion-item> 
