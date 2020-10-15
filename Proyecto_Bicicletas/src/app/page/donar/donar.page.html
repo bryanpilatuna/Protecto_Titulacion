@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-list lines="full" *ngIf="donaciones">
+  <ion-list lines="full" *ngIf="donaciones" style="margin:10px">
     <ion-item >
       <ion-label position="stacked"><strong>Descripción</strong></ion-label>
       <ion-input required type="text" placeholder="Nombre" [(ngModel)]="donaciones.descripcion" readonly="readonly"></ion-input>
@@ -16,10 +16,9 @@
 
     <ion-item >
       <ion-label position="stacked"><strong>Tienda</strong></ion-label>
-      <br>
-      <ion-label *ngFor="let tienda of tiendas;let indice=index">
+      <div *ngFor="let tienda of tiendas;let indice=index">
         <ion-input *ngIf="tienda.id==donaciones.idtienda" required type="text" placeholder="Nombre" [(ngModel)]="tienda.nombre" readonly="readonly"></ion-input>
-      </ion-label>
+      </div>
     </ion-item>
 
     <ion-item >
