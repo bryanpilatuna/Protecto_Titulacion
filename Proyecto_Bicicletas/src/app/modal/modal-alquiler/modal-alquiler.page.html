@@ -9,7 +9,9 @@
     <ion-item-sliding *ngFor="let bicicleta of bicicletas">
       <ion-item button (click)="seleccionbicicleta(bicicleta.id)">
         <ion-label>
-          <h2>Nombre: {{ bicicleta.descripcion}}</h2>
+          <img [src]="bicicleta.imagen" style="width:80%;"/>
+     
+
        
         </ion-label>
       </ion-item> 
