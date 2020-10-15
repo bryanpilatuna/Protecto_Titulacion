@@ -22,17 +22,6 @@
       <p style="text-align: center">Donar Bici</p>
 
     </ion-col>
-    
-    <ion-col>
-      <button  (click)="salir()" block>
-        <img src="../../../assets/menu/salir.png">
-        
-      </button>
-      <p style="text-align: center">Salir</p>
-    </ion-col>
-    
-  </ion-row>
-  <ion-row>
     <ion-col>
       <button  [routerLink]="['/formulario-alquiler', id]" block>
         <img src="../../../assets/menu/alquilar.png">
@@ -40,6 +29,12 @@
       </button>
       <p style="text-align: center">Alquilar Bicicleta</p>
     </ion-col>
+    
+    
+    
+  </ion-row>
+  <ion-row>
+    
     <ion-col>
       <button  [routerLink]="['/alquiler-donacion']" block>
         <img src="../../../assets/menu/verificar-alquileres.png">
@@ -53,6 +48,14 @@
         
       </button>
       <p style="text-align: center">Buscar Tienda</p>
+    </ion-col>
+
+    <ion-col>
+      <button  (click)="salir()" block>
+        <img src="../../../assets/menu/salir.png">
+        
+      </button>
+      <p style="text-align: center">Salir</p>
     </ion-col>
        
 
