@@ -4,16 +4,11 @@ import { NavController, LoadingController } from '@ionic/angular';
 import { datosAlquiler } from '../../model/alquiler.interface';
 import { AlquilerService } from '../../service/alquiler.service';
 import { datosTiendas } from '../../model/tienda.interface';
-import { UsuarioService } from '../../service/usuario.service';
 import { datosBicicleta } from '../../model/bicicleta.interface';
-<<<<<<< HEAD
 import { ModalController } from '@ionic/angular';
 
 import { ModalAlquilerPage } from 'src/app/modal/modal-alquiler/modal-alquiler.page';
 
-=======
-import * as firebase from 'firebase';
->>>>>>> 2e44f87b2b81c11253ea7b5dd54f54aebfaf4f3a
 @Component({
   selector: 'app-formulario-alquiler',
   templateUrl: './formulario-alquiler.page.html',
@@ -42,34 +37,14 @@ export class FormularioAlquilerPage implements OnInit {
 
   }
 
-<<<<<<< HEAD
   constructor(private route: ActivatedRoute, private nav: NavController,
     private alquilerService: AlquilerService, private loadingController: LoadingController,public modalController: ModalController) { 
-=======
-  constructor(private nav: NavController,
-    private route: ActivatedRoute,
-    private alquilerService: AlquilerService, 
-    private usuarioService:UsuarioService,
-    private loadingController: LoadingController) { 
-
-     
-
->>>>>>> 2e44f87b2b81c11253ea7b5dd54f54aebfaf4f3a
       //this.disableSelector = false;
       
     }
 
   ngOnInit() {
-    this.usuarioService.$getObjeto.subscribe(data=> 
-     {
-       this.usuarioid=data;
-     }).unsubscribe();
-      //this.user = firebase.auth().currentUser.uid;
-      //this.usuarioid = this.user;  
-      //this.usuarioid=this.route.snapshot.params['id'];
-    console.log('id pasado',this.usuarioid)
-    
-   
+    this.usuarioid=this.route.snapshot.params['id'];
     if (this.usuarioid){
       this.loadTodo();
     }
@@ -89,7 +64,9 @@ export class FormularioAlquilerPage implements OnInit {
     
 
     this.alquilerService.getTiendas().subscribe((tiendas) =>{
+      console.log('Tiendas', tiendas);
       this.tiendas = tiendas;
+      console.log(this.tiendas[0].id);
     })
 
   }
@@ -110,6 +87,7 @@ export class FormularioAlquilerPage implements OnInit {
   }
 
   async onSelectChange() : Promise<void> {
+    console.log(this.alquiler.idtienda);
     this.alquilerService.getBicicletas(this.alquiler.idtienda).subscribe((bicicletas) =>{
       this.bicicletas = bicicletas;
       
@@ -141,12 +119,6 @@ export class FormularioAlquilerPage implements OnInit {
       loading.dismiss();
       this.nav.navigateForward('/menu'); 
     });
-  }
-
-  async cancelarAlquiler(){
-
-     this.nav.navigateForward('/menu');
-
   }
 
   cambiofecha(event){
