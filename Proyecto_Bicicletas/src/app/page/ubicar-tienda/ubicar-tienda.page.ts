@@ -93,16 +93,10 @@ export class UbicarTiendaPage implements OnInit {
       
     });
     
-
     puntos.addListener("click", () => {
       this.infowindow.open(this.map, puntos);
     });
-
-    google.maps.event.addListener(this.map, "click", function() {
-      this.infowindow.close(this.map,puntos);
-      });
-
-    
+  
     
     }
 
