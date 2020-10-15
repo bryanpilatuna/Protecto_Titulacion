@@ -7,10 +7,13 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { FileI } from '../model/file.interface';
 import { finalize } from 'rxjs/operators';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { BehaviorSubject }from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
+  private objeto=new BehaviorSubject<{}>({});
+  $getObjeto= this.objeto.asObservable();
   private usuariosCollection: AngularFirestoreCollection<DatosUsuario>;
   private usuarios: Observable<DatosUsuario[]>;
   public photoURL = null;
@@ -62,5 +65,9 @@ export class UsuarioService {
   }
   addUsuario(usuario: DatosUsuario){
     return this.usuariosCollection.add(usuario);
+  }
+  enviarobjeto(data: any){
+
+    this.objeto.next(data);
   }
 }
