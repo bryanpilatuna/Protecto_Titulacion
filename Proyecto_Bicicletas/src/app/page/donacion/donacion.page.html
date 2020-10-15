@@ -12,12 +12,12 @@
     <ion-item-sliding *ngFor="let donacion of donaciones;let indice=index">
       <ion-item button [routerLink]="['/donar', donacion.id]">
         <ion-label>
-          <h2>Solicitud {{indice+1}}</h2>
-          <h2>Fecha solicitud: {{donacion.fechadonacion.toMillis() | date:'yyyy/MM/dd'}}</h2>
-          <h2>Estado de la Bicicleta: {{donacion.estado}}</h2>
-          <h2>Descripción de la Bicicleta: {{donacion.descripcion}}</h2>
+          <h2><strong>Solicitud {{indice+1}}</strong></h2>
+          <h2><strong>Fecha solicitud:</strong> {{donacion.fechadonacion.toMillis() | date:'yyyy/MM/dd'}}</h2>
+          <h2><strong>Estado de la Bicicleta:</strong> {{donacion.estado}}</h2>
+          <h2><strong>Descripción de la Bicicleta:</strong> {{donacion.descripcion}}</h2>
           <ion-label *ngFor="let tienda of tiendas;let indice=index">
-            <h2 *ngIf="tienda.id==donacion.idtienda">Tienda : {{tienda.nombre}}</h2>
+            <h2 *ngIf="tienda.id==donacion.idtienda"><strong>Tienda:</strong> {{tienda.nombre}}</h2>
           </ion-label>
    
         </ion-label>
