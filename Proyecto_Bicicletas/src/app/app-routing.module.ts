@@ -104,6 +104,13 @@ const routes: Routes = [
     path: 'menu-invitado',
     loadChildren: () => import('./page/menu-invitado/menu-invitado.module').then( m => m.MenuInvitadoPageModule)
   },
+  {
+    path: 'modal-alquiler',
+    loadChildren: () => import('./modal/modal-alquiler/modal-alquiler.module').then( m => m.ModalAlquilerPageModule)
+  },
+
+
+
 
 
 

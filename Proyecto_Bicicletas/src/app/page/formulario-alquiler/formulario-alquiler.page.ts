@@ -5,6 +5,9 @@ import { datosAlquiler } from '../../model/alquiler.interface';
 import { AlquilerService } from '../../service/alquiler.service';
 import { datosTiendas } from '../../model/tienda.interface';
 import { datosBicicleta } from '../../model/bicicleta.interface';
+import { ModalController } from '@ionic/angular';
+
+import { ModalAlquilerPage } from 'src/app/modal/modal-alquiler/modal-alquiler.page';
 
 @Component({
   selector: 'app-formulario-alquiler',
@@ -17,6 +20,7 @@ export class FormularioAlquilerPage implements OnInit {
   tiendas: datosTiendas[];
   bicicletas:datosBicicleta[];
   fechaactual: Date = new Date();
+  idbicicleta=null;
   //disableSelector:boolean;
 
   alquiler: datosAlquiler ={
@@ -34,7 +38,7 @@ export class FormularioAlquilerPage implements OnInit {
   }
 
   constructor(private route: ActivatedRoute, private nav: NavController,
-    private alquilerService: AlquilerService, private loadingController: LoadingController) { 
+    private alquilerService: AlquilerService, private loadingController: LoadingController,public modalController: ModalController) { 
       //this.disableSelector = false;
       
     }
@@ -67,10 +71,26 @@ export class FormularioAlquilerPage implements OnInit {
 
   }
 
+
+  async abrirmodal(){
+    const modal = await this.modalController.create({
+      component: ModalAlquilerPage,
+      componentProps: {
+        'idtienda': this.alquiler.idtienda,
+   
+      }
+    });
+    await modal.present();
+    const { data } = await modal.onDidDismiss();
+    this.idbicicleta = data.bici;
+    console.log(this.idbicicleta);
+  }
+
   async onSelectChange() : Promise<void> {
     console.log(this.alquiler.idtienda);
     this.alquilerService.getBicicletas(this.alquiler.idtienda).subscribe((bicicletas) =>{
       this.bicicletas = bicicletas;
+      
      
      
     })
@@ -89,7 +109,7 @@ export class FormularioAlquilerPage implements OnInit {
     this.alquiler.idtienda=this.alquiler.idtienda;
     this.alquiler.aprobacion= false;
     this.alquiler.fecha= this.fechaactual;
- 
+    this.alquiler.bicicleta=this.idbicicleta;
     const loading = await this.loadingController.create({
       message: 'Guardando....'
     });

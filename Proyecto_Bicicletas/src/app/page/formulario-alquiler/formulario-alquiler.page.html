@@ -52,18 +52,9 @@
       </ion-select>
     </ion-item>    
 
-    <ion-item  >
-      <ion-label>Seleccione la Bicicleta</ion-label>
-      <ion-select [(ngModel)]="alquiler.bicicleta" ok-text="Seleccionar" cancel-text="Cancelar"  >
-        <ion-select-option *ngFor="let bicicleta of bicicletas" [value]="bicicleta.id"> 
-          <ion-label>
-          {{ bicicleta.descripcion }}
-          
-        </ion-label>
-        <ion-img src="../../../assets/formulario-alquiler/renta.jpg" alt="" > </ion-img>
-        </ion-select-option>
-      </ion-select>
-    </ion-item> 
+   
+
+    <ion-button expand="full" (click)="abrirmodal()">Seleccione la Bicicleta</ion-button>
 
     <ion-button expand="full" (click)="crearAlquiler()">Realizar Alquiler</ion-button>
 

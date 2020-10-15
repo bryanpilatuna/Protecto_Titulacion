@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Seleccionar Bicicleta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor="let bicicleta of bicicletas">
+      <ion-item button (click)="seleccionbicicleta(bicicleta.id)">
+        <ion-label>
+          <h2>Nombre: {{ bicicleta.descripcion}}</h2>
+       
+        </ion-label>
+      </ion-item> 
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
