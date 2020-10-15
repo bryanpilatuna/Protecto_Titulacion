@@ -106,8 +106,6 @@ this.nav.navigateForward(['/formulario-donacion', this.id]);
       this.idtienda=marker.id;
       console.log('id tienda',this.idtienda);
     });
-  
-    
     }
 
     
