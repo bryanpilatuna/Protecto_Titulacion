@@ -26,11 +26,14 @@ export class FormularioDonacionPage implements OnInit {
     idtienda: '',
     anular:false
   };
-  formGroup: FormGroup; // declare it here
+  formGroup: FormGroup; 
   
-  
-  constructor(private route: ActivatedRoute, private nav: NavController,
-    private donacionService: DonacionService, private loadingController: LoadingController,public formBuilder: FormBuilder,
+  constructor(
+    private route: ActivatedRoute, 
+    private nav: NavController,
+    private donacionService: DonacionService, 
+    private loadingController: LoadingController,
+    public formBuilder: FormBuilder,
      ) {
       var user = firebase.auth().currentUser.uid;
       this.donanteid = user;
@@ -40,8 +43,6 @@ export class FormularioDonacionPage implements OnInit {
 
 
   ngOnInit() {
-    
-   // this.donanteid= this.route.snapshot.params['id'];
    console.log("id donante",this.donanteid);
     this.donacion= {
     iddonante: this.donanteid,
@@ -84,6 +85,9 @@ export class FormularioDonacionPage implements OnInit {
     this.formGroup = this.formBuilder.group({fechaControl,tiendaControl,estadoControl,descripcionControl });
   }
 
+
+
+  //Crear la donacion
   async crearDonacion(){
     const loading = await this.loadingController.create({
       message: 'Guardando....'
@@ -97,10 +101,8 @@ export class FormularioDonacionPage implements OnInit {
 
   }
 
+  //Cambio de fecha
   cambiofecha(event){
-    
-   // this.donacion.fechadonacion.setDate= event.detail.value;
-
     this.donacion= {
       iddonante: this.donanteid,
       fechadonacion: new Date(event.detail.value),
@@ -110,10 +112,10 @@ export class FormularioDonacionPage implements OnInit {
       idtienda: '',
       anular:false
       };   
-
   }
-  cancelarDonacion(){
 
+  //Cancelar donacion
+  cancelarDonacion(){
     this.nav.navigateForward('/menu');
   }
 

@@ -25,6 +25,7 @@ export class ProfilePage implements OnInit {
   }
   public image: any;
   usuarioId= null;
+  
   constructor(
     private route: ActivatedRoute, 
     private router: Router, 
@@ -97,6 +98,7 @@ export class ProfilePage implements OnInit {
     
   }
 
+  //Cargar usuario
   async cargarUsuario(){
     const loading = await this.loadingController.create({
       message: 'Cargando....'
@@ -109,6 +111,8 @@ export class ProfilePage implements OnInit {
       console.log(this.usuario.apellidos)
     });
   }
+
+  //Guardar Usuario
   async guardarUsuario() {
     const loading = await this.loadingController.create({
       message: 'Guardando....'
