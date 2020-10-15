@@ -128,5 +128,9 @@ export class FormularioAlquilerPage implements OnInit {
   cambiofecha2(event){
     this.alquiler.fechadevolucion= new Date(event.detail.value);
   }
+  cancelarAlquiler(){
+    this.nav.navigateForward('/menu'); 
+
+  }
   
 }

@@ -3,7 +3,7 @@ import { ActivatedRoute,Router} from '@angular/router';
 import { datosUbicacion } from '../../model/ubicacion.interface';
 import {UbicacionService} from '../../service/ubicacion.service';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import {LoadingController} from '@ionic/angular';
+import {NavController,LoadingController} from '@ionic/angular';
 
 declare var google;
 @Component({
@@ -14,22 +14,30 @@ declare var google;
 export class UbicarTiendaPage implements OnInit {
   id= null;
   map = null;
+  idtienda=null;
   ubicaciones: datosUbicacion[];
   infowindow = new google.maps.InfoWindow;
 
   constructor(
     private UbicacionService: UbicacionService,
     private geolocation: Geolocation,
-    
+    private nav: NavController,
     private loadinCtrl: LoadingController,
-    private route: ActivatedRoute,
-    private router:Router) { }
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.id=this.route.snapshot.params['id'];
     this.loadmap();
   }
+alquilarbici(){
+  this.nav.navigateForward(['/formulario-alquiler', this.id]); 
+}
 
+donabici(){
+
+this.nav.navigateForward(['/formulario-donacion', this.id]); 
+
+}
   async loadmap(){
     const loading= await this.loadinCtrl.create();
     loading.present();
@@ -95,6 +103,8 @@ export class UbicarTiendaPage implements OnInit {
     
     puntos.addListener("click", () => {
       this.infowindow.open(this.map, puntos);
+      this.idtienda=marker.id;
+      console.log('id tienda',this.idtienda);
     });
   
     
