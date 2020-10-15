@@ -82,7 +82,6 @@ export class UbicarTiendaPage implements OnInit {
         animation: google.maps.Animation.DROP,
       });
       const detallemarker = 
-   
     '<h2>Empresa de Bicicletas: '+marker.title+'</h2>' +
     "<p>"+'<img src="https://png.pngtree.com/png-vector/20190826/ourlarge/pngtree-house-location-icon-png-image_1701248.jpg" height="25px" width="25px" />'+" <b>Dirección: </b>"+marker.direccion+"</b></p>" +
     "<p>"+'<img src="https://i.pinimg.com/originals/b9/2f/b6/b92fb6bd92b53e40ad90b1a160b33b0d.jpg" height="20px" width="20px" />'+" <b>Teléfono: </b>"+marker.telefono+"</b> </p>" +
