@@ -24,6 +24,9 @@ export class AlquilerService {
   private BicicletaCollection: AngularFirestoreCollection<datosBicicleta>;
   private bicicleta: Observable<datosBicicleta[]>;
 
+  private Bicicleta2Collection: AngularFirestoreCollection<datosBicicleta>;
+  private bicicleta2: Observable<datosBicicleta[]>;
+
   constructor(private db:AngularFirestore) { 
     
     
@@ -42,6 +45,18 @@ export class AlquilerService {
 
     this.tiendaCollection = db.collection<datosTiendas>('tiendas');
     this.tienda = this.tiendaCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+        
+          return {id, ...data};
+        });
+      })
+    );
+
+    this.Bicicleta2Collection = this.db.collection<datosBicicleta>('bicicleta');
+    this.bicicleta2 = this.Bicicleta2Collection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
           const data = a.payload.doc.data();
@@ -82,6 +97,12 @@ export class AlquilerService {
 
   getAlquileres(id: string){
     return this.alquilerCollection.doc<datosAlquiler>(id).valueChanges();
+ 
+  }
+
+
+  getBicicleta(id: string){
+    return this.Bicicleta2Collection.doc<datosBicicleta>(id).valueChanges();
  
   }
   

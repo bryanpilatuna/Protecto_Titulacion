@@ -8,18 +8,17 @@
 </ion-header>
 
 <ion-content>
-  <ion-list lines="full" *ngIf="alquileres">
-    <ion-item >
+  <ion-list lines="full" *ngIf="alquileres" style="margin:10px">
+    <ion-item *ngIf="bicicleta">
       <ion-label position="stacked"><strong>Bicicleta</strong></ion-label>
-      <ion-input required type="text" placeholder="Nombre" [(ngModel)]="alquileres.bicicleta" readonly="readonly"></ion-input>
+      <img [src]="bicicleta.imagen" style="width:90%;display:block;margin:auto"/>
     </ion-item>
 
     <ion-item >
       <ion-label position="stacked"><strong>Tienda</strong></ion-label>
-      <br>
-      <ion-label *ngFor="let tienda of tiendas;let indice=index">
+      <div *ngFor="let tienda of tiendas;let indice=index">
         <ion-input *ngIf="tienda.id==alquileres.idtienda" required type="text" placeholder="Nombre" [(ngModel)]="tienda.nombre" readonly="readonly"></ion-input>
-      </ion-label>
+      </div>
     </ion-item>
 
     <ion-item >
