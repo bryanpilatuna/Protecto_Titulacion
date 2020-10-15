@@ -15,6 +15,7 @@ export class UbicarTiendaPage implements OnInit {
   id= null;
   map = null;
   ubicaciones: datosUbicacion[];
+  infowindow = new google.maps.InfoWindow;
 
   constructor(
     private UbicacionService: UbicacionService,
@@ -84,19 +85,25 @@ export class UbicarTiendaPage implements OnInit {
       const detallemarker = 
     '<h2>Empresa de Bicicletas: '+marker.title+'</h2>' +
     "<p>"+'<img src="https://png.pngtree.com/png-vector/20190826/ourlarge/pngtree-house-location-icon-png-image_1701248.jpg" height="25px" width="25px" />'+" <b>Dirección: </b>"+marker.direccion+"</b></p>" +
-    "<p>"+'<img src="https://i.pinimg.com/originals/b9/2f/b6/b92fb6bd92b53e40ad90b1a160b33b0d.jpg" height="20px" width="20px" />'+" <b>Teléfono: </b>"+marker.telefono+"</b> </p>" +
-    "<p>"+'<input type="button" onclick="window.location='+"'/formulario-alquiler';"+'" value="Ir a Alquiler" />'+
-    '<input type="button" onclick="location.href='+"'/formulario-donacion';"+'" value="ir a Donar" /></p>';
+    "<p>"+'<img src="https://i.pinimg.com/originals/b9/2f/b6/b92fb6bd92b53e40ad90b1a160b33b0d.jpg" height="20px" width="20px" />'+" <b>Teléfono: </b>"+marker.telefono+"</b> </p>";
     
 
-    const infowindow = new google.maps.InfoWindow({
+    this.infowindow = new google.maps.InfoWindow({
       content: detallemarker,
       
     });
+    
 
     puntos.addListener("click", () => {
-      infowindow.open(this.map, puntos);
+      this.infowindow.open(this.map, puntos);
     });
+
+    google.maps.event.addListener(this.map, "click", function() {
+      this.infowindow.close(this.map,puntos);
+      });
+
+    
+    
     }
 
     
