@@ -7,7 +7,7 @@
 <ion-content>
   <ion-list>
     <ion-item-sliding *ngFor="let bicicleta of bicicletas">
-      <ion-item button (click)="seleccionbicicleta(bicicleta.id)">
+      <ion-item *ngIf="bicicleta.disponible==validacion" button (click)="seleccionbicicleta(bicicleta.id)">
         <ion-label>
           <img [src]="bicicleta.imagen" style="width:80%;"/>
      

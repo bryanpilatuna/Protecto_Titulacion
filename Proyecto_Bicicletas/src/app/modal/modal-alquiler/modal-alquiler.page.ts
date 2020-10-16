@@ -11,6 +11,7 @@ export class ModalAlquilerPage implements OnInit {
   bicicletas:datosBicicleta[];
   id="Z4G3rWPMf93WkhZ49H9Y";
   @Input() idtienda: string;
+  validacion="Si"
   constructor(private alquilerService: AlquilerService,private modalController: ModalController) { 
     
   }
