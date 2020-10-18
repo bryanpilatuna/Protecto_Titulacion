@@ -18,7 +18,7 @@ export class FormularioAlquilerPage implements OnInit {
 
   usuarioid= null;
   tiendas: datosTiendas[];
-  bicicletas:datosBicicleta[];
+  bicicletas:datosBicicleta;
   fechaactual: Date = new Date();
   idbicicleta=null;
   //disableSelector:boolean;
@@ -83,18 +83,22 @@ export class FormularioAlquilerPage implements OnInit {
     await modal.present();
     const { data } = await modal.onDidDismiss();
     this.idbicicleta = data.bici;
-    console.log(this.idbicicleta);
+    this.alquilerService.getBicicleta(this.idbicicleta).subscribe((bicicletas) =>{
+      this.bicicletas = bicicletas;
+      this.bicicletas.disponible="No";
+      console.log(bicicletas.disponible);
+
+    })
   }
 
-  async onSelectChange() : Promise<void> {
+  /*async onSelectChange() : Promise<void> {
     console.log(this.alquiler.idtienda);
     this.alquilerService.getBicicletas(this.alquiler.idtienda).subscribe((bicicletas) =>{
       this.bicicletas = bicicletas;
       
-     
-     
+  
     })
-  }
+  }*/
 
   async loadTodo(){
     const loading = await this.loadingController.create({
@@ -116,6 +120,7 @@ export class FormularioAlquilerPage implements OnInit {
 
 
    this.alquilerService.addAlquiler(this.alquiler).then(() => {
+      this.alquilerService.updateBicicletas(this.bicicletas, this.idbicicleta).then(() => {});
       loading.dismiss();
       this.nav.navigateForward('/menu'); 
     });
