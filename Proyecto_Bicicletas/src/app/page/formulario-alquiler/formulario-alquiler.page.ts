@@ -6,7 +6,7 @@ import { AlquilerService } from '../../service/alquiler.service';
 import { datosTiendas } from '../../model/tienda.interface';
 import { datosBicicleta } from '../../model/bicicleta.interface';
 import { ModalController } from '@ionic/angular';
-
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ModalAlquilerPage } from 'src/app/modal/modal-alquiler/modal-alquiler.page';
 
 @Component({
@@ -37,11 +37,13 @@ export class FormularioAlquilerPage implements OnInit {
 
   }
   desabilitarboton:boolean;
+  formGroup: FormGroup; 
 
   constructor(private route: ActivatedRoute, private nav: NavController,
-    private alquilerService: AlquilerService, private loadingController: LoadingController,public modalController: ModalController) { 
+    private alquilerService: AlquilerService, private loadingController: LoadingController,public modalController: ModalController,public formBuilder: FormBuilder) { 
       //this.disableSelector = false;
       this.desabilitarboton = true;
+      this.crearvalidaciones();
       
     }
 
@@ -73,8 +75,25 @@ export class FormularioAlquilerPage implements OnInit {
 
   }
 
+  //Crear validaciones para el form 
+  crearvalidaciones(){
+    const fechaAlquiler = new FormControl('', Validators.compose([
+        Validators.required,
+    ]));
+    const fechaDevolucion = new FormControl('', Validators.compose([
+      Validators.required,
+    ]));
+    const tindaSeleccion = new FormControl('', Validators.compose([
+      Validators.required,
+    ]));
+  
+    
+    this.formGroup = this.formBuilder.group({fechaAlquiler,fechaDevolucion,tindaSeleccion});
+  }
+
   async onSelectChange(){
     this.desabilitarboton = false;
+    this.abrirmodal();
   }
 
 

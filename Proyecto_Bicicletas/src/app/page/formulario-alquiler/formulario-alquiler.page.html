@@ -12,9 +12,8 @@
   <div class="row" style="display: flex;justify-content: center;">
     <img width="60%" src="../../../assets/formulario-alquiler/renta.jpg"/>
   </div>
- 
-  
-    <ion-item *ngIf="alquiler" >
+  <form [formGroup]="formGroup" *ngIf="alquiler" (ngSubmit)="crearDonacion()" style="border: white 8px ridge;">
+    <ion-item  >
       <ion-label position="stacked">Seleccione la fecha para el alquiler</ion-label>
       <ion-datetime displayFormat="DD MMMM YYYY"   
       (ionChange)="cambiofecha($event)"
@@ -23,11 +22,12 @@
       max="2021-12-31" 
       cancelText="Cancelar"
       doneText="Seleccionar"
+      formControlName="fechaAlquiler"
       >
       </ion-datetime>
     </ion-item>
 
-    <ion-item *ngIf="alquiler">
+    <ion-item>
       <ion-label position="stacked">Seleccione la fecha de devolución</ion-label>
       <ion-datetime displayFormat="DD MMMM YYYY"   
       (ionChange)="cambiofecha2($event)"
@@ -36,13 +36,15 @@
       max="2021-12-31" 
       cancelText="Cancelar"
       doneText="Seleccionar"
+      formControlName="fechaDevolucion"
       >
       </ion-datetime>
     </ion-item>
 
     <ion-item  *ngIf="alquiler">
       <ion-label>Seleccione la  Tienda</ion-label>
-      <ion-select [(ngModel)]="alquiler.idtienda" ok-text="Seleccionar" cancel-text="Cancelar" (ionChange)="onSelectChange()" >
+      <ion-select [(ngModel)]="alquiler.idtienda" ok-text="Seleccionar" 
+      cancel-text="Cancelar" formControlName="tindaSeleccion" (ionChange)="onSelectChange()" >
         <ion-select-option *ngFor="let tienda of tiendas" [value]="tienda.id"> 
           <ion-label>
           {{ tienda.nombre}}
@@ -50,14 +52,15 @@
         <ion-note slot="end" color="primary">{{ tienda.direccion }}</ion-note>
         </ion-select-option>
       </ion-select>
-    </ion-item>    
+    </ion-item>   
 
-   
 
-    <ion-button disabled={{desabilitarboton}} expand="full" (click)="abrirmodal()">Seleccione la Bicicleta</ion-button>
+    <!--<ion-button disabled={{desabilitarboton}} expand="full" (click)="abrirmodal()">Seleccione la Bicicleta</ion-button>-->
 
-    <ion-button expand="full" (click)="crearAlquiler()" color="success">Realizar Alquiler</ion-button>
+    <ion-button [disabled]="!formGroup.valid" expand="full" (click)="crearAlquiler()" color="success">Realizar Alquiler</ion-button>
     <ion-button expand="full" (click)="cancelarAlquiler()" color="danger">Cancelar Alquiler</ion-button>
+  </form>
+    
 
       
 
