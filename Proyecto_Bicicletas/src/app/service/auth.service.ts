@@ -149,6 +149,7 @@ export class AuthService {
       //await this.afAuth.signOut();
       await this.afAuth.signOut().then(() => {
         this.router.navigate(['/login']);
+        
       })
     } catch (error) {
       console.log('Error->', error);
