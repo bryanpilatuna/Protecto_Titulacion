@@ -14,7 +14,7 @@ export class UbicacionService {
   
 
   constructor(db:AngularFirestore) { 
-    this.UbicacionesCollection = db.collection<datosUbicacion>('ubicaciones');
+    this.UbicacionesCollection = db.collection<datosUbicacion>('tiendas');
     
     this.ubicaciones = this.UbicacionesCollection.snapshotChanges().pipe(
       map(actions => {

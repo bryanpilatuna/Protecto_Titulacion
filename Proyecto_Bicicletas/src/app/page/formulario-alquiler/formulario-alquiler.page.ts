@@ -6,6 +6,7 @@ import { AlquilerService } from '../../service/alquiler.service';
 import { datosTiendas } from '../../model/tienda.interface';
 import { datosBicicleta } from '../../model/bicicleta.interface';
 import { ModalController } from '@ionic/angular';
+import {UsuarioService} from '../../service/usuario.service';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ModalAlquilerPage } from 'src/app/modal/modal-alquiler/modal-alquiler.page';
 
@@ -21,6 +22,7 @@ export class FormularioAlquilerPage implements OnInit {
   bicicletas:datosBicicleta;
   fechaactual: Date = new Date();
   idbicicleta=null;
+  idtienda=null;
   //disableSelector:boolean;
 
   alquiler: datosAlquiler ={
@@ -39,7 +41,7 @@ export class FormularioAlquilerPage implements OnInit {
   desabilitarboton:boolean;
   formGroup: FormGroup; 
 
-  constructor(private route: ActivatedRoute, private nav: NavController,
+  constructor(private route: ActivatedRoute, private nav: NavController, private UsuarioService: UsuarioService,
     private alquilerService: AlquilerService, private loadingController: LoadingController,public modalController: ModalController,public formBuilder: FormBuilder) { 
       //this.disableSelector = false;
       this.desabilitarboton = true;
@@ -48,24 +50,28 @@ export class FormularioAlquilerPage implements OnInit {
     }
 
   ngOnInit() {
+    this.UsuarioService.$getObjeto.subscribe(data=>{
+      console.log('id de  tienda',data)
+      this.idtienda=data;
+    });
+    
     this.usuarioid=this.route.snapshot.params['id'];
     if (this.usuarioid){
       this.loadTodo();
     }
-    this.alquiler={
-
-      idusuario :this.usuarioid,
-      idtienda: '',
-      fechadevolucion:this.fechaactual,
-      fechaalquiler: this.fechaactual,
-      bicicleta: '',
-      fecha: this.fechaactual,
-      aprobacion: false,
-      anular: false
-     
-    };
-
     
+      this.alquiler={
+
+        idusuario :this.usuarioid,
+        idtienda: '',
+        fechadevolucion:this.fechaactual,
+        fechaalquiler: this.fechaactual,
+        bicicleta: '',
+        fecha: this.fechaactual,
+        aprobacion: false,
+        anular: false
+       
+      };   
 
     this.alquilerService.getTiendas().subscribe((tiendas) =>{
       console.log('Tiendas', tiendas);
@@ -160,7 +166,7 @@ export class FormularioAlquilerPage implements OnInit {
   }
   cancelarAlquiler(){
     this.nav.navigateForward('/menu'); 
-
+    this.idbicicleta=null;
   }
   
 }

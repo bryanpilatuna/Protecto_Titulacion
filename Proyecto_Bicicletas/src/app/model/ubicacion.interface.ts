@@ -7,4 +7,9 @@ export interface datosUbicacion {
       title: string;
       direccion: string;
       telefono: number;
+      correo: string,
+      estado:string,
+      logo:string,
+      nombre:string,
+      tipo:string,
 }
