@@ -42,7 +42,7 @@
 
     <ion-item  *ngIf="alquiler">
       <ion-label>Seleccione la  Tienda</ion-label>
-      <ion-select [(ngModel)]="alquiler.idtienda" ok-text="Seleccionar" cancel-text="Cancelar"  >
+      <ion-select [(ngModel)]="alquiler.idtienda" ok-text="Seleccionar" cancel-text="Cancelar" (ionChange)="onSelectChange()" >
         <ion-select-option *ngFor="let tienda of tiendas" [value]="tienda.id"> 
           <ion-label>
           {{ tienda.nombre}}
@@ -54,7 +54,7 @@
 
    
 
-    <ion-button expand="full" (click)="abrirmodal()">Seleccione la Bicicleta</ion-button>
+    <ion-button disabled={{desabilitarboton}} expand="full" (click)="abrirmodal()">Seleccione la Bicicleta</ion-button>
 
     <ion-button expand="full" (click)="crearAlquiler()" color="success">Realizar Alquiler</ion-button>
     <ion-button expand="full" (click)="cancelarAlquiler()" color="danger">Cancelar Alquiler</ion-button>

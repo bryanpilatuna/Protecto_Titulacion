@@ -36,10 +36,12 @@ export class FormularioAlquilerPage implements OnInit {
    
 
   }
+  desabilitarboton:boolean;
 
   constructor(private route: ActivatedRoute, private nav: NavController,
     private alquilerService: AlquilerService, private loadingController: LoadingController,public modalController: ModalController) { 
       //this.disableSelector = false;
+      this.desabilitarboton = true;
       
     }
 
@@ -69,6 +71,10 @@ export class FormularioAlquilerPage implements OnInit {
       console.log(this.tiendas[0].id);
     })
 
+  }
+
+  async onSelectChange(){
+    this.desabilitarboton = false;
   }
 
 

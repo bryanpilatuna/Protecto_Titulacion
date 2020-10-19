@@ -24,7 +24,6 @@ export class MenuPage implements OnInit {
     this.usuarioService.enviarobjeto(this.id);
     
     this.authservice.getUsuario().subscribe(user => {
-     
       //this.name = user.displayName;
     });
 
