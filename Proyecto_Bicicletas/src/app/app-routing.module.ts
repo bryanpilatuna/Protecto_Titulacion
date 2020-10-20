@@ -107,7 +107,11 @@ const routes: Routes = [
   {
     path: 'modal-alquiler',
     loadChildren: () => import('./modal/modal-alquiler/modal-alquiler.module').then( m => m.ModalAlquilerPageModule)
+  },  {
+    path: 'ubitienda-invitado',
+    loadChildren: () => import('./page/ubitienda-invitado/ubitienda-invitado.module').then( m => m.UbitiendaInvitadoPageModule)
   },
+
 
 
 
