@@ -5,8 +5,8 @@ import {UbicacionService} from '../../service/ubicacion.service';
 import {UsuarioService} from '../../service/usuario.service';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import {NavController,LoadingController} from '@ionic/angular';
-
 declare var google;
+
 @Component({
   selector: 'app-ubicar-tienda',
   templateUrl: './ubicar-tienda.page.html',
@@ -69,12 +69,18 @@ this.nav.navigateForward(['/formulario-donacion', this.id]);
     
     miubicacion(lat: number, lng: number){
     
-      return new google.maps.Marker({
+      const miubicacion= new google.maps.Marker({
         position: {lat,lng},
       map: this.map,
       title: 'ESTAS AQUI',
       animation: google.maps.Animation.DROP,
       icon: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+      });
+      const detallemarker = 
+      '<h5>Estas Aquí</h5>';
+      miubicacion.addListener("click", () => {
+        this.infowindow.setContent(detallemarker);
+        this.infowindow.open(this.map,miubicacion);
       });
   
   
