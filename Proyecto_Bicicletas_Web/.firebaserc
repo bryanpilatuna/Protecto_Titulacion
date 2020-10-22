@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "proyecto-bicicleta"
+  },
+  "targets": {
+    "proyecto-bicicleta": {
+      "hosting": {
+        "app": [
+          "proyecto-bicicleta"
+        ]
+      }
+    }
   }
 }
