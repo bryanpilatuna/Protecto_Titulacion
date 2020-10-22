@@ -1,4 +1,24 @@
 <app-header></app-header>
 <ion-content padding>
-  <h2>Registro</h2>
+  <div class="container">
+    <div class="row">
+      <div class="mx-auto">
+        <form>
+          <ion-item lines="full">
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="text" #email required></ion-input>
+          </ion-item>
+          <ion-item lines="full">
+            <ion-label position="floating">Password</ion-label>
+            <ion-input type="password" #password required></ion-input>
+          </ion-item>
+          <ion-row>
+            <ion-col>
+              <ion-button type="submit" (click)="onRegister(email, password)" expand="block">Register</ion-button>
+            </ion-col>
+          </ion-row>
+        </form>
+      </div>
+    </div>
+</div>
 </ion-content>
