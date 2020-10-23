@@ -8,6 +8,8 @@ import { RegistroTiendaPageRoutingModule } from './registro-tienda-routing.modul
 
 import { RegistroTiendaPage } from './registro-tienda.page';
 import { ComponentsModule } from '../../components/components.module';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   imports: [
@@ -15,6 +17,7 @@ import { ComponentsModule } from '../../components/components.module';
     FormsModule,
     IonicModule,
     RegistroTiendaPageRoutingModule,
+    ReactiveFormsModule,
     ComponentsModule
   ],
   declarations: [RegistroTiendaPage]

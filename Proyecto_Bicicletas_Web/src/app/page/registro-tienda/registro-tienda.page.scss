@@ -5,5 +5,28 @@
     
     justify-content: center; /*align-items: center; estamos diciendo que queremos que los elementos dentro del contenedor flex se ubiquen en el centro del eje secundario eje vertical*/
     
-    min-height: 100vh;  /*min-height: 100vh; que significa tome como altura mínima del contenedor el total del alto de la ventana del navegador web utilizado.*/
+    margin: 10px;
   }
+
+  .center-span {
+    display: block;
+    text-align: center;
+  }
+
+  
+
+.btn_eye_icon{
+  position: absolute;
+  right: 0;
+  bottom: 4px;
+  background: transparent;
+  ion-icon{
+      font-size: 22px;
+      color:#757575;
+  }
+}
+
+.btn_eye_icon:focus{
+  outline: none  !important;
+  
+}
