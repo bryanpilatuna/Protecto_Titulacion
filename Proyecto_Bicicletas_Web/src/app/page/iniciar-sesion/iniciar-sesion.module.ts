@@ -8,6 +8,7 @@ import { IniciarSesionPageRoutingModule } from './iniciar-sesion-routing.module'
 
 import { IniciarSesionPage } from './iniciar-sesion.page';
 import { ComponentsModule } from '../../components/components.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -15,7 +16,9 @@ import { ComponentsModule } from '../../components/components.module';
     FormsModule,
     IonicModule,
     IniciarSesionPageRoutingModule,
-    ComponentsModule
+    ReactiveFormsModule,
+    ComponentsModule,
+    
   ],
   declarations: [IniciarSesionPage]
 })
