@@ -34,6 +34,10 @@ const routes: Routes = [
     path: 'verify-email',
     loadChildren: () => import('./page/verify-email/verify-email.module').then( m => m.VerifyEmailPageModule)
   },
+  {
+    path: 'menu-cliente',
+    loadChildren: () => import('./page/menu-cliente/menu-cliente.module').then( m => m.MenuClientePageModule)
+  },
 
 ];
 

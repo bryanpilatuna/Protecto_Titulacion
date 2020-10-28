@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../model/user.interface';
+import { DatosUsuario } from '../model/user.interface';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 import * as firebase from 'firebase';
@@ -24,6 +25,8 @@ export class AuthService {
   public photoURL = null;
   private tiendasCollection: AngularFirestoreCollection<Tienda>;
   private tienda: Observable<Tienda[]>;
+  private usuariosCollection: AngularFirestoreCollection<DatosUsuario>;
+  private usuario: Observable<DatosUsuario[]>;
 
   constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private router: Router, private storage: AngularFireStorage) {
     this.user$ = this.afAuth.authState.pipe(
@@ -45,10 +48,26 @@ export class AuthService {
         });
       })
     );
+
+
+    this.usuariosCollection = afs.collection<DatosUsuario>('users');
+    this.usuario = this.usuariosCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return {id, ...data};
+        });
+      })
+    );
    }
 
   getTienda(id: string){
     return this.tiendasCollection.doc<Tienda>(id).valueChanges();
+  }
+
+  getUsuario(id: string){
+    return this.usuariosCollection.doc<DatosUsuario>(id).valueChanges();
   }
 
    async resetPassword(email: string): Promise<void> {

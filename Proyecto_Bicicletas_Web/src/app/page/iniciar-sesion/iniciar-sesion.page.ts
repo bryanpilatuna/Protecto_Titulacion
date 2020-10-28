@@ -17,7 +17,7 @@ export class IniciarSesionPage implements OnInit {
   image:any;
   tipo:string;
   uid:string;
-  tienda:Tienda;
+  //tienda:Tienda;
   constructor(
     private authSvc: AuthService, 
     private router: Router,
@@ -139,19 +139,27 @@ export class IniciarSesionPage implements OnInit {
       if(this.tipo=="tienda"){
         
         this.authSvc.getTienda(id).subscribe(tienda => {
-          this.tienda = tienda;
-          if(this.tienda){
-
+          //this.tienda = tienda;
+          console.log(tienda);
+          if (tienda === undefined) {
+            alert("El usuario no es de tipo tienda.");
+          }else{
+            this.router.navigate(['menu']);
           }
-          if (Object.entries(this.tienda).length === 0) {
-
-            console.log('vacio');
-          }
-          this.router.navigate(['menu']);
         });
         
       }else if(this.tipo=="users"){
-        console.log("entrar useres");
+        this.authSvc.getUsuario(id).subscribe(usuario => {
+          //this.tienda = tienda;
+          console.log(usuario);
+          if (usuario === undefined) {
+            alert("El usuario no es de tipo usuario.");
+          }else{
+            this.router.navigate(['menu-cliente']);
+          }
+        });
+      }else if(this.tipo=="administrador"){
+        console.log("entrar administrador");
       }
     } else {
       this.router.navigate(['verify-email']);
