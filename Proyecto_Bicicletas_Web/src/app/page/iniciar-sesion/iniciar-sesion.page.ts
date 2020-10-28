@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
+import { Tienda } from '../../inteface/tienda.interface';
 @Component({
   selector: 'app-iniciar-sesion',
   templateUrl: './iniciar-sesion.page.html',
@@ -14,6 +15,9 @@ export class IniciarSesionPage implements OnInit {
   id: string;
   mensaje:string;
   image:any;
+  tipo:string;
+  uid:string;
+  tienda:Tienda;
   constructor(
     private authSvc: AuthService, 
     private router: Router,
@@ -72,6 +76,10 @@ export class IniciarSesionPage implements OnInit {
   
   //Crear validaciones para el form 
   crearvalidaciones(){
+    const tipoControl = new FormControl('', Validators.compose([
+      Validators.required,
+  ]));
+    
     const emailControl = new FormControl('', Validators.compose([
         Validators.required,
         Validators.email,
@@ -84,16 +92,18 @@ export class IniciarSesionPage implements OnInit {
       Validators.minLength(8),
         Validators.maxLength(40)
     ]));
-    this.formGroup = this.formBuilder.group({emailControl,passwordControl });
+    this.formGroup = this.formBuilder.group({tipoControl,emailControl,passwordControl });
   }
 
   //Login con un registro
   async onLogin(email, password) {
     try {
+      console.log(this.tipo,"ds");
       const user = await this.authSvc.login(email.value, password.value);
       if (user) {
         const isVerified = this.authSvc.isEmailVerified(user);
-        this.redirectUser(isVerified);
+        this.uid = user.uid;
+        this.redirectUser(isVerified,user.uid);
       }else{
         if(this.authSvc.errores=="The password is invalid or the user does not have a password."){
           this.mensaje="La contraseña es incorrecta.";
@@ -114,7 +124,7 @@ export class IniciarSesionPage implements OnInit {
       const user = await this.authSvc.loginGoogle();
       if (user) {
         const isVerified = this.authSvc.isEmailVerified(user);
-        this.redirectUser(isVerified);
+        //this.redirectUser(isVerified);
       }else{
         console.log(this.authSvc.errores);
       }
@@ -124,9 +134,21 @@ export class IniciarSesionPage implements OnInit {
   }
 
   //Redireccionar si el correo es verificado
-  private redirectUser(isVerified: boolean): void {
+  private redirectUser(isVerified: boolean,id:string): void {
     if (isVerified) {
-      this.router.navigate(['menu']);
+      if(this.tipo=="tienda"){
+        
+        this.authSvc.getTienda(id).subscribe(tienda => {
+          this.tienda = tienda;
+          console.log("sdfsdfdsgfdwer");
+          console.log(tienda.uid);
+          console.log(this.tienda.uid);
+          this.router.navigate(['menu']);
+        });
+        
+      }else if(this.tipo=="users"){
+        console.log("entrar useres");
+      }
     } else {
       this.router.navigate(['verify-email']);
     }

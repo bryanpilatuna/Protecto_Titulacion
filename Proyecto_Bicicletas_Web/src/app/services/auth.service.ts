@@ -3,7 +3,7 @@ import { User } from '../inteface/user.interface';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 import * as firebase from 'firebase';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -11,6 +11,8 @@ import { error } from 'protractor';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { FileI } from '../inteface/file.interface';
 import { finalize } from 'rxjs/operators';
+import { Tienda } from '../inteface/tienda.interface';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +22,9 @@ export class AuthService {
   errores=null;
   private filePath: string;
   public photoURL = null;
+  private tiendasCollection: AngularFirestoreCollection<Tienda>;
+  private tienda: Observable<Tienda[]>;
+
   constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private router: Router, private storage: AngularFireStorage) {
     this.user$ = this.afAuth.authState.pipe(
       switchMap((user) => {
@@ -29,7 +34,22 @@ export class AuthService {
         return of(null);
       })
     );
+
+    this.tiendasCollection = afs.collection<Tienda>('tienda');
+    this.tienda = this.tiendasCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return {id, ...data};
+        });
+      })
+    );
    }
+
+  getTienda(id: string){
+    return this.tiendasCollection.doc<Tienda>(id).valueChanges();
+  }
 
    async resetPassword(email: string): Promise<void> {
     try {
