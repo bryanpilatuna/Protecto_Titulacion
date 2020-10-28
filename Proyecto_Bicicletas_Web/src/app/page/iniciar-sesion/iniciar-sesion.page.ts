@@ -140,9 +140,13 @@ export class IniciarSesionPage implements OnInit {
         
         this.authSvc.getTienda(id).subscribe(tienda => {
           this.tienda = tienda;
-          console.log("sdfsdfdsgfdwer");
-          console.log(tienda.uid);
-          console.log(this.tienda.uid);
+          if(this.tienda){
+
+          }
+          if (Object.entries(this.tienda).length === 0) {
+
+            console.log('vacio');
+          }
           this.router.navigate(['menu']);
         });
         

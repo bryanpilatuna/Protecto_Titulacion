@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from '../inteface/user.interface';
+import { User } from '../model/user.interface';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 import * as firebase from 'firebase';
@@ -9,9 +9,9 @@ import { switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { error } from 'protractor';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { FileI } from '../inteface/file.interface';
+import { FileI } from '../model/file.interface';
 import { finalize } from 'rxjs/operators';
-import { Tienda } from '../inteface/tienda.interface';
+import { Tienda } from '../model/tienda.interface';
 import { map } from 'rxjs/operators';
 
 @Injectable({
