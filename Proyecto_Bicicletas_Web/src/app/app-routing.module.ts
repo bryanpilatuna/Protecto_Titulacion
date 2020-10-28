@@ -38,6 +38,10 @@ const routes: Routes = [
     path: 'menu-cliente',
     loadChildren: () => import('./page/menu-cliente/menu-cliente.module').then( m => m.MenuClientePageModule)
   },
+  {
+    path: 'registro-cliente',
+    loadChildren: () => import('./page/registro-cliente/registro-cliente.module').then( m => m.RegistroClientePageModule)
+  },
 
 ];
 
