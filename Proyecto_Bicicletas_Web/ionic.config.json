@@ -1,5 +1,7 @@
 {
   "name": "Proyecto_Bicicletas_Web",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

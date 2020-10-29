@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @Component({
   selector: 'app-registro-tienda',
@@ -14,14 +15,19 @@ export class RegistroTiendaPage implements OnInit {
   public passwordTypeInput = 'password';
   public mensaje:string;
   public image: any;
+  public myLatLng:any;
   constructor(private authSvc: AuthService, 
     private router: Router,
     public formBuilder: FormBuilder,
+    private geolocation: Geolocation, 
     private alertCtrl: AlertController) {
       this.crearvalidaciones();
      }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const rta= await this.geolocation.getCurrentPosition();
+    this.myLatLng= {lat: rta.coords.latitude, lng: rta.coords.longitude};
+    console.log('latitud mia',this.myLatLng.lat,'longitud mia',this.myLatLng.lng)
   }
 
   crearvalidaciones(){
