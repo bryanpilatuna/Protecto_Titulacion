@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { User } from '../model/user.interface';
+import { DatosUsuario } from '../model/user.interface';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 import * as firebase from 'firebase';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { FileI } from '../model/file.interface';
 import { finalize } from 'rxjs/operators';
-
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,9 @@ export class AuthService {
   errores=null;
   private filePath: string;
   public photoURL = null;
+
+  private usuariosCollection: AngularFirestoreCollection<DatosUsuario>;
+  private usuario: Observable<DatosUsuario[]>;
   
   constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private router: Router, private storage: AngularFireStorage) {
     this.user$ = this.afAuth.authState.pipe(
@@ -30,8 +34,24 @@ export class AuthService {
         return of(null);
       })
     );
+
+    this.usuariosCollection = afs.collection<DatosUsuario>('users');
+    this.usuario = this.usuariosCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return {id, ...data};
+        });
+      })
+    );
    }
-   async resetPassword(email: string): Promise<void> {
+
+   obtenerUsuario(id: string){
+    return this.usuariosCollection.doc<DatosUsuario>(id).valueChanges();
+  }
+   
+  async resetPassword(email: string): Promise<void> {
     try {
       return this.afAuth.sendPasswordResetEmail(email);
     } catch (error) {

@@ -4,6 +4,7 @@ import { AuthService } from '../../service/auth.service';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { DatosUsuario } from '../../model/user.interface';
 import { AlertController } from '@ionic/angular';
+import { stringify } from 'querystring';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class LoginPage implements OnInit {
   image:any;
   usuario:string;
   contrasena:string;
+  uid:string;
   constructor(
     private authSvc: AuthService, 
     private router: Router,
@@ -76,7 +78,8 @@ export class LoginPage implements OnInit {
       const user = await this.authSvc.login(this.usuario,this.contrasena);
       if (user) {
         const isVerified = this.authSvc.isEmailVerified(user);
-        this.redirectUser(isVerified);
+        this.uid = user.uid;
+        this.redirectUser(isVerified,this.uid);
       }else{
         if(this.authSvc.errores=="The password is invalid or the user does not have a password."){
           this.mensaje="La contraseña es incorrecta.";
@@ -97,7 +100,7 @@ export class LoginPage implements OnInit {
       const user = await this.authSvc.loginGoogle();
       if (user) {
         const isVerified = this.authSvc.isEmailVerified(user);
-        this.redirectUser(isVerified);
+        //this.redirectUser(isVerified);
       }else{
         console.log(this.authSvc.errores);
       }
@@ -107,9 +110,22 @@ export class LoginPage implements OnInit {
   }
 
   //Redireccionar si el correo es verificado
-  private redirectUser(isVerified: boolean): void {
+  private redirectUser(isVerified: boolean,id:string): void {
     if (isVerified) {
-      this.router.navigate(['menu']);
+      this.authSvc.obtenerUsuario(id).subscribe(usuario => {
+        //this.tienda = tienda;
+   
+        if (usuario === undefined) {
+          alert("El usuario no es de tipo cliente.");
+        }else{
+          if(usuario.estado=="Inactivo"){
+            alert("El usuario esta borrado");
+          }else{
+            this.router.navigate(['menu']);
+          }
+          
+        }
+      });
     } else {
       this.router.navigate(['verify-email']);
     }
