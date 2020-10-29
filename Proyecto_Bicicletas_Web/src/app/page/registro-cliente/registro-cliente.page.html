@@ -4,7 +4,7 @@
   <form [formGroup]="formGroup" (ngSubmit)="onRegister(email, password, nombre, apellido, cedula, telefono)">
     <ion-item>
       <ion-label position="stacked"><strong>Nombre</strong></ion-label>
-      <ion-input formControlName="nombreControl" [type]="text" #nombre placeholder="Bryan"></ion-input>
+      <ion-input formControlName="nombreControl" type="text" #nombre placeholder="Bryan"></ion-input>
     </ion-item>
     <div class="validation-errors">
       <p class="form-error"
