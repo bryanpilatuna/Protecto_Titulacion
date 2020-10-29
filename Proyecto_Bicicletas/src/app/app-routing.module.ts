@@ -42,19 +42,23 @@ const routes: Routes = [
   },
   {
     path: 'formulario-donacion/:id',
-    loadChildren: () => import('./page/formulario-donacion/formulario-donacion.module').then( m => m.FormularioDonacionPageModule)
+    loadChildren: () => import('./page/formulario-donacion/formulario-donacion.module').then( m => m.FormularioDonacionPageModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'formulario-donacion',
-    loadChildren: () => import('./page/formulario-donacion/formulario-donacion.module').then( m => m.FormularioDonacionPageModule)
+    loadChildren: () => import('./page/formulario-donacion/formulario-donacion.module').then( m => m.FormularioDonacionPageModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'formulario-alquiler/:id',
-    loadChildren: () => import('./page/formulario-alquiler/formulario-alquiler.module').then( m => m.FormularioAlquilerPageModule)
+    loadChildren: () => import('./page/formulario-alquiler/formulario-alquiler.module').then( m => m.FormularioAlquilerPageModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'formulario-alquiler',
-    loadChildren: () => import('./page/formulario-alquiler/formulario-alquiler.module').then( m => m.FormularioAlquilerPageModule)
+    loadChildren: () => import('./page/formulario-alquiler/formulario-alquiler.module').then( m => m.FormularioAlquilerPageModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'bienvenida',
@@ -62,39 +66,48 @@ const routes: Routes = [
   },
   {
     path: 'alquiler/:id',
-    loadChildren: () => import('./page/alquiler/alquiler.module').then( m => m.AlquilerPageModule)
+    loadChildren: () => import('./page/alquiler/alquiler.module').then( m => m.AlquilerPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'alquiler',
-    loadChildren: () => import('./page/alquiler/alquiler.module').then( m => m.AlquilerPageModule)
+    loadChildren: () => import('./page/alquiler/alquiler.module').then( m => m.AlquilerPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'alquiler-donacion',
-    loadChildren: () => import('./page/alquiler-donacion/alquiler-donacion.module').then( m => m.AlquilerDonacionPageModule)
+    loadChildren: () => import('./page/alquiler-donacion/alquiler-donacion.module').then( m => m.AlquilerDonacionPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'donacion',
-    loadChildren: () => import('./page/donacion/donacion.module').then( m => m.DonacionPageModule)
+    loadChildren: () => import('./page/donacion/donacion.module').then( m => m.DonacionPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'alquileres',
-    loadChildren: () => import('./page/alquileres/alquileres.module').then( m => m.AlquileresPageModule)
+    loadChildren: () => import('./page/alquileres/alquileres.module').then( m => m.AlquileresPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'alquileres/:id',
-    loadChildren: () => import('./page/alquileres/alquileres.module').then( m => m.AlquileresPageModule)
+    loadChildren: () => import('./page/alquileres/alquileres.module').then( m => m.AlquileresPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'alquiler-donacion/:id',
-    loadChildren: () => import('./page/alquiler-donacion/alquiler-donacion.module').then( m => m.AlquilerDonacionPageModule)
+    loadChildren: () => import('./page/alquiler-donacion/alquiler-donacion.module').then( m => m.AlquilerDonacionPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'donar',
-    loadChildren: () => import('./page/donar/donar.module').then( m => m.DonarPageModule)
+    loadChildren: () => import('./page/donar/donar.module').then( m => m.DonarPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'donar/:id',
-    loadChildren: () => import('./page/donar/donar.module').then( m => m.DonarPageModule)
+    loadChildren: () => import('./page/donar/donar.module').then( m => m.DonarPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'ubicar-tienda/:id',
@@ -106,8 +119,10 @@ const routes: Routes = [
   },
   {
     path: 'modal-alquiler',
-    loadChildren: () => import('./modal/modal-alquiler/modal-alquiler.module').then( m => m.ModalAlquilerPageModule)
-  },  {
+    loadChildren: () => import('./modal/modal-alquiler/modal-alquiler.module').then( m => m.ModalAlquilerPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'ubitienda-invitado',
     loadChildren: () => import('./page/ubitienda-invitado/ubitienda-invitado.module').then( m => m.UbitiendaInvitadoPageModule)
   },
