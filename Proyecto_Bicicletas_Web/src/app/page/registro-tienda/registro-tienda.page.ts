@@ -98,7 +98,7 @@ export class RegistroTiendaPage implements OnInit {
 
   async onRegister(nombre,direccion,telefono,email,password ) {
     try {
-      const user = await this.authSvc.register(nombre.value,direccion.value,telefono.value,email.value,password.value,this.image);
+      const user = await this.authSvc.register(nombre.value,direccion.value,telefono.value,email.value,password.value,this.myLatLng.lat,this.myLatLng.lng,this.image);
       if (user) {
         const isVerified = this.authSvc.isEmailVerified(user);
         this.redirectUser(isVerified);
