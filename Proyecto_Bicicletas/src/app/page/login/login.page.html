@@ -11,12 +11,12 @@
   <div class="row" style="display: flex;justify-content: center;">
     <img width="40%" src="../../../assets/login/logo2.png"/>
   </div>
-  <form [formGroup]="formGroup" (ngSubmit)="onLogin(email, password)">
+  <form [formGroup]="formGroup" (ngSubmit)="onLogin()">
     <ion-item style="border: white 8px groove;">
         <ion-label position="floating">
           <strong>Correo electrónico</strong>
         </ion-label>
-        <ion-input formControlName="emailControl" [type]="email" #email placeholder="abc@gmail.com">
+        <ion-input formControlName="emailControl" [(ngModel)]="usuario" [type]="email" placeholder="abc@gmail.com">
         </ion-input>
     </ion-item>
 	  <div class="validation-errors">
@@ -41,7 +41,7 @@
       <ion-label position="floating"><strong>Contraseña</strong></ion-label>
       <div>
         <ion-input formControlName="passwordControl" [type]="passwordTypeInput" 
-        #password placeholder="***********"></ion-input>
+        #password placeholder="***********" [(ngModel)]="contrasena"></ion-input>
       </div>
       
       <button item-end type="button" class="btn_eye_icon" color="royal" style="border: none;" (click)="showPassword()">

@@ -18,6 +18,8 @@ export class LoginPage implements OnInit {
   id: string;
   mensaje:string;
   image:any;
+  usuario:string;
+  contrasena:string;
   constructor(
     private authSvc: AuthService, 
     private router: Router,
@@ -26,6 +28,7 @@ export class LoginPage implements OnInit {
  
     ) {
     this.crearvalidaciones();
+
    }
 
   ngOnInit() {
@@ -68,9 +71,9 @@ export class LoginPage implements OnInit {
   }
 
   //Login con un registro
-  async onLogin(email, password) {
+  async onLogin() {
     try {
-      const user = await this.authSvc.login(email.value, password.value);
+      const user = await this.authSvc.login(this.usuario,this.contrasena);
       if (user) {
         const isVerified = this.authSvc.isEmailVerified(user);
         this.redirectUser(isVerified);
