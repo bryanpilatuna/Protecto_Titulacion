@@ -70,6 +70,10 @@ export class AuthService {
     return this.usuariosCollection.doc<DatosUsuario>(id).valueChanges();
   }
 
+  addTodo(todo: DatosUsuario){
+    return this.usuariosCollection.add(todo);
+  }
+
    async resetPassword(email: string): Promise<void> {
     try {
       return this.afAuth.sendPasswordResetEmail(email);
@@ -84,6 +88,50 @@ export class AuthService {
       this.updateUserData(user);
       return user;
     } catch (error) {
+      console.log('Error->', error);
+    }
+  }
+
+
+  async registeruser(email: string, password: string, nombre: string, apellido: string, cedu: string, tele: string,image?: FileI): Promise<User> {
+    try {
+      
+      const { user } = await this.afAuth.createUserWithEmailAndPassword(email, password);
+    
+      //await this.updateUserData(user);
+      const uid = user.uid;
+      const correo = user.email;
+      
+      this.filePath = `perfiles/${uid}`;
+      const fileRef = this.storage.ref(this.filePath);
+      const task = this.storage.upload(this.filePath, image);
+      task.snapshotChanges()
+        .pipe(
+           finalize(() => {
+            fileRef.getDownloadURL().subscribe(urlImage => {
+              console.log(urlImage);
+              this.photoURL=urlImage;
+              this.afs.collection('users').doc(uid).set({
+                uid : uid,
+                cedula: cedu,
+                nombres : nombre,
+                apellidos : apellido,
+                correo : correo,
+                telefono : tele,
+                estado : "Activo",
+                foto : this.photoURL
+                
+              })
+            });
+          })
+        ).subscribe();
+
+      
+      
+      await this.sendVerifcationEmail();
+      return user;
+    } catch (error) {
+      this.errores=error['message'];
       console.log('Error->', error);
     }
   }
