@@ -19,6 +19,7 @@ export class UbicarTiendaPage implements OnInit {
   ubicaciones: datosUbicacion[];
   infowindow = new google.maps.InfoWindow();
   desabilitarboton:boolean;
+  rta2=null;
 
   constructor(
     private UbicacionService: UbicacionService,
@@ -48,6 +49,11 @@ this.nav.navigateForward(['/formulario-donacion', this.id]);
   async loadmap(){
     const loading= await this.loadinCtrl.create();
     loading.present();
+    this.geolocation.getCurrentPosition().then((resp) => {
+    
+     }).catch((error) => {
+       console.log('Error al obtener la ubicacion', error);
+     });
     const rta= await this.geolocation.getCurrentPosition();
     const myLatLng= {lat: rta.coords.latitude, lng: rta.coords.longitude};
     const mapEle: HTMLElement = document.getElementById('map');
