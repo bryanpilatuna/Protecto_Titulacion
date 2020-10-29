@@ -40,7 +40,6 @@ export class ProfilePage implements OnInit {
 
   ngOnInit() {
     this.usuarioId = this.route.snapshot.params['id'];
-    console.log(this.usuarioId);
 
     if (this.usuarioId){
       this.cargarUsuario();
@@ -108,7 +107,6 @@ export class ProfilePage implements OnInit {
     this.usuarioService.getUsuario(this.usuarioId).subscribe(usuario => {
       loading.dismiss();;
       this.usuario = usuario;
-      console.log(this.usuario.apellidos)
     });
   }
 
