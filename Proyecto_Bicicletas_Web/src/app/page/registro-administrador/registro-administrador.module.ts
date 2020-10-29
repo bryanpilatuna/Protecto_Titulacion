@@ -7,12 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { RegistroAdministradorPageRoutingModule } from './registro-administrador-routing.module';
 
 import { RegistroAdministradorPage } from './registro-administrador.page';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { ComponentsModule } from '../../components/components.module';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    ReactiveFormsModule,
+    ComponentsModule,
     RegistroAdministradorPageRoutingModule
   ],
   declarations: [RegistroAdministradorPage]

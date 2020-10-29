@@ -136,6 +136,49 @@ export class AuthService {
     }
   }
 
+  async registeradministrador(email: string, password: string, nombre: string, apellido: string, cedu: string, tele: string,image?: FileI): Promise<User> {
+    try {
+      
+      const { user } = await this.afAuth.createUserWithEmailAndPassword(email, password);
+    
+      //await this.updateUserData(user);
+      const uid = user.uid;
+      const correo = user.email;
+      
+      this.filePath = `perfiles/${uid}`;
+      const fileRef = this.storage.ref(this.filePath);
+      const task = this.storage.upload(this.filePath, image);
+      task.snapshotChanges()
+        .pipe(
+           finalize(() => {
+            fileRef.getDownloadURL().subscribe(urlImage => {
+              console.log(urlImage);
+              this.photoURL=urlImage;
+              this.afs.collection('administrador').doc(uid).set({
+                uid : uid,
+                cedula: cedu,
+                nombres : nombre,
+                apellidos : apellido,
+                correo : correo,
+                telefono : tele,
+                estado : "Activo",
+                foto : this.photoURL
+                
+              })
+            });
+          })
+        ).subscribe();
+
+      
+      
+      await this.sendVerifcationEmail();
+      return user;
+    } catch (error) {
+      this.errores=error['message'];
+      console.log('Error->', error);
+    }
+  }
+
   async register(nombreform:string,direccionform:string,telefonoform,emailform:string,passwordform:string ,image?: FileI): Promise<User> {
     try {
       
