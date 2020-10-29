@@ -33,21 +33,20 @@ export class AlquilerPage implements OnInit {
       /*if (this.idalquiler){
         this.loadTodo();
       }*/
-      console.log(this.idalquiler);
+    
       this.Servicio.getAlquileres(this.idalquiler).subscribe((alquileres) =>{
         this.alquileres = alquileres;
         this.idbici=this.alquileres.bicicleta;
         this.Servicio.getBicicleta(this.idbici).subscribe((bicicletas) =>{
           this.bicicleta = bicicletas;
-          console.log(bicicletas.imagen);
         })
-        console.log(this.idbici);
+ 
         
       })
   
       this.Servicio.getTiendas().subscribe((tiendas) =>{
         this.tiendas = tiendas;
-        console.log(tiendas[0].id);
+
       })
       
    }

@@ -43,7 +43,7 @@ export class FormularioDonacionPage implements OnInit {
 
 
   ngOnInit() {
-   console.log("id donante",this.donanteid);
+  
     this.donacion= {
     iddonante: this.donanteid,
     fechadonacion: this.fechaactual,
@@ -55,7 +55,6 @@ export class FormularioDonacionPage implements OnInit {
      };
 
     this.donacionService.getTiendas().subscribe((tiendas) =>{
-      console.log('Tiendas', tiendas);
       this.tiendas = tiendas;
     })
     

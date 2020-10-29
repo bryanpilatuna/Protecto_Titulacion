@@ -53,7 +53,6 @@ export class UsuarioService {
       .pipe(
         finalize(() => {
           fileRef.getDownloadURL().subscribe(urlImage => {
-            console.log(urlImage);
             usuario.foto=urlImage;
             this.usuariosCollection.doc(id).update(usuario);
             //this.saveUserProfile(user);

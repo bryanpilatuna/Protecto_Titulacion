@@ -21,11 +21,11 @@ export class DonarPage implements OnInit {
     this.iddonar=this.route.snapshot.params['id'];
     this.Servicio.getDonacionid(this.iddonar).subscribe((donaciones) =>{
       this.donaciones = donaciones;
-      console.log(this.donaciones.idtienda);
+
     })
     this.Servicio.getTiendas().subscribe((tiendas) =>{
       this.tiendas = tiendas;
-      console.log(tiendas[0].id);
+
     })
 
   }

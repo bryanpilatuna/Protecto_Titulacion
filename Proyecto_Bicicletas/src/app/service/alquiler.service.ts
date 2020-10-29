@@ -116,7 +116,6 @@ export class AlquilerService {
   }
 
   getAlquiler(iduser:string){
-    console.log(iduser);
     this.alquileridCollection = this.db.collection<datosAlquiler>('alquiler', ref => ref.where('idusuario', '==', iduser));
     this.alquilerid = this.alquileridCollection.snapshotChanges().pipe(
       map(actions => {
@@ -128,7 +127,7 @@ export class AlquilerService {
         });
       })
     );
-    console.log(this.alquilerid);
+   
     return this.alquilerid;
   }
 

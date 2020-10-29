@@ -18,12 +18,12 @@ export class DonacionPage implements OnInit {
     var user = firebase.auth().currentUser.uid;
     this.Servicio.getdonacion(user).subscribe((alquileres) =>{
       this.donaciones = alquileres;
-      console.log(alquileres);
+   
     })
 
     this.Servicio.getTiendas().subscribe((tiendas) =>{
       this.tiendas = tiendas;
-      console.log(tiendas[0].id);
+    
     })
    }
 

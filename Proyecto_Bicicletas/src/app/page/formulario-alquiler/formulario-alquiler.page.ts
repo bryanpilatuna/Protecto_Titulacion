@@ -51,7 +51,6 @@ export class FormularioAlquilerPage implements OnInit {
 
   ngOnInit() {
     this.UsuarioService.$getObjeto.subscribe(data=>{
-      console.log('id de  tienda',data)
       this.idtienda=data;
     });
     
@@ -74,9 +73,9 @@ export class FormularioAlquilerPage implements OnInit {
       };   
 
     this.alquilerService.getTiendas().subscribe((tiendas) =>{
-      console.log('Tiendas', tiendas);
+    
       this.tiendas = tiendas;
-      console.log(this.tiendas[0].id);
+    
     })
 
   }
@@ -117,7 +116,7 @@ export class FormularioAlquilerPage implements OnInit {
     this.alquilerService.getBicicleta(this.idbicicleta).subscribe((bicicletas) =>{
       this.bicicletas = bicicletas;
       this.bicicletas.disponible="No";
-      console.log(bicicletas.disponible);
+    
 
     })
   }
