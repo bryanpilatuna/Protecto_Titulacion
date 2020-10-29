@@ -12,7 +12,7 @@ export class MenuInvitadoPage implements OnInit {
   ngOnInit() {
   }
 
-
+  //Mostrar alert
   async mensajemostrar() {
     const alert = await this.alertCtrl.create({
       cssClass: 'my-custom-class',
@@ -27,26 +27,28 @@ export class MenuInvitadoPage implements OnInit {
         }
       ]
     });
-
     await alert.present();
   }
 
+  //Mensaje de de alert en modulo perfil
   perfil(){
     this.mensaje="Necesita registrarse para poder visualizar y editar su perfil.";
     this.mensajemostrar();
-  
   }
 
+  //Mensaje de de alert en modulo mis alquileres
   misalquileres(){
     this.mensaje="Necesita registrarse para visualizar sus alquileres y donaciones.";
     this.mensajemostrar();
   }
 
-
+  //Mensaje de de alert en modulo alquiler
   alquiler(){
     this.mensaje="Necesita registrarse para poder alquilar una bicicleta.";
     this.mensajemostrar();
   }
+
+  //Mensaje de de alert en modulo donacion
   donar(){
     this.mensaje="Necesita registrarse para poder realizar una donación.";
     this.mensajemostrar();

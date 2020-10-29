@@ -23,8 +23,8 @@ export class ForgotPasswordPage implements OnInit {
   ngOnInit() {
   }
 
+  //Crear validaciones
   crearvalidaciones(){
-    // Campo Contraseña
     const emailControl = new FormControl('', Validators.compose([
         Validators.required,
         Validators.email,
@@ -32,10 +32,10 @@ export class ForgotPasswordPage implements OnInit {
         Validators.maxLength(40)
 
     ]));
-    // Añado Propiedades al Form
     this.formGroup = this.formBuilder.group({emailControl });
   }
 
+  //Mensaje de alert de error
   async mensajeerror() {
     const alert = await this.alertCtrl.create({
       cssClass: 'my-custom-class',
@@ -53,6 +53,7 @@ export class ForgotPasswordPage implements OnInit {
     await alert.present();
   }
 
+  //Mensaje de alert de confirmacion
   async mensajeconfirmacion() {
     const alert = await this.alertCtrl.create({
       cssClass: 'my-custom-class',
@@ -81,7 +82,6 @@ export class ForgotPasswordPage implements OnInit {
         this.mensaje="El usuario ingresado no se encuentra registrado o fue eliminado.";
         this.mensajeerror();
       }
-      console.log('Error->', error['message']);
     }
   }
 
