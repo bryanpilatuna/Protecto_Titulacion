@@ -128,26 +128,17 @@
       </p>
   </div>
 
-    <div class="row">
-      
-      <ion-label><strong>Contraseña</strong></ion-label>
+  <ion-item>
+    <ion-label position="floating"><strong>Contraseña</strong></ion-label>
+    <div>
+      <ion-input formControlName="passwordControl" [type]="passwordTypeInput" 
+      #password placeholder="***********" [(ngModel)]="contrasena"></ion-input>
     </div>
-    <ion-row>
-      <ion-col>
-        <div>
-          <ion-input formControlName="passwordControl" [type]="passwordTypeInput" 
-        #password placeholder="***********"></ion-input>
-        </div>
-      </ion-col>
-      <ion-col>
-      
-          <ion-button item-end class="btn_eye_icon" color="royal" (click)="showPassword()">
-            <ion-icon [name]="(passwordTypeInput === 'text')?'eye-off':'eye'"></ion-icon>
-          </ion-button>
-   
-      </ion-col>
-      
-    </ion-row>
+    
+    <button item-end type="button" class="btn_eye_icon" color="royal" style="border: none;" (click)="showPassword()">
+      <ion-icon [name]="(passwordTypeInput === 'text')?'eye-off':'eye'" ></ion-icon>
+    </button>
+  </ion-item>
     <div class="row">
       <ion-label position="stacked"><strong>Foto</strong></ion-label>
     <ion-row>

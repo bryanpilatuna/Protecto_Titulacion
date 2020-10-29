@@ -7,7 +7,6 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { error } from 'protractor';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { FileI } from '../model/file.interface';
 import { finalize } from 'rxjs/operators';
@@ -21,8 +20,6 @@ export class AuthService {
   errores=null;
   private filePath: string;
   public photoURL = null;
-  
-  
   
   constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private router: Router, private storage: AngularFireStorage) {
     this.user$ = this.afAuth.authState.pipe(
@@ -52,40 +49,11 @@ export class AuthService {
     }
   }
 
-  uploadImage(email: string, password: string, nombre: string, apellido: string, cedu: string, tele: string,image?: FileI ){
-  
-    this.filePath = `images/${image.name}`;
-    const fileRef = this.storage.ref(this.filePath);
-    const task = this.storage.upload(this.filePath, image);
-    task.snapshotChanges()
-      .pipe(
-         finalize(() => {
-          fileRef.getDownloadURL().subscribe(urlImage => {
-            console.log(urlImage);
-            this.photoURL=urlImage;
-            //console.log(this.photoURL);
-       
-            //this.grabarimagen();
-            //console.log(this.photoURL );
-            return this.register(email, password, nombre, apellido, cedu, tele,this.photoURL);
-           
-            //this.saveUserProfile(user);
-          });
-        })
-      ).subscribe();
-     
-  }
-
-
   async register(email: string, password: string, nombre: string, apellido: string, cedu: string, tele: string,image?: FileI): Promise<User> {
     try {
-      
       const { user } = await this.afAuth.createUserWithEmailAndPassword(email, password);
-    
-      //await this.updateUserData(user);
       const uid = user.uid;
       const correo = user.email;
-      
       this.filePath = `perfiles/${uid}`;
       const fileRef = this.storage.ref(this.filePath);
       const task = this.storage.upload(this.filePath, image);
@@ -93,7 +61,6 @@ export class AuthService {
         .pipe(
            finalize(() => {
             fileRef.getDownloadURL().subscribe(urlImage => {
-              console.log(urlImage);
               this.photoURL=urlImage;
               this.afs.collection('users').doc(uid).set({
                 uid : uid,
@@ -104,14 +71,10 @@ export class AuthService {
                 telefono : tele,
                 estado : "Activo",
                 foto : this.photoURL
-                
               })
             });
           })
         ).subscribe();
-
-      
-      
       await this.sendVerifcationEmail();
       return user;
     } catch (error) {
@@ -146,10 +109,8 @@ export class AuthService {
 
   async logout(): Promise<void> {
     try {
-      //await this.afAuth.signOut();
       await this.afAuth.signOut().then(() => {
         this.router.navigate(['/login']);
-        
       })
     } catch (error) {
       console.log('Error->', error);

@@ -28,8 +28,8 @@ export class RegisterPage implements OnInit {
   ngOnInit() {
   }
 
+  //Crear validaciones
   crearvalidaciones(){
-
     const nombreControl = new FormControl('', Validators.compose([
       Validators.required,
       Validators.minLength(3),
@@ -76,13 +76,12 @@ export class RegisterPage implements OnInit {
     this.formGroup = this.formBuilder.group({nombreControl,apellidoControl,cedulaControl,telefonoControl,emailControl,passwordControl,foto });
   }
 
+  //Imagen
   enviarimagen(event: any): void {
     this.image = event.target.files[0];
-    console.log(this.image);
-    
   }
 
-
+  //Mensaje de alert de confirmacion
   async presentAlertConfirm() {
     const alert = await this.alertCtrl.create({
       cssClass: 'my-custom-class',
@@ -101,6 +100,7 @@ export class RegisterPage implements OnInit {
     await alert.present();
   }
 
+  //Registrar nuevo usuario
   async onRegister(email, password, nombre, apellido, cedula, telefono) {
     try {
       const user = await this.authSvc.register(email.value, password.value, nombre.value, apellido.value, cedula.value, telefono.value,this.image);
@@ -109,17 +109,16 @@ export class RegisterPage implements OnInit {
         this.redirectUser(isVerified);
       }else{
         if(this.authSvc.errores=="The email address is already in use by another account."){
-          //console.log(this.authSvc.errores);}
           this.mensaje="El correo ya esta usado por otro usuario.";
           this.presentAlertConfirm();
         }
-        
       }
     } catch (error) {
       console.log('Error', error);
     }
   }
 
+  //Redirigir 
   private redirectUser(isVerified: boolean): void {
     if (isVerified) {
       this.router.navigate(['menu']);
@@ -128,6 +127,7 @@ export class RegisterPage implements OnInit {
     }
   }
 
+  //Mostrar contraseña
   showPassword() {
     this.passwordTypeInput = this.passwordTypeInput === 'text' ? 'password' : 'text';
   }
