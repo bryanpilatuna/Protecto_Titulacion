@@ -7,13 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { MenuAdministradorPageRoutingModule } from './menu-administrador-routing.module';
 
 import { MenuAdministradorPage } from './menu-administrador.page';
-
+import { ComponentsModule } from '../../components/components.module';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MenuAdministradorPageRoutingModule
+    MenuAdministradorPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [MenuAdministradorPage]
 })
