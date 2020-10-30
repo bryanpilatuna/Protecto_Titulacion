@@ -58,6 +58,10 @@ const routes: Routes = [
     path: 'cliente-administrador',
     loadChildren: () => import('./page/cliente-administrador/cliente-administrador.module').then( m => m.ClienteAdministradorPageModule)
   },
+  {
+    path: 'perfil-administrador',
+    loadChildren: () => import('./page/perfil-administrador/perfil-administrador.module').then( m => m.PerfilAdministradorPageModule)
+  },
 
 ];
 
