@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,Router} from '@angular/router';
 import { datosUbicacion } from '../../model/ubicacion.interface';
 import {UbicacionService} from '../../service/ubicacion.service';
-import {UsuarioService} from '../../service/usuario.service';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import {NavController,LoadingController} from '@ionic/angular';
 declare var google;
@@ -19,13 +18,10 @@ export class UbicarTiendaPage implements OnInit {
   ubicaciones: datosUbicacion[];
   infowindow = new google.maps.InfoWindow();
   desabilitarboton:boolean;
-  rta2=null;
-
   constructor(
     private UbicacionService: UbicacionService,
     private geolocation: Geolocation,
     private nav: NavController,
-    private UsuarioService: UsuarioService,
     private loadinCtrl: LoadingController,
     private route: ActivatedRoute) {
       this.desabilitarboton = true;
@@ -37,15 +33,12 @@ export class UbicarTiendaPage implements OnInit {
   }
 alquilarbici(){
   this.nav.navigateForward(['/formulario-alquiler', this.id]); 
-  //this.UsuarioService.enviarobjeto(this.idtienda);
-//this.idtienda=null;
-}
+  }
 
 donabici(){
 
 this.nav.navigateForward(['/formulario-donacion', this.id]); 
-
-}
+  }
   async loadmap(){
     const loading= await this.loadinCtrl.create();
     loading.present();
