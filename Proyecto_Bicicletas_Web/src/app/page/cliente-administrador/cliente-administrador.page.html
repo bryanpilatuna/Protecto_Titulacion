@@ -5,5 +5,26 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-list>
+    <ion-item-sliding *ngFor="let usuario of usuarios">
+      <ion-item lines="inset" button [routerLink]="['/details']">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm">
+              <b>Nombre: </b>{{usuario.nombres}}
+            </div>
+            <div class="col-sm">
+              <b>Correo: </b>{{usuario.correo}}
+            </div>
+            <div class="col-sm">
+              <b>Estado: </b>{{usuario.estado}}
+            </div>
+            
+          </div>
+        </div>
+  
+      </ion-item>
+ 
+      </ion-item-sliding>
+    </ion-list>
 </ion-content>

@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { TiendaAdministradorPageRoutingModule } from './tienda-administrador-routing.module';
 
 import { TiendaAdministradorPage } from './tienda-administrador.page';
+import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TiendaAdministradorPageRoutingModule
+    TiendaAdministradorPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [TiendaAdministradorPage]
 })
