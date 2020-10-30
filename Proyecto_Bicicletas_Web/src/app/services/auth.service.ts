@@ -103,7 +103,7 @@ export class AuthService {
   async loginGoogle(): Promise<User> {
     try {
       const { user } = await this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-      this.updateUserData(user);
+
       return user;
     } catch (error) {
       console.log('Error->', error);
@@ -243,7 +243,7 @@ export class AuthService {
   async login(email: string, password: string): Promise<User> {
     try {
       const { user } = await this.afAuth.signInWithEmailAndPassword(email, password);
-      this.updateUserData(user);
+
       return user;
     } catch (error) {
       console.log('Error->', error);
@@ -272,16 +272,4 @@ export class AuthService {
     }
   }
 
-  private updateUserData(user: User) {
-    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
-
-    const data: User = {
-      uid: user.uid,
-      email: user.email,
-      emailVerified: user.emailVerified,
-      displayName: user.displayName,
-    };
-
-    return userRef.set(data, { merge: true });
-  }
 }
