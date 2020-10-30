@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../model/user.interface';
 import { DatosUsuario } from '../model/user.interface';
+import { DatosAdministrador } from '../model/administrador.interface';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 import * as firebase from 'firebase';
@@ -27,6 +28,8 @@ export class AuthService {
   private tienda: Observable<Tienda[]>;
   private usuariosCollection: AngularFirestoreCollection<DatosUsuario>;
   private usuario: Observable<DatosUsuario[]>;
+  private administradoresCollection: AngularFirestoreCollection<DatosAdministrador>;
+  private administrador: Observable<DatosAdministrador[]>;
 
   constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private router: Router, private storage: AngularFireStorage) {
     this.user$ = this.afAuth.authState.pipe(
@@ -60,6 +63,17 @@ export class AuthService {
         });
       })
     );
+
+    this.administradoresCollection = afs.collection<DatosAdministrador>('administrador');
+    this.administrador = this.administradoresCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return {id, ...data};
+        });
+      })
+    );
    }
 
   getTienda(id: string){
@@ -68,6 +82,10 @@ export class AuthService {
 
   getUsuario(id: string){
     return this.usuariosCollection.doc<DatosUsuario>(id).valueChanges();
+  }
+
+  getAdministrador(id: string){
+    return this.administradoresCollection.doc<DatosAdministrador>(id).valueChanges();
   }
 
   addTodo(todo: DatosUsuario){

@@ -46,6 +46,10 @@ const routes: Routes = [
     path: 'registro-administrador',
     loadChildren: () => import('./page/registro-administrador/registro-administrador.module').then( m => m.RegistroAdministradorPageModule)
   },
+  {
+    path: 'menu-administrador',
+    loadChildren: () => import('./page/menu-administrador/menu-administrador.module').then( m => m.MenuAdministradorPageModule)
+  },
 
 ];
 

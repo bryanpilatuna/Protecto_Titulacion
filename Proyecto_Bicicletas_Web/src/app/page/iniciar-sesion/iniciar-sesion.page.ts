@@ -141,10 +141,11 @@ export class IniciarSesionPage implements OnInit {
         this.authSvc.getTienda(id).subscribe(tienda => {
           //this.tienda = tienda;
           console.log(tienda);
-          if (tienda === undefined) {
-            alert("El usuario no es de tipo tienda.");
-          }else{
+          if (tienda) {
             this.router.navigate(['menu']);
+          }else{
+            
+            alert("El usuario no es de tipo tienda.");
           }
         });
         
@@ -152,14 +153,23 @@ export class IniciarSesionPage implements OnInit {
         this.authSvc.getUsuario(id).subscribe(usuario => {
           //this.tienda = tienda;
           console.log(usuario);
-          if (usuario === undefined) {
-            alert("El usuario no es de tipo usuario.");
-          }else{
+          if (usuario) {
+            
             this.router.navigate(['menu-cliente']);
+          }else{
+            alert("El usuario no es de tipo usuario.");
           }
         });
       }else if(this.tipo=="administrador"){
-        console.log("entrar administrador");
+        this.authSvc.getAdministrador(id).subscribe(administrador => {
+          //this.tienda = tienda;
+          console.log(administrador);
+          if (administrador) {
+            this.router.navigate(['menu-administrador']);
+          }else{
+            alert("El usuario no es de tipo administrador.");
+          }
+        });
       }
     } else {
       this.router.navigate(['verify-email']);
