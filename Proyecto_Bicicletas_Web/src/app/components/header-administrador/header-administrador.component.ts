@@ -10,5 +10,8 @@ export class HeaderAdministradorComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {}
+  salir(){
+    alert("funciona");
+  }
 
 }
