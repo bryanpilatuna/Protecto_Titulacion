@@ -50,6 +50,14 @@ const routes: Routes = [
     path: 'menu-administrador',
     loadChildren: () => import('./page/menu-administrador/menu-administrador.module').then( m => m.MenuAdministradorPageModule)
   },
+  {
+    path: 'tienda-administrador',
+    loadChildren: () => import('./page/tienda-administrador/tienda-administrador.module').then( m => m.TiendaAdministradorPageModule)
+  },
+  {
+    path: 'cliente-administrador',
+    loadChildren: () => import('./page/cliente-administrador/cliente-administrador.module').then( m => m.ClienteAdministradorPageModule)
+  },
 
 ];
 
