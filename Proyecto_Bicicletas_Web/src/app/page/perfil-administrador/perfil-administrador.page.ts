@@ -6,9 +6,11 @@ import * as firebase from 'firebase';
   styleUrls: ['./perfil-administrador.page.scss'],
 })
 export class PerfilAdministradorPage implements OnInit {
-  
+  id: string;
   constructor() { 
-    
+    var user = firebase.auth().currentUser.uid;
+    this.id = user;
+    console.log(this.id);
   }
 
   ngOnInit() {
