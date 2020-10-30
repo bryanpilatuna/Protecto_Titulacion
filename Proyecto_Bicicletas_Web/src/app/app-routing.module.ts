@@ -62,6 +62,10 @@ const routes: Routes = [
     path: 'perfil-administrador',
     loadChildren: () => import('./page/perfil-administrador/perfil-administrador.module').then( m => m.PerfilAdministradorPageModule)
   },
+  {
+    path: 'editar-tienda',
+    loadChildren: () => import('./page/editar-tienda/editar-tienda.module').then( m => m.EditarTiendaPageModule)
+  },
 
 ];
 
