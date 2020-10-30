@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-header-administrador',
   templateUrl: './header-administrador.component.html',
@@ -7,7 +8,7 @@ import { Router } from '@angular/router'
 })
 export class HeaderAdministradorComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,private Servicio:AuthService) { }
 
   ngOnInit() {}
   redihome(){
@@ -30,7 +31,7 @@ export class HeaderAdministradorComponent implements OnInit {
     this.router.navigate(['cliente-administrador']);
   }
   salir(){
-    alert("funciona");
+    this.Servicio.logout();
   }
 
 }
