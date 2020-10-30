@@ -1,8 +1,11 @@
 <app-header></app-header>
 <ion-content padding>
   <div class="container">
+    <h5 align="center">Formulario registro tienda</h5>
     <div class="row">
+      
       <div class="mx-auto">
+        
         <form [formGroup]="formGroup" (ngSubmit)="onRegister(nombre,direccion,telefono,email,password)">
           <div class="form-group">
             <label position="stacked"><strong>Nombre de la tienda</strong></label>
@@ -110,7 +113,7 @@
           </div>
        
           <div class="row">
-            <ion-label position="stacked"><strong>Logo</strong></ion-label>
+            <label position="stacked"><strong>Logo</strong></label>
             <input formControlName="foto" type="file" accept=".png, .jpg" (change)="enviarimagen($event)" style="color:black"/>
           </div>
           <br/>

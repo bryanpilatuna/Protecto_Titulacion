@@ -1,165 +1,167 @@
 <app-header></app-header>
 
 <ion-content>
-  <form [formGroup]="formGroup" (ngSubmit)="onRegister(email, password, nombre, apellido, cedula, telefono)">
-    <ion-item>
-      <ion-label position="stacked"><strong>Nombre</strong></ion-label>
-      <ion-input formControlName="nombreControl" type="text" #nombre placeholder="Bryan"></ion-input>
-    </ion-item>
-    <div class="validation-errors">
-      <p class="form-error"
-        *ngIf="formGroup.get('nombreControl').hasError('required') && formGroup.get('nombreControl').touched">
-        *Requerido
-      </p>
-      <p class="form-error"
-        *ngIf="formGroup.get('nombreControl').hasError('minlength') && formGroup.get('nombreControl').touched">
-        *Mínimo 3 caracteres 
-      </p>
-      <p class="form-error"
-        *ngIf="formGroup.get('nombreControl').hasError('maxlength') && formGroup.get('nombreControl').touched">
-        *Máximo 40 caracteres  
-      </p>
-      <p class="form-error"
-        *ngIf="formGroup.get('nombreControl').hasError('pattern') && formGroup.get('nombreControl').touched">
-        *El nombre debe tener solo letras, la primera letra con mayúscula y sin espacios
-      </p>
-    </div>
-
-    <ion-item>
-      <ion-label position="stacked"><strong>Apellido</strong></ion-label>
-      <ion-input formControlName="apellidoControl" type="text" #apellido placeholder="Molina"></ion-input>
-    </ion-item>
-
-    <div class="validation-errors">
-      <p class="form-error"
-        *ngIf="formGroup.get('apellidoControl').hasError('required') && formGroup.get('apellidoControl').touched">
-        *Requerido
-      </p>
-      <p class="form-error"
-        *ngIf="formGroup.get('apellidoControl').hasError('minlength') && formGroup.get('apellidoControl').touched">
-        *Mínimo 3 caracteres 
-      </p>
-      <p class="form-error"
-        *ngIf="formGroup.get('apellidoControl').hasError('maxlength') && formGroup.get('apellidoControl').touched">
-        *Máximo 40 caracteres  
-      </p>
-      <p class="form-error"
-        *ngIf="formGroup.get('apellidoControl').hasError('pattern') && formGroup.get('apellidoControl').touched">
-        *El nombre debe tener solo letras, la primera letra con mayúscula y sin espacios
-      </p>
-    </div>
-
-    <ion-item>
-      <ion-label position="stacked"><strong>Cédula</strong></ion-label>
-      <ion-input formControlName="cedulaControl" type="tel" #cedula placeholder="0400887599"></ion-input>
-    </ion-item>
-
-    <div class="validation-errors">
-      <p class="form-error"
-        *ngIf="formGroup.get('cedulaControl').hasError('required') && formGroup.get('cedulaControl').touched">
-        *Requerido
-      </p>
-      <p class="form-error"
-        *ngIf="formGroup.get('cedulaControl').hasError('minlength') && formGroup.get('cedulaControl').touched">
-        *Mínimo 10 números 
-      </p>
-      <p class="form-error"
-        *ngIf="formGroup.get('cedulaControl').hasError('maxlength') && formGroup.get('cedulaControl').touched">
-        *Máximo 13 números 
-      </p>
-      <p class="form-error"
-        *ngIf="formGroup.get('cedulaControl').hasError('pattern') && formGroup.get('cedulaControl').touched">
-        *El nombre debe tener solo números
-      </p>
-    </div>
-
-    <ion-item>
-      <ion-label position="stacked"><strong>Teléfono</strong></ion-label>
-      <ion-input formControlName="telefonoControl" type="tel" #telefono placeholder="0999999999"></ion-input>
-    </ion-item>
-
-    <div class="validation-errors">
-      <p class="form-error"
-        *ngIf="formGroup.get('telefonoControl').hasError('required') && formGroup.get('telefonoControl').touched">
-        *Requerido
-      </p>
-      <p class="form-error"
-        *ngIf="formGroup.get('telefonoControl').hasError('minlength') && formGroup.get('telefonoControl').touched">
-        *Mínimo 7 números 
-      </p>
-      <p class="form-error"
-        *ngIf="formGroup.get('telefonoControl').hasError('maxlength') && formGroup.get('telefonoControl').touched">
-        *Máximo 10 números 
-      </p>
-      <p class="form-error"
-        *ngIf="formGroup.get('telefonoControl').hasError('pattern') && formGroup.get('telefonoControl').touched">
-        *El nombre debe tener solo números
-      </p>
-    </div>
-
-    <ion-item>
-      <ion-label position="stacked"><strong>Correo electrónico</strong></ion-label>
-      <ion-input formControlName="emailControl" type="email" #email placeholder="abc@gmail.com"></ion-input>
-    </ion-item>
-
-    <div class="validation-errors">
-      <p class="form-error"
-        *ngIf="formGroup.get('emailControl').hasError('required') && formGroup.get('emailControl').touched">
-        *Requerido
-      </p>
-      <p class="form-error"
-        *ngIf="formGroup.get('emailControl').hasError('email') && formGroup.get('emailControl').touched">
-        *Ingrese un correo valido
-      </p>
-      <p class="form-error"
-        *ngIf="formGroup.get('emailControl').hasError('minlength') && formGroup.get('emailControl').touched">
-        *Mínimo 10 caracteres 
-      </p>
-      <p class="form-error"
-        *ngIf="formGroup.get('emailControl').hasError('maxlength') && formGroup.get('emailControl').touched">
-        *Máximo 40 caracteres  
-      </p>
-  </div>
-
+  <div class="container">
+    <h5 align="center">Formulario registro cliente</h5>
     <div class="row">
       
-      <ion-label><strong>Contraseña</strong></ion-label>
-    </div>
-    <ion-row>
-      <ion-col>
-        <div>
-          <ion-input formControlName="passwordControl" [type]="passwordTypeInput" 
-        #password placeholder="***********"></ion-input>
+      <div class="mx-auto">
+        <form [formGroup]="formGroup" (ngSubmit)="onRegister(email, password, nombre, apellido, cedula, telefono)">
+          <div class="form-group">
+            <label position="stacked"><strong>Nombre</strong></label>
+            <input type="text" class="form-control" placeholder="Bryan" formControlName="nombreControl" #nombre>
+          </div>
+          <div class="validation-errors">
+            <p class="form-error"
+              *ngIf="formGroup.get('nombreControl').hasError('required') && formGroup.get('nombreControl').touched">
+              *Requerido
+            </p>
+            <p class="form-error"
+              *ngIf="formGroup.get('nombreControl').hasError('minlength') && formGroup.get('nombreControl').touched">
+              *Mínimo 3 caracteres 
+            </p>
+            <p class="form-error"
+              *ngIf="formGroup.get('nombreControl').hasError('maxlength') && formGroup.get('nombreControl').touched">
+              *Máximo 40 caracteres  
+            </p>
+            <p class="form-error"
+              *ngIf="formGroup.get('nombreControl').hasError('pattern') && formGroup.get('nombreControl').touched">
+              *El nombre debe tener solo letras, la primera letra con mayúscula y sin espacios
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label position="stacked"><strong>Apellido</strong></label>
+            <input type="text" class="form-control" placeholder="Molina" formControlName="apellidoControl" #apellido>
+          </div>
+
+          <div class="validation-errors">
+            <p class="form-error"
+              *ngIf="formGroup.get('apellidoControl').hasError('required') && formGroup.get('apellidoControl').touched">
+              *Requerido
+            </p>
+            <p class="form-error"
+              *ngIf="formGroup.get('apellidoControl').hasError('minlength') && formGroup.get('apellidoControl').touched">
+              *Mínimo 3 caracteres 
+            </p>
+            <p class="form-error"
+              *ngIf="formGroup.get('apellidoControl').hasError('maxlength') && formGroup.get('apellidoControl').touched">
+              *Máximo 40 caracteres  
+            </p>
+            <p class="form-error"
+              *ngIf="formGroup.get('apellidoControl').hasError('pattern') && formGroup.get('apellidoControl').touched">
+              *El nombre debe tener solo letras, la primera letra con mayúscula y sin espacios
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label position="stacked"><strong>Cédula</strong></label>
+            <input type="text" class="form-control" placeholder="0400887599" formControlName="cedulaControl" #cedula>
+          </div>
+
+          <div class="validation-errors">
+            <p class="form-error"
+              *ngIf="formGroup.get('cedulaControl').hasError('required') && formGroup.get('cedulaControl').touched">
+              *Requerido
+            </p>
+            <p class="form-error"
+              *ngIf="formGroup.get('cedulaControl').hasError('minlength') && formGroup.get('cedulaControl').touched">
+              *Mínimo 10 números 
+            </p>
+            <p class="form-error"
+              *ngIf="formGroup.get('cedulaControl').hasError('maxlength') && formGroup.get('cedulaControl').touched">
+              *Máximo 13 números 
+            </p>
+            <p class="form-error"
+              *ngIf="formGroup.get('cedulaControl').hasError('pattern') && formGroup.get('cedulaControl').touched">
+              *El nombre debe tener solo números
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label position="stacked"><strong>Teléfono</strong></label>
+            <input type="text" class="form-control" placeholder="0999999999" formControlName="telefonoControl" #telefono>
+          </div>
+
+          <div class="validation-errors">
+            <p class="form-error"
+              *ngIf="formGroup.get('telefonoControl').hasError('required') && formGroup.get('telefonoControl').touched">
+              *Requerido
+            </p>
+            <p class="form-error"
+              *ngIf="formGroup.get('telefonoControl').hasError('minlength') && formGroup.get('telefonoControl').touched">
+              *Mínimo 7 números 
+            </p>
+            <p class="form-error"
+              *ngIf="formGroup.get('telefonoControl').hasError('maxlength') && formGroup.get('telefonoControl').touched">
+              *Máximo 10 números 
+            </p>
+            <p class="form-error"
+              *ngIf="formGroup.get('telefonoControl').hasError('pattern') && formGroup.get('telefonoControl').touched">
+              *El nombre debe tener solo números
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label position="stacked"><strong>Correo electrónico</strong></label>
+            <input type="email" class="form-control" placeholder="abc@gmail.com" formControlName="emailControl" #email>
+          </div>
+
+          <div class="validation-errors">
+            <p class="form-error"
+              *ngIf="formGroup.get('emailControl').hasError('required') && formGroup.get('emailControl').touched">
+              *Requerido
+            </p>
+            <p class="form-error"
+              *ngIf="formGroup.get('emailControl').hasError('email') && formGroup.get('emailControl').touched">
+              *Ingrese un correo valido
+            </p>
+            <p class="form-error"
+              *ngIf="formGroup.get('emailControl').hasError('minlength') && formGroup.get('emailControl').touched">
+              *Mínimo 10 caracteres 
+            </p>
+            <p class="form-error"
+              *ngIf="formGroup.get('emailControl').hasError('maxlength') && formGroup.get('emailControl').touched">
+              *Máximo 40 caracteres  
+            </p>
         </div>
-      </ion-col>
-      <ion-col>
-      
-          <ion-button item-end class="btn_eye_icon" color="royal" (click)="showPassword()">
-            <ion-icon [name]="(passwordTypeInput === 'text')?'eye-off':'eye'"></ion-icon>
-          </ion-button>
-   
-      </ion-col>
-      
-    </ion-row>
-    <div class="row">
-      <ion-label position="stacked"><strong>Foto</strong></ion-label>
-    <ion-row>
-      <ion-item>
-        <input formControlName="foto" type="file" accept=".png, .jpg" (change)="enviarimagen($event)" style="color:black"/>
-      </ion-item>
-    </ion-row>
-  </div>
 
-    <div class="row">
-        <ion-button type="submit" [disabled]="!formGroup.valid" expand="block">Registrarse</ion-button>
+        <div class="form-group">
+          <label position="stacked"><strong>Contraseña</strong></label>
+          <div class="row">
+            <div class="col-sm">
+              <ion-input formControlName="passwordControl" [type]="passwordTypeInput" #password 
+              placeholder="***********"></ion-input>
+            </div>
+            <div class="col-sm">
+              <button item-end type="button" class="btn_eye_icon" color="royal" style="border: none;" (click)="showPassword()">
+                <ion-icon [name]="(passwordTypeInput === 'text')?'eye-off':'eye'"></ion-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+         
+        <div class="row">
+          <label position="stacked"><strong>Foto</strong></label>
+          <input formControlName="foto" type="file" accept=".png, .jpg" (change)="enviarimagen($event)" style="color:black"/>
+        </div>
+
+          <div class="form-group" >
+              <ion-button type="submit" [disabled]="!formGroup.valid" expand="block">Registrarse</ion-button>
+          </div>
+        </form>
+      </div>
     </div>
-  </form>
-  <ion-row>
-    <ion-col>
-      <p class="center-span">
-        <a routerLink="/login">¿Ya tienes una cuenta?</a>
-      </p>
-    </ion-col>
-  </ion-row>
+
+  <div class="row">
+      <div class="col"></div>
+      <div class="col">
+        <p class="center-span">
+          <a routerLink="/iniciar-sesion">¿Ya tienes una cuenta?</a>
+        </p>
+      </div>
+      <div class="col"></div>
+    </div>
+</div>
   <app-footer></app-footer>
 </ion-content>
