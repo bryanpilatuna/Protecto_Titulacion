@@ -1,12 +1,13 @@
 export interface Tienda {
     uid : string;
-    title : string;
+    nombre : string;
     direccion: string;
     correo : string;
     telefono : string;
     estado : string;
     logo : string;
-    position: string;
+    position: {latitude:number,
+              longuitude:number};
     
   }
   

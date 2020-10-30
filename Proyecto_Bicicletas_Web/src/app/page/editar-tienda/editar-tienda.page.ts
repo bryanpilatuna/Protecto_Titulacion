@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Tienda}from '../../model/tienda.interface';
+
 
 @Component({
   selector: 'app-editar-tienda',
