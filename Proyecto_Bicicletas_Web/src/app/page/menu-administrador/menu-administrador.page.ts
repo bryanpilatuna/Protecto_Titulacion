@@ -12,4 +12,6 @@ export class MenuAdministradorPage implements OnInit {
   ngOnInit() {
   }
 
+  
+
 }

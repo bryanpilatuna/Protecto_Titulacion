@@ -4,7 +4,7 @@ import { AuthService } from '../../service/auth.service';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { DatosUsuario } from '../../model/user.interface';
 import { AlertController } from '@ionic/angular';
-import { stringify } from 'querystring';
+
 
 
 @Component({

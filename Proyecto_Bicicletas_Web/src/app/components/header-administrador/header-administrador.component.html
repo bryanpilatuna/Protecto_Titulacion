@@ -9,16 +9,19 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="menu-administrador">Inicio</a>
+        <a class="btn nav-link" (click)="redihome()">Inicio</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="perfil-administrador">Perfil</a>
+        <a class="btn nav-link" (click)="rediperfil()">Perfil</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="tienda-administrador">Tienda</a>
+        <a class="btn nav-link" (click)="reditienda()">Tienda</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="cliente-administrador">Clientes</a>
+        <a class="btn nav-link" (click)="rediusuario()" >Clientes</a>
+      </li>
+      <li class="nav-item">
+        <a class="btn nav-link" (click)="redicrearadm()">Registrar Administrador</a>
       </li>
  
     </ul>
