@@ -41,7 +41,7 @@ export class AuthService {
       })
     );
 
-    this.tiendasCollection = afs.collection<Tienda>('tienda');
+    this.tiendasCollection = afs.collection<Tienda>('tiendas');
     this.tienda = this.tiendasCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
