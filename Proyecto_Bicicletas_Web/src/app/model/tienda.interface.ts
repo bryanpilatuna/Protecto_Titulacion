@@ -7,7 +7,7 @@ export interface Tienda {
     estado : string;
     logo : string;
     position: {latitude:number,
-              longuitude:number};
+              longitude:number};
     
   }
   

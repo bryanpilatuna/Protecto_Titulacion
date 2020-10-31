@@ -5,6 +5,7 @@ import { ActivatedRoute} from '@angular/router';
 import { NavController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 
 
@@ -23,7 +24,7 @@ export class EditarTiendaPage implements OnInit {
   telefono:'',
   estado:'',
   logo:'',
-  position:{latitude:0,longuitude:0}
+  position:{latitude:0,longitude:0}
   }
   public image: any;
   tiendaid=null;
@@ -33,7 +34,8 @@ export class EditarTiendaPage implements OnInit {
     private nav: NavController, 
     private tiendaservice:TiendaService,
     private loadingController: LoadingController,
-    public formBuilder: FormBuilder) { 
+    public formBuilder: FormBuilder,
+    private geolocation: Geolocation) { 
       
   
       this.crearvalidaciones();
@@ -94,8 +96,10 @@ export class EditarTiendaPage implements OnInit {
       {
         loading.dismiss();
         this.tienda =tienda;
+        console.log('mi ubicacion anterior',this.tienda)
       
       });
+      
   }
 
   guardartienda(){
@@ -112,5 +116,18 @@ export class EditarTiendaPage implements OnInit {
     this.cargarTienda();
     
   }
+  async cambiarUbicacion(){
+  const rta= await this.geolocation.getCurrentPosition();
+  const myLatLng= {lat: rta.coords.latitude, lng: rta.coords.longitude};
+  this.tienda.position.latitude= myLatLng.lat;
+  this.tienda.position.longitude= myLatLng.lng;
+  this.tiendaservice.updateTienda(this.tienda, this.tiendaid).then(() => {
+    this.nav.navigateForward('menu-tienda');
+    
+  });
+
+  }
+
+
 
 }
