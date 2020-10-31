@@ -32,7 +32,7 @@ export class MapaPage implements OnInit {
     
     this.map = new google.maps.Map(mapEle, {
       center: myLatLng,
-      zoom:8
+      zoom:9
     });
     google.maps.event.addListenerOnce(this.map, 'idle', () => {   
   
