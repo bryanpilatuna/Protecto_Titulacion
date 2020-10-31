@@ -71,6 +71,10 @@ const routes: Routes = [
     path: 'menu-tienda',
     loadChildren: () => import('./page/menu-tienda/menu-tienda.module').then( m => m.MenuTiendaPageModule)
   },
+  {
+    path: 'mapa',
+    loadChildren: () => import('./page/mapa/mapa.module').then( m => m.MapaPageModule)
+  },
 
 ];
 
