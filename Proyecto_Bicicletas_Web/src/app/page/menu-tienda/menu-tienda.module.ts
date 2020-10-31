@@ -4,21 +4,18 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { EditarTiendaPageRoutingModule } from './editar-tienda-routing.module';
-
-import { EditarTiendaPage } from './editar-tienda.page';
-import { ReactiveFormsModule } from '@angular/forms';
+import { MenuTiendaPageRoutingModule } from './menu-tienda-routing.module';
 import { ComponentsModule } from '../../components/components.module';
+import { MenuTiendaPage } from './menu-tienda.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EditarTiendaPageRoutingModule,
+    MenuTiendaPageRoutingModule,
     ComponentsModule,
-    ReactiveFormsModule,
   ],
-  declarations: [EditarTiendaPage]
+  declarations: [MenuTiendaPage]
 })
-export class EditarTiendaPageModule {}
+export class MenuTiendaPageModule {}
