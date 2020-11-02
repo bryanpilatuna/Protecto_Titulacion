@@ -23,6 +23,9 @@ export class HeaderTiendaComponent implements OnInit {
   rediperfil(){
     this.router.navigate(['/editar-tienda',this.id]);
   }
+  redibicicletas(){
+    this.router.navigate(['/mis-bicis',this.id]);
+  }
   salir(){
     this.Servicio.logout();
   }

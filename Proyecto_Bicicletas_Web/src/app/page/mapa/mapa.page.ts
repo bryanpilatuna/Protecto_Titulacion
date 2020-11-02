@@ -16,8 +16,6 @@ export class MapaPage implements OnInit {
   ubicaciones: datosUbicacion[];
   infowindow = new google.maps.InfoWindow();
   constructor(private UbicacionService: UbicacionService,
-    private geolocation: Geolocation,
-    private nav: NavController,
     private loadinCtrl: LoadingController) { }
 
   ngOnInit() {
@@ -25,14 +23,13 @@ export class MapaPage implements OnInit {
   }
   async loadmap(){
   
-    const rta= await this.geolocation.getCurrentPosition();
-    const myLatLng= {lat: rta.coords.latitude, lng: rta.coords.longitude};
+    const myLatLng= {lat: -0.225219, lng: -78.5248};
     console.log(myLatLng);
     const mapEle: HTMLElement = document.getElementById('map');
     
     this.map = new google.maps.Map(mapEle, {
       center: myLatLng,
-      zoom:9
+      zoom:12
     });
     google.maps.event.addListenerOnce(this.map, 'idle', () => {   
   

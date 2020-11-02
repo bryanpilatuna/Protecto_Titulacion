@@ -75,6 +75,14 @@ const routes: Routes = [
     path: 'mapa',
     loadChildren: () => import('./page/mapa/mapa.module').then( m => m.MapaPageModule)
   },
+  {
+    path: 'registro-bici/:id',
+    loadChildren: () => import('./page/registro-bici/registro-bici.module').then( m => m.RegistroBiciPageModule)
+  },
+  {
+    path: 'mis-bicis/:id',
+    loadChildren: () => import('./page/mis-bicis/mis-bicis.module').then( m => m.MisBicisPageModule)
+  },
 
 ];
 
