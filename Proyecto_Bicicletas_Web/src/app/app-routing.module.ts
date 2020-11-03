@@ -83,6 +83,10 @@ const routes: Routes = [
     path: 'mis-bicis/:id',
     loadChildren: () => import('./page/mis-bicis/mis-bicis.module').then( m => m.MisBicisPageModule)
   },
+  {
+    path: 'editar-bici/:id',
+    loadChildren: () => import('./page/editar-bici/editar-bici.module').then( m => m.EditarBiciPageModule)
+  },
 
 ];
 
