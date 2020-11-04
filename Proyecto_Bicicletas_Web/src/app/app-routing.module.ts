@@ -90,7 +90,11 @@ const routes: Routes = [
   {
     path: 'editar-bici/:id',
     loadChildren: () => import('./page/editar-bici/editar-bici.module').then( m => m.EditarBiciPageModule)
+  },  {
+    path: 'edit-cliente',
+    loadChildren: () => import('./page/edit-cliente/edit-cliente.module').then( m => m.EditClientePageModule)
   },
+
 
 
 ];
