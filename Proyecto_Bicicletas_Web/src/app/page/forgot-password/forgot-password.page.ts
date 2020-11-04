@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../service/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 @Component({
@@ -12,17 +12,15 @@ export class ForgotPasswordPage implements OnInit {
   formGroup: FormGroup; 
   mensaje:string;
   mensajeconfir:string;
-  constructor(
-    private authSvc: AuthService, 
+  constructor(private authSvc: AuthService, 
     private router: Router,
     public formBuilder: FormBuilder,
     private alertCtrl: AlertController) {
-    this.crearvalidaciones();
-  }
+      this.crearvalidaciones();
+     }
 
   ngOnInit() {
   }
-
   //Crear validaciones
   crearvalidaciones(){
     const emailControl = new FormControl('', Validators.compose([
@@ -86,7 +84,7 @@ export class ForgotPasswordPage implements OnInit {
   }
 
   async redireccionar(){
-    this.router.navigate(['/login']);
+    this.router.navigate(['/iniciar-sesion']);
   }
 
 }

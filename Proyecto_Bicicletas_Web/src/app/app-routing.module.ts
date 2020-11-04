@@ -94,7 +94,11 @@ const routes: Routes = [
   {
     path: 'edit-cliente/:id',
     loadChildren: () => import('./page/edit-cliente/edit-cliente.module').then( m => m.EditClientePageModule)
+  },  {
+    path: 'forgot-password',
+    loadChildren: () => import('./page/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
   },
+
 
 
 
