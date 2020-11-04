@@ -87,6 +87,10 @@ const routes: Routes = [
     path: 'edit-tienda/:id',
     loadChildren: () => import('./page/edit-tienda/edit-tienda.module').then( m => m.EditTiendaPageModule)
   },
+  {
+    path: 'editar-bici/:id',
+    loadChildren: () => import('./page/editar-bici/editar-bici.module').then( m => m.EditarBiciPageModule)
+  },
 
 
 ];
