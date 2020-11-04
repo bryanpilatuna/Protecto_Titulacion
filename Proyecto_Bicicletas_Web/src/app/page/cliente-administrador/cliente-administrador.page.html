@@ -5,7 +5,7 @@
 <ion-content>
   <ion-list>
     <ion-item-sliding *ngFor="let usuario of usuarios">
-      <ion-item lines="inset" button [routerLink]="['/details']">
+      <ion-item lines="inset" button [routerLink]="['/edit-cliente', usuario.uid]">
         <div class="container">
           <div class="row">
             <div class="col-sm">

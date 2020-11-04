@@ -105,6 +105,8 @@ export class IniciarSesionPage implements OnInit {
         this.uid = user.uid;
         this.redirectUser(isVerified,user.uid);
       }else{
+        console.log("entra en errores");
+        console.log(this.authSvc.errores);
         if(this.authSvc.errores=="The password is invalid or the user does not have a password."){
           this.mensaje="La contraseña es incorrecta.";
           this.mensajeerror();

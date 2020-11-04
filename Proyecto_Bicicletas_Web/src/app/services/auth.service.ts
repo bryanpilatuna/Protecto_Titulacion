@@ -246,6 +246,7 @@ export class AuthService {
 
       return user;
     } catch (error) {
+      this.errores=error['message'];
       console.log('Error->', error);
     }
   }
