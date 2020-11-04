@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import * as firebase from 'firebase';
 @Component({
@@ -25,6 +25,14 @@ export class HeaderTiendaComponent implements OnInit {
   }
   redibicicletas(){
     this.router.navigate(['/mis-bicis',this.id]);
+  }
+  redidonaciones(){
+    this.router.navigate(['/tienda-donacion',this.id]);
+
+  }
+  salir(){
+
+    this.Servicio.logout();
   }
  
 
