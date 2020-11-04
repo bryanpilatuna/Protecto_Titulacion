@@ -6,7 +6,7 @@
   
   <ion-list>
     <ion-item-sliding *ngFor="let tienda of tiendas">
-      <ion-item lines="inset" button [routerLink]="['/details']">
+      <ion-item lines="inset" button [routerLink]="['/edit-tienda', tienda.uid]">
         <div class="container">
           <div class="row">
             <div class="col-sm">

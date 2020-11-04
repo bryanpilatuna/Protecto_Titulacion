@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>edit-tienda</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="full" *ngIf="tienda">
+    <ion-item>
+      <ion-input required type="text" placeholder="Task" [(ngModel)]="tienda.nombre"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input required type="text" placeholder="Task" [(ngModel)]="tienda.direccion"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input required type="text" placeholder="Task" [(ngModel)]="tienda.telefono"></ion-input>
+    </ion-item>
+    
+
+  </ion-list>
+  <ion-button expand="full" (click)="saveTodo()">Guardar</ion-button>
+</ion-content>

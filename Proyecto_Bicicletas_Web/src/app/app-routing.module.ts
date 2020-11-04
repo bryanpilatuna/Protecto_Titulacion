@@ -83,6 +83,11 @@ const routes: Routes = [
     path: 'mis-bicis/:id',
     loadChildren: () => import('./page/mis-bicis/mis-bicis.module').then( m => m.MisBicisPageModule)
   },
+  {
+    path: 'edit-tienda/:id',
+    loadChildren: () => import('./page/edit-tienda/edit-tienda.module').then( m => m.EditTiendaPageModule)
+  },
+
 
 ];
 
