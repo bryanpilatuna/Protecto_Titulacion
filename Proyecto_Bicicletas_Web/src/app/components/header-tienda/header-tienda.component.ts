@@ -28,6 +28,9 @@ export class HeaderTiendaComponent implements OnInit {
   }
   redidonaciones(){
     this.router.navigate(['/tienda-donacion',this.id]);
+  }
+  redialquileres(){
+    this.router.navigate(['/tienda-alquiler',this.id]);
 
   }
   salir(){

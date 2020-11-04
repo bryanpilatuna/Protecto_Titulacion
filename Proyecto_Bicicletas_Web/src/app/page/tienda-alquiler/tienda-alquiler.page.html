@@ -1,0 +1,64 @@
+<ion-header>
+  <app-header-tienda></app-header-tienda>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ng-container *ngIf="!alquileres || alquileres.length == 0">
+      <div *ngFor="let n of [0,1,2]" padding>
+        <ion-skeleton-text></ion-skeleton-text>
+        <p>
+          <ion-skeleton-text class="text-skeleton"></ion-skeleton-text>
+        </p>
+      </div>
+    </ng-container>
+
+    <div *ngFor="let alquiler of alquileres">
+      <ion-label>
+        <ion-grid> 
+          <ion-row>
+            <ion-col>
+              <ion-label><strong>
+                Fecha para alquiler:
+              </strong>
+              </ion-label>
+              <ion-label>
+                {{alquiler.fechaalquiler.toMillis() | date:'dd/MM/yyyy'}}
+              </ion-label>
+            </ion-col>
+            <ion-col>
+              <ion-label>
+                <strong>
+                Fecha Devolución: 
+              </strong>
+              </ion-label>
+              <ion-label>
+                {{alquiler.fechadevolucion.toMillis() | date:'yyyy/MM/dd'}}
+              </ion-label>
+            </ion-col>
+            <ion-col>
+              <ion-label>
+                <strong>
+                Aprobación
+              </strong>
+              </ion-label>
+              <ion-label>
+                {{alquiler.aprobacion}}
+              </ion-label>
+            </ion-col>
+            <ion-col>
+              <ion-button  (click)="updateAlquiler(alquiler,alquiler.id)">
+                <ion-icon slot="start" name="locate"></ion-icon>
+                Cambiar Estado
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-label> 
+
+    </div>
+  </ion-list>
+
+
+
+</ion-content>

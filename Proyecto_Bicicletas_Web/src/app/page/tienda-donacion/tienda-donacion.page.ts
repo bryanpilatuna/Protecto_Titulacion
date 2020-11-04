@@ -36,7 +36,7 @@ export class TiendaDonacionPage implements OnInit {
   //this.tiendaid=this.route.snapshot.params['id'];
   this.donacionesservice.getDonacionTienda(this.tiendaid).subscribe((donaciones) =>{
   this.donaciones = donaciones;  
-  console.log('Mis Donaciones',this.donaciones)
+ 
   })
   }
 

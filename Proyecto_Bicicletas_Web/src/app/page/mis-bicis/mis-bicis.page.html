@@ -17,6 +17,17 @@
           <ion-label>
             {{ bicis.nombre}}
           </ion-label>
+
+          <ion-label>
+            Estado Disponible:
+          </ion-label>
+          <ion-label>
+            {{ bicis.disponible}}
+          </ion-label>
+          <ion-button  (click)="cambiarestado(bicis,bicis.id)">
+            <ion-icon slot="start" name="locate"></ion-icon>
+            Cambiar Estado
+          </ion-button>
         </ion-item>
    
         <ion-item-options side="end">
