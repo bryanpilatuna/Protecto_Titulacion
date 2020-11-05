@@ -30,13 +30,10 @@ export class UbitiendaInvitadoPage implements OnInit {
   }
 
   async loadmap(){
-    const loading= await this.loadinCtrl.create();
-    loading.present();
     this.geolocation.getCurrentPosition().then((resp) => {
     
     }).catch((error) => {
       console.log('Error al obtener la ubicacion', error);
-      loading.dismiss();
     });
     const rta= await this.geolocation.getCurrentPosition();
     const myLatLng= {lat: rta.coords.latitude, lng: rta.coords.longitude};
@@ -52,7 +49,6 @@ export class UbitiendaInvitadoPage implements OnInit {
       this.renderMarker();
      
     });
-    loading.dismiss();
     this.miubicacion(rta.coords.latitude,rta.coords.longitude);
     
     }
