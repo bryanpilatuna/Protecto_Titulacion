@@ -49,6 +49,7 @@ export class UbitiendaInvitadoPage implements OnInit {
       this.renderMarker();
      
     });
+
     this.miubicacion(rta.coords.latitude,rta.coords.longitude);
     
     }
