@@ -13,11 +13,17 @@ export class DonacionPage implements OnInit {
   tiendas:  datosTiendas[];
   donaciones: datosDonacion[];
   id: any;
+  vacio:boolean;
   constructor(private Servicio:DonacionService,
     private route: ActivatedRoute) {
     var user = firebase.auth().currentUser.uid;
-    this.Servicio.getdonacion(user).subscribe((alquileres) =>{
-      this.donaciones = alquileres;
+    this.Servicio.getdonacion(user).subscribe((donaciones) =>{
+      this.donaciones = donaciones;
+      if(donaciones.length==0){
+        this.vacio=true;
+      }else{
+        this.vacio=false;
+      }
    
     })
 

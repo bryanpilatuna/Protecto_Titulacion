@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
+  <ion-list *ngIf="vacio==false; else elseBlock">
     <div *ngFor="let donacion of donaciones;let indice=index">
       <ion-item button [routerLink]="['/donar', donacion.id]">
         <ion-label>
@@ -58,5 +58,8 @@
       </ion-item> 
     </div>
   </ion-list>
+  <ng-template #elseBlock>
+    <ion-list><p class="centrarmensaje">No existen donaciones.</p></ion-list>
+  </ng-template>
 
 </ion-content>

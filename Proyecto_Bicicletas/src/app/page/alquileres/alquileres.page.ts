@@ -14,11 +14,17 @@ export class AlquileresPage implements OnInit {
   tiendas:  datosTiendas[];
   alquiler: datosAlquiler[];
   id: any;
+  vacio:boolean;
   constructor(private Servicio:AlquilerService,
     private route: ActivatedRoute) { 
     var user = firebase.auth().currentUser.uid;
     this.Servicio.getAlquiler(user).subscribe((alquileres) =>{
       this.alquiler = alquileres;
+      if(alquileres.length==0){
+        this.vacio=true;
+      }else{
+        this.vacio=false;
+      }
  
     })
     this.Servicio.getTiendas().subscribe((tiendas) =>{
