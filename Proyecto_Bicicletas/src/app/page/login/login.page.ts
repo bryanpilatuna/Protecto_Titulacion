@@ -116,10 +116,14 @@ export class LoginPage implements OnInit {
         //this.tienda = tienda;
    
         if (usuario === undefined) {
-          alert("El usuario no es de tipo cliente.");
+          this.mensaje="El usuario no es de tipo cliente.";
+          this.mensajeerror();
+          //alert("El usuario no es de tipo cliente.");
         }else{
           if(usuario.estado=="Inactivo"){
-            alert("El usuario esta borrado");
+            this.mensaje="El usuario esta inactivo.";
+            this.mensajeerror();
+            //alert("El usuario esta borrado");
           }else{
             this.router.navigate(['menu']);
           }
