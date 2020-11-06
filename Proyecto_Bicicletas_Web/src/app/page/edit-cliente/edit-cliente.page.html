@@ -5,5 +5,28 @@
 </ion-header>
 
 <ion-content>
+  <ion-list lines="full" *ngIf="user">
+    <ion-item>
+      <ion-input required type="text" placeholder="Task" [(ngModel)]="user.nombres"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input required type="text" placeholder="Task" [(ngModel)]="user.apellidos"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input required type="text" placeholder="Task" [(ngModel)]="user.telefono"></ion-input>
+    </ion-item>
+    <div class="form-group">
+      <label for="inputState">Estado</label>
+      <select id="inputState" class="form-control"  [(ngModel)]="user.estado">
+        <option value="Activo" selected *ngIf="user.estado=='Activo'; else elseBlock">Activo</option>
+        <ng-template #elseBlock><option value="Activo">Activo</option></ng-template>
+        <option value="Inactivo" selected *ngIf="user.estado=='Inactivo'; else elseBlock2">Inactivo</option>
+        <ng-template #elseBlock2><option value="Inactivo">Inactivo</option></ng-template>
+      </select>
+    </div>
+    
+
+  </ion-list>
+  <ion-button expand="full" (click)="saveTodo()">Guardar</ion-button>
 
 </ion-content>
