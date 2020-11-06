@@ -40,11 +40,6 @@ donabici(){
 this.nav.navigateForward(['/formulario-donacion', this.id]); 
   }
   async loadmap(){
-    this.geolocation.getCurrentPosition().then((resp) => {
-    
-     }).catch((error) => {
-       console.log('Error al obtener la ubicacion', error);
-     });
     const rta= await this.geolocation.getCurrentPosition();
     const myLatLng= {lat: rta.coords.latitude, lng: rta.coords.longitude};
     const mapEle: HTMLElement = document.getElementById('map');
@@ -70,7 +65,8 @@ this.nav.navigateForward(['/formulario-donacion', this.id]);
       map: this.map,
       title: 'ESTAS AQUI',
       animation: google.maps.Animation.DROP,
-      icon: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+      icon: { url: "../assets/icon/green-dot.png",
+      scaledSize: new google.maps.Size(35, 35) }
       });
       const detallemarker = 
       '<h5>Estas Aquí</h5>';

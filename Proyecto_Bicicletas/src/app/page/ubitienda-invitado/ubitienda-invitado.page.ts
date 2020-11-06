@@ -55,12 +55,15 @@ export class UbitiendaInvitadoPage implements OnInit {
     }
     
     miubicacion(lat: number, lng: number){
-    console.log('latitu y onguitud',lat,lng)
+   
       const miubicacion= new google.maps.Marker({
       position: {lat,lng},
       map: this.map,
       title: 'ESTAS AQUI',
       animation: google.maps.Animation.DROP,
+      icon: { url: "../assets/icon/green-dot.png",
+      scaledSize: new google.maps.Size(35, 35) },   
+      
       });
       const detallemarker = 
       '<h5>Estas Aquí</h5>';
