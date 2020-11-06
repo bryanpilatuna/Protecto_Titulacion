@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { EditTiendaPageRoutingModule } from './edit-tienda-routing.module';
 
 import { EditTiendaPage } from './edit-tienda.page';
+import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EditTiendaPageRoutingModule
+    EditTiendaPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [EditTiendaPage]
 })

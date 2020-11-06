@@ -1,7 +1,5 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>edit-tienda</ion-title>
-  </ion-toolbar>
+  <app-header-administrador></app-header-administrador>
 </ion-header>
 
 <ion-content>
@@ -15,6 +13,15 @@
     <ion-item>
       <ion-input required type="text" placeholder="Task" [(ngModel)]="tienda.telefono"></ion-input>
     </ion-item>
+    <div class="form-group">
+      <label for="inputState">Estado</label>
+      <select id="inputState" class="form-control"  [(ngModel)]="tienda.estado">
+        <option value="Activo" selected *ngIf="tienda.estado=='Activo'; else elseBlock">Activo</option>
+        <ng-template #elseBlock><option value="Activo">Activo</option></ng-template>
+        <option value="Inactivo" selected *ngIf="tienda.estado=='Inactivo'; else elseBlock2">Inactivo</option>
+        <ng-template #elseBlock2><option value="Inactivo">Inactivo</option></ng-template>
+      </select>
+    </div>
     
 
   </ion-list>

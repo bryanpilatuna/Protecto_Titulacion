@@ -46,13 +46,10 @@ export class EditTiendaPage implements OnInit {
     if (this.iduser) {
       this.tiendaservice.updateTienda(this.tienda, this.iduser).then(() => {
         loading.dismiss();
-        this.nav.navigateForward('/');
+        this.nav.navigateForward('/tienda-administrador');
       });
-    } else {
-      this.tiendaservice.addTienda(this.tienda).then(() => {
-        loading.dismiss();
-        this.nav.navigateForward('/');
-      });
-    }
+    } 
   }
+
+  
 }
