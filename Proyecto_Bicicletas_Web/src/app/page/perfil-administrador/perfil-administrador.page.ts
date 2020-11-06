@@ -17,6 +17,7 @@ export class PerfilAdministradorPage implements OnInit {
   id: string;
   formGroup: FormGroup;
   usuario:DatosAdministrador;
+  public image: any;
   constructor(
     private route: ActivatedRoute, 
     private router: Router, 
@@ -92,5 +93,29 @@ export class PerfilAdministradorPage implements OnInit {
       this.usuario = administrador;
     });
   }
+
+  async subirImagen(event: any): Promise<void> {
+    this.image = event.target.files[0];
+
+    this.Servicio.updateImagen(this.usuario,this.id,this.image);
+    this.cargarUsuario();
+    
+  }
+
+    //Guardar Usuario
+    async guardarUsuario() {
+      const loading = await this.loadingController.create({
+        message: 'Guardando....'
+      });
+      await loading.present();
+   
+      if (this.id) {
+        this.Servicio.updateAdministrador(this.usuario, this.id).then(() => {
+          loading.dismiss();
+          this.nav.navigateForward('menu-administrador');
+          
+        });
+      } 
+    }
 
 }
