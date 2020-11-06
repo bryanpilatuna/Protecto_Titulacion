@@ -3,26 +3,31 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item-sliding *ngFor="let usuario of usuarios">
-      <ion-item lines="inset" button [routerLink]="['/edit-cliente', usuario.uid]">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm">
-              <b>Nombre: </b>{{usuario.nombres}}
-            </div>
-            <div class="col-sm">
-              <b>Correo: </b>{{usuario.correo}}
-            </div>
-            <div class="col-sm">
-              <b>Estado: </b>{{usuario.estado}}
-            </div>
+    <div class="container">
+      <h5 align="center">Listador de Clientes</h5> 
+      <div class="table-responsive">
+        <table class="table ">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Correo</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Editar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let usuario of usuarios ;let indice=index">
+              <th scope="row">{{indice+1}}</th>
+              <td>{{usuario.nombres}}</td>
+              <td>{{usuario.correo}}</td>
+              <td>{{usuario.estado}}</td>
+              <td><button type="button" class="btn btn-primary" [routerLink]="['/edit-cliente', usuario.uid]">Editar</button></td>
+            </tr>
+          
             
-          </div>
-        </div>
-  
-      </ion-item>
- 
-      </ion-item-sliding>
-    </ion-list>
+          </tbody>
+        </table>
+      </div>
+    </div>
 </ion-content>
