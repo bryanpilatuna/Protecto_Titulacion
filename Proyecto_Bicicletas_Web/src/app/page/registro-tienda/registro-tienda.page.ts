@@ -36,7 +36,7 @@ export class RegistroTiendaPage implements OnInit {
       Validators.required,
       Validators.minLength(3),
       Validators.maxLength(40),
-      Validators.pattern("(?=[^A-Z]*[A-Z])[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]*"),
+      Validators.pattern("(?=[^A-Z]*[A-Z])[a-zA-ZñÑáéíóúÁÉÍÓÚ \s]*"),
     ]));
 
     const direccionControl = new FormControl('', Validators.compose([

@@ -86,7 +86,7 @@ export class PerfilAdministradorPage implements OnInit {
     });
     await loading.present();
 
-    this.Servicio.getUsuario(this.id).subscribe(administrador => {
+    this.Servicio.getAdministrador(this.id).subscribe(administrador => {
       loading.dismiss();
       console.log("usuarios",administrador);
       this.usuario = administrador;

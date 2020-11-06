@@ -1,7 +1,7 @@
 <app-header></app-header>
 <ion-content padding>
   <div class="container">
-    <h5 align="center">Editar Perfil</h5>
+    <h5 align="center">Formulario registro Tienda</h5>
     <div class="row">
       
       <div class="mx-auto">
@@ -112,11 +112,13 @@
             </div>
           </div>
        
-          <div class="row">
+          <div class="form-group">
             <label position="stacked"><strong>Logo</strong></label>
+            <br/>
             <input formControlName="foto" type="file" accept=".png, .jpg" (change)="enviarimagen($event)" style="color:black"/>
           </div>
-          <br/>
+          
+        
       
           <div class="form-group">
               <ion-button type="submit" [disabled]="!formGroup.valid" expand="block">Registrarse</ion-button>
