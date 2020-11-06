@@ -8,6 +8,8 @@ import { PerfilAdministradorPageRoutingModule } from './perfil-administrador-rou
 
 import { PerfilAdministradorPage } from './perfil-administrador.page';
 import { ComponentsModule } from '../../components/components.module';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   imports: [
@@ -15,6 +17,7 @@ import { ComponentsModule } from '../../components/components.module';
     FormsModule,
     IonicModule,
     PerfilAdministradorPageRoutingModule,
+    ReactiveFormsModule,
     ComponentsModule
   ],
   declarations: [PerfilAdministradorPage]
