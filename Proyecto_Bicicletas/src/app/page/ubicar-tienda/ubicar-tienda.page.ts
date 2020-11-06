@@ -40,6 +40,11 @@ donabici(){
 this.nav.navigateForward(['/formulario-donacion', this.id]); 
   }
   async loadmap(){
+    this.geolocation.getCurrentPosition().then((resp) => {
+    
+     }).catch((error) => {
+       console.log('Error al obtener la ubicacion', error);
+     });
     const rta= await this.geolocation.getCurrentPosition();
     const myLatLng= {lat: rta.coords.latitude, lng: rta.coords.longitude};
     const mapEle: HTMLElement = document.getElementById('map');
