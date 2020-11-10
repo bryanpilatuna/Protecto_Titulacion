@@ -18,7 +18,8 @@ export class MisBicisPage implements OnInit {
     descripcion:'',
     idtienda:'',
    disponible:'',
-   imagen:''
+   imagen:'',
+   tipo:''
   }
   constructor(private route: ActivatedRoute,private router: Router,private bicicletasService: BicicletasService) {
     var user = firebase.auth().currentUser.uid;

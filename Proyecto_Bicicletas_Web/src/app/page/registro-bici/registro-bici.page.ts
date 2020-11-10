@@ -46,6 +46,10 @@ export class RegistroBiciPage implements OnInit {
       Validators.maxLength(40),
     ]));
 
+    const tipoControl = new FormControl('', Validators.compose([
+      Validators.required,
+  ]));
+
     const descripcionControl = new FormControl('', Validators.compose([
       Validators.required,
       Validators.minLength(3),
@@ -55,7 +59,7 @@ export class RegistroBiciPage implements OnInit {
   
     const foto = new FormControl('', Validators.required)
 
-    this.formGroup = this.formBuilder.group({nombreControl,descripcionControl,foto });
+    this.formGroup = this.formBuilder.group({nombreControl,descripcionControl,foto,tipoControl });
   }
 
 guardarbici(){
