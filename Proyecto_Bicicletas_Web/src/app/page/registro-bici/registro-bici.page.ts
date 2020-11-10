@@ -21,7 +21,8 @@ export class RegistroBiciPage implements OnInit {
     nombre:'',
     disponible:'',
     idtienda:'',
-    imagen:''
+    imagen:'',
+    tipo:''
 
   };
   constructor(private route: ActivatedRoute,

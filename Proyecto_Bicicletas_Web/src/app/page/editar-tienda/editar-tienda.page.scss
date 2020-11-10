@@ -30,3 +30,22 @@ ion-icon{
 outline: none  !important;
 
 }
+ion-input{
+  border: 1px solid ; 
+  border-radius: 4px;
+
+}
+ion-content{
+  #map {
+    width: 60%;
+    height:90%;
+    opacity: 0;
+    transition: opacity 150ms ease-in;
+    display: block;
+    &.show-map{
+      opacity: 1;
+    }
+  }
+  
+
+}

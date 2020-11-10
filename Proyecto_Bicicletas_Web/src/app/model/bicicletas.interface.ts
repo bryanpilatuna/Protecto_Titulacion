@@ -5,4 +5,5 @@ export interface datosBici {
    disponible:string;
    idtienda:string;
    imagen:string;
+   tipo:string;
 }
