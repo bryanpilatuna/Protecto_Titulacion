@@ -14,16 +14,16 @@ export class AlquileresPage implements OnInit {
   tiendas:  datosTiendas[];
   alquiler: datosAlquiler[];
   id: any;
-  vacio:boolean;
+  vacio:boolean=true;
   constructor(private Servicio:AlquilerService,
     private route: ActivatedRoute) { 
-    var user = firebase.auth().currentUser.uid;
-    this.Servicio.getAlquiler(user).subscribe((alquileres) =>{
+    this.id = firebase.auth().currentUser.uid;
+    this.Servicio.getAlquiler(this.id).subscribe((alquileres) =>{
       this.alquiler = alquileres;
-      if(alquileres.length==0){
-        this.vacio=true;
-      }else{
-        this.vacio=false;
+      for(let i in this.alquiler){
+        if(this.alquiler[i].idusuario==this.id){
+          this.vacio=false;
+        }
       }
  
     })

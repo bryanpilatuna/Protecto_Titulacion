@@ -21,7 +21,7 @@ export class DonacionPage implements OnInit {
     this.Servicio.getdonacion(this.id).subscribe((donaciones) =>{
       this.donaciones = donaciones;
       for(let i in this.donaciones){
-        console.log(this.donaciones[i].iddonante); 
+   
         if(this.donaciones[i].iddonante==this.id){
           this.vacio=false;
         }

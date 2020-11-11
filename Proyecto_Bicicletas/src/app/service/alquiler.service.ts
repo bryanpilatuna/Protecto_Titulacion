@@ -116,7 +116,7 @@ export class AlquilerService {
   }
 
   getAlquiler(iduser:string){
-    this.alquileridCollection = this.db.collection<datosAlquiler>('alquiler', ref => ref.where('idusuario', '==', iduser));
+    this.alquileridCollection = this.db.collection<datosAlquiler>('alquiler', ref => ref.orderBy("fecha", "desc") );
     this.alquilerid = this.alquileridCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
