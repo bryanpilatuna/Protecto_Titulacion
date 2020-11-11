@@ -75,6 +75,9 @@ export class AlquilerService {
     return this.alquilerCollection.add(alquiler);
     
   }
+  removeAlquiler(id: string){
+    return this.alquilerCollection.doc(id).delete();
+  }
   getTiendas(){
     
     return this.tienda;

@@ -76,15 +76,12 @@ export class AlquilerPage implements OnInit {
  
     if (this.idalquiler) {
       this.Servicio.updateAlquileres(this.alquileres, this.idalquiler).then(() => {
+        this.bicicleta.disponible="Si";
+        this.Servicio.updateBicicletas(this.bicicleta,this.idbici);
         loading.dismiss();
         this.nav.navigateForward('/menu');
       });
-    } else {
-      this.Servicio.addAlquiler(this.alquileres).then(() => {
-        loading.dismiss();
-        this.nav.navigateForward('/menu');
-      });
-    }
+    } 
   }
 
   
