@@ -13,6 +13,8 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { FCM } from '@ionic-native/fcm/ngx';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +22,8 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,AngularFireStorageModule],
   providers: [
+    LocalNotifications,
+    FCM,
     StatusBar,
     SplashScreen,
     Geolocation,

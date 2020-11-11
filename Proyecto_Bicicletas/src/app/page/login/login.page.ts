@@ -6,7 +6,6 @@ import { DatosUsuario } from '../../model/user.interface';
 import { AlertController } from '@ionic/angular';
 
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -34,6 +33,7 @@ export class LoginPage implements OnInit {
    }
 
   ngOnInit() {
+
   }
 
   //Mostrar mensaje de alerta
