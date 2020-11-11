@@ -13,19 +13,19 @@ export class DonacionPage implements OnInit {
   tiendas:  datosTiendas[];
   donaciones: datosDonacion[];
   id: any;
-  vacio:boolean;
+  vacio:boolean=true;
   fechabusqueda:Date;
   constructor(private Servicio:DonacionService,
     private route: ActivatedRoute) {
     this.id = firebase.auth().currentUser.uid;
     this.Servicio.getdonacion(this.id).subscribe((donaciones) =>{
       this.donaciones = donaciones;
-      if(donaciones.length==0){
-        this.vacio=true;
-      }else{
-        this.vacio=false;
+      for(let i in this.donaciones){
+        console.log(this.donaciones[i].iddonante); 
+        if(this.donaciones[i].iddonante==this.id){
+          this.vacio=false;
+        }
       }
-   
     })
 
     this.Servicio.getTiendas().subscribe((tiendas) =>{
@@ -35,14 +35,8 @@ export class DonacionPage implements OnInit {
    }
 
   ngOnInit() {
+
   }
-  cambiofecha(event){
-    this.fechabusqueda= new Date(event.detail.value);
-    console.log("Entra",this.fechabusqueda.getTime());
-    this.Servicio.busqueda(this.id,this.fechabusqueda).subscribe((busquedadonacion) =>{
-      this.donaciones = busquedadonacion;
-    
-    })
-  }
+
 
 }
