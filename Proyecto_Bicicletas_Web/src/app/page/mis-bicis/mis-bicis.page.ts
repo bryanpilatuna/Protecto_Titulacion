@@ -12,6 +12,9 @@ import * as firebase from 'firebase';
 export class MisBicisPage implements OnInit {
   id=null;
   tiendaid=null;
+  Si='Si';
+  No='No';
+  Mantenimiento='Mantenimiento';
   bicicletas: datosBici[];
   bicicleta: datosBici={
     nombre:'',
@@ -41,11 +44,34 @@ export class MisBicisPage implements OnInit {
   }
 
   cambiarestado(bici:datosBici,id:string){
+   if(bici.disponible=='Si'){
+    bici.disponible='No';
+    this.bicicletasService.updateBici(bici,id).then(() => {
+      this.router.navigate(['/mis-bicis',this.tiendaid]);
+    });
+
+   }else if(bici.disponible=='No'){
+    bici.disponible='Mantenimiento';
+    this.bicicletasService.updateBici(bici,id).then(() => {
+      this.router.navigate(['/mis-bicis',this.tiendaid]);
+    });
+
+   }else if(bici.disponible=='Mantenimiento'){
     bici.disponible='Si';
     this.bicicletasService.updateBici(bici,id).then(() => {
       this.router.navigate(['/mis-bicis',this.tiendaid]);
-      
     });
+
+   }
+   
+   
+    
+
+  }
+
+
+  editarbici(id:string){
+    this.router.navigate(['/editar-bici',id]);
 
   }
 

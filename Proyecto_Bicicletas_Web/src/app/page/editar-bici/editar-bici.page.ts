@@ -73,9 +73,13 @@ export class EditarBiciPage implements OnInit {
       Validators.maxLength(40),
 
     ]));
+    const tipoControl = new FormControl('', Validators.compose([
+      Validators.required,
+  ]));
+
   
 
-    this.formGroup = this.formBuilder.group({nombreControl,descripcionControl });
+    this.formGroup = this.formBuilder.group({nombreControl,descripcionControl,tipoControl });
   }
 
   async subirImagen(event: any): Promise<void> {

@@ -3,39 +3,124 @@
 </ion-header>
 
 <ion-content>
-    <ion-list>
-      <ng-container *ngIf="!bicicletas || bicicletas.length == 0">
-        <div *ngFor="let n of [0,1,2]" padding>
-          <ion-skeleton-text></ion-skeleton-text>
-          <p>
-            <ion-skeleton-text class="text-skeleton"></ion-skeleton-text>
-          </p>
-        </div>
-      </ng-container>
-      <ion-item-sliding *ngFor="let bicis of bicicletas">
-        <ion-item lines="inset" button [routerLink]="['/editar-bici',bicis.id]">
-          <ion-label>
-            {{ bicis.nombre}}
-          </ion-label>
-
-          <ion-label>
-            Estado Disponible:
-          </ion-label>
-          <ion-label>
-            {{ bicis.disponible}}
-          </ion-label>
-          <ion-button  (click)="cambiarestado(bicis,bicis.id)">
+  
+      
+  
+  <div class="container">
+  <h5 align="center">BICICLETAS</h5> 
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#Disponibles">DISPONIBLES |</a></li>
+    <li><a data-toggle="tab" href="#nodisponibles">| NO DISPONIBLES |</a></li>
+    <li><a data-toggle="tab" href="#mantenimiento">| MANTENIMIENTO</a></li>
+  </ul>
+  
+  <div class="tab-content">
+    <div id="Disponibles" class="tab-pane fade in active">
+      
+  <div class="table-responsive">
+    <table class="table ">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Disponible</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Camiar Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bicis of bicicletas" >
+          <ng-container *ngIf="bicis.disponible==Si">
+          <td>{{bicis.nombre}}</td>
+          <td>{{bicis.disponible}}</td>
+          <td> <ion-button  (click)="editarbici(bicis.id)">
+            <ion-icon slot="start" name="locate"></ion-icon>
+            Editar Bici
+          </ion-button></td>
+          <td><ion-button  (click)="cambiarestado(bicis,bicis.id)">
             <ion-icon slot="start" name="locate"></ion-icon>
             Cambiar Estado
-          </ion-button>
-        </ion-item>
-   
-      </ion-item-sliding>
-    </ion-list>
-  <ion-fab vertical="bottom" horizontal="center" slot="fixed"  >
-    <ion-fab-button  (click)="rediregistrobici()" routerDirection="forward" color="danger">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+          </ion-button></td>
+        </ng-container>  
+        </tr> 
 
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="nodisponibles" class="tab-pane fade">
+          
+  <div class="table-responsive">
+    <table class="table ">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Disponible</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Camiar Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bicis of bicicletas" >
+          <ng-container *ngIf="bicis.disponible==No">
+          <td>{{bicis.nombre}}</td>
+          <td>{{bicis.disponible}}</td>
+          <td> <ion-button  (click)="editarbici(bicis.id)">
+            <ion-icon slot="start" name="locate"></ion-icon>
+            Editar Bici
+          </ion-button></td>
+          <td><ion-button  (click)="cambiarestado(bicis,bicis.id)">
+            <ion-icon slot="start" name="locate"></ion-icon>
+            Cambiar Estado
+          </ion-button></td>
+        </ng-container>  
+        </tr> 
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="mantenimiento" class="tab-pane fade">
+          
+  <div class="table-responsive">
+    <table class="table ">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Disponible</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Camiar Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bicis of bicicletas" >
+          <ng-container *ngIf="bicis.disponible==Mantenimiento">
+          <td>{{bicis.nombre}}</td>
+          <td>{{bicis.disponible}}</td>
+          <td> <ion-button  (click)="editarbici(bicis.id)">
+            <ion-icon slot="start" name="locate"></ion-icon>
+            Editar Bici
+          </ion-button></td>
+          <td><ion-button  (click)="cambiarestado(bicis,bicis.id)">
+            <ion-icon slot="start" name="locate"></ion-icon>
+            Cambiar Estado
+          </ion-button></td>
+        </ng-container>  
+        </tr> 
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<ion-fab vertical="bottom" horizontal="center" slot="fixed"  >
+  <ion-fab-button  (click)="rediregistrobici()" routerDirection="forward" color="danger">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
 </ion-content>
