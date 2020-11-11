@@ -22,6 +22,7 @@ export class EditarBiciPage implements OnInit {
   disponible:'',
   imagen:'',
   idtienda:'',
+  tipo:'',
 
   }
   constructor(private route: ActivatedRoute, 

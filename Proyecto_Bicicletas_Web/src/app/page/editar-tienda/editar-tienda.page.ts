@@ -6,7 +6,9 @@ import { NavController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-
+import {UbicacionService}from '../../services/ubicacion.service';
+import {datosUbicacion}from '../../model/ubicacion.interface';
+declare var google;
 
 
 @Component({
@@ -15,7 +17,9 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
   styleUrls: ['./editar-tienda.page.scss'],
 })
 export class EditarTiendaPage implements OnInit {
+  
   formGroup: FormGroup;
+  map = null;
   tienda:Tienda={
   uid:'',
   nombre:'',
@@ -28,14 +32,17 @@ export class EditarTiendaPage implements OnInit {
   }
   public image: any;
   tiendaid=null;
-
+  ubicaciones: datosUbicacion[];
+  
+  infowindow = new google.maps.InfoWindow();
   constructor(private route: ActivatedRoute, 
     private router: Router, 
     private nav: NavController, 
     private tiendaservice:TiendaService,
     private loadingController: LoadingController,
     public formBuilder: FormBuilder,
-    private geolocation: Geolocation) { 
+    private geolocation: Geolocation,
+    private UbicacionService: UbicacionService) { 
       
   
       this.crearvalidaciones();
@@ -44,12 +51,64 @@ export class EditarTiendaPage implements OnInit {
   ngOnInit() {
     this.tiendaid=this.route.snapshot.params['id'];
     console.log('Mi tienda',this.tiendaid);
+    this.loadmap();
     if (this.tiendaid){
       this.cargarTienda();
-     
     } 
   }
+   //Cargar tienda
+   async cargarTienda(){
+    const loading = await this.loadingController.create({
+      message: 'Cargando....'
+    });
+    await loading.present();
 
+    this.tiendaservice.getTienda(this.tiendaid).subscribe(tienda =>
+      {
+        loading.dismiss();
+        this.tienda =tienda;
+        this.addMarker(this.tienda.position.latitude,this.tienda.position.longitude,this.tienda.nombre);
+      
+      });
+      
+  }
+
+  async loadmap(){
+  
+    const myLatLng= {lat: -0.225219, lng: -78.5248};
+    console.log(myLatLng);
+    const mapEle: HTMLElement = document.getElementById('map');
+    
+    this.map = new google.maps.Map(mapEle, {
+      center: myLatLng,
+      zoom:10
+    });
+    google.maps.event.addListenerOnce(this.map, 'idle', () => {   
+  
+      mapEle.classList.add('show-map');
+     //this.renderMarker();
+    
+    });
+    
+    }
+
+
+
+    addMarker(lati:number,longi:number,nombre:string) {
+      const puntos= new google.maps.Marker({
+        position: { lat: lati, lng: longi },
+        map: this.map,
+        animation: google.maps.Animation.DROP,
+      });
+      const detallemarker = 
+    '<h3>Nombre: '+nombre+'</h3>';
+    
+    puntos.addListener("click", () => {
+     this.infowindow.setContent(detallemarker);
+      this.infowindow.open(this.map, puntos);
+    // console.log(marker.nombre);
+    });
+    }    
   crearvalidaciones(){
 
     const nombreControl = new FormControl('', Validators.compose([
@@ -85,22 +144,7 @@ export class EditarTiendaPage implements OnInit {
     
   }
 
-  //Cargar tienda
-  async cargarTienda(){
-    const loading = await this.loadingController.create({
-      message: 'Cargando....'
-    });
-    await loading.present();
-
-    this.tiendaservice.getTienda(this.tiendaid).subscribe(tienda =>
-      {
-        loading.dismiss();
-        this.tienda =tienda;
-        console.log('mi ubicacion anterior',this.tienda)
-      
-      });
-      
-  }
+ 
 
   guardartienda(){
     this.tiendaservice.updateTienda(this.tienda, this.tiendaid).then(() => {

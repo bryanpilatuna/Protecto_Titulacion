@@ -28,6 +28,18 @@
           *El nombre debe tener solo letras, la primera letra con mayúscula y sin espacios
         </p>
       </div>
+
+          <label position="stacked"><strong>Tipo</strong></label>
+            <select [(ngModel)]="bici.tipo" formControlName="tipoControl" class="form-control">
+              <option value="Bicicleta de Carretera" selected>Bicicleta de Carretera</option>
+              <option value="Bicicleta de Montaña">Bicicleta de Montaña</option>
+              <option value="BMX">BMX</option>
+              <option value="Bicicleta híbrida o urbana">Bicicleta híbrida o urbana</option>
+              <option value="Para contrarreloj">Para contrarreloj</option>
+              <option value="‘Cruiser’ o playera">‘Cruiser’ o playera</option>
+              <option value="Infantil">Infantil</option>
+              <option value="Reclinada">Reclinada</option>
+            </select>
       
       <div class="form-group">
         <label position="stacked"><strong>Descripción</strong></label>
