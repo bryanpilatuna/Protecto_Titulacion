@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "601256385579",
+    "firebase_url": "https://proyecto-bicicleta.firebaseio.com",
+    "project_id": "proyecto-bicicleta",
+    "storage_bucket": "proyecto-bicicleta.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:601256385579:android:cff10c36fcae6919e51e6e",
+        "android_client_info": {
+          "package_name": "com.epn.bicicleta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "601256385579-k8nout9qveia56qv2o2tocnmmuniel5a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.epn.bicicleta",
+            "certificate_hash": "efa393ab1cbb90fdcc8c591ed0c1db28cb5bd61f"
+          }
+        },
+        {
+          "client_id": "601256385579-bagmo0r6v5cso909oktih3beu1cm75m7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPWg3wLRCg4v0d47A2C_voE6Xv8Q8hRDA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "601256385579-bagmo0r6v5cso909oktih3beu1cm75m7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "601256385579-7m2u4j2ancijurooj1cq80nl8qp8n423.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.epn.bicicleta"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
