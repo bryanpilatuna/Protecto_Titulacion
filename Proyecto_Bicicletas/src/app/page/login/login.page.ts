@@ -4,6 +4,7 @@ import { AuthService } from '../../service/auth.service';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { DatosUsuario } from '../../model/user.interface';
 import { AlertController } from '@ionic/angular';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 
 @Component({
@@ -25,7 +26,8 @@ export class LoginPage implements OnInit {
     private authSvc: AuthService, 
     private router: Router,
     public formBuilder: FormBuilder,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private localNotifications: LocalNotifications
  
     ) {
     this.crearvalidaciones();
@@ -52,6 +54,19 @@ export class LoginPage implements OnInit {
       ]
     });
     await alert.present();
+  }
+
+  send(){
+    this.localNotifications.schedule({
+      text: 'Tienes notificaciones pendientes que revisar.',
+      trigger: {at: new Date(new Date().getTime() + 3600)},
+      led: 'FF0000',
+      sound: null
+   });
+
+   this.localNotifications.on('click').subscribe(notification => {
+      alert("funciona");
+     });
   }
  
   
