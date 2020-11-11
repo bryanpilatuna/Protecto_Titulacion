@@ -9,6 +9,7 @@
 
 <ion-content>
   <ion-list *ngIf="vacio==false; else elseBlock">
+   
     <div *ngFor="let alqui of alquiler;let indice=index">
       <ion-item button [routerLink]="['/alquiler', alqui.id]" >
         <ion-label>

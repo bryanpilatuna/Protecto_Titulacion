@@ -9,10 +9,11 @@
 
 <ion-content>
   <ion-list *ngIf="vacio==false; else elseBlock">
+
     <div *ngFor="let donacion of donaciones;let indice=index">
-      <ion-item button [routerLink]="['/donar', donacion.id]">
+      <ion-item button [routerLink]="['/donar', donacion.id]" *ngIf="donacion.iddonante==id">
         <ion-label>
-          <h2><strong>Donación {{indice+1}}</strong></h2>
+          <h2><strong>Donación</strong></h2>
           <ion-grid>
             <ion-row>
               <ion-col>

@@ -64,11 +64,29 @@ export class DonacionService {
     return this.donacionCollection.doc(id).update(todo);
   }
 
+  busqueda(iduser:string,fecha:Date){
+    let start = new Date();
+    console.log(start);
+    this.listdonacionCollection = this.db.collection<datosDonacion>('donacion', ref => ref.where('iddonante', '==', iduser).where('fechadonacion', '<', "1507593600" ));
+    this.listdonacion = this.listdonacionCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+        
+          return {id, ...data};
+        });
+      })
+    );
+
+    return this.listdonacion;
+  }
+
 
   
   getdonacion(iduser:string){
     console.log(iduser);
-    this.listdonacionCollection = this.db.collection<datosDonacion>('donacion', ref => ref.where('iddonante', '==', iduser));
+    this.listdonacionCollection = this.db.collection<datosDonacion>('donacion', ref => ref.orderBy("fechadonacion", "desc") );
     this.listdonacion = this.listdonacionCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
