@@ -20,9 +20,11 @@ export class FormularioAlquilerPage implements OnInit {
   usuarioid= null;
   tiendas: datosTiendas[];
   bicicletas:datosBicicleta;
+  bicicletas2:datosBicicleta[];
   fechaactual: Date = new Date();
   idbicicleta=null;
   idtienda=null;
+  
   //disableSelector:boolean;
 
   alquiler: datosAlquiler ={
@@ -75,9 +77,31 @@ export class FormularioAlquilerPage implements OnInit {
     this.alquilerService.getTiendas().subscribe((tiendas) =>{
     
       this.tiendas = tiendas;
-    
-    })
 
+      for(let i in this.tiendas){
+        this.alquilerService.getBicicletas(this.tiendas[i].id).subscribe((bicicletas) =>{
+          this.bicicletas2=bicicletas;
+         if(bicicletas.length==0){
+          console.log("No tiene bicicleta",i);
+          var l = this.tiendas.indexOf( this.tiendas[i] );
+          this.tiendas.splice(l,1); 
+         }else{
+          console.log("Tiene");
+          var cont=0;
+          for(let m in this.bicicletas2){
+            if(this.bicicletas2[m].disponible=="Si"){
+              cont=cont+1;
+            }
+          }
+          if(cont==0){
+            var l = this.tiendas.indexOf( this.tiendas[i] );
+            this.tiendas.splice(l,1); 
+          }
+         }
+  
+        })
+      }
+    })
   }
 
   //Crear validaciones para el form 
