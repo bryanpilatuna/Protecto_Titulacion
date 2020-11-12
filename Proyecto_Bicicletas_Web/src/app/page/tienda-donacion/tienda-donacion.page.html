@@ -3,44 +3,131 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ng-container *ngIf="!donaciones || donaciones.length == 0">
-      <ion-label>No hay donaciones</ion-label>
-    </ng-container>
 
-    <div *ngFor="let donacion of donaciones">
-      <ion-label>
-        <ion-grid> 
-          <ion-row>
-            <ion-col>
-              <ion-label><strong>
-                Fecha para donación:
-              </strong>
-              </ion-label>
-              <ion-label>
-                {{donacion.fechadonacion.toMillis() | date:'dd/MM/yyyy'}}
-              </ion-label>
-            </ion-col>
-            <ion-col>
-              <ion-label>
-                <strong>
-                Estado de donación:
-              </strong>
-              </ion-label>
-              <ion-label>
-                {{donacion.aprobacion}}
-              </ion-label>
-            </ion-col>
-            <ion-col>
-              <ion-button  (click)="updateDonacion(donacion,donacion.id)">
-                <ion-icon slot="start" name="locate"></ion-icon>
-                Cambiar Estado
-              </ion-button>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-label> 
+  <div class="container">
+    <h5 align="center">DONACIONES</h5> 
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#Disponibles">POR APROBAR |</a></li>
+      <li><a data-toggle="tab" href="#Aprobadas">| APROBADAS |</a></li>
+      <li><a data-toggle="tab" href="#anuladas">| RECHAZADAS o ANULADAS</a></li>
+    </ul>
+    
+    <div class="tab-content">
+      <div id="Disponibles" class="tab-pane fade in active">
+        
+    <div class="table-responsive">
+      <table class="table ">
+        
+          <div *ngFor="let donacion of donaciones" >
+            <div *ngIf="donacion.aprobacion==false && donacion.anular==false">
+            <div *ngFor="let usuario of usuarios">
+              <div *ngIf="donacion.iddonante==usuario.uid">
+                <thead>
+                  <tr>
+                    <th scope="col">Nombre Donante</th>
+                    <th scope="col">Apellido Donante</th>
+                    <th scope="col">Fecha Donacion</th>
+                    <th scope="col">Descripció Bici</th>
+                    <th scope="col">Aprobar</th>
+                    <th scope="col">Rechazar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <tr>
+               <td> {{usuario.nombres}}</td>
+               <td> {{usuario.apellidos}}</td>
+               <td>{{donacion.fechadonacion.toMillis() | date:'dd/MM/yyyy'}}</td>
+               <td>{{donacion.descripcion}}</td>
+                <td><ion-button  (click)="aprobar(donacion,donacion.id)" color="warning">
+                  Aprobar
+                </ion-button></td>
+                <td><ion-button  (click)="rechazar(donacion,donacion.id)" color="danger">
+                  Rechazar
+                </ion-button></td>
+              </tr>
+              </tbody>
+            </div>
+          </div>
+        </div>
+          
+      </div> 
+  
+          </table>
+        </div>
+      </div>
 
+      <div id="Aprobadas" class="tab-pane fade in active">
+        
+        <div class="table-responsive">
+          <table class="table ">
+            
+              <div *ngFor="let donacion of donaciones" >
+                <div *ngIf="donacion.aprobacion==true">
+                <div *ngFor="let usuario of usuarios">
+                  <div *ngIf="donacion.iddonante==usuario.uid">
+                    <thead>
+                      <tr>
+                        <th scope="col">Nombre Donante</th>
+                        <th scope="col">Apellido Donante</th>
+                        <th scope="col">Fecha Donacion</th>
+                        <th scope="col">Descripcion Bici</th>
+                       
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                   <td> {{usuario.nombres}}</td>
+                   <td> {{usuario.apellidos}}</td>
+                   <td>{{donacion.fechadonacion.toMillis() | date:'dd/MM/yyyy'}}</td>
+                   <td>{{donacion.descripcion}}</td>
+                  </tr>
+                  </tbody>
+                </div>
+              </div>
+            </div>
+              
+          </div> 
+      
+              </table>
+            </div>
+          </div>
+
+          <div id="anuladas" class="tab-pane fade in active">
+        
+            <div class="table-responsive">
+              <table class="table ">
+                
+                  <div *ngFor="let donacion of donaciones" >
+                    <div *ngIf="donacion.anular==true">
+                    <div *ngFor="let usuario of usuarios">
+                      <div *ngIf="donacion.iddonante==usuario.uid">
+                        <thead>
+                          <tr>
+                            <th scope="col">Nombre Donante</th>
+                            <th scope="col">Apellido Donante</th>
+                            <th scope="col">Fecha Donacion</th>
+                            <th scope="col">Descripcion Bici</th>
+                           
+                          </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                       <td> {{usuario.nombres}}</td>
+                       <td> {{usuario.apellidos}}</td>
+                       <td>{{donacion.fechadonacion.toMillis() | date:'dd/MM/yyyy'}}</td>
+                       <td>{{donacion.descripcion}}</td>
+                      </tr>
+                      </tbody>
+                    </div>
+                  </div>
+                </div>
+                  
+              </div> 
+          
+                  </table>
+                </div>
+              </div>
+    
     </div>
-  </ion-list>
+  </div>
 </ion-content>

@@ -3,11 +3,15 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { datosDonacion } from '../model/donacion.interface';
+import { DatosUsuario } from '../model/user.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DonacionesService {
+  private usuariosCollection: AngularFirestoreCollection<DatosUsuario>;
+  private usuario: Observable<DatosUsuario[]>;
+
   private donacionCollection: AngularFirestoreCollection<datosDonacion>;
   private donacion: Observable<datosDonacion[]>;
 
@@ -16,17 +20,29 @@ export class DonacionesService {
 
   constructor(private db:AngularFirestore) {
 
-    this.donacionCollection = db.collection<datosDonacion>('donacion');
-    this.donacion = this.donacionCollection.snapshotChanges().pipe(
-      map(actions => {
-        return actions.map(a => {
-          const data = a.payload.doc.data();
-          const id = a.payload.doc.id;
-        
-          return {id, ...data};
-        });
-      })
-    );
+      this.donacionCollection = db.collection<datosDonacion>('donacion');
+      this.donacion = this.donacionCollection.snapshotChanges().pipe(
+        map(actions => {
+          return actions.map(a => {
+            const data = a.payload.doc.data();
+            const id = a.payload.doc.id;
+          
+            return {id, ...data};
+          });
+        })
+      );
+
+      this.usuariosCollection = db.collection<DatosUsuario>('users');
+      this.usuario = this.usuariosCollection.snapshotChanges().pipe(
+        map(actions => {
+          return actions.map(a => {
+            const data = a.payload.doc.data();
+            const id = a.payload.doc.id;
+          
+            return {id, ...data};
+          });
+        })
+      );
     
    }
 
@@ -47,10 +63,11 @@ export class DonacionesService {
 
    actualizarDonacion(donacion:datosDonacion,id:string){
     return this.donacionCollection.doc(id).update(donacion);
-
-
-
    }
+
+   getUsuarios(){
+    return this.usuario;
+  }
 
    
 
