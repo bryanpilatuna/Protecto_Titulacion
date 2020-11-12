@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { datosDonacion } from '../../model/donacion.interface';
 import {DonacionesService} from '../../services/donaciones.service';
+import { DatosUsuario } from '../../model/user.interface';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 
@@ -12,7 +13,10 @@ import { Router } from '@angular/router';
 })
 export class TiendaDonacionPage implements OnInit {
   tiendaid=null;
+  false=false;
+  true=true;
   donaciones:datosDonacion[];
+  usuarios:DatosUsuario[];
   fechaactual: Date = new Date();
 
   donacion:datosDonacion={
@@ -30,6 +34,11 @@ export class TiendaDonacionPage implements OnInit {
     private router: Router) {
       var user = firebase.auth().currentUser.uid;
       this.tiendaid = user;
+
+      this.donacionesservice.getUsuarios().subscribe((usuarios) =>{
+        this.usuarios = usuarios;
+
+      })
      }
 
   ngOnInit() {
@@ -49,6 +58,25 @@ export class TiendaDonacionPage implements OnInit {
     
 
   }
+
+  aprobar(donacion:datosDonacion,id:string){
+    donacion.aprobacion=true;
+    console.log('entro aprobado',donacion.aprobacion)
+    this.donacionesservice.actualizarDonacion(donacion,id).then(() => {
+      this.router.navigate(['/tienda-donacion',this.tiendaid]);
+    });
+
+      }
+
+      rechazar(donacion:datosDonacion,id:string){
+        donacion.aprobacion=false;
+        donacion.anular=true;
+        console.log('entro aprobado',donacion.aprobacion)
+        this.donacionesservice.actualizarDonacion(donacion,id).then(() => {
+          this.router.navigate(['/tienda-donacion',this.tiendaid]);
+        });
+    
+          }
 
 
 
