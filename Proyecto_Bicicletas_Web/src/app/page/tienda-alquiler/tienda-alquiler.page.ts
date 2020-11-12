@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { datosAlquiler } from '../../model/alquiler.interface';
+import { DatosUsuario } from '../../model/user.interface';
 import {AlquileresService} from '../../services/alquileres.service';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
@@ -13,6 +14,7 @@ import { Router } from '@angular/router';
 export class TiendaAlquilerPage implements OnInit {
   tiendaid=null;
   alquileres:datosAlquiler[];
+  usuarios:DatosUsuario[];
   fechaactual: Date = new Date();
 
   alquiler:datosAlquiler={
@@ -35,6 +37,11 @@ export class TiendaAlquilerPage implements OnInit {
       var user = firebase.auth().currentUser.uid;
       this.tiendaid = user;
 
+      this.alquilerservice.getUsuarios().subscribe((usuarios) =>{
+        this.usuarios = usuarios;
+
+      })
+
     }
 
   ngOnInit() {
@@ -50,9 +57,26 @@ export class TiendaAlquilerPage implements OnInit {
   this.alquilerservice.actualizarAlquiler(acalquiler,id).then(() => {
   this.router.navigate(['/tienda-alquiler',this.tiendaid]);
   
-});
+    });
 
     
+  }
+
+  aprobaralquiler(alquiler:datosAlquiler,id:string){
+    alquiler.aprobacion=true;
+    this.alquilerservice.actualizarAlquiler(alquiler,id).then(() => {
+      this.router.navigate(['/tienda-alquiler',this.tiendaid]);
+    });
+
+  }
+
+  rechazaralquiler(alquiler:datosAlquiler,id:string){ 
+    alquiler.aprobacion=false;
+    alquiler.anular=true;
+    this.alquilerservice.actualizarAlquiler(alquiler,id).then(() => {
+      this.router.navigate(['/tienda-alquiler',this.tiendaid]);
+    });
+
   }
 
 }

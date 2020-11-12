@@ -61,14 +61,13 @@ export class TiendaDonacionPage implements OnInit {
 
   aprobar(donacion:datosDonacion,id:string){
     donacion.aprobacion=true;
-    console.log('entro aprobado',donacion.aprobacion)
     this.donacionesservice.actualizarDonacion(donacion,id).then(() => {
       this.router.navigate(['/tienda-donacion',this.tiendaid]);
     });
 
       }
 
-      rechazar(donacion:datosDonacion,id:string){
+  rechazar(donacion:datosDonacion,id:string){
         donacion.aprobacion=false;
         donacion.anular=true;
         console.log('entro aprobado',donacion.aprobacion)
@@ -76,7 +75,7 @@ export class TiendaDonacionPage implements OnInit {
           this.router.navigate(['/tienda-donacion',this.tiendaid]);
         });
     
-          }
+  }
 
 
 
