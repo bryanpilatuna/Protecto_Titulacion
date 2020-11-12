@@ -126,6 +126,23 @@ const routes: Routes = [
     path: 'ubitienda-invitado',
     loadChildren: () => import('./page/ubitienda-invitado/ubitienda-invitado.module').then( m => m.UbitiendaInvitadoPageModule)
   },
+  {
+    path: 'notificaciones',
+    loadChildren: () => import('./page/notificaciones/notificaciones.module').then( m => m.NotificacionesPageModule)
+  },
+  {
+    path: 'notificaciones/:id',
+    loadChildren: () => import('./page/notificaciones/notificaciones.module').then( m => m.NotificacionesPageModule)
+  },
+  {
+    path: 'detallenotificacion',
+    loadChildren: () => import('./page/detallenotificacion/detallenotificacion.module').then( m => m.DetallenotificacionPageModule)
+  },
+  {
+    path: 'detallenotificacion/:id',
+    loadChildren: () => import('./page/detallenotificacion/detallenotificacion.module').then( m => m.DetallenotificacionPageModule)
+  },
+
 
 
 
