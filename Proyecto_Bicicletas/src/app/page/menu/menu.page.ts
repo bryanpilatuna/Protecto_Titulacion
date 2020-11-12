@@ -3,7 +3,9 @@ import { AuthService } from '../../service/auth.service';
 import { Router } from '@angular/router';
 import { User } from '../../model/user.interface';
 import { UsuarioService } from '../../service/usuario.service';
+import { NotificacionesService } from '../../service/notificaciones.service';
 import * as firebase from 'firebase';
+import { Notificaciones } from '../../model/notificaciones.interface';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 @Component({
   selector: 'app-menu',
@@ -15,12 +17,27 @@ export class MenuPage implements OnInit {
   idenvio={id:"Bryan"};
   id: any;
   usuarios: User[];
-  constructor(private authservice : AuthService, private router: Router,private usuarioService:UsuarioService,
-    private localNotifications: LocalNotifications) { 
+  notificaciones: Notificaciones[];
+  constructor(
+    private authservice : AuthService, 
+    private router: Router,
+    private usuarioService:UsuarioService,
+    private localNotifications: LocalNotifications,
+    private ServicioNoti:NotificacionesService
+    ) { 
     var user = firebase.auth().currentUser.uid;
     this.id = user;
+    ServicioNoti.getTodos();
+    this.ServicioNoti.getTodos().subscribe((notificaciones) =>{
+      this.notificaciones = notificaciones;
+      
+      for(let i in this.notificaciones){
+        if(this.notificaciones[i].idusuario==this.id || this.notificaciones[i].visualizar=="No"){
+          this.send();
+        }
+      }
+    })
     
-    this.send();
   }
 
   ngOnInit() {
