@@ -19,6 +19,7 @@ export class MenuPage implements OnInit {
     private localNotifications: LocalNotifications) { 
     var user = firebase.auth().currentUser.uid;
     this.id = user;
+    
     this.send();
   }
 

@@ -8,17 +8,17 @@
 </ion-header>
 
 <ion-content>
-  <ion-item-sliding *ngFor="let todo of todos">
-    <ion-item lines="inset" button [routerLink]="['/detallenotificacion', todo.id]">
+  <ion-item-sliding *ngFor="let notificacion of notificaciones">
+    <ion-item lines="inset" button [routerLink]="['/detallenotificacion', notificacion.id]">
       <ion-label>
-        <h2><strong>{{ todo.tipo }}</strong></h2>
+        <h2><strong>{{ notificacion.tipo }}</strong></h2>
         <ion-grid>
           <ion-row>
             <ion-col>
               <p class="subtitulo">Fecha solicitud:</p>
             </ion-col>
             <ion-col>
-              <p>{{todo.fecha.toMillis() | date:'yyyy/MM/dd'}}</p>
+              <p>{{ notificacion.fecha.toMillis() | date:'yyyy/MM/dd'}}</p>
             </ion-col>
           </ion-row>
           <ion-row>
@@ -26,7 +26,7 @@
               <p class="subtitulo">Visualizado:</p>
             </ion-col>
             <ion-col>
-              <p>{{todo.visualizar}}</p>
+              <p>{{notificacion.visualizar}}</p>
             </ion-col>
           </ion-row>
         

@@ -8,16 +8,15 @@ import { NavController, LoadingController } from '@ionic/angular';
   styleUrls: ['./notificaciones.page.scss'],
 })
 export class NotificacionesPage implements OnInit {
-  todos: Notificaciones[];
+  notificaciones: Notificaciones[];
   constructor(
     private nav: NavController, 
     private Service: NotificacionesService, 
     private loadingController: LoadingController) { }
 
   ngOnInit() {
-    this.Service.getTodos().subscribe((todos) =>{
-      console.log('Todoss', todos);
-      this.todos = todos;
+    this.Service.getTodos().subscribe((notificaciones) =>{
+      this.notificaciones = notificaciones;
     })
   }
 
