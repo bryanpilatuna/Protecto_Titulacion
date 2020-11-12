@@ -21,7 +21,6 @@ export class DetallenotificacionPage implements OnInit {
     this.id = this.route.snapshot.params['id'];
     if (this.id){
       this.loadTodo();
-      
     }
   }
 
@@ -42,7 +41,6 @@ export class DetallenotificacionPage implements OnInit {
         });
       } 
     });
-
   }
 
   async saveTodo() {
@@ -51,7 +49,6 @@ export class DetallenotificacionPage implements OnInit {
       message: 'Saving....'
     });
     await loading.present();
- 
     if (this.id) {
       this.Service.updateTodo(this.notificacion , this.id).then(() => {
         loading.dismiss();

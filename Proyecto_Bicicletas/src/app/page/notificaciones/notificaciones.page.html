@@ -9,7 +9,7 @@
 
 <ion-content>
   <ion-item-sliding *ngFor="let notificacion of notificaciones">
-    <ion-item lines="inset" button [routerLink]="['/detallenotificacion', notificacion.id]">
+    <ion-item lines="inset" button [routerLink]="['/detallenotificacion', notificacion.id]" *ngIf="notificacion.idusuario==id">
       <ion-label>
         <h2><strong>{{ notificacion.tipo }}</strong></h2>
         <ion-grid>
