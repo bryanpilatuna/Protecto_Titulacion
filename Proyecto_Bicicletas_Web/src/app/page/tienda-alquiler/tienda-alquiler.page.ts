@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { datosAlquiler } from '../../model/alquiler.interface';
+import { DatosUsuario } from '../../model/user.interface';
+import { Notificaciones } from '../../model/notificaciones.interface';
 import {AlquileresService} from '../../services/alquileres.service';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
@@ -13,7 +15,16 @@ import { Router } from '@angular/router';
 export class TiendaAlquilerPage implements OnInit {
   tiendaid=null;
   alquileres:datosAlquiler[];
+  usuarios:DatosUsuario[];
   fechaactual: Date = new Date();
+
+  notificacion:Notificaciones={
+    respuesta:'',
+    visualizar:'',
+    fecha: this.fechaactual,
+    tipo:'Alquiler',
+    idusuario:''
+  }
 
   alquiler:datosAlquiler={
     idusuario:'',
@@ -24,9 +35,6 @@ export class TiendaAlquilerPage implements OnInit {
     fecha: this.fechaactual,
     aprobacion: false,
     anular:false
-    
-
-
   }
 
   constructor(private route: ActivatedRoute,
@@ -34,6 +42,11 @@ export class TiendaAlquilerPage implements OnInit {
     private router: Router) { 
       var user = firebase.auth().currentUser.uid;
       this.tiendaid = user;
+
+      this.alquilerservice.getUsuarios().subscribe((usuarios) =>{
+        this.usuarios = usuarios;
+
+      })
 
     }
 
@@ -50,9 +63,36 @@ export class TiendaAlquilerPage implements OnInit {
   this.alquilerservice.actualizarAlquiler(acalquiler,id).then(() => {
   this.router.navigate(['/tienda-alquiler',this.tiendaid]);
   
-});
+    });
 
     
+  }
+
+  aprobaralquiler(alquiler:datosAlquiler,id:string){
+    alquiler.aprobacion=true;
+    this.notificacion.respuesta='Tu Alquiler ha sido aprobado';
+    this.notificacion.visualizar='No';
+    this.notificacion.idusuario=alquiler.idusuario;
+    this.alquilerservice.addNotificacion(this.notificacion);
+
+    this.alquilerservice.actualizarAlquiler(alquiler,id).then(() => {
+      this.router.navigate(['/tienda-alquiler',this.tiendaid]);
+    });
+
+   
+  }
+
+  rechazaralquiler(alquiler:datosAlquiler,id:string){ 
+    this.notificacion.respuesta='Tu Alquiler ha sido rechazado';
+    this.notificacion.visualizar='No';
+    this.notificacion.idusuario=alquiler.idusuario;
+    this.alquilerservice.addNotificacion(this.notificacion);
+    alquiler.aprobacion=false;
+    alquiler.anular=true;
+    this.alquilerservice.actualizarAlquiler(alquiler,id).then(() => {
+      this.router.navigate(['/tienda-alquiler',this.tiendaid]);
+    });
+
   }
 
 }
