@@ -4,11 +4,16 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { datosDonacion } from '../model/donacion.interface';
 import { DatosUsuario } from '../model/user.interface';
+import { Notificaciones} from '../model/notificaciones.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DonacionesService {
+
+  private notificacionesCollection: AngularFirestoreCollection<Notificaciones>;
+  private notificacion: Observable<Notificaciones[]>;
+
   private usuariosCollection: AngularFirestoreCollection<DatosUsuario>;
   private usuario: Observable<DatosUsuario[]>;
 
@@ -34,6 +39,18 @@ export class DonacionesService {
 
       this.usuariosCollection = db.collection<DatosUsuario>('users');
       this.usuario = this.usuariosCollection.snapshotChanges().pipe(
+        map(actions => {
+          return actions.map(a => {
+            const data = a.payload.doc.data();
+            const id = a.payload.doc.id;
+          
+            return {id, ...data};
+          });
+        })
+      );
+
+      this.notificacionesCollection = db.collection<Notificaciones>('notificaciones');
+      this.notificacion = this.notificacionesCollection.snapshotChanges().pipe(
         map(actions => {
           return actions.map(a => {
             const data = a.payload.doc.data();
@@ -69,7 +86,9 @@ export class DonacionesService {
     return this.usuario;
   }
 
-   
+  addNotificacion(notificacion:Notificaciones){
+    return this.notificacionesCollection.add(notificacion);
+  } 
 
 
 

@@ -4,11 +4,15 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { datosAlquiler } from '../model/alquiler.interface';
 import { DatosUsuario} from '../model/user.interface';
+import { Notificaciones} from '../model/notificaciones.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AlquileresService {
+  private notificacionesCollection: AngularFirestoreCollection<Notificaciones>;
+  private notificacion: Observable<Notificaciones[]>;
+
   private usuariosCollection: AngularFirestoreCollection<DatosUsuario>;
   private usuario: Observable<DatosUsuario[]>;
 
@@ -33,6 +37,18 @@ export class AlquileresService {
 
     this.usuariosCollection = db.collection<DatosUsuario>('users');
     this.usuario = this.usuariosCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+        
+          return {id, ...data};
+        });
+      })
+    );
+
+    this.notificacionesCollection = db.collection<Notificaciones>('notificaciones');
+    this.notificacion = this.notificacionesCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
           const data = a.payload.doc.data();
@@ -72,4 +88,8 @@ export class AlquileresService {
    getUsuarios(){
     return this.usuario;
   }
+
+  addNotificacion(notificacion:Notificaciones){
+    return this.notificacionesCollection.add(notificacion);
+    }
 }
