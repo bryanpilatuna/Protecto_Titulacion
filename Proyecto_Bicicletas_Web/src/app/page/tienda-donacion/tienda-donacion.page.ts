@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { datosDonacion } from '../../model/donacion.interface';
-import { Notificaciones } from '../../model/notificaciones.interface';
+import { Notificacionesdonacion} from '../../model/notificaciones.interface';
 import {DonacionesService} from '../../services/donaciones.service';
 import { DatosUsuario } from '../../model/user.interface';
 import * as firebase from 'firebase';
@@ -31,12 +31,14 @@ export class TiendaDonacionPage implements OnInit {
 
   }
 
-  notificacion:Notificaciones={
+  notificacion:Notificacionesdonacion={
     respuesta:'',
     visualizar:'',
     fecha: this.fechaactual,
     tipo:'Donacion',
-    idusuario:''
+    idusuario:'',
+    iddonacion:'',
+    
   }
   constructor(private route: ActivatedRoute,
     private donacionesservice: DonacionesService,
@@ -73,6 +75,7 @@ export class TiendaDonacionPage implements OnInit {
     this.notificacion.respuesta='Tu Donación ha sido aprobado';
     this.notificacion.visualizar='No';
     this.notificacion.idusuario=donacion.iddonante;
+    this.notificacion.iddonacion=donacion.id;
     this.donacionesservice.addNotificacion(this.notificacion);
 
 
@@ -88,6 +91,7 @@ export class TiendaDonacionPage implements OnInit {
         this.notificacion.respuesta='Tu Donación ha sido rechazada';
         this.notificacion.visualizar='No';
         this.notificacion.idusuario=donacion.iddonante;
+        this.notificacion.iddonacion=donacion.id;
         this.donacionesservice.addNotificacion(this.notificacion);
         this.donacionesservice.actualizarDonacion(donacion,id).then(() => {
           this.router.navigate(['/tienda-donacion',this.tiendaid]);

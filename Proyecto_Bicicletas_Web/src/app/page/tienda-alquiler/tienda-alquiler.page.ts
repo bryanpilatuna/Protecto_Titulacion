@@ -23,7 +23,8 @@ export class TiendaAlquilerPage implements OnInit {
     visualizar:'',
     fecha: this.fechaactual,
     tipo:'Alquiler',
-    idusuario:''
+    idusuario:'',
+    idalquiler:'',
   }
 
   alquiler:datosAlquiler={
@@ -73,6 +74,7 @@ export class TiendaAlquilerPage implements OnInit {
     this.notificacion.respuesta='Tu Alquiler ha sido aprobado';
     this.notificacion.visualizar='No';
     this.notificacion.idusuario=alquiler.idusuario;
+    this.notificacion.idalquiler=alquiler.id;
     this.alquilerservice.addNotificacion(this.notificacion);
 
     this.alquilerservice.actualizarAlquiler(alquiler,id).then(() => {
@@ -86,6 +88,7 @@ export class TiendaAlquilerPage implements OnInit {
     this.notificacion.respuesta='Tu Alquiler ha sido rechazado';
     this.notificacion.visualizar='No';
     this.notificacion.idusuario=alquiler.idusuario;
+    this.notificacion.idalquiler=alquiler.id;
     this.alquilerservice.addNotificacion(this.notificacion);
     alquiler.aprobacion=false;
     alquiler.anular=true;
