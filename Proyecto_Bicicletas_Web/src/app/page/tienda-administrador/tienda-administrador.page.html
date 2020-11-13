@@ -10,6 +10,7 @@
         <thead>
           <tr>
             <th scope="col">#</th>
+            <th scope="col" style="text-align: center">Logo</th>
             <th scope="col">Nombre</th>
             <th scope="col">Correo</th>
             <th scope="col">Estado</th>
@@ -19,6 +20,7 @@
         <tbody>
           <tr *ngFor="let tienda of tiendas ;let indice=index">
             <th scope="row">{{indice+1}}</th>
+            <td><img [src]="tienda.logo" style="height:100px;display:block;margin:auto"/></td>
             <td>{{tienda.nombre}}</td>
             <td>{{tienda.correo}}</td>
             <td>{{tienda.estado}}</td>

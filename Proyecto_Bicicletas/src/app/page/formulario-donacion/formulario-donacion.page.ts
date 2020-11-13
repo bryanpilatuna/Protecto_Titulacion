@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {datosDonacion} from '../../model/donacion.interface';
 import {DonacionService} from '../../service/donacion.service';
+import { NotificaciontiendaService} from '../../service/notificaciontienda.service';
 import { datosTiendas } from '../../model/tienda.interface';
+import { NotificacionesTienda } from '../../model/notificaciones.interface';
 import { ActivatedRoute} from '@angular/router';
 import { NavController, LoadingController } from '@ionic/angular';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import * as firebase from 'firebase';
+
 
 @Component({
   selector: 'app-formulario-donacion',
@@ -16,7 +19,13 @@ export class FormularioDonacionPage implements OnInit {
   tiendas: datosTiendas[];
   donanteid= null;
   fechaactual: Date = new Date();
-
+  notificaciones:NotificacionesTienda= {
+    visualizar: 'No',
+    fecha: this.fechaactual,
+    tipo:'Donacion',
+    idusuario:'',
+    idtienda:''
+  };
   donacion: datosDonacion = {
     iddonante: '',
     fechadonacion: this.fechaactual,
@@ -34,6 +43,7 @@ export class FormularioDonacionPage implements OnInit {
     private donacionService: DonacionService, 
     private loadingController: LoadingController,
     public formBuilder: FormBuilder,
+    public Service:NotificaciontiendaService
      ) {
       var user = firebase.auth().currentUser.uid;
       this.donanteid = user;
@@ -91,10 +101,15 @@ export class FormularioDonacionPage implements OnInit {
     const loading = await this.loadingController.create({
       message: 'Guardando....'
     });
-
+    this.Service.addNotificacion(this.notificaciones);
    this.donacionService.addDonacion(this.donacion).then(() => {
-        loading.dismiss();
-        this.nav.navigateForward('/menu');
+        this.notificaciones.idusuario=this.donacion.iddonante;
+        this.notificaciones.idtienda=this.donacion.idtienda;
+        
+        this.Service.addNotificacion(this.notificaciones);
+          loading.dismiss();
+          this.nav.navigateForward('/menu');
+      
       });
     
 

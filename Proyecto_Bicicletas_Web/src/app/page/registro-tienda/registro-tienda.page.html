@@ -7,47 +7,54 @@
       <div class="mx-auto">
         
         <form [formGroup]="formGroup" (ngSubmit)="onRegister(nombre,direccion,telefono,email,password)">
-          <div class="form-group">
-            <label position="stacked"><strong>Nombre de la tienda</strong></label>
-            <input type="text" class="form-control" placeholder="Bici Quito" formControlName="nombreControl" #nombre>
+          <div class="form-group row">
+            <div class="col">
+              <label position="stacked"><strong>Nombre de la tienda</strong></label>
+              <input type="text" class="form-control" placeholder="Bici Quito" formControlName="nombreControl" #nombre>
+              <div class="validation-errors">
+                <p class="form-error"
+                  *ngIf="formGroup.get('nombreControl').hasError('required') && formGroup.get('nombreControl').touched">
+                  *Requerido
+                </p>
+                <p class="form-error"
+                  *ngIf="formGroup.get('nombreControl').hasError('minlength') && formGroup.get('nombreControl').touched">
+                  *Mínimo 3 caracteres 
+                </p>
+                <p class="form-error"
+                  *ngIf="formGroup.get('nombreControl').hasError('maxlength') && formGroup.get('nombreControl').touched">
+                  *Máximo 40 caracteres  
+                </p>
+                <p class="form-error"
+                  *ngIf="formGroup.get('nombreControl').hasError('pattern') && formGroup.get('nombreControl').touched">
+                  *El nombre debe tener solo letras, la primera letra con mayúscula y sin espacios
+                </p>
+              </div>
+            </div>
+            <div class="col">
+              <label position="stacked"><strong>Dirección</strong></label>
+              <input type="text" class="form-control" placeholder="Av. Las Americas N°212" formControlName="direccionControl" #direccion>
+              <div class="validation-errors">
+                <p class="form-error"
+                  *ngIf="formGroup.get('direccionControl').hasError('required') && formGroup.get('direccionControl').touched">
+                  *Requerido
+                </p>
+                <p class="form-error"
+                  *ngIf="formGroup.get('direccionControl').hasError('minlength') && formGroup.get('direccionControl').touched">
+                  *Mínimo 3 caracteres 
+                </p>
+                <p class="form-error"
+                  *ngIf="formGroup.get('direccionControl').hasError('maxlength') && formGroup.get('direccionControl').touched">
+                  *Máximo 40 caracteres  
+                </p>
+              </div>
+            </div>
+            
           </div>
-          <div class="validation-errors">
-            <p class="form-error"
-              *ngIf="formGroup.get('nombreControl').hasError('required') && formGroup.get('nombreControl').touched">
-              *Requerido
-            </p>
-            <p class="form-error"
-              *ngIf="formGroup.get('nombreControl').hasError('minlength') && formGroup.get('nombreControl').touched">
-              *Mínimo 3 caracteres 
-            </p>
-            <p class="form-error"
-              *ngIf="formGroup.get('nombreControl').hasError('maxlength') && formGroup.get('nombreControl').touched">
-              *Máximo 40 caracteres  
-            </p>
-            <p class="form-error"
-              *ngIf="formGroup.get('nombreControl').hasError('pattern') && formGroup.get('nombreControl').touched">
-              *El nombre debe tener solo letras, la primera letra con mayúscula y sin espacios
-            </p>
-          </div>
+        
+          
 
-          <div class="form-group">
-            <label position="stacked"><strong>Dirección</strong></label>
-            <input type="text" class="form-control" placeholder="Av. Las Americas N°212" formControlName="direccionControl" #direccion>
-          </div>
-          <div class="validation-errors">
-            <p class="form-error"
-              *ngIf="formGroup.get('direccionControl').hasError('required') && formGroup.get('direccionControl').touched">
-              *Requerido
-            </p>
-            <p class="form-error"
-              *ngIf="formGroup.get('direccionControl').hasError('minlength') && formGroup.get('direccionControl').touched">
-              *Mínimo 3 caracteres 
-            </p>
-            <p class="form-error"
-              *ngIf="formGroup.get('direccionControl').hasError('maxlength') && formGroup.get('direccionControl').touched">
-              *Máximo 40 caracteres  
-            </p>
-          </div>
+   
+          
 
           <div class="form-group">
             <label position="stacked"><strong>Teléfono</strong></label>

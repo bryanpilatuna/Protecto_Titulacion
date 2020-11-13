@@ -10,6 +10,7 @@
           <thead>
             <tr>
               <th scope="col">#</th>
+              <th scope="col" style="text-align: center">Foto</th>
               <th scope="col">Nombre</th>
               <th scope="col">Correo</th>
               <th scope="col">Estado</th>
@@ -19,6 +20,7 @@
           <tbody>
             <tr *ngFor="let usuario of usuarios ;let indice=index">
               <th scope="row">{{indice+1}}</th>
+              <td><img [src]="usuario.foto" style="height:100px;display:block;margin:auto"/></td>
               <td>{{usuario.nombres}}</td>
               <td>{{usuario.correo}}</td>
               <td>{{usuario.estado}}</td>
