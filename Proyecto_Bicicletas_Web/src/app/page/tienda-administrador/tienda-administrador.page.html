@@ -5,31 +5,42 @@
 <ion-content>
   <div class="container">
     <h5 align="center">Listador de Tiendas</h5> 
-    <div class="table-responsive">
-      <table class="table ">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col" style="text-align: center">Logo</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Correo</th>
-            <th scope="col">Estado</th>
-            <th scope="col">Editar</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let tienda of tiendas ;let indice=index">
-            <th scope="row">{{indice+1}}</th>
-            <td><img [src]="tienda.logo" style="height:100px;display:block;margin:auto"/></td>
-            <td>{{tienda.nombre}}</td>
-            <td>{{tienda.correo}}</td>
-            <td>{{tienda.estado}}</td>
-            <td><button type="button" class="btn btn-primary" [routerLink]="['/edit-tienda', tienda.uid]">Editar</button></td>
-          </tr>
-        
-          
-        </tbody>
-      </table>
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#Todos">Todos |</a></li>
+      <li><a data-toggle="tab" href="#Activos">| Activos |</a></li>
+      <li><a data-toggle="tab" href="#Inactivos">| Inactivos</a></li>
+    </ul>
+    <div class="tab-content">
+      <div id="Todos" class="tab-pane fade in active">
+        <div class="table-responsive">
+          <table class="table ">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col" style="text-align: center">Logo</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Editar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let tienda of tiendas ;let indice=index">
+                <th scope="row">{{indice+1}}</th>
+                <td><img [src]="tienda.logo" style="height:100px;display:block;margin:auto"/></td>
+                <td>{{tienda.nombre}}</td>
+                <td>{{tienda.correo}}</td>
+                <td>{{tienda.estado}}</td>
+                <td><button type="button" class="btn btn-primary" [routerLink]="['/edit-tienda', tienda.uid]">Editar</button></td>
+              </tr>
+            
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
+    
+
   </div>
 </ion-content>

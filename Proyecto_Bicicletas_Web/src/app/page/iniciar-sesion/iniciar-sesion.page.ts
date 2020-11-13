@@ -30,14 +30,14 @@ export class IniciarSesionPage implements OnInit {
   ngOnInit() {
   }
 
-  /*async presentPrompt() {
+  async contrase() {
     const alert = await this.alertCtrl.create({
       cssClass: 'my-custom-class',
       header: 'Recuperar contraseña',
       message: this.mensaje,
       inputs: [
         {
-          name: 'username',
+          name: 'correo',
           placeholder: 'Correo',
           type: 'email'
         }
@@ -46,14 +46,38 @@ export class IniciarSesionPage implements OnInit {
        {
           text: 'Enviar',
           handler: data => {
-            console.log(data.username);
+            console.log(data.correo);
+            this.onResetPassword(data.correo);
           }
         }
       ]
     });
 
     await alert.present();
-  }*/
+  }
+  async onResetPassword(corr:string) {
+    try {
+      if(corr){
+        await this.authSvc.resetPassword(corr);
+        this.mensaje="Se envió un mensaje de para la recuperación de contraseña al correo ingresado.";
+        this.mensajeerror();
+      }else{
+        this.mensaje="No se ingreso ningun correo.";
+        this.mensajeerror();
+      }
+     
+      
+    } catch (error) {
+      if(error['message']=="There is no user record corresponding to this identifier. The user may have been deleted."){
+        this.mensaje="El usuario ingresado no se encuentra registrado o fue eliminado.";
+        this.mensajeerror();
+      }
+    }
+  }
+
+  olvidar(){
+    this.contrase();
+  }
 
   async mensajeerror() {
     const alert = await this.alertCtrl.create({
@@ -71,6 +95,7 @@ export class IniciarSesionPage implements OnInit {
     });
 
     await alert.present();
+    this.mensaje="";
   }
  
   
