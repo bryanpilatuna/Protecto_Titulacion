@@ -9,6 +9,8 @@ import { ModalController } from '@ionic/angular';
 import {UsuarioService} from '../../service/usuario.service';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ModalAlquilerPage } from 'src/app/modal/modal-alquiler/modal-alquiler.page';
+import { NotificacionesTienda } from '../../model/notificaciones.interface';
+import { NotificaciontiendaService} from '../../service/notificaciontienda.service';
 
 @Component({
   selector: 'app-formulario-alquiler',
@@ -24,6 +26,13 @@ export class FormularioAlquilerPage implements OnInit {
   fechaactual: Date = new Date();
   idbicicleta=null;
   idtienda=null;
+  notificaciones:NotificacionesTienda= {
+    visualizar: 'No',
+    fecha: this.fechaactual,
+    tipo:'Alquiler',
+    idusuario:'',
+    idtienda:''
+  };
   
   //disableSelector:boolean;
 
@@ -43,7 +52,7 @@ export class FormularioAlquilerPage implements OnInit {
   desabilitarboton:boolean;
   formGroup: FormGroup; 
 
-  constructor(private route: ActivatedRoute, private nav: NavController, private UsuarioService: UsuarioService,
+  constructor(private route: ActivatedRoute, private nav: NavController, private UsuarioService: UsuarioService,public Service:NotificaciontiendaService,
     private alquilerService: AlquilerService, private loadingController: LoadingController,public modalController: ModalController,public formBuilder: FormBuilder) { 
       //this.disableSelector = false;
       this.desabilitarboton = true;
@@ -175,6 +184,9 @@ export class FormularioAlquilerPage implements OnInit {
 
    this.alquilerService.addAlquiler(this.alquiler).then(() => {
       this.alquilerService.updateBicicletas(this.bicicletas, this.idbicicleta).then(() => {});
+      this.notificaciones.idusuario=this.alquiler.idusuario;
+      this.notificaciones.idtienda=this.alquiler.idtienda;
+      this.Service.addNotificacion(this.notificaciones);
       loading.dismiss();
       this.nav.navigateForward('/menu'); 
     });
