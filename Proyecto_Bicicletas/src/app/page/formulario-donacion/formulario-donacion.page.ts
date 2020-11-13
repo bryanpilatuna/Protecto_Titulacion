@@ -101,8 +101,7 @@ export class FormularioDonacionPage implements OnInit {
     const loading = await this.loadingController.create({
       message: 'Guardando....'
     });
-    this.Service.addNotificacion(this.notificaciones);
-   this.donacionService.addDonacion(this.donacion).then(() => {
+      this.donacionService.addDonacion(this.donacion).then(() => {
         this.notificaciones.idusuario=this.donacion.iddonante;
         this.notificaciones.idtienda=this.donacion.idtienda;
         
