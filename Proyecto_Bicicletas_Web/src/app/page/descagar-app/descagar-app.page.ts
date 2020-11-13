@@ -10,7 +10,7 @@ export class DescagarAppPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
-this.pintarpestaña();
+    this.pintarpestaña();
  
     
   }
@@ -21,7 +21,7 @@ this.pintarpestaña();
 let url = window.location.href;
 
 /// Elementos de li
-const tabs = ["home", "mapa", "registro-cliente", "registro-tienda", "descagar-app"];
+const tabs = ["home", "mapa", "registro", "descagar-app"];
 
 tabs.forEach(e => {
     /// Agregar .php y ver si lo contiene en la url

@@ -106,7 +106,11 @@ const routes: Routes = [
   {
     path: 'tienda-alquiler/:id',
     loadChildren: () => import('./page/tienda-alquiler/tienda-alquiler.module').then( m => m.TiendaAlquilerPageModule)
+  },  {
+    path: 'registro',
+    loadChildren: () => import('./page/registro/registro.module').then( m => m.RegistroPageModule)
   },
+
 
 
   
