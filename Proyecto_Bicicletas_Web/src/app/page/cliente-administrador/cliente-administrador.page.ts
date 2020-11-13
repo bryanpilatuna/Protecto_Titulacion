@@ -18,4 +18,12 @@ export class ClienteAdministradorPage implements OnInit {
   ngOnInit() {
   }
 
+  buscar(busquedanombre){
+    this.Service.busquedauser(busquedanombre.value).subscribe((usuarios) =>{
+      this.usuarios = usuarios;
+      console.log(usuarios);
+
+    })
+  }
+
 }

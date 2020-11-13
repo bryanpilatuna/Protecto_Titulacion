@@ -18,11 +18,12 @@ export class TiendaService {
   $getObjeto= this.objeto.asObservable();
   private tiendasCollection: AngularFirestoreCollection<Tienda>;
   private tiendas: Observable<Tienda[]>;
+
   public photoURL = null;
   private filePath: string;
 
-  constructor(db:AngularFirestore, private storage: AngularFireStorage ,public afDB: AngularFireDatabase) { 
-    this.tiendasCollection=db.collection<Tienda>('tiendas');
+  constructor(public db:AngularFirestore, private storage: AngularFireStorage ,public afDB: AngularFireDatabase) { 
+    this.tiendasCollection=this.db.collection<Tienda>('tiendas');
     this.tiendas=this.tiendasCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
@@ -34,6 +35,9 @@ export class TiendaService {
       })
     );
   }
+
+  
+
   getTiendas(){
 
     return this.tiendas;

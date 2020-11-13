@@ -5,6 +5,15 @@
 <ion-content>
     <div class="container">
       <h5 align="center">Listador de Clientes</h5> 
+      <div class="row">
+        <form>
+          <div class="form-group">
+            <label>Ingresar nombre del usuario</label>
+            <input type="text" class="form-control" placeholder="Nombre" #busquedanombre >
+          </div>
+          <button type="button" class="btn btn-primary" (click)="buscar(busquedanombre)">Buscar</button>
+        </form>
+      </div>
       <div class="table-responsive">
         <table class="table ">
           <thead>

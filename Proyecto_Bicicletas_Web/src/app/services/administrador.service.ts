@@ -18,10 +18,14 @@ export class AdministradorService {
   private tiendas: Observable<Tienda[]>;
   private usuariosCollection: AngularFirestoreCollection<DatosUsuario>;
   private usuarios: Observable<DatosUsuario[]>;
+  private usuariosCollection2: AngularFirestoreCollection<DatosUsuario>;
+  private usuarios2: Observable<DatosUsuario[]>;
   private administradoresCollection: AngularFirestoreCollection<DatosAdministrador>;
+  private tiendasCollection2: AngularFirestoreCollection<Tienda>;
+  private tiendas2: Observable<Tienda[]>;
   private administradores: Observable<DatosAdministrador[]>;
-  constructor(db:AngularFirestore,private storage: AngularFireStorage) {
-    this.tiendasCollection = db.collection<Tienda>('tiendas');
+  constructor(public db:AngularFirestore,private storage: AngularFireStorage) {
+    this.tiendasCollection = this.db.collection<Tienda>('tiendas', ref => ref.orderBy('estado'));
     this.tiendas = this.tiendasCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
@@ -32,7 +36,7 @@ export class AdministradorService {
       })
     );
 
-    this.usuariosCollection = db.collection<DatosUsuario>('users');
+    this.usuariosCollection = this.db.collection<DatosUsuario>('users', ref => ref.orderBy('estado'));
     this.usuarios = this.usuariosCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
@@ -43,7 +47,7 @@ export class AdministradorService {
       })
     );
 
-    this.administradoresCollection = db.collection<DatosAdministrador>('administrador');
+    this.administradoresCollection = this.db.collection<DatosAdministrador>('administrador');
     this.administradores = this.administradoresCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
@@ -55,6 +59,35 @@ export class AdministradorService {
     );
 
    }
+
+   busqueda(nombre:string){
+    this.tiendasCollection2=this.db.collection<Tienda>('tiendas', ref => ref.orderBy('nombre').startAt(nombre).endAt(nombre+'\uf8ff'));
+    this.tiendas2=this.tiendasCollection2.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+        
+          return {id, ...data};
+        });
+      })
+    );
+    return this.tiendas2;
+  }
+
+  busquedauser(nombre:string){
+    this.usuariosCollection2=this.db.collection<DatosUsuario>('users', ref => ref.orderBy('correo').startAt(nombre).endAt(nombre+'\uf8ff'));
+    this.usuarios2 = this.usuariosCollection2.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return {id, ...data};
+        });
+      })
+    );
+    return this.usuarios2;
+  }
 
   getTiendas(){
     return this.tiendas;
