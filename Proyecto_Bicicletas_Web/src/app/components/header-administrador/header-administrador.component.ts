@@ -15,6 +15,7 @@ export class HeaderAdministradorComponent implements OnInit {
     this.router.navigate(['menu-administrador']);
   }
 
+
   rediperfil(){
     this.router.navigate(['perfil-administrador']);
   }
