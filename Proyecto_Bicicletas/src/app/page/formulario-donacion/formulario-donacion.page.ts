@@ -66,6 +66,13 @@ export class FormularioDonacionPage implements OnInit {
 
     this.donacionService.getTiendas().subscribe((tiendas) =>{
       this.tiendas = tiendas;
+      for(let i in this.tiendas){
+
+        if(this.tiendas[i].estado=="Inactivo"){
+          var l = this.tiendas.indexOf( this.tiendas[i] );
+          this.tiendas.splice(l,1); 
+        }
+      }
     })
     
   }
