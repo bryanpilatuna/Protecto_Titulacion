@@ -95,7 +95,7 @@ export class FormularioDonacionPage implements OnInit {
     const descripcionControl = new FormControl('', Validators.compose([
       Validators.required,
       Validators.minLength(5),
-      Validators.maxLength(30)
+      Validators.maxLength(50)
     ]));
     
     this.formGroup = this.formBuilder.group({fechaControl,tiendaControl,estadoControl,descripcionControl });

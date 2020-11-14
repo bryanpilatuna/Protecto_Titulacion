@@ -12,9 +12,10 @@
   <div class="row" style="display: flex;justify-content: center;">
     <img width="40%" src="../../../assets/formulario-donacion/donar.png"/>
   </div>
-  <form [formGroup]="formGroup" *ngIf="donacion" (ngSubmit)="crearDonacion()" style="border: white 8px ridge;">
+  <form [formGroup]="formGroup" *ngIf="donacion" (ngSubmit)="crearDonacion()">
+    
     <ion-item>
-      <ion-label position="stacked">Seleccione la fecha para la donación</ion-label>
+      <ion-label position="stacked">Seleccione fecha de donación</ion-label>
       <ion-datetime displayFormat="DD MMMM YYYY" 
       placeholder="Dia Mes Año" 
       (ionChange)="cambiofecha($event)"
@@ -26,6 +27,7 @@
       >
       </ion-datetime>
     </ion-item>
+    
     <div class="validation-errors">
       <p class="form-error"
         *ngIf="formGroup.get('fechaControl').hasError('required') && formGroup.get('fechaControl').touched">
@@ -33,7 +35,7 @@
       </p>
     </div>
     <ion-item >
-      <ion-label>Seleccione la Tienda</ion-label>
+      <ion-label>Seleccionar tienda</ion-label>
       <ion-select [(ngModel)]="donacion.idtienda" ok-text="Seleccionar" 
       cancel-text="Cancelar" formControlName="tiendaControl" >
         <ion-select-option *ngFor="let tienda of tiendas" [value]="tienda.id"> 

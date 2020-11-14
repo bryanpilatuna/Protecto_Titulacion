@@ -19,10 +19,10 @@
           <input type="file" name="fileSubir" (change)="subirImagen($event)" style="display:none;">
         </label>
     </div>
-      <div class="row">
+      <ion-item>
         <ion-label position="stacked"><strong>Nombre</strong></ion-label>
         <ion-input formControlName="nombreControl" type="text" #nombre [(ngModel)]="usuario.nombres" placeholder="Bryan"></ion-input>
-      </div>
+      </ion-item>
       <div class="validation-errors">
         <p class="form-error"
           *ngIf="formGroup.get('nombreControl').hasError('required') && formGroup.get('nombreControl').touched">
@@ -41,10 +41,10 @@
           *El nombre debe tener solo letras, la primera letra con mayúscula y sin espacios
         </p>
       </div>
-      <div class="row">
+      <ion-item>
         <ion-label position="stacked"><strong>Apellido</strong></ion-label>
         <ion-input formControlName="apellidoControl" #apellido type="text" [(ngModel)]="usuario.apellidos" placeholder="Molina"></ion-input>
-      </div>
+      </ion-item>
       <div class="validation-errors">
         <p class="form-error"
           *ngIf="formGroup.get('apellidoControl').hasError('required') && formGroup.get('apellidoControl').touched">
@@ -64,10 +64,10 @@
         </p>
       </div>
   
-      <div class="row">
+      <ion-item>
         <ion-label position="stacked"><strong>Cédula</strong></ion-label>
         <ion-input formControlName="cedulaControl" #cedula type="text" [(ngModel)]="usuario.cedula" placeholder="0400887599"></ion-input>
-      </div>
+      </ion-item>
       <div class="validation-errors">
         <p class="form-error"
           *ngIf="formGroup.get('cedulaControl').hasError('required') && formGroup.get('cedulaControl').touched">
@@ -87,10 +87,10 @@
         </p>
       </div>
 
-      <div class="row">
+      <ion-item>
         <ion-label position="stacked"><strong>Teléfono</strong></ion-label>
         <ion-input formControlName="telefonoControl"#telefono  type="text" [(ngModel)]="usuario.telefono" placeholder="0999999999"></ion-input>
-      </div>
+      </ion-item>
       <div class="validation-errors">
         <p class="form-error"
           *ngIf="formGroup.get('telefonoControl').hasError('required') && formGroup.get('telefonoControl').touched">
@@ -111,10 +111,10 @@
       </div>
 
 
-      <div class="row">
+      <ion-item>
         <ion-label position="stacked"><strong>Correo electrónico</strong></ion-label>
         <ion-input formControlName="emailControl" #email type="email" [(ngModel)]="usuario.correo" placeholder="abc@gmail.com" disabled="true"></ion-input>
-      </div>
+      </ion-item>
       <div class="validation-errors">
         <p class="form-error"
           *ngIf="formGroup.get('emailControl').hasError('required') && formGroup.get('emailControl').touched">

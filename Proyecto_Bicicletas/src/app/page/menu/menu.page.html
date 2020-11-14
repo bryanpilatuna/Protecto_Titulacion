@@ -9,61 +9,71 @@
 </ion-header>
 
 <ion-content>
-  <ion-row>
-    <ion-col>
-      <button  [routerLink]="['/profile', id]" block>
-        <img src="../../../assets/menu/perfil.png">
-        
-      </button>
-      <p style="text-align: center">Perfil</p>
-    </ion-col>
-    <ion-col >
-      <button  [routerLink]="['/formulario-donacion', id]" block>
-        <img src="../../../assets/menu/donar.png">
-        
-      </button>
-      <br/>
-      <p style="text-align: center">Donar Bici</p>
-
-    </ion-col>
-    <ion-col>
-      <button  [routerLink]="['/formulario-alquiler', id]" block>
-        <img src="../../../assets/menu/alquilar.png">
-        
-      </button>
-      <p style="text-align: center">Alquilar Bicicleta</p>
-    </ion-col>
-    
-    
-    
-  </ion-row>
-  <ion-row>
-    
-    <ion-col>
-      <button  [routerLink]="['/alquiler-donacion']" block>
-        <img src="../../../assets/menu/verificar-alquileres.png">
-        
-      </button>
-      <p style="text-align: center">Mis Alquileres</p>
-    </ion-col>
-    <ion-col>
-      <button  [routerLink]="['/ubicar-tienda',id]" block>
-        <img src="../../../assets/menu/ubicacion-tienda.jpg">
-        
-      </button>
-      <p style="text-align: center">Buscar Tienda</p>
-    </ion-col>
-
-    <ion-col>
-      <button  (click)="salir()" block>
-        <img src="../../../assets/menu/salir.png">
-        
-      </button>
-      <p style="text-align: center">Salir</p>
-    </ion-col>
-       
-
-  </ion-row>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button  [routerLink]="['/profile', id]" block>
+          <img src="../../../assets/menu/perfil.png">
+        </button>
+      </ion-col>
+      <ion-col>
+        <button  [routerLink]="['/alquiler-donacion']" block>
+          <img src="../../../assets/menu/verificar-alquileres.png">          
+        </button>
+      </ion-col>
+      
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        Perfil
+      </ion-col>
+      <ion-col>
+        Mis Actividades
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col >
+        <button  [routerLink]="['/formulario-donacion', id]" block>
+          <img src="../../../assets/menu/donar.png">
+        </button>
+        <br/>
+      </ion-col>
   
-  
+      <ion-col>
+        <button  [routerLink]="['/formulario-alquiler', id]" block>
+          <img src="../../../assets/menu/alquilar.png">
+        </button>
+      </ion-col>
+      
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        Donación
+      </ion-col>
+      <ion-col>
+        Alquiler
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button  [routerLink]="['/ubicar-tienda',id]" block>
+          <img src="../../../assets/menu/ubicacion-tienda.png">
+        </button>
+      </ion-col>
+      <ion-col>
+        <button  (click)="salir()" block>
+          <img src="../../../assets/menu/salir.png">
+        </button>
+        
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        Tiendas
+      </ion-col>
+      <ion-col>
+        Salir
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
