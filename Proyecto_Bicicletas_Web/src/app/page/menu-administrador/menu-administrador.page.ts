@@ -10,8 +10,9 @@ export class MenuAdministradorPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
-
+  
   
 
 }
