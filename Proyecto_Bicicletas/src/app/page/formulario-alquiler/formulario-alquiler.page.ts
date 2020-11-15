@@ -33,6 +33,8 @@ export class FormularioAlquilerPage implements OnInit {
     idusuario:'',
     idtienda:''
   };
+  hora:any;
+  minutos:any;
   
   //disableSelector:boolean;
 
@@ -45,7 +47,9 @@ export class FormularioAlquilerPage implements OnInit {
     bicicleta: '',
     fecha: this.fechaactual,
     aprobacion: false,
-    anular: false
+    anular: false,
+    horaalquiler:'',
+    horadevolucion:''
    
 
   }
@@ -57,7 +61,8 @@ export class FormularioAlquilerPage implements OnInit {
       //this.disableSelector = false;
       this.desabilitarboton = true;
       this.crearvalidaciones();
-      
+    
+     
     }
 
   ngOnInit() {
@@ -70,18 +75,7 @@ export class FormularioAlquilerPage implements OnInit {
       this.loadTodo();
     }
     
-      this.alquiler={
-
-        idusuario :this.usuarioid,
-        idtienda: '',
-        fechadevolucion:this.fechaactual,
-        fechaalquiler: this.fechaactual,
-        bicicleta: '',
-        fecha: this.fechaactual,
-        aprobacion: false,
-        anular: false
-       
-      };   
+    this.alquiler.idusuario=this.usuarioid;
 
     this.alquilerService.getTiendas().subscribe((tiendas) =>{
     
@@ -113,6 +107,7 @@ export class FormularioAlquilerPage implements OnInit {
     })
   }
 
+
   //Crear validaciones para el form 
   crearvalidaciones(){
     const fechaAlquiler = new FormControl('', Validators.compose([
@@ -124,9 +119,15 @@ export class FormularioAlquilerPage implements OnInit {
     const tindaSeleccion = new FormControl('', Validators.compose([
       Validators.required,
     ]));
+    const horaAlquiler = new FormControl('', Validators.compose([
+      Validators.required,
+    ]));
+    const horaDonacion = new FormControl('', Validators.compose([
+      Validators.required,
+    ]));
   
     
-    this.formGroup = this.formBuilder.group({fechaAlquiler,fechaDevolucion,tindaSeleccion});
+    this.formGroup = this.formBuilder.group({fechaAlquiler,fechaDevolucion,tindaSeleccion,horaAlquiler,horaDonacion});
   }
 
   async onSelectChange(){
@@ -194,6 +195,23 @@ export class FormularioAlquilerPage implements OnInit {
 
   cambiofecha(event){
     this.alquiler.fechaalquiler= new Date(event.detail.value);
+  }
+
+  seleccionarhora(event){
+    
+    this.hora= new Date(event.detail.value).getHours();
+    this.minutos= new Date(event.detail.value).getMinutes();
+    var horaalquiler= this.hora+':'+this.minutos;
+    this.alquiler.horaalquiler=horaalquiler;
+  }
+
+  seleccionarhoradev(event){
+    
+    this.hora= new Date(event.detail.value).getHours();
+    this.minutos= new Date(event.detail.value).getMinutes();
+    var horadev= this.hora+':'+this.minutos;
+    this.alquiler.horadevolucion=horadev;
+
   }
 
   cambiofecha2(event){

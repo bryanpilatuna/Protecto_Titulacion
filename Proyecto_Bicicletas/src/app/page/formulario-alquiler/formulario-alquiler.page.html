@@ -26,6 +26,12 @@
       >
       </ion-datetime>
     </ion-item>
+    
+    <ion-item>
+      <ion-label position="stacked">Hora alquiler</ion-label>
+      <ion-datetime cancelText="Cancelar"
+      doneText="Seleccionar" formControlName="horaAlquiler" min="{{fechaactual | date: 'HH:mm'}}" displayFormat="HH:mm" placeholder="Hora Minutos" (ionChange)="seleccionarhora($event)"></ion-datetime>
+    </ion-item>
 
     <ion-item>
       <ion-label position="stacked">Seleccione la fecha de devolución</ion-label>
@@ -40,6 +46,11 @@
       >
       </ion-datetime>
     </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Hora devolución</ion-label>
+      <ion-datetime  cancelText="Cancelar"
+      doneText="Seleccionar" formControlName="horaDonacion" displayFormat="HH:mm" placeholder="Hora Minutos" (ionChange)="seleccionarhoradev($event)"></ion-datetime>
+    </ion-item>
 
     <ion-item  *ngIf="alquiler">
       <ion-label>Seleccione la  Tienda</ion-label>
@@ -53,11 +64,18 @@
         </ion-select-option>
       </ion-select>
     </ion-item>   
+    <div class="validation-errors">
+      <p class="form-error"
+        *ngIf="formGroup.get('tindaSeleccion').hasError('required') && formGroup.get('tindaSeleccion').touched">
+        *Requerido
+      </p>
+    
+    </div>
 
 
     <!--<ion-button disabled={{desabilitarboton}} expand="full" (click)="abrirmodal()">Seleccione la Bicicleta</ion-button>-->
 
-    <ion-button [disabled]="!formGroup.valid" expand="full" (click)="crearAlquiler()" color="success">Realizar Alquiler</ion-button>
+    <ion-button [disabled]="!formGroup.valid" expand="full" (click)="crearAlquiler()">Realizar Alquiler</ion-button>
  
   </form>
     

@@ -118,6 +118,14 @@
       </ion-select>
     </ion-item>
 
+    <div class="validation-errors">
+      <p class="form-error"
+        *ngIf="formGroup.get('modoControl').hasError('required') && formGroup.get('modoControl').touched">
+        *Requerido
+      </p>
+    
+    </div>
+
     <ion-item id="dir" style="display: none;">
       <ion-label position="stacked">Dirección</ion-label>
       <ion-input id="intro" required type="text" placeholder="Dirección" [(ngModel)]="donacion.direccion"
