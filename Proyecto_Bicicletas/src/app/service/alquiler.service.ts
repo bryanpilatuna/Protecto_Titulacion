@@ -61,6 +61,7 @@ export class AlquilerService {
         return actions.map(a => {
           const data = a.payload.doc.data();
           const id = a.payload.doc.id;
+          
         
           return {id, ...data};
         });
@@ -135,6 +136,13 @@ export class AlquilerService {
     );
    
     return this.alquilerid;
+  }
+
+  formtDate(date: Date): string {
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
   }
 
 

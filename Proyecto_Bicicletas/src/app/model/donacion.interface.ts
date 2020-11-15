@@ -1,8 +1,8 @@
 export interface datosDonacion{
     id?: string;
     iddonante: string;
-    fechadonacion: Date;
-    fechasolicitud:Date;
+    fechadonacion: any;
+    fechasolicitud:any;
     estado: string;
     descripcion: string;
     aprobacion: boolean;  

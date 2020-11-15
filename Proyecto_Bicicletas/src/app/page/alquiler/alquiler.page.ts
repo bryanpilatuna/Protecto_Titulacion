@@ -12,6 +12,7 @@ import { NavController, LoadingController } from '@ionic/angular';
 
 
 
+
 @Component({
   selector: 'app-alquiler',
   templateUrl: './alquiler.page.html',
@@ -24,6 +25,9 @@ export class AlquilerPage implements OnInit {
   idalquiler= null;
   idbici=null;
   bicicleta:datosBicicleta;
+  fecha:any;
+  fechaalquiler:any;
+  fechadevolucion:any;
   constructor(private Servicio:AlquilerService,
     private route: ActivatedRoute,
     private loadingController: LoadingController,
@@ -36,6 +40,17 @@ export class AlquilerPage implements OnInit {
     
       this.Servicio.getAlquileres(this.idalquiler).subscribe((alquileres) =>{
         this.alquileres = alquileres;
+        this.fecha= new Date(this.alquileres.fecha['seconds']*1000);
+        this.fechaalquiler= new Date(this.alquileres.fechaalquiler['seconds']*1000);
+        this.fechadevolucion= new Date(this.alquileres.fechadevolucion['seconds']*1000);
+
+        
+        
+        //var uno = this.Servicio.formtDate(this.alquileres.fecha);
+        //console.log(this.Servicio.formtDate(this.alquileres.fecha));
+      
+     
+      
         this.idbici=this.alquileres.bicicleta;
         this.Servicio.getBicicleta(this.idbici).subscribe((bicicletas) =>{
           this.bicicleta = bicicletas;
@@ -48,6 +63,8 @@ export class AlquilerPage implements OnInit {
         this.tiendas = tiendas;
 
       })
+      
+
       
    }
 

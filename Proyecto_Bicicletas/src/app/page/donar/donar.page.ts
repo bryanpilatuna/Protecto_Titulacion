@@ -13,6 +13,8 @@ export class DonarPage implements OnInit {
   tiendas:  datosTiendas[];
   donaciones: datosDonacion;
   iddonar=null;
+  fecha:any;
+  fechadonar:any;
   constructor(private route: ActivatedRoute,private Servicio:DonacionService,
     private loadingController: LoadingController,
     private nav: NavController) { }
@@ -21,6 +23,8 @@ export class DonarPage implements OnInit {
     this.iddonar=this.route.snapshot.params['id'];
     this.Servicio.getDonacionid(this.iddonar).subscribe((donaciones) =>{
       this.donaciones = donaciones;
+      this.fecha= new Date(this.donaciones.fechasolicitud['seconds']*1000);
+      this.fechadonar= new Date(this.donaciones.fechadonacion['seconds']*1000);
 
     })
     this.Servicio.getTiendas().subscribe((tiendas) =>{
