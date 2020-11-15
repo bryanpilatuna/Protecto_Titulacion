@@ -29,13 +29,14 @@
   
     <ion-item >
       <ion-label>Fecha alquiler:</ion-label>
-      <ion-datetime value="{{alquileres.fechaalquiler.toMillis() | date:'yyyy/MM/dd'}}" readonly="readonly"></ion-datetime>
+      <ion-label>{{alquileres.fechaalquiler.toMillis() | date:'yyyy/MM/dd'}}</ion-label>
+      <!--<ion-datetime value="{{alquileres.fechaalquiler.toMillis() | date:'yyyy/MM/dd'}}" readonly="readonly"></ion-datetime>-->
     </ion-item>
-    <ion-item >
+    <!--<ion-item >
       <ion-label>Fecha Devolución:</ion-label>
       <ion-datetime value="{{alquileres.fechadevolucion.toMillis() | date:'yyyy/MM/dd'}}" readonly="readonly"></ion-datetime>
-    </ion-item>
-    <ion-button *ngIf="alquileres.anular==false" expand="full" (click)="cancelaralquilar()">Anular</ion-button>
+    </ion-item>-->
+    <ion-button *ngIf="alquileres.anular==false" expand="full" (click)="cancelaralquilar()" color="danger">Anular</ion-button>
 
   </ion-list>
 

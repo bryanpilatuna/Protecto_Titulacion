@@ -4,6 +4,7 @@ import * as firebase from 'firebase';
 import { datosAlquiler } from 'src/app/model/alquiler.interface';
 import { datosTiendas } from 'src/app/model/tienda.interface';
 import { AlquilerService } from 'src/app/service/alquiler.service';
+import { datosBicicleta } from 'src/app/model/bicicleta.interface';
 
 @Component({
   selector: 'app-alquileres',
@@ -15,6 +16,7 @@ export class AlquileresPage implements OnInit {
   alquiler: datosAlquiler[];
   id: any;
   vacio:boolean=true;
+  bicicleta:datosBicicleta[];
   constructor(private Servicio:AlquilerService,
     private route: ActivatedRoute) { 
     this.id = firebase.auth().currentUser.uid;
@@ -31,8 +33,12 @@ export class AlquileresPage implements OnInit {
       this.tiendas = tiendas;
    
     })
+    this.Servicio.getTodoBicicletas().subscribe((bicicletas) =>{
+      this.bicicleta = bicicletas;
+      console.log(this.bicicleta);
+    })
 
-    }
+  }
 
   ngOnInit() {
     

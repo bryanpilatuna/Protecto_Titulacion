@@ -108,6 +108,9 @@ export class AlquilerService {
     return this.Bicicleta2Collection.doc<datosBicicleta>(id).valueChanges();
  
   }
+  getTodoBicicletas(){
+    return this.bicicleta2;
+  }
 
   updateBicicletas(todo:datosBicicleta, id: string){
     return this.Bicicleta2Collection.doc(id).update(todo);;
