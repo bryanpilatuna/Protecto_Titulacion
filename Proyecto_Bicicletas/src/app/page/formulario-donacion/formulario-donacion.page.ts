@@ -37,7 +37,7 @@ export class FormularioDonacionPage implements OnInit {
     anular:false,
     modo:'',
     direccion:'',
-    telefono:''
+
   };
   formGroup: FormGroup; 
   
@@ -109,8 +109,6 @@ export class FormularioDonacionPage implements OnInit {
 
     ]));
     const direccionControl = new FormControl('', Validators.compose([
-      Validators.required,
-      Validators.minLength(5),
       Validators.maxLength(50)
     ]));
     
