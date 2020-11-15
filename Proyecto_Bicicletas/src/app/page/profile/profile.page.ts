@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { DatosUsuario } from '../../model/user.interface';
 import { UsuarioService } from '../../service/usuario.service';
+import { AuthService } from '../../service/auth.service';
 import { ActivatedRoute} from '@angular/router';
 import { NavController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-profile',
@@ -25,6 +27,7 @@ export class ProfilePage implements OnInit {
   }
   public image: any;
   usuarioId= null;
+  mensaje:string;
   
   constructor(
     private route: ActivatedRoute, 
@@ -32,7 +35,9 @@ export class ProfilePage implements OnInit {
     private nav: NavController, 
     private usuarioService: UsuarioService, 
     private loadingController: LoadingController,
-    public formBuilder: FormBuilder
+    private Service: AuthService,
+    public formBuilder: FormBuilder,
+    private alertCtrl: AlertController,
     ) 
   { 
     this.crearvalidaciones();
@@ -47,16 +52,39 @@ export class ProfilePage implements OnInit {
     } 
   }
 
+  //Mostrar mensaje de alerta
+  async mensajeerror() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Mensaje',
+      message: this.mensaje,
+      buttons: [
+       {
+          text: 'Aceptar',
+          handler: () => {
+            console.log('Confirm Ok');
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  async cambiarcontra(){
+
+    this.Service.resetPassword(this.usuario.correo).then(() => {
+      this.mensaje="Se envió un correo para cambiar la contraseña. ";
+      this.mensajeerror();
+    });
+  }
+
   async subirImagen(event: any): Promise<void> {
     this.image = event.target.files[0];
-
     this.usuarioService.updateImagen(this.usuario,this.usuarioId,this.image);
     this.cargarUsuario();
-    
   }
 
   crearvalidaciones(){
-
     const nombreControl = new FormControl('', Validators.compose([
       Validators.required,
       Validators.minLength(3),
@@ -91,10 +119,8 @@ export class ProfilePage implements OnInit {
         Validators.minLength(10),
         Validators.maxLength(40)
 
-    ]));
-    
+    ])); 
     this.formGroup = this.formBuilder.group({nombreControl,apellidoControl,cedulaControl,telefonoControl,emailControl });
-    
   }
 
   //Cargar usuario
@@ -103,7 +129,6 @@ export class ProfilePage implements OnInit {
       message: 'Cargando....'
     });
     await loading.present();
-
     this.usuarioService.getUsuario(this.usuarioId).subscribe(usuario => {
       loading.dismiss();;
       this.usuario = usuario;
@@ -123,17 +148,6 @@ export class ProfilePage implements OnInit {
         this.nav.navigateForward('menu');
         
       });
-    } else {
-      this.usuarioService.addUsuario(this.usuario).then(() => {
-        loading.dismiss();
-        this.router.navigate(['menu']);
-      });
-    }
+    } 
   }
-
-  
-  
-
-
-
 }

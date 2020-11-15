@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {datosDonacion} from '../../model/donacion.interface';
-import {DonacionService} from '../../service/donacion.service';
+import { datosDonacion } from '../../model/donacion.interface';
+import { DonacionService } from '../../service/donacion.service';
 import { NotificaciontiendaService} from '../../service/notificaciontienda.service';
 import { datosTiendas } from '../../model/tienda.interface';
 import { NotificacionesTienda } from '../../model/notificaciones.interface';
@@ -29,11 +29,15 @@ export class FormularioDonacionPage implements OnInit {
   donacion: datosDonacion = {
     iddonante: '',
     fechadonacion: this.fechaactual,
+    fechasolicitud:this.fechaactual,
     estado: '',
     descripcion: '',
     aprobacion: false,
     idtienda: '',
-    anular:false
+    anular:false,
+    modo:'',
+    direccion:'',
+    telefono:''
   };
   formGroup: FormGroup; 
   
@@ -53,17 +57,8 @@ export class FormularioDonacionPage implements OnInit {
 
 
   ngOnInit() {
-  
-    this.donacion= {
-    iddonante: this.donanteid,
-    fechadonacion: this.fechaactual,
-    estado: '',
-    descripcion: '',
-    aprobacion: false,
-    idtienda: '',
-    anular:false
-     };
-
+    this.donacion.iddonante=this.donanteid;
+    this.donacion.fechadonacion=this.fechaactual;
     this.donacionService.getTiendas().subscribe((tiendas) =>{
       this.tiendas = tiendas;
       for(let i in this.tiendas){
@@ -74,6 +69,17 @@ export class FormularioDonacionPage implements OnInit {
         }
       }
     })
+    
+  }
+
+  onSelectChange(){
+    console.log(this.donacion.modo);
+    var element = <HTMLInputElement> document.getElementById("dir");
+    if(this.donacion.modo=="Retirar"){
+      element.style.display = 'inline';
+    }else{
+      element.style.display = 'none';
+    }
     
   }
 
@@ -97,8 +103,18 @@ export class FormularioDonacionPage implements OnInit {
       Validators.minLength(5),
       Validators.maxLength(50)
     ]));
+
+    const modoControl = new FormControl('', Validators.compose([
+      Validators.required,
+
+    ]));
+    const direccionControl = new FormControl('', Validators.compose([
+      Validators.required,
+      Validators.minLength(5),
+      Validators.maxLength(50)
+    ]));
     
-    this.formGroup = this.formBuilder.group({fechaControl,tiendaControl,estadoControl,descripcionControl });
+    this.formGroup = this.formBuilder.group({fechaControl,tiendaControl,estadoControl,descripcionControl, modoControl,direccionControl });
   }
 
 
@@ -123,15 +139,7 @@ export class FormularioDonacionPage implements OnInit {
 
   //Cambio de fecha
   cambiofecha(event){
-    this.donacion= {
-      iddonante: this.donanteid,
-      fechadonacion: new Date(event.detail.value),
-      estado: '',
-      descripcion: '',
-      aprobacion: false,
-      idtienda: '',
-      anular:false
-      };   
+    this.donacion.fechadonacion=new Date(event.detail.value);  
   }
 
   //Cancelar donacion
