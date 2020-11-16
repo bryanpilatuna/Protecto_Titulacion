@@ -33,7 +33,7 @@
       <ion-input required type="text" placeholder="Nombre" [(ngModel)]="donaciones.estado" readonly="readonly"></ion-input>
     </ion-item>
 
-    <ion-button *ngIf="donaciones.anular==false" expand="full" (click)="cancelaralquilar()">Anular</ion-button>
+    <ion-button *ngIf="donaciones.anular==false" expand="full" (click)="cancelar()"  color="danger">Anular</ion-button>
   
    
 

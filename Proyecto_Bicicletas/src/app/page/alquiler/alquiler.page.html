@@ -36,7 +36,7 @@
       <ion-label>Fecha Devolución:</ion-label>
       <ion-datetime value="{{fechadevolucion | date:'yyyy/MM/dd'}}" readonly="readonly"></ion-datetime>
     </ion-item>
-    <ion-button *ngIf="alquileres.anular==false" expand="full" (click)="cancelaralquilar()" color="danger">Anular</ion-button>
+    <ion-button *ngIf="alquileres.anular==false" expand="full" (click)="cancelar()" color="danger">Anular</ion-button>
 
   </ion-list>
 

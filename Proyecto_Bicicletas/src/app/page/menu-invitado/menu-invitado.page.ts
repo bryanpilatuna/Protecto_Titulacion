@@ -30,6 +30,11 @@ export class MenuInvitadoPage implements OnInit {
     await alert.present();
   }
 
+  notificaciones(){
+    this.mensaje="Necesita registrarse para poder visualizar las notificaciones.";
+    this.mensajemostrar();
+  }
+
   //Mensaje de de alert en modulo perfil
   perfil(){
     this.mensaje="Necesita registrarse para poder visualizar y editar su perfil.";

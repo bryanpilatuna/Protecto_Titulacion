@@ -4,6 +4,7 @@ import { datosDonacion } from '../../model/donacion.interface';
 import { ActivatedRoute} from '@angular/router';
 import { DonacionService } from '../../service/donacion.service';
 import { NavController, LoadingController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-donar',
   templateUrl: './donar.page.html',
@@ -17,7 +18,9 @@ export class DonarPage implements OnInit {
   fechadonar:any;
   constructor(private route: ActivatedRoute,private Servicio:DonacionService,
     private loadingController: LoadingController,
-    private nav: NavController) { }
+    private nav: NavController,private alertCtrl: AlertController) { 
+      
+    }
 
   ngOnInit() {
     this.iddonar=this.route.snapshot.params['id'];
@@ -33,6 +36,33 @@ export class DonarPage implements OnInit {
     })
 
   }
+  async mensajeconfirmacion() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Mensaje',
+      message: 'Esta seguro de anular la donacion.',
+      buttons: [
+       {
+          text: 'Aceptar',
+          handler: () => {
+            this.cancelaralquilar();
+          }
+        },
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+
+  async cancelar(){
+    this.mensajeconfirmacion();
+  }
 
   
   async cancelaralquilar() {
@@ -45,12 +75,7 @@ export class DonarPage implements OnInit {
     if (this.iddonar) {
       this.Servicio.updateDonacion(this.donaciones, this.iddonar).then(() => {
         loading.dismiss();
-        this.nav.navigateForward('/menu');
-      });
-    } else {
-      this.Servicio.addDonacion (this.donaciones).then(() => {
-        loading.dismiss();
-        this.nav.navigateForward('/menu');
+        this.nav.navigateForward('/alquiler-donacion');
       });
     }
   }

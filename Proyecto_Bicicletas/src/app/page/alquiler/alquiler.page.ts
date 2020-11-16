@@ -9,7 +9,7 @@ import { Routes } from '@angular/router';
 import { datosTiendas } from 'src/app/model/tienda.interface';
 import { datosBicicleta } from 'src/app/model/bicicleta.interface';
 import { NavController, LoadingController } from '@ionic/angular';
-
+import { AlertController } from '@ionic/angular';
 
 
 
@@ -31,7 +31,8 @@ export class AlquilerPage implements OnInit {
   constructor(private Servicio:AlquilerService,
     private route: ActivatedRoute,
     private loadingController: LoadingController,
-    private nav: NavController
+    private nav: NavController,
+    private alertCtrl: AlertController
     ) {
       this.idalquiler=this.route.snapshot.params['id'];
       /*if (this.idalquiler){
@@ -84,6 +85,33 @@ export class AlquilerPage implements OnInit {
     });
   }*/
 
+  async mensajeconfirmacion() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Mensaje',
+      message: 'Esta seguro de anular el alquiler.',
+      buttons: [
+       {
+          text: 'Aceptar',
+          handler: () => {
+            this.cancelaralquilar();
+          }
+        },
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  async cancelar(){
+    this.mensajeconfirmacion();
+  }
+
   async cancelaralquilar() {
     this.alquileres.anular=true;
     const loading = await this.loadingController.create({
@@ -96,7 +124,7 @@ export class AlquilerPage implements OnInit {
         this.bicicleta.disponible="Si";
         this.Servicio.updateBicicletas(this.bicicleta,this.idbici);
         loading.dismiss();
-        this.nav.navigateForward('/menu');
+        this.nav.navigateForward('/alquiler-donacion');
       });
     } 
   }
