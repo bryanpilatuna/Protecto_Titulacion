@@ -5,7 +5,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { DatosUsuario } from '../../model/user.interface';
 import { AlertController } from '@ionic/angular';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
-
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-login',
@@ -22,15 +22,19 @@ export class LoginPage implements OnInit {
   usuario:string;
   contrasena:string;
   uid:string;
+  prueba:string;
+  prueba2:string;
   constructor(
     private authSvc: AuthService, 
     private router: Router,
     public formBuilder: FormBuilder,
     private alertCtrl: AlertController,
-    private localNotifications: LocalNotifications
- 
+    private localNotifications: LocalNotifications,
+    private storage: Storage
     ) {
     this.crearvalidaciones();
+    this.savef();
+    
 
    }
 
@@ -90,11 +94,13 @@ export class LoginPage implements OnInit {
   //Login con un registro
   async onLogin() {
     try {
+      
       const user = await this.authSvc.login(this.usuario,this.contrasena);
       if (user) {
         const isVerified = this.authSvc.isEmailVerified(user);
         this.uid = user.uid;
         this.redirectUser(isVerified,this.uid);
+        
       }else{
         if(this.authSvc.errores=="The password is invalid or the user does not have a password."){
           this.mensaje="La contraseña es incorrecta.";
@@ -154,5 +160,16 @@ export class LoginPage implements OnInit {
   showPassword() {
     this.passwordTypeInput = this.passwordTypeInput === 'text' ? 'password' : 'text';
   }
+
+  savef(){
+    // set a key/value}
+    this.prueba = "Bryan";
+    this.prueba2 = "12324324";
+    this.storage.set('name', "12324324");
+    this.storage.set('apellido', this.prueba2);
+  }
+
+  
+  
 
 }

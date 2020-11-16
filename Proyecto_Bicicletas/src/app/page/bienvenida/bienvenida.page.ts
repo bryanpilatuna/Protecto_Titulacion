@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Storage } from '@ionic/storage';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-bienvenida',
   templateUrl: './bienvenida.page.html',
@@ -20,9 +21,19 @@ export class BienvenidaPage implements OnInit {
       titulo: 'Encuentra las tiendas a través <br>del mapa en tiempo real'
     }
   ];
-  constructor() { }
+  constructor(private storage: Storage,private router: Router,) { 
+    this.loadDate();
+  }
 
   ngOnInit() {
+  }
+  loadDate(){
+    this.storage.get('estado').then((val) => {
+      if(val=="Activo"){
+        this.router.navigate(['menu']);
+      }
+    
+    });
   }
 
 }

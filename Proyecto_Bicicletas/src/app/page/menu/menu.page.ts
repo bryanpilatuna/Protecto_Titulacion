@@ -7,6 +7,7 @@ import { NotificacionesService } from '../../service/notificaciones.service';
 import * as firebase from 'firebase';
 import { Notificaciones } from '../../model/notificaciones.interface';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { Storage } from '@ionic/storage';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.page.html',
@@ -18,15 +19,21 @@ export class MenuPage implements OnInit {
   id: any;
   usuarios: User[];
   notificaciones: Notificaciones[];
+  estado:string;
   constructor(
     private authservice : AuthService, 
     private router: Router,
     private usuarioService:UsuarioService,
     private localNotifications: LocalNotifications,
-    private ServicioNoti:NotificacionesService
+    private ServicioNoti:NotificacionesService,
+    private storage: Storage
     ) { 
     var user = firebase.auth().currentUser.uid;
     this.id = user;
+    if(this.id){
+      this.estado = "Activo";
+      this.savef();
+    }
     ServicioNoti.getTodos();
     this.ServicioNoti.getTodos().subscribe((notificaciones) =>{
       this.notificaciones = notificaciones;
@@ -37,6 +44,7 @@ export class MenuPage implements OnInit {
         }
       }
     })
+    
     
   }
 
@@ -68,6 +76,14 @@ export class MenuPage implements OnInit {
    
     this.authservice.logout();
     this.id = null;
+    this.estado = "Inactivo";
+    this.savef();
+  }
+
+  savef(){
+    // set a key/value}
+    
+    this.storage.set('estado', this.estado);
   }
 
 }
