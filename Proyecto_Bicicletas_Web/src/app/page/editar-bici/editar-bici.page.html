@@ -62,6 +62,26 @@
                     </p>
                   </div>
                 </ion-col>
+                <ion-col>
+                  <div style="display: flex;justify-content: center;">
+                    <ion-label position="stacked"><strong>Color: </strong></ion-label>
+                    <ion-input formControlName="colorControl" type="text" #nombre [(ngModel)]="bicicleta.color"></ion-input>
+                  </div>
+                  <div class="validation-errors">
+                    <p class="form-error"
+                      *ngIf="formGroup.get('colorControl').hasError('required') && formGroup.get('colorControl').touched">
+                      *Requerido
+                    </p>
+                    <p class="form-error"
+                      *ngIf="formGroup.get('colorControl').hasError('minlength') && formGroup.get('colorControl').touched">
+                      *Mínimo 3 caracteres 
+                    </p>
+                    <p class="form-error"
+                      *ngIf="formGroup.get('colorControl').hasError('maxlength') && formGroup.get('colorControl').touched">
+                      *Máximo 40 caracteres  
+                    </p>
+                  </div>
+                </ion-col>
               </ion-row>
               <ion-row>
                 <ion-col>
@@ -76,6 +96,7 @@
                     <option value="‘Cruiser’ o playera">‘Cruiser’ o playera</option>
                     <option value="Infantil">Infantil</option>
                     <option value="Reclinada">Reclinada</option>
+                    <option value="Otro">Otro</option>
                   </select>
                 </div>
                 </ion-col>

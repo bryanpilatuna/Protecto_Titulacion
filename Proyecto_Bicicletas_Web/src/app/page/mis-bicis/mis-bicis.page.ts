@@ -22,7 +22,8 @@ export class MisBicisPage implements OnInit {
     idtienda:'',
    disponible:'',
    imagen:'',
-   tipo:''
+   tipo:'',
+   color:''
   }
   constructor(private route: ActivatedRoute,private router: Router,private bicicletasService: BicicletasService) {
     var user = firebase.auth().currentUser.uid;
@@ -31,9 +32,9 @@ export class MisBicisPage implements OnInit {
    }
 
   ngOnInit() {
-    this.id=this.route.snapshot.params['id'];
+    //this.id=this.route.snapshot.params['id'];
 
-    this.bicicletasService.getBicicletas(this.id).subscribe((bicicletas) =>{
+    this.bicicletasService.getBicicletas(this.tiendaid).subscribe((bicicletas) =>{
       this.bicicletas = bicicletas;  
     })
 

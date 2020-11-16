@@ -6,4 +6,5 @@ export interface datosBici {
    idtienda:string;
    imagen:string;
    tipo:string;
+   color:string;
 }
