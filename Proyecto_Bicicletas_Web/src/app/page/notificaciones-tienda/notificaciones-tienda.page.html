@@ -1,0 +1,91 @@
+<ion-header>
+  <app-header-tienda></app-header-tienda>
+</ion-header>
+
+<ion-content>
+
+  <div class="container">
+    <h5 align="center">MIS NOTIFICACIONES</h5> 
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#Alquileres">ALQUILERES |</a></li>
+      <li><a data-toggle="tab" href="#Donaciones">| DONACIONES |</a></li>
+    </ul>
+    
+    <div class="tab-content">
+      <div id="Alquileres" class="tab-pane fade in active">
+        
+    <div class="table-responsive">
+      <table class="table ">
+        
+          <div *ngFor="let notificacion of notificaciones" >
+            <div *ngIf="notificacion.visualizar==No && notificacion.tipo==Alquiler">
+            <div *ngFor="let usuario of usuarios">
+              <div *ngIf="notificacion.idusuario==usuario.uid">
+                <thead>
+                  <tr>
+                    <th scope="col">Nombre Usuario</th>
+                    <th scope="col">Apellido Usuario</th>
+                    <th scope="col">Fecha</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <tr>
+               <td> {{usuario.nombres}}</td>
+               <td> {{usuario.apellidos}}</td>
+               <td>{{notificacion.fecha.toMillis() | date:'dd/MM/yyyy'}}</td>
+                <td><ion-button  (click)=" cambiarvisualizado(notificacion,notificacion.id)" color="warning">
+                  Revisar
+                </ion-button></td>
+              </tr>
+              </tbody>
+            </div>
+          </div>
+        </div>
+          
+      </div> 
+  
+          </table>
+        </div>
+      </div>
+
+      <div id="Donaciones" class="tab-pane fade in active">
+        
+        <div class="table-responsive">
+          <table class="table ">
+            
+              <div *ngFor="let notificacion of notificaciones" >
+                <div *ngIf="notificacion.visualizar==No && notificacion.tipo==Donacion">
+                <div *ngFor="let usuario of usuarios">
+                  <div *ngIf="notificacion.idusuario==usuario.uid">
+                    <thead>
+                      <tr>
+                        <th scope="col">Nombre Usuario</th>
+                        <th scope="col">Apellido Usuario</th>
+                        <th scope="col">Fecha</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                   <td> {{usuario.nombres}}</td>
+                   <td> {{usuario.apellidos}}</td>
+                   <td>{{notificacion.fecha.toMillis() | date:'dd/MM/yyyy'}}</td>
+                    <td><ion-button  (click)=" cambiarvisualizadona(notificacion,notificacion.id)" color="warning">
+                      Revisar
+                    </ion-button></td>
+                  </tr>
+                  </tbody>
+                </div>
+              </div>
+            </div>
+              
+          </div> 
+      
+              </table>
+            </div>
+          </div>
+
+      
+    </div>
+  </div>
+
+</ion-content>

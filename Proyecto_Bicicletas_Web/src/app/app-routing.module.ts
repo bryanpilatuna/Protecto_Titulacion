@@ -110,7 +110,11 @@ const routes: Routes = [
   {
     path: 'registro',
     loadChildren: () => import('./page/registro/registro.module').then( m => m.RegistroPageModule)
+  },  {
+    path: 'notificaciones-tienda',
+    loadChildren: () => import('./page/notificaciones-tienda/notificaciones-tienda.module').then( m => m.NotificacionesTiendaPageModule)
   },
+
 
 
 
