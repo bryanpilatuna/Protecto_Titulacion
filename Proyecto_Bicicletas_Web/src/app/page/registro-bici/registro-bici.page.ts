@@ -71,7 +71,7 @@ export class RegistroBiciPage implements OnInit {
 guardarbici(){
 
   this.bicicletasservice.addbici(this.bici,this.image)
-  this.nav.navigateForward('/menu-tienda');
+  this.nav.navigateForward('/mis-bicis');
 }
   enviarimagen(event: any): void {
     this.image = event.target.files[0];

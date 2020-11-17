@@ -20,8 +20,12 @@
       <li class="nav-item" id="tab-tienda-alquiler">
         <a class="btn nav-link" (click)="redialquileres()">Alquileres</a>
       </li>
-     
- 
+      <li class="nav-item" id="tab-notificaciones">
+      <ion-buttons slot="end" style="padding: 10px;">
+        <img *ngIf="noti=='No'" src="../../../assets/notificaciones/noti.png" button [routerLink]="['/mis-bicis']" style="height: 30px;">
+        <img *ngIf="noti=='Si'" src="../../../assets/notificaciones/notiactiva.png" button [routerLink]="['/mis-bicis']" style="height: 30px;">
+      </ion-buttons>
+    </li>
     </ul>
     <form class="form-inline my-2 my-lg-0" >
       <a class="btn btn-outline-success my-2 my-sm-0" style="color:white;border-color:white" (click)="salir()">Cerrar Sesión</a>

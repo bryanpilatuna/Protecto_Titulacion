@@ -153,6 +153,11 @@ export class EditarTiendaPage implements OnInit {
     });
   }
 
+  redireccion(){
+    this.nav.navigateForward('menu-tienda');
+
+  }
+
   async subirImagen(event: any): Promise<void> {
     this.image = event.target.files[0];
 

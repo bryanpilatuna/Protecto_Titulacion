@@ -48,19 +48,19 @@ export class MisBicisPage implements OnInit {
    if(bici.disponible=='Si'){
     bici.disponible='No';
     this.bicicletasService.updateBici(bici,id).then(() => {
-      this.router.navigate(['/mis-bicis',this.tiendaid]);
+      this.router.navigate(['/mis-bicis']);
     });
 
    }else if(bici.disponible=='No'){
     bici.disponible='Mantenimiento';
     this.bicicletasService.updateBici(bici,id).then(() => {
-      this.router.navigate(['/mis-bicis',this.tiendaid]);
+      this.router.navigate(['/mis-bicis']);
     });
 
    }else if(bici.disponible=='Mantenimiento'){
     bici.disponible='Si';
     this.bicicletasService.updateBici(bici,id).then(() => {
-      this.router.navigate(['/mis-bicis',this.tiendaid]);
+      this.router.navigate(['/mis-bicis']);
     });
 
    }

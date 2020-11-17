@@ -9,6 +9,7 @@ import * as firebase from 'firebase';
 })
 export class HeaderTiendaComponent implements OnInit {
     id=null;
+    noti='Si';
   constructor(private router: Router,private Servicio:AuthService) { 
     var user = firebase.auth().currentUser.uid;
     this.id = user;
@@ -24,7 +25,7 @@ export class HeaderTiendaComponent implements OnInit {
     this.router.navigate(['/editar-tienda',this.id]);
   }
   redibicicletas(){
-    this.router.navigate(['/mis-bicis',this.id]);
+    this.router.navigate(['/mis-bicis']);
   }
   redidonaciones(){
     this.router.navigate(['/tienda-donacion',this.id]);
