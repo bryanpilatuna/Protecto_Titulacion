@@ -28,6 +28,7 @@ export class AlquilerPage implements OnInit {
   fecha:any;
   fechaalquiler:any;
   fechadevolucion:any;
+
   constructor(private Servicio:AlquilerService,
     private route: ActivatedRoute,
     private loadingController: LoadingController,
@@ -45,10 +46,8 @@ export class AlquilerPage implements OnInit {
         this.fechaalquiler= new Date(this.alquileres.fechaalquiler['seconds']*1000);
         this.fechadevolucion= new Date(this.alquileres.fechadevolucion['seconds']*1000);
 
-        
-        
-        //var uno = this.Servicio.formtDate(this.alquileres.fecha);
-        //console.log(this.Servicio.formtDate(this.alquileres.fecha));
+
+
       
      
       

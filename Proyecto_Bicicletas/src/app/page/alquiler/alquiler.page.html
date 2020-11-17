@@ -10,31 +10,44 @@
 <ion-content>
   <ion-list lines="full" *ngIf="alquileres" style="margin:10px">
     <ion-item *ngIf="bicicleta">
-      <ion-label position="stacked"><strong>Bicicleta</strong></ion-label>
+      <p position="stacked"><strong>Bicicleta</strong></p>
       <br/>
-      <img [src]="bicicleta.imagen" style="width:90%;display:block;margin:auto"/>
-    </ion-item>
-
-    <ion-item >
-      <ion-label position="stacked"><strong>Tienda</strong></ion-label>
-      <div *ngFor="let tienda of tiendas;let indice=index">
-        <ion-input *ngIf="tienda.id==alquileres.idtienda" required type="text" placeholder="Nombre" [(ngModel)]="tienda.nombre" readonly="readonly"></ion-input>
+      <div style="margin-left: auto;margin-right: auto;display: block;">
+      
+      <img [src]="bicicleta.imagen" style="height: 130px;display:block;margin:auto;margin-bottom: 10px;"/>
       </div>
     </ion-item>
 
     <ion-item >
-      <ion-label>Fecha solicitud:</ion-label>
-      <ion-datetime value="{{fecha | date:'yyyy/MM/dd'}}" readonly="readonly"></ion-datetime>
+      <div style="margin: 0px;padding: 0px;">
+        <p position="stacked" ><strong>Tienda</strong></p>
+        <div *ngFor="let tienda of tiendas;let indice=index" >
 
+          <p *ngIf="tienda.id==alquileres.idtienda">{{tienda.nombre }}</p>
+        </div>
+      </div>
+    </ion-item>
+
+    <ion-item >
+      <ion-label><b>Fecha solicitud:</b></ion-label>
+      <p>{{fecha | date:'dd/MM/yyyy'}}</p>
     </ion-item>
   
     <ion-item >
-      <ion-label>Fecha alquiler:</ion-label>
-      <ion-datetime value="{{fechaalquiler | date:'yyyy/MM/dd'}}" readonly="readonly"></ion-datetime>
+      <ion-label><b>Fecha alquiler:</b></ion-label>
+      <p>{{fechaalquiler | date:'dd/MM/yyyy'}}</p>
     </ion-item>
     <ion-item >
-      <ion-label>Fecha Devolución:</ion-label>
-      <ion-datetime value="{{fechadevolucion | date:'yyyy/MM/dd'}}" readonly="readonly"></ion-datetime>
+      <ion-label><b>Hora alquiler:</b></ion-label>
+      <p>{{alquileres.horaalquiler}}</p>
+    </ion-item>
+    <ion-item >
+      <ion-label><b>Fecha Devolución:</b></ion-label>
+      <p>{{fechadevolucion | date:'dd/MM/yyyy'}}</p>
+    </ion-item>
+    <ion-item >
+      <ion-label><b>Hora Devolución:</b></ion-label>
+      <p>{{alquileres.horadevolucion}}</p>
     </ion-item>
     <ion-button *ngIf="alquileres.anular==false" expand="full" (click)="cancelar()" color="danger">Anular</ion-button>
 
