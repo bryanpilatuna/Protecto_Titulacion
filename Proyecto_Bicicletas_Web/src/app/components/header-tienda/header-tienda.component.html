@@ -20,9 +20,13 @@
       <li class="nav-item" id="tab-tienda-alquiler">
         <a class="btn nav-link" (click)="redialquileres()">Alquileres</a>
       </li>
-      <li class="nav-item" id="tab-notificaciones">
-     
-    </li>
+      
+   <li><a class="btn nav-link" (click)="redinotifi()">
+        <img *ngIf="noti=='No'" src="../../../assets/notificaciones/noti.png"  (click)="redinotifi()" style="height: 30px;">
+        <img *ngIf="noti=='Si'" src="../../../assets/notificaciones/notiactiva.png" (click)="redinotifi()" style="height: 30px;">
+        Notificaciones</a>
+      </li>
+  
     </ul>
     <form class="form-inline my-2 my-lg-0" >
       <a class="btn btn-outline-success my-2 my-sm-0" style="color:white;border-color:white" (click)="salir()">Cerrar Sesión</a>
