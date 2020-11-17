@@ -12,6 +12,8 @@ import { AlertController } from '@ionic/angular';
 })
 export class HeaderTiendaComponent implements OnInit {
   noti='No';  
+  No='No';
+  Si='Si';
   id=null;
     fechaactual: Date = new Date();
     notificaciones:NotificacionesTienda[];
@@ -43,7 +45,6 @@ export class HeaderTiendaComponent implements OnInit {
           this.contador=this.contador+1;
         }
       }
-      console.log('Contador'+this.contador)
       
     })
 

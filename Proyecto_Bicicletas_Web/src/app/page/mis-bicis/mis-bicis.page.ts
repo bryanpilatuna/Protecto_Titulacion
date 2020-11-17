@@ -75,7 +75,7 @@ export class MisBicisPage implements OnInit {
     this.router.navigate(['/editar-bici',id]);
 
   }
-
+ 
   
 
 }
