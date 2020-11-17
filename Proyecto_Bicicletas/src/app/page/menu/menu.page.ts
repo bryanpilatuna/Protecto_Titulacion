@@ -20,6 +20,7 @@ export class MenuPage implements OnInit {
   usuarios: User[];
   notificaciones: Notificaciones[];
   estado:string;
+  noti:string="No";
   constructor(
     private authservice : AuthService, 
     private router: Router,
@@ -40,6 +41,7 @@ export class MenuPage implements OnInit {
       
       for(let i in this.notificaciones){
         if(this.notificaciones[i].idusuario==this.id || this.notificaciones[i].visualizar=="No"){
+          this.noti="Si";
           this.send();
         }
       }

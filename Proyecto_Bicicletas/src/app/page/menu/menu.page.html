@@ -3,7 +3,8 @@
     <ion-title>Bienvenido</ion-title>
     
     <ion-buttons slot="end" style="padding: 10px;">
-      <ion-icon button [routerLink]="['/notificaciones']" name="notifications-outline" style="zoom:1.5;"></ion-icon>
+      <img *ngIf="noti=='No'" src="../../../assets/notificaciones/noti.png" button [routerLink]="['/notificaciones']" style="height: 30px;">
+      <img *ngIf="noti=='Si'" src="../../../assets/notificaciones/notiactiva.png" button [routerLink]="['/notificaciones']" style="height: 30px;">
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
