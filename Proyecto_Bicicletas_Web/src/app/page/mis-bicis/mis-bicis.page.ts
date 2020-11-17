@@ -41,7 +41,7 @@ export class MisBicisPage implements OnInit {
 
   }
   rediregistrobici(){
-    this.router.navigate(['/registro-bici',this.id]);
+    this.router.navigate(['/registro-bici']);
   }
 
   cambiarestado(bici:datosBici,id:string){

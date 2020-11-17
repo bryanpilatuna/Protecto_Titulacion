@@ -8,7 +8,7 @@
     <form [formGroup]="formGroup" (ngSubmit)="guardarbici()">
       <div class="form-group">
         <label position="stacked"><strong>Nombre de la Bicicleta</strong></label>
-        <input type="text" class="form-control" placeholder="Rojo" formControlName="nombreControl" [(ngModel)]="bici.nombre">
+        <input type="text" class="form-control" placeholder="bici01" formControlName="nombreControl" [(ngModel)]="bici.nombre">
       </div>
       <div class="validation-errors">
         <p class="form-error"
@@ -30,7 +30,7 @@
       </div>
       <div class="form-group">
         <label position="stacked"><strong>Color de la bicicleta</strong></label>
-        <input type="text" class="form-control" placeholder="Bici102" formControlName="colorControl" [(ngModel)]="bici.color">
+        <input type="text" class="form-control" placeholder="Rojo" formControlName="colorControl" [(ngModel)]="bici.color">
       </div>
       <div class="validation-errors">
         <p class="form-error"

@@ -76,7 +76,7 @@ const routes: Routes = [
     loadChildren: () => import('./page/mapa/mapa.module').then( m => m.MapaPageModule)
   },
   {
-    path: 'registro-bici/:id',
+    path: 'registro-bici',
     loadChildren: () => import('./page/registro-bici/registro-bici.module').then( m => m.RegistroBiciPageModule)
   },
   {
