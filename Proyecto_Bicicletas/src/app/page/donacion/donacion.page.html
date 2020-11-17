@@ -11,52 +11,42 @@
   <ion-list *ngIf="vacio==false; else elseBlock">
 
     <div *ngFor="let donacion of donaciones;let indice=index">
-      <ion-item button [routerLink]="['/donar', donacion.id]" *ngIf="donacion.iddonante==id">
-        <ion-label>
-          <h2><strong>Donación</strong></h2>
-          <ion-grid>
-            <ion-row>
-              <ion-col>
-                <p class="subtitulo">Fecha solicitud:</p>
-              </ion-col>
-              <ion-col>
-                <p>{{donacion.fechadonacion.toMillis() | date:'yyyy/MM/dd'}}</p>
-              </ion-col>
-            </ion-row>
+      <ion-card *ngIf="donacion.iddonante==id">
+        <ion-card-header>
+          <ion-card-subtitle><p class="subtitulo">Fecha de solicitud:{{donacion.fechadonacion.toMillis() | date:'dd/MM/yyyy'}}</p></ion-card-subtitle>
 
-            <ion-row>
-              <ion-col>
-                <p class="subtitulo">Estado de la Bicicleta:</p>
-              </ion-col>
-              <ion-col>
-                <p>{{donacion.estado}}</p>
-              </ion-col>
-            </ion-row>
-
-            <ion-row>
-              <ion-col>
-                <p class="subtitulo">Descripción Bicicleta:</p>
-              </ion-col>
-              <ion-col>
-                <p>{{donacion.descripcion}}</p>
-              </ion-col>
-            </ion-row>
-
-            <ion-row *ngFor="let tienda of tiendas;let indice=index" >
-              <ion-col *ngIf="tienda.id==donacion.idtienda">
-                <p class="subtitulo">Tienda:</p>
-              </ion-col>
-              <ion-col *ngIf="tienda.id==donacion.idtienda">
-                <p>{{tienda.nombre}}</p>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-          
-        
-
-   
-        </ion-label>
-      </ion-item> 
+        </ion-card-header>
+      
+        <ion-card-content>
+          <ion-row *ngFor="let tienda of tiendas;let indice=index" >
+            <ion-col *ngIf="tienda.id==donacion.idtienda">
+              <p class="subtitulo">Tienda:</p>
+            </ion-col>
+            <ion-col *ngIf="tienda.id==donacion.idtienda">
+              <p>{{tienda.nombre}}</p>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <p class="subtitulo">Estado de la Bicicleta:</p>
+            </ion-col>
+            <ion-col>
+              <p>{{donacion.estado}}</p>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <p class="subtitulo">Descripción Bicicleta:</p>
+            </ion-col>
+            <ion-col>
+              <p>{{donacion.descripcion}}</p>
+            </ion-col>
+          </ion-row>
+          <br/>
+          <ion-button  button [routerLink]="['/donar', donacion.id]" slot="end" color="primary" style="width: 100px;height: 40px;">Ver</ion-button>
+        </ion-card-content>
+      </ion-card>
+  
     </div>
   </ion-list>
   <ng-template #elseBlock>

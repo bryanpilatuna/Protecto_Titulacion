@@ -10,17 +10,14 @@
 <ion-content>
   <ion-list lines="full" *ngIf="alquileres" style="margin:10px">
     <ion-item *ngIf="bicicleta">
-      <p position="stacked"><strong>Bicicleta</strong></p>
+      <ion-label position="stacked"><strong>Bicicleta</strong></ion-label>
       <br/>
-      <div style="margin-left: auto;margin-right: auto;display: block;">
-      
       <img [src]="bicicleta.imagen" style="height: 130px;display:block;margin:auto;margin-bottom: 10px;"/>
-      </div>
     </ion-item>
 
     <ion-item >
       <div style="margin: 0px;padding: 0px;">
-        <p position="stacked" ><strong>Tienda</strong></p>
+        <ion-label position="stacked"><strong>Tienda</strong></ion-label>
         <div *ngFor="let tienda of tiendas;let indice=index" >
 
           <p *ngIf="tienda.id==alquileres.idtienda">{{tienda.nombre }}</p>
@@ -29,24 +26,24 @@
     </ion-item>
 
     <ion-item >
-      <ion-label><b>Fecha solicitud:</b></ion-label>
+      <ion-label>Fecha solicitud:</ion-label>
       <p>{{fecha | date:'dd/MM/yyyy'}}</p>
     </ion-item>
   
     <ion-item >
-      <ion-label><b>Fecha alquiler:</b></ion-label>
+      <ion-label>Fecha alquiler:</ion-label>
       <p>{{fechaalquiler | date:'dd/MM/yyyy'}}</p>
     </ion-item>
     <ion-item >
-      <ion-label><b>Hora alquiler:</b></ion-label>
+      <ion-label>Hora alquiler:</ion-label>
       <p>{{alquileres.horaalquiler}}</p>
     </ion-item>
     <ion-item >
-      <ion-label><b>Fecha Devolución:</b></ion-label>
+      <ion-label>Fecha Devolución:</ion-label>
       <p>{{fechadevolucion | date:'dd/MM/yyyy'}}</p>
     </ion-item>
     <ion-item >
-      <ion-label><b>Hora Devolución:</b></ion-label>
+      <ion-label>Hora Devolución:</ion-label>
       <p>{{alquileres.horadevolucion}}</p>
     </ion-item>
     <ion-button *ngIf="alquileres.anular==false" expand="full" (click)="cancelar()" color="danger">Anular</ion-button>
