@@ -23,6 +23,7 @@ export class EditarBiciPage implements OnInit {
   imagen:'',
   idtienda:'',
   tipo:'',
+  color:''
 
   }
   constructor(private route: ActivatedRoute, 
@@ -66,6 +67,11 @@ export class EditarBiciPage implements OnInit {
       Validators.minLength(3),
       Validators.maxLength(40),
     ]));
+    const colorControl = new FormControl('', Validators.compose([
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(40),
+    ]));
 
     const descripcionControl = new FormControl('', Validators.compose([
       Validators.required,
@@ -79,7 +85,7 @@ export class EditarBiciPage implements OnInit {
 
   
 
-    this.formGroup = this.formBuilder.group({nombreControl,descripcionControl,tipoControl });
+    this.formGroup = this.formBuilder.group({nombreControl,descripcionControl,tipoControl,colorControl });
   }
 
   async subirImagen(event: any): Promise<void> {

@@ -22,7 +22,8 @@ export class RegistroBiciPage implements OnInit {
     disponible:'',
     idtienda:'',
     imagen:'',
-    tipo:''
+    tipo:'',
+    color:'',
 
   };
   constructor(private route: ActivatedRoute,
@@ -45,6 +46,11 @@ export class RegistroBiciPage implements OnInit {
       Validators.minLength(3),
       Validators.maxLength(40),
     ]));
+    const colorControl = new FormControl('', Validators.compose([
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(40),
+    ]));
 
     const tipoControl = new FormControl('', Validators.compose([
       Validators.required,
@@ -59,7 +65,7 @@ export class RegistroBiciPage implements OnInit {
   
     const foto = new FormControl('', Validators.required)
 
-    this.formGroup = this.formBuilder.group({nombreControl,descripcionControl,foto,tipoControl });
+    this.formGroup = this.formBuilder.group({nombreControl,descripcionControl,foto,tipoControl,colorControl });
   }
 
 guardarbici(){

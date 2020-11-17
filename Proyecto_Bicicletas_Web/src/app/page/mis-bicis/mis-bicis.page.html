@@ -26,6 +26,7 @@
       <thead>
         <tr>
           <th scope="col">Nombre</th>
+          <th scope="col">Imagen</th>
           <th scope="col">Disponible</th>
           <th scope="col">Editar</th>
           <th scope="col">Cambiar Estado</th>
@@ -35,6 +36,7 @@
         <tr *ngFor="let bicis of bicicletas" >
           <ng-container *ngIf="bicis.disponible==Si">
           <td>{{bicis.nombre}}</td>
+          <td><img [src]="bicis.imagen" style="height:100px;display:block;margin:auto"/></td>
           <td>{{bicis.disponible}}</td>
           <td> <ion-button  (click)="editarbici(bicis.id)">
             <ion-icon slot="start" name="locate"></ion-icon>
