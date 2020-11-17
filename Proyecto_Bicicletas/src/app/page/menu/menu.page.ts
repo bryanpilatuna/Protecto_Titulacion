@@ -43,6 +43,8 @@ export class MenuPage implements OnInit {
         if(this.notificaciones[i].idusuario==this.id || this.notificaciones[i].visualizar=="No"){
           this.noti="Si";
           this.send();
+        }else{
+          this.noti="No";
         }
       }
     })

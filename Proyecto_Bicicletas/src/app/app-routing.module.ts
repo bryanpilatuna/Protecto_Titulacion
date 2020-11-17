@@ -141,7 +141,11 @@ const routes: Routes = [
   {
     path: 'detallenotificacion/:id',
     loadChildren: () => import('./page/detallenotificacion/detallenotificacion.module').then( m => m.DetallenotificacionPageModule)
+  },  {
+    path: 'notificacion',
+    loadChildren: () => import('./page/notificacion/notificacion.module').then( m => m.NotificacionPageModule)
   },
+
 
 
 
