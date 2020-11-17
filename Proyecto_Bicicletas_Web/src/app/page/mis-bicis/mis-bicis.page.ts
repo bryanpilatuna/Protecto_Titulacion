@@ -41,26 +41,26 @@ export class MisBicisPage implements OnInit {
 
   }
   rediregistrobici(){
-    this.router.navigate(['/registro-bici',this.id]);
+    this.router.navigate(['/registro-bici']);
   }
 
   cambiarestado(bici:datosBici,id:string){
    if(bici.disponible=='Si'){
     bici.disponible='No';
     this.bicicletasService.updateBici(bici,id).then(() => {
-      this.router.navigate(['/mis-bicis',this.tiendaid]);
+      this.router.navigate(['/mis-bicis']);
     });
 
    }else if(bici.disponible=='No'){
     bici.disponible='Mantenimiento';
     this.bicicletasService.updateBici(bici,id).then(() => {
-      this.router.navigate(['/mis-bicis',this.tiendaid]);
+      this.router.navigate(['/mis-bicis']);
     });
 
    }else if(bici.disponible=='Mantenimiento'){
     bici.disponible='Si';
     this.bicicletasService.updateBici(bici,id).then(() => {
-      this.router.navigate(['/mis-bicis',this.tiendaid]);
+      this.router.navigate(['/mis-bicis']);
     });
 
    }
@@ -75,7 +75,7 @@ export class MisBicisPage implements OnInit {
     this.router.navigate(['/editar-bici',id]);
 
   }
-
+ 
   
 
 }

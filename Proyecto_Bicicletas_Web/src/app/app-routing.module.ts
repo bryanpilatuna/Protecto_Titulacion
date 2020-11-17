@@ -76,11 +76,11 @@ const routes: Routes = [
     loadChildren: () => import('./page/mapa/mapa.module').then( m => m.MapaPageModule)
   },
   {
-    path: 'registro-bici/:id',
+    path: 'registro-bici',
     loadChildren: () => import('./page/registro-bici/registro-bici.module').then( m => m.RegistroBiciPageModule)
   },
   {
-    path: 'mis-bicis/:id',
+    path: 'mis-bicis',
     loadChildren: () => import('./page/mis-bicis/mis-bicis.module').then( m => m.MisBicisPageModule)
   },
   {
@@ -106,7 +106,8 @@ const routes: Routes = [
   {
     path: 'tienda-alquiler/:id',
     loadChildren: () => import('./page/tienda-alquiler/tienda-alquiler.module').then( m => m.TiendaAlquilerPageModule)
-  },  {
+  },
+  {
     path: 'registro',
     loadChildren: () => import('./page/registro/registro.module').then( m => m.RegistroPageModule)
   },

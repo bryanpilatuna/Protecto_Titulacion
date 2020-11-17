@@ -88,7 +88,7 @@
                       
                   <div>
                     <ion-label position="stacked"><strong>CORREO ELECTRÓNICO</strong></ion-label>
-                    <ion-input formControlName="emailControl" #email type="email" [(ngModel)]="tienda.correo" placeholder="abc@gmail.com" disabled="true"></ion-input>
+                    <ion-input  formControlName="emailControl" #email type="email" [(ngModel)]="tienda.correo" placeholder="abc@gmail.com" readonly></ion-input>
                   </div>
                   <div class="validation-errors">
                     <p class="form-error"
@@ -105,7 +105,7 @@
                     </p>
                     <p class="form-error"
                       *ngIf="formGroup.get('emailControl').hasError('maxlength') && formGroup.get('emailControl').touched">
-                      *Máximo 40 caracteres  
+                      *No permitido 
                     </p>
                     </div>
               </ion-col>

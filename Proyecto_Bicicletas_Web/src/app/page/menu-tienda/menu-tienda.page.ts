@@ -21,7 +21,7 @@ export class MenuTiendaPage implements OnInit {
 let url = window.location.href;
 
 /// Elementos de li
-const tabs = ["menu-tienda", "editar-tienda", "mis-bicis", "tienda-donacion", "tienda-alquiler"];
+const tabs = ["menu-tienda", "editar-tienda", "tienda-donacion", "tienda-alquiler"];
 
 tabs.forEach(e => {
     /// Agregar .php y ver si lo contiene en la url

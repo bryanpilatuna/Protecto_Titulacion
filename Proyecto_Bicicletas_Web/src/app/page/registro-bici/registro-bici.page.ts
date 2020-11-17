@@ -5,6 +5,7 @@ import { ActivatedRoute} from '@angular/router';
 import { NavController, LoadingController } from '@ionic/angular';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-registro-bici',
@@ -14,7 +15,7 @@ import { AlertController } from '@ionic/angular';
 export class RegistroBiciPage implements OnInit {
   public formGroup: FormGroup;
   public image: any;
-  tiendaid:null;
+  tiendaid=null;
 
   bici:datosBici = {
     descripcion: '',
@@ -30,11 +31,15 @@ export class RegistroBiciPage implements OnInit {
     private bicicletasservice:BicicletasService,
     private nav: NavController,
     public formBuilder: FormBuilder,
-    ) { this.crearvalidaciones();}
+    ) { this.crearvalidaciones();
+      var user = firebase.auth().currentUser.uid;
+      this.tiendaid = user;
+      
+    }
 
   ngOnInit() {
 
-    this.tiendaid=this.route.snapshot.params['id'];
+    //this.tiendaid=this.route.snapshot.params['id'];
     this.bici.idtienda=this.tiendaid;
     this.bici.disponible='Si';
   }
@@ -71,7 +76,7 @@ export class RegistroBiciPage implements OnInit {
 guardarbici(){
 
   this.bicicletasservice.addbici(this.bici,this.image)
-  this.nav.navigateForward('/menu-tienda');
+  this.nav.navigateForward('/mis-bicis');
 }
   enviarimagen(event: any): void {
     this.image = event.target.files[0];

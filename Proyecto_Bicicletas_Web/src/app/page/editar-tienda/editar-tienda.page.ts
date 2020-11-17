@@ -50,7 +50,6 @@ export class EditarTiendaPage implements OnInit {
 
   ngOnInit() {
     this.tiendaid=this.route.snapshot.params['id'];
-    console.log('Mi tienda',this.tiendaid);
     this.loadmap();
     if (this.tiendaid){
       this.cargarTienda();
@@ -76,7 +75,6 @@ export class EditarTiendaPage implements OnInit {
   async loadmap(){
   
     const myLatLng= {lat: -0.225219, lng: -78.5248};
-    console.log(myLatLng);
     const mapEle: HTMLElement = document.getElementById('map');
     
     this.map = new google.maps.Map(mapEle, {
@@ -151,6 +149,11 @@ export class EditarTiendaPage implements OnInit {
       this.nav.navigateForward('menu-tienda');
       
     });
+  }
+
+  redireccion(){
+    this.nav.navigateForward('menu-tienda');
+
   }
 
   async subirImagen(event: any): Promise<void> {

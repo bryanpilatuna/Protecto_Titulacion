@@ -16,3 +16,11 @@ export interface Notificacionesdonacion {
     idusuario:string;
     iddonacion:string;
 }
+export interface NotificacionesTienda {
+    id?: string;
+    visualizar: string;
+    fecha: Date;
+    tipo:string;
+    idusuario:string;
+    idtienda:string;
+}
