@@ -11,8 +11,8 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./header-tienda.component.scss'],
 })
 export class HeaderTiendaComponent implements OnInit {
-    id=null;
-    noti='No';
+  noti='No';  
+  id=null;
     fechaactual: Date = new Date();
     notificaciones:NotificacionesTienda[];
     contador=0;
@@ -43,45 +43,12 @@ export class HeaderTiendaComponent implements OnInit {
           this.contador=this.contador+1;
         }
       }
-      if(this.contador>=1){
-        this.presentAlert();
-      }else{
-
-        console.log('No tienes notificaciones')
-      }
+      console.log('Contador'+this.contador)
       
     })
 
   }
 
-  async presentAlert() {
-
-    if(this.contador==1){
-      const alert = await this.alertController.create({
-        cssClass: 'my-custom-class',
-        header: 'Tienes notificaciones pendientes',
-        message: 'Tienes 1 nueva notificacion',
-        buttons: ['OK']
-      });
-  
-      await alert.present();
-      this.contador=0;
-
-    }
-    else{
-      const alert = await this.alertController.create({
-        cssClass: 'my-custom-class',
-        header: 'Tienes notificaciones pendientes',
-        message: 'Tienes '+this.contador+' nuevas notificaciones',
-        buttons: ['OK']
-      });
-  
-      await alert.present();
-      this.contador=0;
-      
-    }
-    
-  }
   
   redihome(){
     this.router.navigate(['/menu-tienda']);
