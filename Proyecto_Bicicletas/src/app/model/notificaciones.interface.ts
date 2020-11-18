@@ -7,6 +7,7 @@ export interface Notificaciones {
     idusuario:string;
     idtipo:string;
     idtienda:string;
+    color:string;
 }
 
 export interface NotificacionesTienda {

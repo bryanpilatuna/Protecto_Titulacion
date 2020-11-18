@@ -40,14 +40,15 @@ export class MenuPage implements OnInit {
       this.notificaciones = notificaciones;
       
       for(let i in this.notificaciones){
-        if(this.notificaciones[i].idusuario==this.id || this.notificaciones[i].visualizar=="No"){
+        
+        if(this.notificaciones[i].idusuario==this.id && this.notificaciones[i].visualizar=="No"){
+          console.log(this.notificaciones[i].visualizar);
           this.noti="Si";
           this.send();
-        }else{
-          this.noti="No";
         }
       }
     })
+
     
     
   }

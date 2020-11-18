@@ -10,7 +10,7 @@ export class NotificacionesService {
   private notificacionesCollection: AngularFirestoreCollection<Notificaciones>;
   private notificaciones: Observable<Notificaciones[]>;
   constructor(db:AngularFirestore) { 
-    this.notificacionesCollection = db.collection<Notificaciones>('notificaciones',ref => ref.orderBy('fecha'));
+    this.notificacionesCollection = db.collection<Notificaciones>('notificaciones',ref => ref.orderBy('fecha', "desc"));
     this.notificaciones = this.notificacionesCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {

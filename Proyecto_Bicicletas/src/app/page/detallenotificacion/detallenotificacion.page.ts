@@ -34,6 +34,7 @@ export class DetallenotificacionPage implements OnInit {
       loading.dismiss();;
       this.notificacion = notificacion;
       this.notificacion.visualizar="Si";
+      this.notificacion.color="#FFFFFF";
       console.log(notificacion);
       if (this.id) {
         this.Service.updateTodo(this.notificacion , this.id).then(() => {
