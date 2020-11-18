@@ -8,6 +8,7 @@ import { FormularioDonacionPageRoutingModule } from './formulario-donacion-routi
 
 import { FormularioDonacionPage } from './formulario-donacion.page';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ComponentsModule } from '../../componentes/components.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    FormularioDonacionPageRoutingModule
+    FormularioDonacionPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [FormularioDonacionPage]
 })

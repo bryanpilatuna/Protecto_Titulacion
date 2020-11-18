@@ -8,6 +8,7 @@ import { FormularioAlquilerPageRoutingModule } from './formulario-alquiler-routi
 
 import { FormularioAlquilerPage } from './formulario-alquiler.page';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ComponentsModule } from '../../componentes/components.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    FormularioAlquilerPageRoutingModule
+    FormularioAlquilerPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [FormularioAlquilerPage]
 })

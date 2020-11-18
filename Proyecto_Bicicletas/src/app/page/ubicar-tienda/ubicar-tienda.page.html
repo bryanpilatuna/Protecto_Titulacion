@@ -1,10 +1,11 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>
-      Busca tu tienda
-    </ion-title>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/menu"></ion-back-button>
+      <ion-back-button routerLink="/menu"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Tiendas</ion-title>
+    <ion-buttons slot="end" style="padding: 10px;" [routerLink]="['/notificacion']">
+      <app-notificacion></app-notificacion>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
