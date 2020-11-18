@@ -9,7 +9,7 @@
 
     <div *ngFor="let noti of notificaciones;let indice=index">
       <div *ngIf="noti.idusuario==id" >
-        <ion-card *ngIf="noti.tipo=='Donacion'" [ngStyle]="{'background':noti.color}">
+        <ion-card *ngIf="noti.tipo=='donacion'" [ngStyle]="{'background':noti.color}">
         
           <ion-card-content>
             <ion-row *ngFor="let tienda of tiendas;let indice=index" >
