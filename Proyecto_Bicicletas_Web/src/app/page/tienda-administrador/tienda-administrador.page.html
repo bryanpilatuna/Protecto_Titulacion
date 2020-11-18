@@ -15,7 +15,8 @@
         <button type="button" class="btn btn-primary" (click)="buscar(busquedatienda)">Buscar</button>
       </form>
     </div>
-    <div class="table-responsive">
+    <br/>
+    <div class="table-responsive table-hover table-bordered">
       <table class="table ">
         <thead>
           <tr>
@@ -29,7 +30,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let tienda of tiendas ;let indice=index">
-            <th scope="row">{{indice+1}}</th>
+            <td scope="row">{{indice+1}}</td>
             <td><img [src]="tienda.logo" style="height:100px;display:block;margin:auto"/></td>
             <td>{{tienda.nombre}}</td>
             <td>{{tienda.correo}}</td>
@@ -41,6 +42,9 @@
         </tbody>
       </table>
     </div>
+
+    <br/>
+    <br/>
   </div>
   <app-footer></app-footer>
 </ion-content>
