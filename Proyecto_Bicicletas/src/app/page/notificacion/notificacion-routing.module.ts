@@ -3,26 +3,35 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { NotificacionPage } from './notificacion.page';
 
+
+
 const routes: Routes = [
   {
-    path: '',
+    path: 'notificacion',
     component: NotificacionPage,
     children: [
       {
-        path: 'donacion',
-        loadChildren: () => import('../../page/donacion/donacion.module').then( m => m.DonacionPageModule)
+        path: 'notificacion-alquiler',
+        loadChildren: () => import('../../page/notificacion-alquiler/notificacion-alquiler.module').then( m => m.NotificacionAlquilerPageModule)
       },
       {
-        path: 'alquileres',
-        loadChildren: () => import('../../page/alquileres/alquileres.module').then( m => m.AlquileresPageModule)
+        path: 'notificacion-donacion',
+        loadChildren: () => import('../../page/notificacion-donacion/notificacion-donacion.module').then( m => m.NotificacionDonacionPageModule)
       },
       {
         path: '',
-        redirectTo: 'notificacion/alquileres',
+        redirectTo: 'notificacion/notificacion-alquiler',
         pathMatch: 'full'
       }
     ]
+  },
+  
+  {
+    path: '',
+    redirectTo: 'notificacion/notificacion-alquiler',
+    pathMatch: 'full'
   }
+  
 ];
 
 @NgModule({

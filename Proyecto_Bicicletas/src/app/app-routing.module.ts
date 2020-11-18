@@ -145,6 +145,14 @@ const routes: Routes = [
     path: 'notificacion',
     loadChildren: () => import('./page/notificacion/notificacion.module').then( m => m.NotificacionPageModule)
   },
+  {
+    path: 'notificacion-alquiler',
+    loadChildren: () => import('./page/notificacion-alquiler/notificacion-alquiler.module').then( m => m.NotificacionAlquilerPageModule)
+  },
+  {
+    path: 'notificacion-donacion',
+    loadChildren: () => import('./page/notificacion-donacion/notificacion-donacion.module').then( m => m.NotificacionDonacionPageModule)
+  },
 
 
 
