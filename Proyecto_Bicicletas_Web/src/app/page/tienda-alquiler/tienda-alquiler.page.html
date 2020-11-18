@@ -29,6 +29,7 @@
                     <th scope="col">Fecha Alquiler</th>
                     <th scope="col">Fecha Devolución</th>
                     <th scope="col">Aprobar</th>
+                    <th scope="col">Motivo rechazo</th>
                     <th scope="col">Rechazar</th>
                   </tr>
                 </thead>
@@ -41,6 +42,7 @@
                 <td><ion-button  (click)="aprobaralquiler(alquiler,alquiler.id)" color="warning">
                   Aprobar
                 </ion-button></td>
+                <td><ion-input type="text" placeholder="Ingresar motivo" [(ngModel)]="notificacion.respuesta" required></ion-input></td>
                 <td><ion-button  (click)=" rechazaralquiler(alquiler,alquiler.id)" color="danger">
                   Rechazar
                 </ion-button></td>

@@ -6,6 +6,7 @@ import { Notificaciones } from '../../model/notificaciones.interface';
 import {AlquileresService} from '../../services/alquileres.service';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tienda-alquiler',
@@ -22,9 +23,10 @@ export class TiendaAlquilerPage implements OnInit {
     respuesta:'',
     visualizar:'',
     fecha: this.fechaactual,
-    tipo:'Alquiler',
+    tipo:'alquiler',
     idusuario:'',
-    idalquiler:'',
+    idtipo:'',
+    color:'#FFFFFF'
   }
 
   alquiler:datosAlquiler={
@@ -39,6 +41,7 @@ export class TiendaAlquilerPage implements OnInit {
   }
 
   constructor(private route: ActivatedRoute,
+    public alertController: AlertController,
     private alquilerservice: AlquileresService,
     private router: Router) { 
       var user = firebase.auth().currentUser.uid;
@@ -74,7 +77,7 @@ export class TiendaAlquilerPage implements OnInit {
     this.notificacion.respuesta='Tu Alquiler ha sido aprobado';
     this.notificacion.visualizar='No';
     this.notificacion.idusuario=alquiler.idusuario;
-    this.notificacion.idalquiler=alquiler.id;
+    this.notificacion.idtipo=alquiler.id;
     this.alquilerservice.addNotificacion(this.notificacion);
 
     this.alquilerservice.actualizarAlquiler(alquiler,id).then(() => {
@@ -85,17 +88,33 @@ export class TiendaAlquilerPage implements OnInit {
   }
 
   rechazaralquiler(alquiler:datosAlquiler,id:string){ 
-    this.notificacion.respuesta='Tu Alquiler ha sido rechazado';
+    if(this.notificacion.respuesta=='')   {
+      this.presentAlert();
+
+    }else{
     this.notificacion.visualizar='No';
     this.notificacion.idusuario=alquiler.idusuario;
-    this.notificacion.idalquiler=alquiler.id;
+    this.notificacion.idtipo=alquiler.id;
     this.alquilerservice.addNotificacion(this.notificacion);
+    this.notificacion.respuesta='';
     alquiler.aprobacion=false;
     alquiler.anular=true;
     this.alquilerservice.actualizarAlquiler(alquiler,id).then(() => {
       this.router.navigate(['/tienda-alquiler',this.tiendaid]);
     });
-
   }
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Atención',
+      message: 'Por favor ingresa el motivo del rechazo',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
 
 }

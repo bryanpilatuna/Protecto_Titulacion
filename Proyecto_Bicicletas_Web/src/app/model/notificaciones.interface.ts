@@ -5,7 +5,8 @@ export interface Notificaciones {
     fecha: Date;
     tipo:string;
     idusuario:string;
-    idalquiler:string;
+    idtipo:string;
+    color:string;
 }
 export interface Notificacionesdonacion {
     id?: string;
