@@ -26,7 +26,7 @@ export class TiendaAlquilerPage implements OnInit {
     tipo:'alquiler',
     idusuario:'',
     idtipo:'',
-    color:'#FFFFFF'
+    color:'#D7F6FC'
   }
 
   alquiler:datosAlquiler={
