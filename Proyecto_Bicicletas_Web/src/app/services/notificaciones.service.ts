@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { NotificacionesTienda } from '../model/notificaciones.interface';
 import { Tienda } from '../model/tienda.interface';
+import { DatosUsuario } from '../model/user.interface';
 
 
 @Injectable({
@@ -15,6 +16,10 @@ export class NotificacionesService {
 
   private tiendaCollection: AngularFirestoreCollection<Tienda>;
   private tienda: Observable<Tienda[]>;
+
+  private usuariosCollection: AngularFirestoreCollection<DatosUsuario>;
+  private usuario: Observable<DatosUsuario[]>;
+
   
 
   constructor(private db:AngularFirestore) { 
@@ -41,6 +46,18 @@ export class NotificacionesService {
       })
     );
 
+    this.usuariosCollection = db.collection<DatosUsuario>('users');
+      this.usuario = this.usuariosCollection.snapshotChanges().pipe(
+        map(actions => {
+          return actions.map(a => {
+            const data = a.payload.doc.data();
+            const id = a.payload.doc.id;
+          
+            return {id, ...data};
+          });
+        })
+      );
+
   }
 
   getMisnotificaciones(idtienda:string){
@@ -62,6 +79,10 @@ export class NotificacionesService {
   updateNotificacion(noti:NotificacionesTienda,id:string){
     return this.notificacionesCollection.doc(id).update(noti)
 
+  }
+
+  getUsuarios(){
+    return this.usuario;
   }
 
 

@@ -4,7 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import * as firebase from 'firebase';
 import { NotificacionesTienda}from '../../model/notificaciones.interface';
 import {NotificacionesService} from '../../services/notificaciones.service';
-import { AlertController } from '@ionic/angular';
+
 @Component({
   selector: 'app-header-tienda',
   templateUrl: './header-tienda.component.html',
@@ -28,8 +28,7 @@ export class HeaderTiendaComponent implements OnInit {
     }
   constructor(private router: Router,
     private Servicio:AuthService,
-    private notificacionesService:NotificacionesService,
-    public alertController: AlertController) { 
+    private notificacionesService:NotificacionesService) { 
     var user = firebase.auth().currentUser.uid;
     this.id = user;
   
@@ -70,7 +69,7 @@ export class HeaderTiendaComponent implements OnInit {
   }
 
   redinotifi(){
-    this.router.navigate(['/mis-bicis']);
+    this.router.navigate(['/notificaciones-tienda']);
 
   }
   salir(){
