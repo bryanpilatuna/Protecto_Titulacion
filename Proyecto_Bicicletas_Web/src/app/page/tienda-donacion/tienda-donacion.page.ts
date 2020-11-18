@@ -40,7 +40,7 @@ export class TiendaDonacionPage implements OnInit {
     tipo:'donacion',
     idusuario:'',
     idtipo:'',
-    color:'##D7F6FC',
+    color:'#D7F6FC',
     
   }
   constructor(private route: ActivatedRoute,
