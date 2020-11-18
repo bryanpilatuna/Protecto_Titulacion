@@ -35,21 +35,7 @@ export class MenuPage implements OnInit {
       this.estado = "Activo";
       this.savef();
     }
-    ServicioNoti.getTodos();
-    this.ServicioNoti.getTodos().subscribe((notificaciones) =>{
-      this.notificaciones = notificaciones;
-      
-      for(let i in this.notificaciones){
-        
-        if(this.notificaciones[i].idusuario==this.id && this.notificaciones[i].visualizar=="No"){
-          console.log(this.notificaciones[i].visualizar);
-          this.noti="Si";
-          this.send();
-        }
-      }
-    })
-
-    
+   
     
   }
 
@@ -62,18 +48,7 @@ export class MenuPage implements OnInit {
   }
 
   
-  send(){
-    this.localNotifications.schedule({
-      text: 'Tienes notificaciones pendientes que revisar.',
-      trigger: {at: new Date(new Date().getTime() + 3600)},
-      led: 'FF0000',
-      sound: null
-   });
 
-   this.localNotifications.on('click').subscribe(notification => {
-    this.router.navigate(['notificaciones']);
-     });
-  }
   pageperfile(){
     this.router.navigate(['profile']);
   }

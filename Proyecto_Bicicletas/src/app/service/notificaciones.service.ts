@@ -9,8 +9,10 @@ import { Notificaciones } from '../model/notificaciones.interface';
 export class NotificacionesService {
   private notificacionesCollection: AngularFirestoreCollection<Notificaciones>;
   private notificaciones: Observable<Notificaciones[]>;
-  constructor(db:AngularFirestore) { 
-    this.notificacionesCollection = db.collection<Notificaciones>('notificaciones',ref => ref.orderBy('fecha', "desc"));
+  private notificacionesCollection2: AngularFirestoreCollection<Notificaciones>;
+  private notificaciones2: Observable<Notificaciones[]>;
+  constructor(private db:AngularFirestore) { 
+    this.notificacionesCollection = this.db.collection<Notificaciones>('notificaciones',ref => ref.orderBy('fecha', "desc"));
     this.notificaciones = this.notificacionesCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
@@ -41,5 +43,21 @@ export class NotificacionesService {
   
   removeTodo(id: string){
     return this.notificacionesCollection.doc(id).delete();
+  }
+
+  getMisnotificaciones(iduser:string){
+
+    this.notificacionesCollection2 =this.db.collection<Notificaciones>('notificaciones', ref => ref.where('idusuario', '==', iduser));
+    this.notificaciones2 = this.notificacionesCollection2.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+        
+          return {id, ...data};
+        });
+      })
+    );
+    return this.notificaciones2;
   }
 }

@@ -32,6 +32,7 @@ export class BienvenidaPage implements OnInit {
     this.storage.get('estado').then((val) => {
       if(val=="Activo"){
         this.router.navigate(['menu']);
+        
       }
     
     });
@@ -40,6 +41,6 @@ export class BienvenidaPage implements OnInit {
   ganttEach() {
     alert("entra");
     //window.setInterval(this.ganttEach, 10000); // calls itself again in one second
-}
+  }
 
 }
