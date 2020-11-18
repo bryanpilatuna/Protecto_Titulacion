@@ -7,10 +7,14 @@ const routes: Routes = [
   {
     path: '',
     component: RegistroPage,
-    children: [  
+    children: [
       {
       path:'cliente',
-      loadChildren:'../registro-cliente/registro-cliente.module#RegistroClientePageModule'
+      loadChildren:'../registro-cliente/registro-cliente.module#RegistroClientePageModule',
+    },
+    {
+      path:'tienda',
+      loadChildren:'../registro-tienda/registro-tienda.module#RegistroTiendaPageModule',
     }
 
     ]
