@@ -21,23 +21,21 @@
             <div *ngIf="notificacion.visualizar==No && notificacion.tipo==Alquiler">
             <div *ngFor="let usuario of usuarios">
               <div *ngIf="notificacion.idusuario==usuario.uid">
-                <thead>
-                  <tr>
-                    <th scope="col">Nombre Usuario</th>
-                    <th scope="col">Apellido Usuario</th>
-                    <th scope="col">Fecha</th>
-                  </tr>
-                </thead>
-                <tbody>
-                <tr>
-               <td> {{usuario.nombres}}</td>
-               <td> {{usuario.apellidos}}</td>
-               <td>{{notificacion.fecha.toMillis() | date:'dd/MM/yyyy'}}</td>
-                <td><ion-button  (click)=" cambiarvisualizado(notificacion,notificacion.id)" color="warning">
-                  Revisar
-                </ion-button></td>
-              </tr>
-              </tbody>
+                <ion-card>
+                  <ion-card-header>
+                    <ion-card-title>{{usuario.nombres}},{{usuario.apellidos}}</ion-card-title>
+                    <ion-card-subtitle>{{notificacion.tipo}}</ion-card-subtitle>
+                  </ion-card-header>
+                
+                  <ion-card-content>
+                    <label>{{notificacion.fecha.toMillis() | date:'dd/MM/yyyy'}}</label>
+                    <br>
+                    <ion-button  (click)=" cambiarvisualizado(notificacion,notificacion.id)" color="warning">
+                      Revisar
+                    </ion-button>
+                  </ion-card-content>
+                </ion-card>
+                
             </div>
           </div>
         </div>
@@ -57,23 +55,20 @@
                 <div *ngIf="notificacion.visualizar==No && notificacion.tipo==Donacion">
                 <div *ngFor="let usuario of usuarios">
                   <div *ngIf="notificacion.idusuario==usuario.uid">
-                    <thead>
-                      <tr>
-                        <th scope="col">Nombre Usuario</th>
-                        <th scope="col">Apellido Usuario</th>
-                        <th scope="col">Fecha</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                   <td> {{usuario.nombres}}</td>
-                   <td> {{usuario.apellidos}}</td>
-                   <td>{{notificacion.fecha.toMillis() | date:'dd/MM/yyyy'}}</td>
-                    <td><ion-button  (click)=" cambiarvisualizadona(notificacion,notificacion.id)" color="warning">
-                      Revisar
-                    </ion-button></td>
-                  </tr>
-                  </tbody>
+                    <ion-card>
+                      <ion-card-header>
+                        <ion-card-title>{{usuario.nombres}},{{usuario.apellidos}}</ion-card-title>
+                        <ion-card-subtitle>{{notificacion.tipo}}</ion-card-subtitle>
+                      </ion-card-header>
+                    
+                      <ion-card-content>
+                        <label>{{notificacion.fecha.toMillis() | date:'dd/MM/yyyy'}}</label>
+                        <br>
+                        <ion-button  (click)=" cambiarvisualizadona(notificacion,notificacion.id)" color="warning">
+                          Revisar
+                        </ion-button>
+                      </ion-card-content>
+                    </ion-card>
                 </div>
               </div>
             </div>
