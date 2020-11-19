@@ -136,8 +136,8 @@ export class AuthService {
     try {
       await this.afAuth.signOut().then(() => {
        
-        //this.nav.navigateForward('/login'); 
-        window.location.href = 'login' ;
+        this.nav.navigateForward('/login'); 
+        //window.location.href = 'login' ;
       })
     } catch (error) {
       console.log('Error->', error);

@@ -8,6 +8,7 @@ import * as firebase from 'firebase';
 import { Notificaciones } from '../../model/notificaciones.interface';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { Storage } from '@ionic/storage';
+import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.page.html',
@@ -27,7 +28,8 @@ export class MenuPage implements OnInit {
     private usuarioService:UsuarioService,
     private localNotifications: LocalNotifications,
     private ServicioNoti:NotificacionesService,
-    private storage: Storage
+    private storage: Storage,
+    private alertCtrl: AlertController
     ) { 
     var user = firebase.auth().currentUser.uid;
     this.id = user;
@@ -35,8 +37,6 @@ export class MenuPage implements OnInit {
       this.estado = "Activo";
       this.savef();
     }
-    
-   
     
   }
 
@@ -48,13 +48,38 @@ export class MenuPage implements OnInit {
     });
   }
 
-  
+  async mensajeconfirmacion() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Mensaje',
+      message: 'Se necesita activar la ubicación de su dispositivo para visualizar las tiendas.',
+      buttons: [
+       {
+          text: 'Aceptar',
+          handler: () => {
+            this.irmapa()
+          }
+        },
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  irmapa(){
+    this.router.navigate(['/ubicar-tienda',this.id]);
+  }
 
   pageperfile(){
     this.router.navigate(['profile']);
   }
-  salir(){
-   
+
+  salir(){ 
     this.authservice.logout();
     this.id = null;
     this.estado = "Inactivo";
@@ -62,8 +87,6 @@ export class MenuPage implements OnInit {
   }
 
   savef(){
-    // set a key/value}
-    
     this.storage.set('estado', this.estado);
   }
 
