@@ -7,6 +7,7 @@ export interface Notificaciones {
     idusuario:string;
     idtipo:string;
     color:string;
+    idtienda:string;
 }
 export interface Notificacionesdonacion {
     id?: string;

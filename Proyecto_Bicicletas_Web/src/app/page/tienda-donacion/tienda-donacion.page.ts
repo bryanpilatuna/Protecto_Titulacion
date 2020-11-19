@@ -41,6 +41,7 @@ export class TiendaDonacionPage implements OnInit {
     idusuario:'',
     idtipo:'',
     color:'#D7F6FC',
+    idtienda:'',
     
   }
   constructor(private route: ActivatedRoute,
@@ -76,6 +77,7 @@ export class TiendaDonacionPage implements OnInit {
 
   aprobar(donacion:datosDonacion,id:string){
     donacion.aprobacion=true;
+    this.notificacion.idtienda=this.tiendaid;
     this.notificacion.respuesta='Tu donación ha sido aprobado, en breve nos pondremos en contacto contigo';
     this.notificacion.visualizar='No';
     this.notificacion.idusuario=donacion.iddonante;
@@ -97,6 +99,7 @@ export class TiendaDonacionPage implements OnInit {
     else{
       donacion.aprobacion=false;
       donacion.anular=true;
+      this.notificacion.idtienda=this.tiendaid;
       this.notificacion.visualizar='No';
       this.notificacion.idusuario=donacion.iddonante;
       this.notificacion.idtipo=donacion.id;

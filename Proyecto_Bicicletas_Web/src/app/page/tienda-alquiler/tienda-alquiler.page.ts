@@ -26,7 +26,8 @@ export class TiendaAlquilerPage implements OnInit {
     tipo:'alquiler',
     idusuario:'',
     idtipo:'',
-    color:'#D7F6FC'
+    color:'#D7F6FC',
+    idtienda:'',
   }
 
   alquiler:datosAlquiler={
@@ -74,6 +75,7 @@ export class TiendaAlquilerPage implements OnInit {
 
   aprobaralquiler(alquiler:datosAlquiler,id:string){
     alquiler.aprobacion=true;
+    this.notificacion.idtienda=this.tiendaid;
     this.notificacion.respuesta='Tu Alquiler ha sido aprobado';
     this.notificacion.visualizar='No';
     this.notificacion.idusuario=alquiler.idusuario;
@@ -95,6 +97,7 @@ export class TiendaAlquilerPage implements OnInit {
     this.notificacion.visualizar='No';
     this.notificacion.idusuario=alquiler.idusuario;
     this.notificacion.idtipo=alquiler.id;
+    this.notificacion.idtienda=this.tiendaid;
     this.alquilerservice.addNotificacion(this.notificacion);
     this.notificacion.respuesta='';
     alquiler.aprobacion=false;
