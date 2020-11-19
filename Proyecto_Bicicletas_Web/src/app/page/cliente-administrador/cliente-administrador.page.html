@@ -14,7 +14,8 @@
           <button type="button" class="btn btn-primary" (click)="buscar(busquedanombre)">Buscar</button>
         </form>
       </div>
-      <div class="table-responsive">
+      <br/>
+      <div class="table-responsive table-striped table-bordered">
         <table class="table ">
           <thead>
             <tr>
@@ -28,7 +29,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let usuario of usuarios ;let indice=index">
-              <th scope="row">{{indice+1}}</th>
+              <td scope="row">{{indice+1}}</td>
               <td><img [src]="usuario.foto" style="height:100px;display:block;margin:auto"/></td>
               <td>{{usuario.nombres}}</td>
               <td>{{usuario.correo}}</td>

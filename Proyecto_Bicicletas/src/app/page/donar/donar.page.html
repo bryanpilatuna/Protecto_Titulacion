@@ -35,8 +35,12 @@
       <ion-label position="stacked"><strong>Modo de entrega: </strong></ion-label>
       <p>{{donaciones.modo}}</p>
     </ion-item>
-
-    <ion-button *ngIf="donaciones.anular==false" expand="full" (click)="cancelar()"  color="danger">Anular</ion-button>
+    <div *ngIf="donaciones.anular==cancelaran">
+      <div *ngIf="donaciones.aprobacion==cancelaran">
+        <ion-button  expand="full" (click)="cancelar()"  color="danger">Anular</ion-button>
+      </div>
+    </div>
+    
   
    
 

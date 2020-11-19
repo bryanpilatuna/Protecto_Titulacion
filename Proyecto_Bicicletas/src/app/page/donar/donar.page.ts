@@ -16,6 +16,7 @@ export class DonarPage implements OnInit {
   iddonar=null;
   fecha:any;
   fechadonar:any;
+  cancelaran=false;
   constructor(private route: ActivatedRoute,private Servicio:DonacionService,
     private loadingController: LoadingController,
     private nav: NavController,private alertCtrl: AlertController) { 
