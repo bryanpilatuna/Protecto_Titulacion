@@ -46,7 +46,12 @@
       <ion-label>Hora Devolución:</ion-label>
       <p>{{alquileres.horadevolucion}}</p>
     </ion-item>
-    <ion-button *ngIf="alquileres.anular==false" expand="full" (click)="cancelar()" color="danger">Anular</ion-button>
+    <div *ngIf="alquileres.anular==cancelaran">
+      <div *ngIf="alquileres.aprobacion==cancelaran">
+        <ion-button  expand="full" (click)="cancelar()" color="danger">Anular</ion-button>
+      </div>
+    </div>
+    
 
   </ion-list>
 

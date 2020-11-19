@@ -28,7 +28,7 @@ export class AlquilerPage implements OnInit {
   fecha:any;
   fechaalquiler:any;
   fechadevolucion:any;
-
+  cancelaran=false;
   constructor(private Servicio:AlquilerService,
     private route: ActivatedRoute,
     private loadingController: LoadingController,
