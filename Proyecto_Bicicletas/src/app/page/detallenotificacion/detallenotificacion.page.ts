@@ -5,6 +5,8 @@ import { ActivatedRoute} from '@angular/router';
 import { NavController, LoadingController } from '@ionic/angular';
 import { datosTiendas } from 'src/app/model/tienda.interface';
 import { AlquilerService } from 'src/app/service/alquiler.service';
+import { datosAlquiler } from '../../model/alquiler.interface';
+import { datosBicicleta } from 'src/app/model/bicicleta.interface';
 @Component({
   selector: 'app-detallenotificacion',
   templateUrl: './detallenotificacion.page.html',
@@ -12,14 +14,24 @@ import { AlquilerService } from 'src/app/service/alquiler.service';
 })
 export class DetallenotificacionPage implements OnInit {
   tienda:  datosTiendas;
+  tiendas:  datosTiendas;
   notificacion:Notificaciones;
   id= null;
+  alquileres: datosAlquiler;
+  idalquiler= null;
+  idbici=null;
+  bicicleta:datosBicicleta;
+  fecha:any;
+  fechaalquiler:any;
+  fechadevolucion:any;
+  cancelaran=false;
   constructor(
     private Servicio:AlquilerService,
     private route: ActivatedRoute, 
     private nav: NavController, 
     private Service: NotificacionesService, 
-    private loadingController: LoadingController) { }
+    private loadingController: LoadingController,
+    ) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
@@ -30,7 +42,30 @@ export class DetallenotificacionPage implements OnInit {
 
   async loadTodo(){
     this.Service.getTodo(this.id).subscribe(notificacion => {
+      
       this.notificacion = notificacion;
+      this.idalquiler=this.notificacion.idtipo;
+
+
+      this.Servicio.getAlquileres(this.idalquiler).subscribe((alquileres) =>{
+        this.alquileres = alquileres;
+        console.log(this.alquileres);
+        this.fecha= new Date(this.alquileres.fecha['seconds']*1000);
+        this.fechaalquiler= new Date(this.alquileres.fechaalquiler['seconds']*1000);
+        this.fechadevolucion= new Date(this.alquileres.fechadevolucion['seconds']*1000);    
+        this.idbici=this.alquileres.bicicleta;
+        this.Servicio.getBicicleta(this.idbici).subscribe((bicicletas) =>{
+          this.bicicleta = bicicletas;
+        })
+        this.Servicio.getTienda(this.alquileres.idtienda).subscribe((tiendas) =>{
+          this.tiendas = tiendas;
+
+        })
+ 
+        
+      })
+
+
       this.notificacion.visualizar="Si";
       this.notificacion.color="#FFFFFF";
       console.log(notificacion);
@@ -39,6 +74,7 @@ export class DetallenotificacionPage implements OnInit {
         });
         console.log(this.notificacion.idtienda);
       } 
+      
     });
     
 
@@ -46,21 +82,11 @@ export class DetallenotificacionPage implements OnInit {
 
   async saveTodo() {
     this.notificacion.visualizar="Si";
-    const loading = await this.loadingController.create({
-      message: 'Saving....'
-    });
-    await loading.present();
     if (this.id) {
       this.Service.updateTodo(this.notificacion , this.id).then(() => {
-        loading.dismiss();
         this.nav.navigateForward('/notificaciones');
       });
-    } else {
-      this.Service.addTodo(this.notificacion).then(() => {
-        loading.dismiss();
-        this.nav.navigateForward('/');
-      });
-    }
+    } 
   }
 
 }

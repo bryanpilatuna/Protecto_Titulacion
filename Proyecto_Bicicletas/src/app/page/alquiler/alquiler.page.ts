@@ -21,7 +21,7 @@ import { AlertController } from '@ionic/angular';
 export class AlquilerPage implements OnInit {
   tiendas:  datosTiendas;
   alquileres: datosAlquiler;
-  alquileres2: datosAlquiler[];
+ 
   idalquiler= null;
   idbici=null;
   bicicleta:datosBicicleta;

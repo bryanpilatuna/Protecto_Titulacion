@@ -24,11 +24,11 @@ export class NotificacionAlquilerPage implements OnInit {
       console.log(this.id);
       this.Service.getTodos().subscribe((notificaciones) =>{
       this.notificaciones = notificaciones;
-      console.log(this.notificaciones[0].idtienda);
+      
       })
 
       this.Servicio.getTiendas().subscribe((tiendas) =>{
-        console.log(tiendas);
+        
         this.tiendas = tiendas;
       
       })
