@@ -16,11 +16,11 @@
     </ion-item>
 
     <ion-item >
-      <div style="margin: 0px;padding: 0px;">
+      <div style="margin: 0px;padding: 0px;" *ngIf="tiendas" >
         <ion-label position="stacked"><strong>Tienda</strong></ion-label>
-        <div *ngFor="let tienda of tiendas;let indice=index" >
+        <div >
 
-          <p *ngIf="tienda.id==alquileres.idtienda">{{tienda.nombre }}</p>
+          <p >{{tiendas.nombre }}</p>
         </div>
       </div>
     </ion-item>

@@ -3,15 +3,19 @@ import { Notificaciones } from '../../model/notificaciones.interface';
 import { NotificacionesService } from '../../service/notificaciones.service';
 import { ActivatedRoute} from '@angular/router';
 import { NavController, LoadingController } from '@ionic/angular';
+import { datosTiendas } from 'src/app/model/tienda.interface';
+import { AlquilerService } from 'src/app/service/alquiler.service';
 @Component({
   selector: 'app-detallenotificacion',
   templateUrl: './detallenotificacion.page.html',
   styleUrls: ['./detallenotificacion.page.scss'],
 })
 export class DetallenotificacionPage implements OnInit {
+  tienda:  datosTiendas;
   notificacion:Notificaciones;
   id= null;
   constructor(
+    private Servicio:AlquilerService,
     private route: ActivatedRoute, 
     private nav: NavController, 
     private Service: NotificacionesService, 
@@ -25,23 +29,19 @@ export class DetallenotificacionPage implements OnInit {
   }
 
   async loadTodo(){
-    const loading = await this.loadingController.create({
-      message: 'Loading....'
-    });
-    await loading.present();
-
     this.Service.getTodo(this.id).subscribe(notificacion => {
-      loading.dismiss();;
       this.notificacion = notificacion;
       this.notificacion.visualizar="Si";
       this.notificacion.color="#FFFFFF";
       console.log(notificacion);
       if (this.id) {
         this.Service.updateTodo(this.notificacion , this.id).then(() => {
-          loading.dismiss();
         });
+        console.log(this.notificacion.idtienda);
       } 
     });
+    
+
   }
 
   async saveTodo() {

@@ -19,7 +19,7 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./alquiler.page.scss'],
 })
 export class AlquilerPage implements OnInit {
-  tiendas:  datosTiendas[];
+  tiendas:  datosTiendas;
   alquileres: datosAlquiler;
   alquileres2: datosAlquiler[];
   idalquiler= null;
@@ -49,14 +49,15 @@ export class AlquilerPage implements OnInit {
         this.Servicio.getBicicleta(this.idbici).subscribe((bicicletas) =>{
           this.bicicleta = bicicletas;
         })
+        this.Servicio.getTienda(this.alquileres.idtienda).subscribe((tiendas) =>{
+          this.tiendas = tiendas;
+          console.log(this.tiendas);
+        })
  
         
       })
   
-      this.Servicio.getTiendas().subscribe((tiendas) =>{
-        this.tiendas = tiendas;
-
-      })
+   
       
 
       

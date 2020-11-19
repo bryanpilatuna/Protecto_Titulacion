@@ -14,10 +14,10 @@
       <p>{{donaciones.descripcion}}</p>
     </ion-item>
 
-    <ion-item >
+    <ion-item *ngIf="tiendas">
       <ion-label position="stacked"><strong>Tienda</strong></ion-label>
-      <div *ngFor="let tienda of tiendas;let indice=index">
-        <p *ngIf="tienda.id==donaciones.idtienda">{{tienda.nombre}}</p>
+      <div>
+        <p>{{tiendas.nombre}}</p>
       </div>
     </ion-item>
 

@@ -61,13 +61,13 @@ export class MenuInvitadoPage implements OnInit {
 
 
   notificaciones(){
-    this.mensaje="Necesita registrarse para poder visualizar las notificaciones.";
+    this.mensaje="Necesita registrarse para tener notificaciones.";
     this.mensajemostrar();
   }
 
   //Mensaje de de alert en modulo perfil
   perfil(){
-    this.mensaje="Necesita registrarse para poder visualizar y editar su perfil.";
+    this.mensaje="Necesita registrarse para visualizar y editar su perfil.";
     this.mensajemostrar();
   }
 
@@ -79,13 +79,13 @@ export class MenuInvitadoPage implements OnInit {
 
   //Mensaje de de alert en modulo alquiler
   alquiler(){
-    this.mensaje="Necesita registrarse para poder alquilar una bicicleta.";
+    this.mensaje="Necesita registrarse para alquilar bicicletas.";
     this.mensajemostrar();
   }
 
   //Mensaje de de alert en modulo donacion
   donar(){
-    this.mensaje="Necesita registrarse para poder realizar una donación.";
+    this.mensaje="Necesita registrarse para donacinar bicicletas.";
     this.mensajemostrar();
   }
 

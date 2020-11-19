@@ -83,6 +83,9 @@ export class AlquilerService {
     
     return this.tienda;
   }
+  getTienda(id: string){
+    return this.tiendaCollection.doc<datosTiendas>(id).valueChanges();
+  }
 
   getBicicletas(idtienda:string){
     this.BicicletaCollection = this.db.collection<datosBicicleta>('bicicleta', ref => ref.where('idtienda', '==', idtienda));

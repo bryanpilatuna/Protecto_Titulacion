@@ -11,7 +11,7 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./donar.page.scss'],
 })
 export class DonarPage implements OnInit {
-  tiendas:  datosTiendas[];
+  tiendas:  datosTiendas;
   donaciones: datosDonacion;
   iddonar=null;
   fecha:any;
@@ -20,21 +20,23 @@ export class DonarPage implements OnInit {
   constructor(private route: ActivatedRoute,private Servicio:DonacionService,
     private loadingController: LoadingController,
     private nav: NavController,private alertCtrl: AlertController) { 
+      this.iddonar=this.route.snapshot.params['id'];
+      this.Servicio.getDonacionid(this.iddonar).subscribe((donaciones) =>{
+      this.donaciones = donaciones;
+      this.fecha= new Date(this.donaciones.fechasolicitud['seconds']*1000);
+      this.fechadonar= new Date(this.donaciones.fechadonacion['seconds']*1000);
+      this.Servicio.getTienda(this.donaciones.idtienda).subscribe((tiendas) =>{
+        this.tiendas = tiendas;
+        console.log(this.tiendas);
+      })
+
+    })
+      
       
     }
 
   ngOnInit() {
-    this.iddonar=this.route.snapshot.params['id'];
-    this.Servicio.getDonacionid(this.iddonar).subscribe((donaciones) =>{
-      this.donaciones = donaciones;
-      this.fecha= new Date(this.donaciones.fechasolicitud['seconds']*1000);
-      this.fechadonar= new Date(this.donaciones.fechadonacion['seconds']*1000);
-
-    })
-    this.Servicio.getTiendas().subscribe((tiendas) =>{
-      this.tiendas = tiendas;
-
-    })
+    
 
   }
   async mensajeconfirmacion() {
