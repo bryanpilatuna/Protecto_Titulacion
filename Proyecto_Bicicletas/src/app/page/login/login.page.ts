@@ -33,8 +33,7 @@ export class LoginPage implements OnInit {
     private storage: Storage
     ) {
     this.crearvalidaciones();
-    this.savef();
-    
+  
 
    }
 
@@ -60,20 +59,9 @@ export class LoginPage implements OnInit {
     await alert.present();
   }
 
-  send(){
-    this.localNotifications.schedule({
-      text: 'Tienes notificaciones pendientes que revisar.',
-      trigger: {at: new Date(new Date().getTime() + 3600)},
-      led: 'FF0000',
-      sound: null
-   });
-
-   this.localNotifications.on('click').subscribe(notification => {
-      alert("funciona");
-     });
-  }
  
-  
+ 
+ 
   //Crear validaciones para el form 
   crearvalidaciones(){
     const emailControl = new FormControl('', Validators.compose([
@@ -161,13 +149,7 @@ export class LoginPage implements OnInit {
     this.passwordTypeInput = this.passwordTypeInput === 'text' ? 'password' : 'text';
   }
 
-  savef(){
-    // set a key/value}
-    this.prueba = "Bryan";
-    this.prueba2 = "12324324";
-    this.storage.set('name', "12324324");
-    this.storage.set('apellido', this.prueba2);
-  }
+
 
   
   

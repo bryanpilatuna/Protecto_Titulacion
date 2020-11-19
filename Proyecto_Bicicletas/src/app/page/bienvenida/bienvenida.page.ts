@@ -23,7 +23,7 @@ export class BienvenidaPage implements OnInit {
   ];
   constructor(private storage: Storage,private router: Router,) { 
     this.loadDate();
-    this.ganttEach();
+    //this.ganttEach();
   }
 
   ngOnInit() {
@@ -38,9 +38,9 @@ export class BienvenidaPage implements OnInit {
     });
   }
 
-  ganttEach() {
+  /*ganttEach() {
     alert("entra");
     //window.setInterval(this.ganttEach, 10000); // calls itself again in one second
-  }
+  }*/
 
 }

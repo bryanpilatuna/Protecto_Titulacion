@@ -35,6 +35,7 @@ export class MenuPage implements OnInit {
       this.estado = "Activo";
       this.savef();
     }
+    
    
     
   }

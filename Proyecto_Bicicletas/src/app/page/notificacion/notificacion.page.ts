@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { NavController, LoadingController } from '@ionic/angular';
+
 @Component({
   selector: 'app-notificacion',
   templateUrl: './notificacion.page.html',
@@ -8,14 +9,13 @@ import { NavController, LoadingController } from '@ionic/angular';
 })
 export class NotificacionPage implements OnInit {
 
-  constructor(private router: Router,private nav: NavController, ) { }
+  constructor(private router: Router,private navCtrl:NavController ) { }
 
   ngOnInit() {
   }
-  
-  regresarmenu(){
-    //this.router.navigateByUrl('/menu');
-
+  click(){
+    window.location.href = 'menu' ;
+   
   }
 
 }

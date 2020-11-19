@@ -24,13 +24,6 @@ export class NotificacionComponent implements OnInit {
   ) { 
     var user = firebase.auth().currentUser.uid;
     this.id = user;
-    
-
-    
-    
-  }
-
-  ngOnInit() {
     this.ServicioNoti.getMisnotificaciones(this.id).subscribe((notificaciones) =>{
       this.notificaciones = notificaciones;
       console.log(this.notificaciones);
@@ -41,6 +34,14 @@ export class NotificacionComponent implements OnInit {
         }
       }
     })
+    
+
+    
+    
+  }
+
+  ngOnInit() {
+    
   }
 
 

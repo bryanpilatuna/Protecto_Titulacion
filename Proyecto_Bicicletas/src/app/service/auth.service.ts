@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../model/user.interface';
 import { DatosUsuario } from '../model/user.interface';
 import { AngularFireAuth } from '@angular/fire/auth';
-
+import { NavController, LoadingController } from '@ionic/angular';
 import * as firebase from 'firebase';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
@@ -25,7 +25,12 @@ export class AuthService {
   private usuariosCollection: AngularFirestoreCollection<DatosUsuario>;
   private usuario: Observable<DatosUsuario[]>;
   
-  constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private router: Router, private storage: AngularFireStorage) {
+  constructor(
+    public afAuth: AngularFireAuth, 
+    private afs: AngularFirestore, 
+    private router: Router, 
+    private storage: AngularFireStorage,
+    private nav: NavController) {
     this.user$ = this.afAuth.authState.pipe(
       switchMap((user) => {
         if (user) {
@@ -130,7 +135,9 @@ export class AuthService {
   async logout(): Promise<void> {
     try {
       await this.afAuth.signOut().then(() => {
-        this.router.navigate(['/login']);
+       
+        //this.nav.navigateForward('/login'); 
+        window.location.href = 'login' ;
       })
     } catch (error) {
       console.log('Error->', error);
