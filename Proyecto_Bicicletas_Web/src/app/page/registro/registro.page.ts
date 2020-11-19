@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -10,8 +9,7 @@ import { Router } from '@angular/router';
 export class RegistroPage implements OnInit {
  
 
-  constructor(private authSvc: AuthService, 
-    private router: Router) {
+  constructor(private authSvc: AuthService) {
   
     
      }
