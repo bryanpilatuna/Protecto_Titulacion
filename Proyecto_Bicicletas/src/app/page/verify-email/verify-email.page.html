@@ -9,20 +9,21 @@
 
 
 <ion-content *ngIf="user$ | async as user">
-  <ion-row>
-    <ion-col>
-      <h2>
-        ¡Gracias por registrarte!</h2>
-      <p>Hemos enviado un correo electrónico de confirmación a <strong>{{user.email}}</strong></p>
-      <p>Verifique su correo electrónico y haga clic en el enlace para verificar su dirección de correo electrónico</p>
-    </ion-col>
-  </ion-row>
+  <form>
+    <ion-row>
+      <ion-col>
+        <h2>
+          ¡Gracias por registrarte!</h2>
+        <p style="text-align: justify;">Se envió un enlace de verificación al siguiente correo.<strong>{{user.email}}</strong></p>
+      </ion-col>
+    </ion-row>
 
-  <ion-row>
-    <ion-col>
-      <ion-button type="submit" color="primary" expand="block" (click)="onSendEmail()"
-        >Reenviar verificación email</ion-button
-      >
-    </ion-col>
-  </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" color="primary" expand="block" (click)="onSendEmail()"
+          >Reenviar verificación email</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </form>
 </ion-content>

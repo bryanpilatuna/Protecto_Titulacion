@@ -139,15 +139,14 @@
       <ion-icon [name]="(passwordTypeInput === 'text')?'eye-off':'eye'" ></ion-icon>
     </button>
   </ion-item>
+  <ion-item>
     <div class="row">
       <ion-label position="stacked"><strong>Foto</strong></ion-label>
-    <ion-row>
-      <ion-item>
+      <br/>
         <input formControlName="foto" type="file" accept=".png, .jpg" (change)="enviarimagen($event)" style="color:black"/>
-      </ion-item>
-    </ion-row>
-  </div>
-
+    </div>
+  </ion-item>
+  <br/>
     <div class="row">
         <ion-button type="submit" [disabled]="!formGroup.valid" expand="block">Registrarse</ion-button>
     </div>

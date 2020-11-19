@@ -125,28 +125,16 @@ export class ProfilePage implements OnInit {
 
   //Cargar usuario
   async cargarUsuario(){
-    const loading = await this.loadingController.create({
-      message: 'Cargando....'
-    });
-    await loading.present();
     this.usuarioService.getUsuario(this.usuarioId).subscribe(usuario => {
-      loading.dismiss();;
       this.usuario = usuario;
     });
   }
 
   //Guardar Usuario
   async guardarUsuario() {
-    const loading = await this.loadingController.create({
-      message: 'Guardando....'
-    });
-    await loading.present();
- 
     if (this.usuarioId) {
       this.usuarioService.updateUsuario(this.usuario, this.usuarioId).then(() => {
-        loading.dismiss();
         this.nav.navigateForward('menu');
-        
       });
     } 
   }

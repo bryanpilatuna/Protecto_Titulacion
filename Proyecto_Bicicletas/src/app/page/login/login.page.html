@@ -8,11 +8,12 @@
 </ion-header>
 
 <ion-content >
+  
   <div class="row" style="display: flex;justify-content: center;">
     <img width="40%" src="../../../assets/login/logo2.png"/>
   </div>
   <form [formGroup]="formGroup" (ngSubmit)="onLogin()">
-    <ion-item style="border: white 8px groove;">
+    <ion-item >
         <ion-label position="floating">
           <strong>Correo electrónico</strong>
         </ion-label>
@@ -37,7 +38,7 @@
           *Máximo 40 caracteres  
         </p>
     </div>
-    <ion-item style="border: white 8px groove;">
+    <ion-item >
       <ion-label position="floating"><strong>Contraseña</strong></ion-label>
       <div>
         <ion-input formControlName="passwordControl" [type]="passwordTypeInput" 
@@ -91,5 +92,6 @@
       </ion-button>
     </div>-->
   </form>
+
 
 </ion-content>

@@ -125,7 +125,7 @@ export class LoginPage implements OnInit {
         //this.tienda = tienda;
    
         if (usuario === undefined) {
-          this.mensaje="El usuario no es de tipo cliente.";
+          this.mensaje="La cuenta de correo está siendo utilizada por otro tipo de usuario. ";
           this.mensajeerror();
           //alert("El usuario no es de tipo cliente.");
         }else{

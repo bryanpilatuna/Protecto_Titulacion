@@ -67,14 +67,8 @@ export class DonarPage implements OnInit {
   
   async cancelaralquilar() {
     this.donaciones.anular=true;
-    const loading = await this.loadingController.create({
-      message: 'Saving....'
-    });
-    await loading.present();
- 
     if (this.iddonar) {
       this.Servicio.updateDonacion(this.donaciones, this.iddonar).then(() => {
-        loading.dismiss();
         this.nav.navigateForward('/alquiler-donacion');
       });
     }

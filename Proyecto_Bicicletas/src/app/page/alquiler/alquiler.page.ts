@@ -44,13 +44,7 @@ export class AlquilerPage implements OnInit {
         this.alquileres = alquileres;
         this.fecha= new Date(this.alquileres.fecha['seconds']*1000);
         this.fechaalquiler= new Date(this.alquileres.fechaalquiler['seconds']*1000);
-        this.fechadevolucion= new Date(this.alquileres.fechadevolucion['seconds']*1000);
-
-
-
-      
-     
-      
+        this.fechadevolucion= new Date(this.alquileres.fechadevolucion['seconds']*1000);    
         this.idbici=this.alquileres.bicicleta;
         this.Servicio.getBicicleta(this.idbici).subscribe((bicicletas) =>{
           this.bicicleta = bicicletas;
@@ -113,16 +107,10 @@ export class AlquilerPage implements OnInit {
 
   async cancelaralquilar() {
     this.alquileres.anular=true;
-    const loading = await this.loadingController.create({
-      message: 'Saving....'
-    });
-    await loading.present();
- 
     if (this.idalquiler) {
       this.Servicio.updateAlquileres(this.alquileres, this.idalquiler).then(() => {
         this.bicicleta.disponible="Si";
         this.Servicio.updateBicicletas(this.bicicleta,this.idbici);
-        loading.dismiss();
         this.nav.navigateForward('/alquiler-donacion');
       });
     } 
