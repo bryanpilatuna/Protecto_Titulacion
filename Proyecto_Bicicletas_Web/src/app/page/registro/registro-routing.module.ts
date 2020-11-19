@@ -8,13 +8,14 @@ const routes: Routes = [
     path: '',
     component: RegistroPage,
     children: [
-      {
-      path:'cliente',
-      loadChildren:'../registro-cliente/registro-cliente.module#RegistroClientePageModule',
-    },
     {
       path:'tienda',
-      loadChildren:'../registro-tienda/registro-tienda.module#RegistroTiendaPageModule',
+      loadChildren: () => import('../registro-tienda/registro-tienda.module').then( m => m.RegistroTiendaPageModule)      
+    },
+    {
+      path:'cliente',
+      loadChildren: () => import('../registro-cliente/registro-cliente.module').then( m => m.RegistroClientePageModule)
+      
     }
 
     ]
