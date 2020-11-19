@@ -28,7 +28,7 @@ export class NotificacionAlquilerPage implements OnInit {
       })
 
       this.Servicio.getTiendas().subscribe((tiendas) =>{
-        console.log(tiendas[0].id);
+        console.log(tiendas);
         this.tiendas = tiendas;
       
       })
