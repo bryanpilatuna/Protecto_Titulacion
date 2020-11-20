@@ -30,7 +30,7 @@ export class TiendaDonacionPage implements OnInit {
     aprobacion:false,
     idtienda:'',
     anular:false,
-
+    modo:'',
   }
 
   notificacion:Notificaciones={
@@ -83,6 +83,7 @@ export class TiendaDonacionPage implements OnInit {
     this.notificacion.idusuario=donacion.iddonante;
     this.notificacion.idtipo=donacion.id;
     this.donacionesservice.addNotificacion(this.notificacion);
+    this.notificacion.respuesta='';
 
 
     this.donacionesservice.actualizarDonacion(donacion,id).then(() => {

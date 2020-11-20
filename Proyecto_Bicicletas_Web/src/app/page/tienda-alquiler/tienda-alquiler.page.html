@@ -27,7 +27,9 @@
                     <th scope="col">Nombre Solicitante</th>
                     <th scope="col">Apellido Solicitante</th>
                     <th scope="col">Fecha Alquiler</th>
+                    <th scope="col">Hora Alquiler</th>
                     <th scope="col">Fecha Devolución</th>
+                    <th scope="col">Hora Devolución</th>
                     <th scope="col">Aprobar</th>
                     <th scope="col">Motivo rechazo</th>
                     <th scope="col">Rechazar</th>
@@ -38,7 +40,10 @@
                <td> {{usuario.nombres}}</td>
                <td> {{usuario.apellidos}}</td>
                <td>{{alquiler.fechaalquiler.toMillis() | date:'dd/MM/yyyy'}}</td>
+               <td>{{alquiler.horaalquiler}}</td>
+
                <td>{{alquiler.fechadevolucion.toMillis() | date:'dd/MM/yyyy'}}</td>
+               <td>{{alquiler.horadevolucion}}</td>
                 <td><ion-button  (click)="aprobaralquiler(alquiler,alquiler.id)" color="warning">
                   Aprobar
                 </ion-button></td>
@@ -72,7 +77,10 @@
                         <th scope="col">Nombre Solicitante</th>
                         <th scope="col">Apellido Solicitante</th>
                         <th scope="col">Fecha Alquiler</th>
+                        <th scope="col">Hora Alquiler</th>
                         <th scope="col">Fecha Devolución</th>
+                        <th scope="col">Hora Devolución</th>
+                       
                        
                       </tr>
                     </thead>
@@ -81,7 +89,9 @@
                    <td> {{usuario.nombres}}</td>
                    <td> {{usuario.apellidos}}</td>
                    <td>{{alquiler.fechaalquiler.toMillis() | date:'dd/MM/yyyy'}}</td>
-                   <td>{{alquiler.fechadevolucion.toMillis() | date:'dd/MM/yyyy'}}</td>
+                    <td>{{alquiler.horaalquiler}}</td>
+                    <td>{{alquiler.fechadevolucion.toMillis() | date:'dd/MM/yyyy'}}</td>
+                    <td>{{alquiler.horadevolucion}}</td>
                   </tr>
                   </tbody>
                 </div>

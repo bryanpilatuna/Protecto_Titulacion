@@ -8,6 +8,8 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import {UbicacionService}from '../../services/ubicacion.service';
 import {datosUbicacion}from '../../model/ubicacion.interface';
+import { AlertController } from '@ionic/angular';
+import { AuthService } from '../../services/auth.service';
 declare var google;
 
 
@@ -17,7 +19,7 @@ declare var google;
   styleUrls: ['./editar-tienda.page.scss'],
 })
 export class EditarTiendaPage implements OnInit {
-  
+  mensaje:string;
   formGroup: FormGroup;
   map = null;
   tienda:Tienda={
@@ -42,6 +44,8 @@ export class EditarTiendaPage implements OnInit {
     private loadingController: LoadingController,
     public formBuilder: FormBuilder,
     private geolocation: Geolocation,
+    private Service: AuthService,
+    private alertCtrl: AlertController,
     private UbicacionService: UbicacionService) { 
       
   
@@ -67,7 +71,7 @@ export class EditarTiendaPage implements OnInit {
         loading.dismiss();
         this.tienda =tienda;
         this.addMarker(this.tienda.position.latitude,this.tienda.position.longitude,this.tienda.nombre);
-      
+     
       });
       
   }
@@ -175,6 +179,30 @@ export class EditarTiendaPage implements OnInit {
 
   }
 
+  async cambiarcontra(){
 
+    this.Service.resetPassword(this.tienda.correo).then(() => {
+      this.mensaje="Se envió un correo para cambiar la contraseña. ";
+      this.mensajeerror();
+    });
+  }
+
+  //Mostrar mensaje de alerta
+  async mensajeerror() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Mensaje',
+      message: this.mensaje,
+      buttons: [
+       {
+          text: 'Aceptar',
+          handler: () => {
+            console.log('Confirm Ok');
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
 
 }

@@ -10,4 +10,5 @@ export interface datosDonacion{
     anular:boolean;
     modo:string;
     direccion:string;
+
 }
