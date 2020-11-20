@@ -1,9 +1,20 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>ubicar-tienda</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button routerLink="/menu"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Tiendas</ion-title>
+    <ion-buttons slot="end" style="padding: 10px;" [routerLink]="['/notificacion']">
+      <app-notificacion></app-notificacion>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
+ <ion-content>
+  <div id="map" ></div>
+  <div>
+    <ion-button expand="full" (click)="alquilarbici()" [disabled]=desabilitarboton>Alquilar Bici</ion-button>
+    <ion-button expand="full" (click)="donabici()" [disabled]=desabilitarboton>Donar Bici</ion-button>
+  </div>
 
-<ion-content>
 
-</ion-content>
+ </ion-content>

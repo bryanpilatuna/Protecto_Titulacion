@@ -110,7 +110,8 @@ const routes: Routes = [
   {
     path: 'registro',
     loadChildren: () => import('./page/registro/registro.module').then( m => m.RegistroPageModule)
-  },  {
+  },
+  {
     path: 'notificaciones-tienda',
     loadChildren: () => import('./page/notificaciones-tienda/notificaciones-tienda.module').then( m => m.NotificacionesTiendaPageModule)
   },
@@ -119,19 +120,19 @@ const routes: Routes = [
     loadChildren: () => import('./modal/modal-alquiler/modal-alquiler.module').then( m => m.ModalAlquilerPageModule)
   },
   {
-    path: 'profile',
+    path: 'profile/:id',
     loadChildren: () => import('./page/cliente/profile/profile.module').then( m => m.ProfilePageModule)
   },
   {
-    path: 'formulario-alquiler',
+    path: 'formulario-alquiler/:id',
     loadChildren: () => import('./page/cliente/formulario-alquiler/formulario-alquiler.module').then( m => m.FormularioAlquilerPageModule)
   },
   {
-    path: 'formulario-donacion',
+    path: 'formulario-donacion/:id',
     loadChildren: () => import('./page/cliente/formulario-donacion/formulario-donacion.module').then( m => m.FormularioDonacionPageModule)
   },
   {
-    path: 'ubicar-tienda',
+    path: 'ubicar-tienda/:id',
     loadChildren: () => import('./page/cliente/ubicar-tienda/ubicar-tienda.module').then( m => m.UbicarTiendaPageModule)
   },
 
