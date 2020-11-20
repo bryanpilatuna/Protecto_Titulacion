@@ -133,7 +133,7 @@ export class ProfilePage implements OnInit {
   async guardarUsuario() {
     if (this.usuarioId) {
       this.usuarioService.updateUsuario(this.usuario, this.usuarioId).then(() => {
-        this.nav.navigateForward('menu');
+        this.nav.navigateForward('menu-cliente');
       });
     } 
   }

@@ -136,7 +136,7 @@ export class AuthService {
     try {
       await this.afAuth.signOut().then(() => {
        
-        this.nav.navigateForward('/login'); 
+        this.nav.navigateForward('/iniciar-sesion'); 
         //window.location.href = 'login' ;
       })
     } catch (error) {

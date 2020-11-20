@@ -118,20 +118,12 @@ export class FormularioDonacionPage implements OnInit {
 
   //Crear la donacion
   async crearDonacion(){
-    const loading = await this.loadingController.create({
-      message: 'Guardando....'
-    });
       this.donacionService.addDonacion(this.donacion).then(() => {
         this.notificaciones.idusuario=this.donacion.iddonante;
-        this.notificaciones.idtienda=this.donacion.idtienda;
-        
+        this.notificaciones.idtienda=this.donacion.idtienda; 
         this.Service.addNotificacion(this.notificaciones);
-          loading.dismiss();
-          this.nav.navigateForward('/menu');
-      
+          this.nav.navigateForward('/menu-cliente');
       });
-    
-
   }
 
   //Cambio de fecha
