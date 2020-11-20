@@ -65,8 +65,7 @@ this.nav.navigateForward(['/formulario-donacion', this.id]);
       map: this.map,
       title: 'ESTAS AQUI',
       animation: google.maps.Animation.DROP,
-      icon: { url: "../assets/icon/green-dot.png",
-      scaledSize: new google.maps.Size(35, 35) }
+      icon: "http://maps.google.com/mapfiles/ms/icons/green-dot.png",
       });
       const detallemarker = 
       '<h5>Estas Aquí</h5>';
