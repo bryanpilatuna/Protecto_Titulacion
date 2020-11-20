@@ -13,81 +13,80 @@
 <ion-content>
   <br/>
   <div class="row" style="display: flex;justify-content: center;">
-    <img width="60%" src="../../../assets/formulario-alquiler/renta.jpg"/>
+    <img style="height:150px;display:block;margin:auto" src="../../../assets/formulario-alquiler/renta.jpg"/>
   </div>
-  <form [formGroup]="formGroup" *ngIf="alquiler">
-    <ion-item  >
-      <ion-label position="stacked">Seleccione la fecha para el alquiler</ion-label>
-      <ion-datetime displayFormat="DD MMMM YYYY"   
-      (ionChange)="cambiofecha($event)"
-      placeholder="Dia Mes Año"    
-      min="{{fechaactual | date: 'yyyy-MM-dd'}}" 
-      max="2021-12-31" 
-      cancelText="Cancelar"
-      doneText="Seleccionar"
-      formControlName="fechaAlquiler"
-      >
-      </ion-datetime>
-    </ion-item>
-    
-    <ion-item>
-      <ion-label position="stacked">Hora alquiler</ion-label>
-      <ion-datetime cancelText="Cancelar"
-      doneText="Seleccionar" formControlName="horaAlquiler" min="{{fechaactual | date: 'HH:mm'}}" displayFormat="HH:mm" placeholder="Hora Minutos" (ionChange)="seleccionarhora($event)"></ion-datetime>
-    </ion-item>
+  <div class="container">
+    <div class="row">
+      <div class="mx-auto">
+        <form [formGroup]="formGroup" *ngIf="alquiler">
+          <ion-item  >
+            <ion-label position="stacked">Seleccione la fecha para el alquiler</ion-label>
+            <ion-datetime displayFormat="DD MMMM YYYY"   
+            (ionChange)="cambiofecha($event)"
+            placeholder="Dia Mes Año"    
+            min="{{fechaactual | date: 'yyyy-MM-dd'}}" 
+            max="2021-12-31" 
+            cancelText="Cancelar"
+            doneText="Seleccionar"
+            formControlName="fechaAlquiler"
+            >
+            </ion-datetime>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label position="stacked">Hora alquiler</ion-label>
+            <ion-datetime cancelText="Cancelar"
+            doneText="Seleccionar" formControlName="horaAlquiler" min="{{fechaactual | date: 'HH:mm'}}" displayFormat="HH:mm" placeholder="Hora Minutos" (ionChange)="seleccionarhora($event)"></ion-datetime>
+          </ion-item>
 
-    <ion-item>
-      <ion-label position="stacked">Seleccione la fecha de devolución</ion-label>
-      <ion-datetime displayFormat="DD MMMM YYYY"   
-      (ionChange)="cambiofecha2($event)"
-      placeholder="Dia Mes Año"    
-      min="{{fechaactual | date: 'yyyy-MM-dd'}}" 
-      max="2021-12-31" 
-      cancelText="Cancelar"
-      doneText="Seleccionar"
-      formControlName="fechaDevolucion"
-      >
-      </ion-datetime>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Hora devolución</ion-label>
-      <ion-datetime  cancelText="Cancelar"
-      doneText="Seleccionar" formControlName="horaDonacion" displayFormat="HH:mm" placeholder="Hora Minutos" (ionChange)="seleccionarhoradev($event)"></ion-datetime>
-    </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Seleccione la fecha de devolución</ion-label>
+            <ion-datetime displayFormat="DD MMMM YYYY"   
+            (ionChange)="cambiofecha2($event)"
+            placeholder="Dia Mes Año"    
+            min="{{fechaactual | date: 'yyyy-MM-dd'}}" 
+            max="2021-12-31" 
+            cancelText="Cancelar"
+            doneText="Seleccionar"
+            formControlName="fechaDevolucion"
+            >
+            </ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Hora devolución</ion-label>
+            <ion-datetime  cancelText="Cancelar"
+            doneText="Seleccionar" formControlName="horaDonacion" displayFormat="HH:mm" placeholder="Hora Minutos" (ionChange)="seleccionarhoradev($event)"></ion-datetime>
+          </ion-item>
 
-    <ion-item  *ngIf="alquiler">
-      <ion-label>Seleccione la  Tienda</ion-label>
-      <ion-select [(ngModel)]="alquiler.idtienda" ok-text="Seleccionar" 
-      cancel-text="Cancelar" formControlName="tindaSeleccion" (ionChange)="onSelectChange()" >
-        <ion-select-option *ngFor="let tienda of tiendas" [value]="tienda.id"> 
-          <ion-label>
-          {{ tienda.nombre}}
-        </ion-label>
-        <ion-note slot="end" color="primary">{{ tienda.direccion }}</ion-note>
-        </ion-select-option>
-      </ion-select>
-    </ion-item>   
-    <div class="validation-errors">
-      <p class="form-error"
-        *ngIf="formGroup.get('tindaSeleccion').hasError('required') && formGroup.get('tindaSeleccion').touched">
-        *Requerido
-      </p>
-    
-    </div>
+          <ion-item  *ngIf="alquiler">
+            <ion-label>Seleccione la  Tienda</ion-label>
+            <ion-select [(ngModel)]="alquiler.idtienda" ok-text="Seleccionar" 
+            cancel-text="Cancelar" formControlName="tindaSeleccion" (ionChange)="onSelectChange()" >
+              <ion-select-option *ngFor="let tienda of tiendas" [value]="tienda.id"> 
+                <ion-label>
+                {{ tienda.nombre}}
+              </ion-label>
+              <ion-note slot="end" color="primary">{{ tienda.direccion }}</ion-note>
+              </ion-select-option>
+            </ion-select>
+          </ion-item>   
+          <div class="validation-errors">
+            <p class="form-error"
+              *ngIf="formGroup.get('tindaSeleccion').hasError('required') && formGroup.get('tindaSeleccion').touched">
+              *Requerido
+            </p>
+          
+          </div>
 
 
-    <!--<ion-button disabled={{desabilitarboton}} expand="full" (click)="abrirmodal()">Seleccione la Bicicleta</ion-button>-->
+          <!--<ion-button disabled={{desabilitarboton}} expand="full" (click)="abrirmodal()">Seleccione la Bicicleta</ion-button>-->
 
-    <ion-button [disabled]="!formGroup.valid" expand="full" (click)="crearAlquiler()">Realizar Alquiler</ion-button>
- 
-  </form>
-    
-
+          <ion-button [disabled]="!formGroup.valid" expand="full" (click)="crearAlquiler()">Realizar Alquiler</ion-button>
       
-
+        </form>
+      </div>
+    </div>
+  </div>
     
-   
-  
-
 
 </ion-content>

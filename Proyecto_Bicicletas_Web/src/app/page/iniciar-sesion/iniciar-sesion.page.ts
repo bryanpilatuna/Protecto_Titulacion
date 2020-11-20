@@ -209,5 +209,6 @@ export class IniciarSesionPage implements OnInit {
   showPassword() {
     this.passwordTypeInput = this.passwordTypeInput === 'text' ? 'password' : 'text';
   }
+ 
 
 }
