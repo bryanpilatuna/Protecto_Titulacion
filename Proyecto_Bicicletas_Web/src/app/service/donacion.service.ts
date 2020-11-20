@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { datosDonacion } from '../model/donacion.interface';
-import { datosTiendas } from '../model/tienda.interface';
+import { datosDonacion } from '../modelm/donacion.interface';
+import { datosTiendas } from '../modelm/tienda.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -69,7 +69,6 @@ export class DonacionService {
 
   
   getdonacion(iduser:string){
-    console.log(iduser);
     this.listdonacionCollection = this.db.collection<datosDonacion>('donacion', ref => ref.orderBy("fechadonacion", "desc") );
     this.listdonacion = this.listdonacionCollection.snapshotChanges().pipe(
       map(actions => {

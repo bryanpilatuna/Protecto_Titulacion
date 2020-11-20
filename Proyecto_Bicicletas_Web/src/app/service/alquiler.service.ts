@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { datosAlquiler } from '../model/alquiler.interface';
-import { datosTiendas } from '../model/tienda.interface';
-import { datosBicicleta } from '../model/bicicleta.interface';
+import { datosAlquiler } from '../modelm/alquiler.interface';
+import { datosTiendas } from '../modelm/tienda.interface';
+import { datosBicicleta } from '../modelm/bicicleta.interface';
 
 @Injectable({
   providedIn: 'root'

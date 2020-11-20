@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { datosUbicacion } from '../model/ubicacion.interface';
+import { datosUbicacion } from '../modelm/ubicacion.interface';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';

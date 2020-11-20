@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button routerLink="/alquiler-donacion"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Donación</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="full" *ngIf="donaciones" style="margin:10px">
+    <ion-item >
+      <ion-label position="stacked"><strong>Descripción</strong></ion-label>
+      <p>{{donaciones.descripcion}}</p>
+    </ion-item>
+
+    <ion-item *ngIf="tiendas">
+      <ion-label position="stacked"><strong>Tienda</strong></ion-label>
+      <div>
+        <p>{{tiendas.nombre}}</p>
+      </div>
+    </ion-item>
+
+    <ion-item >
+      <ion-label>Fecha Donación:</ion-label>
+      <p>{{fechadonar | date:'dd/MM/yyyy'}}</p>
+    </ion-item>
+
+    <ion-item >
+      <ion-label position="stacked"><strong>Estado: </strong></ion-label>
+      <p>{{donaciones.estado}}</p>
+    </ion-item>
+
+    <ion-item >
+      <ion-label position="stacked"><strong>Modo de entrega: </strong></ion-label>
+      <p>{{donaciones.modo}}</p>
+    </ion-item>
+    <div *ngIf="donaciones.anular==cancelaran">
+      <div *ngIf="donaciones.aprobacion==cancelaran">
+        <ion-button  expand="full" (click)="cancelar()"  color="danger">Anular</ion-button>
+      </div>
+    </div>
+    
+  
+   
+
+  </ion-list>
+
+</ion-content>

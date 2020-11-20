@@ -25,12 +25,14 @@ export class TiendaDonacionPage implements OnInit {
   donacion:datosDonacion={
     iddonante:'',
     fechadonacion:this.fechaactual,
+    fechasolicitud:this.fechaactual,
     estado:'',
     descripcion:'',
     aprobacion:false,
     idtienda:'',
     anular:false,
     modo:'',
+    direccion:''
   }
 
   notificacion:Notificaciones={

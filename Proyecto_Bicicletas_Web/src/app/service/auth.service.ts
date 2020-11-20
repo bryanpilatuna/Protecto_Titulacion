@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { User } from '../model/user.interface';
-import { DatosUsuario } from '../model/user.interface';
+import { User } from '../modelm/user.interface';
+import { DatosUsuario } from '../modelm/user.interface';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { NavController, LoadingController } from '@ionic/angular';
 import * as firebase from 'firebase';
@@ -9,7 +9,7 @@ import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { FileI } from '../model/file.interface';
+import { FileI } from '../modelm/file.interface';
 import { finalize } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 
@@ -136,7 +136,7 @@ export class AuthService {
     try {
       await this.afAuth.signOut().then(() => {
        
-        this.nav.navigateForward('/iniciar-sesion'); 
+        this.nav.navigateForward('/login'); 
         //window.location.href = 'login' ;
       })
     } catch (error) {

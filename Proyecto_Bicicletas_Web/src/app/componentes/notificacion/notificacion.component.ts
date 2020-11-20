@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NotificacionesService } from '../../service/notificaciones.service';
 import * as firebase from 'firebase';
 import { Notificaciones } from '../../model/notificaciones.interface';
+import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-notificacion',
   templateUrl: './notificacion.component.html',
@@ -17,9 +17,8 @@ export class NotificacionComponent implements OnInit {
   Si='Si';
   constructor(
     private router: Router,
- 
     private ServicioNoti:NotificacionesService,
-    private storage: Storage
+
   ) { 
     var user = firebase.auth().currentUser.uid;
     this.id = user;
@@ -29,7 +28,6 @@ export class NotificacionComponent implements OnInit {
       for(let i in this.notificaciones){
         if(this.notificaciones[i].visualizar=="No"){
           this.noti="Si";
-
         }
       }
     })
@@ -44,6 +42,6 @@ export class NotificacionComponent implements OnInit {
   }
 
 
- 
+
 
 }

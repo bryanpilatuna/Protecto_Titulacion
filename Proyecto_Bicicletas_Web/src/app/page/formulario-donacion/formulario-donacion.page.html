@@ -1,0 +1,146 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button routerLink="/menu-cliente"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Formulario Donación</ion-title>
+    <ion-buttons slot="end" style="padding: 10px;" [routerLink]="['/notificacion']">
+      <app-notificacion></app-notificacion>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content> 
+  <br/>
+  <div class="row" style="display: flex;justify-content: center;">
+    <img width="40%" src="../../../assets/formulario-donacion/donar.png"/>
+  </div>
+  <form [formGroup]="formGroup" *ngIf="donacion" (ngSubmit)="crearDonacion()">
+    
+    <ion-item>
+      <ion-label position="stacked">Seleccione fecha de donación</ion-label>
+      <ion-datetime displayFormat="DD MMMM YYYY" 
+      placeholder="Dia Mes Año" 
+      (ionChange)="cambiofecha($event)"
+      min="{{fechaactual | date: 'yyyy-MM-dd'}}" 
+      max="2021-12-31" 
+      cancelText="Cancelar"
+      doneText="Seleccionar"
+      formControlName="fechaControl"
+      >
+      </ion-datetime>
+    </ion-item>
+    
+    <div class="validation-errors">
+      <p class="form-error"
+        *ngIf="formGroup.get('fechaControl').hasError('required') && formGroup.get('fechaControl').touched">
+        *Requerido
+      </p>
+    </div>
+    <ion-item >
+      <ion-label>Tienda</ion-label>
+      <ion-select [(ngModel)]="donacion.idtienda" ok-text="Seleccionar" 
+      cancel-text="Cancelar" formControlName="tiendaControl" >
+        <ion-select-option *ngFor="let tienda of tiendas" [value]="tienda.id"> 
+          <ion-label>
+          {{ tienda.nombre}}
+        </ion-label>
+        
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <div class="validation-errors">
+      <p class="form-error"
+        *ngIf="formGroup.get('tiendaControl').hasError('required') && formGroup.get('tiendaControl').touched">
+        *Requerido
+      </p>
+    </div>
+
+    <ion-item >
+      <ion-label>Estado de bicicleta</ion-label>
+      <ion-select [(ngModel)]="donacion.estado" ok-text="Seleccionar" 
+      cancel-text="Cancelar" formControlName="estadoControl" >
+        <ion-select-option value="Bueno"> 
+          <ion-label>
+            Bueno
+          </ion-label>
+        </ion-select-option>
+        <ion-select-option value="Reparar"> 
+          <ion-label>
+            Reparar
+          </ion-label>
+        </ion-select-option>
+  
+      </ion-select>
+    </ion-item>
+    <div class="validation-errors">
+      <p class="form-error"
+        *ngIf="formGroup.get('estadoControl').hasError('required') && formGroup.get('estadoControl').touched">
+        *Requerido
+      </p>
+    </div>
+
+    
+    
+    <ion-item>
+      <ion-label position="stacked">Descripción</ion-label>
+      <ion-input required type="text" placeholder="Descripción" [(ngModel)]="donacion.descripcion"
+      formControlName="descripcionControl"></ion-input>
+    </ion-item>
+
+    <div class="validation-errors">
+      <p class="form-error"
+        *ngIf="formGroup.get('descripcionControl').hasError('required') && formGroup.get('descripcionControl').touched">
+        *Requerido
+      </p>
+      <p class="form-error"
+      *ngIf="formGroup.get('descripcionControl').hasError('minlength') && formGroup.get('descripcionControl').touched">
+      *Mínimo 5 caracteres 
+    </p>
+    <p class="form-error"
+      *ngIf="formGroup.get('descripcionControl').hasError('maxlength') && formGroup.get('descripcionControl').touched">
+      *Máximo 30 caracteres  
+    </p>
+    </div>
+
+    <ion-item >
+      <ion-label>Modo</ion-label>
+      <ion-select [(ngModel)]="donacion.modo" ok-text="Seleccionar" 
+      formControlName="modoControl" cancel-text="Cancelar"  (ionChange)="onSelectChange()">
+        <ion-select-option value="Entregar"> 
+          <ion-label>
+            Entregar
+          </ion-label>
+        </ion-select-option>
+        <ion-select-option value="Retirar"> 
+          <ion-label>
+            Retirar
+          </ion-label>
+        </ion-select-option>
+  
+      </ion-select>
+    </ion-item>
+
+    <div class="validation-errors">
+      <p class="form-error"
+        *ngIf="formGroup.get('modoControl').hasError('required') && formGroup.get('modoControl').touched">
+        *Requerido
+      </p>
+    
+    </div>
+
+    <ion-item id="dir" style="display: none;">
+      <ion-label position="stacked">Dirección</ion-label>
+      <ion-input id="intro" required type="text" placeholder="Dirección" [(ngModel)]="donacion.direccion"
+      formControlName="descripcionControl"></ion-input>
+    </ion-item>
+
+    <div class="row">
+      <ion-button [disabled]="!formGroup.valid" type="submit" expand="full">
+        Realizar Donación
+      </ion-button>
+    </div>
+
+</form>
+
+</ion-content>

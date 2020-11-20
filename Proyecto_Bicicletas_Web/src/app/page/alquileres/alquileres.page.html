@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button routerLink="/menu-cliente"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Alquileres</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  
+  <ion-list *ngIf="vacio==false; else elseBlock">
+    
+    <div *ngFor="let alqui of alquiler;let indice=index">
+      <ion-card *ngIf="alqui.idusuario==id">
+        <div *ngFor="let bici of bicicleta;let indice=index">
+        <ion-item lines="none" *ngIf="alqui.bicicleta==bici.id">
+         
+          <img height="100" [src]="bici.imagen">
+          <!--<ion-label>{{alqui.fecha.toMillis() | date:'dd/MM/yyyy'}}</ion-label>-->
+          <ion-button  button [routerLink]="['/alquiler', alqui.id]" slot="end" color="primary" style="width: 100px;height: 40px;">Ver</ion-button>
+        </ion-item>
+       </div>
+       
+       <ion-card-content>
+        <p>La fecha de solicud se envió {{alqui.fecha.toMillis() | date:'dd/MM/yyyy'}}</p>
+      </ion-card-content>
+      </ion-card>
+      <!--
+      <ion-item button [routerLink]="['/alquiler', alqui.id]" *ngIf="alqui.idusuario==id">
+        <ion-label>
+          <h2><strong>Alquiler</strong></h2>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <p class="subtitulo">Fecha solicitud:</p>
+              </ion-col>
+              <ion-col>
+                <p>{{alqui.fecha.toMillis() | date:'yyyy/MM/dd'}}</p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <p class="subtitulo">Fecha alquiler:</p>
+              </ion-col>
+              <ion-col>
+                <p>{{alqui.fecha.toMillis() | date:'yyyy/MM/dd'}}</p>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <p class="subtitulo">Fecha devolución:</p>
+              </ion-col>
+              <ion-col>
+                <p>{{alqui.fechadevolucion.toMillis() | date:'yyyy/MM/dd'}}</p>
+              </ion-col>
+            </ion-row>
+            <ion-row *ngFor="let tienda of tiendas;let indice=index" >
+              <ion-col *ngIf="tienda.id==alqui.idtienda">
+                <p class="subtitulo">Tienda:</p>
+              </ion-col>
+              <ion-col *ngIf="tienda.id==alqui.idtienda">
+                <p>{{tienda.nombre}}</p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+                   
+        </ion-label>
+      </ion-item> 
+    -->
+    </div>
+  </ion-list>
+  <ng-template #elseBlock>
+    <ion-list><p class="centrarmensaje">No existen alquileres.</p></ion-list>
+  </ng-template>
+ 
+
+  
+ 
+  
+ 
+
+</ion-content>

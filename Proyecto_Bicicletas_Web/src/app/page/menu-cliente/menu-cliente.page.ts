@@ -7,7 +7,6 @@ import { NotificacionesService } from '../../service/notificaciones.service';
 import * as firebase from 'firebase';
 import { Notificaciones } from '../../model/notificaciones.interface';
 
-
 import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-menu-cliente',
@@ -27,15 +26,14 @@ export class MenuClientePage implements OnInit {
     private router: Router,
     private usuarioService:UsuarioService,
     private ServicioNoti:NotificacionesService,
-
-    private alertCtrl: AlertController) {
+ 
+    private alertCtrl: AlertController
+    ) { 
     var user = firebase.auth().currentUser.uid;
     this.id = user;
-    if(this.id){
-      this.estado = "Activo";
+   
     
-    }
-   }
+  }
 
   ngOnInit() {
     this.usuarioService.enviarobjeto(this.id);
@@ -80,9 +78,12 @@ export class MenuClientePage implements OnInit {
     this.authservice.logout();
     this.id = null;
     this.estado = "Inactivo";
- 
+
   }
 
+
+
+ 
 
 
 }

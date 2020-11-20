@@ -116,25 +116,73 @@ const routes: Routes = [
     loadChildren: () => import('./page/notificaciones-tienda/notificaciones-tienda.module').then( m => m.NotificacionesTiendaPageModule)
   },
   {
+    path: 'profile/:id',
+    loadChildren: () => import('./page/profile/profile.module').then( m => m.ProfilePageModule)
+  },
+  {
+    path: 'formulario-alquiler/:id',
+    loadChildren: () => import('./page/formulario-alquiler/formulario-alquiler.module').then( m => m.FormularioAlquilerPageModule)
+  },
+  {
     path: 'modal-alquiler',
     loadChildren: () => import('./modal/modal-alquiler/modal-alquiler.module').then( m => m.ModalAlquilerPageModule)
   },
   {
-    path: 'profile/:id',
-    loadChildren: () => import('./page/cliente/profile/profile.module').then( m => m.ProfilePageModule)
-  },
-  {
-    path: 'formulario-alquiler/:id',
-    loadChildren: () => import('./page/cliente/formulario-alquiler/formulario-alquiler.module').then( m => m.FormularioAlquilerPageModule)
-  },
-  {
     path: 'formulario-donacion/:id',
-    loadChildren: () => import('./page/cliente/formulario-donacion/formulario-donacion.module').then( m => m.FormularioDonacionPageModule)
+    loadChildren: () => import('./page/formulario-donacion/formulario-donacion.module').then( m => m.FormularioDonacionPageModule)
   },
   {
     path: 'ubicar-tienda/:id',
-    loadChildren: () => import('./page/cliente/ubicar-tienda/ubicar-tienda.module').then( m => m.UbicarTiendaPageModule)
+    loadChildren: () => import('./page/ubicar-tienda/ubicar-tienda.module').then( m => m.UbicarTiendaPageModule)
   },
+  {
+    path: 'alquiler-donacion',
+    loadChildren: () => import('./page/alquiler-donacion/alquiler-donacion.module').then( m => m.AlquilerDonacionPageModule)
+  },
+  {
+    path: 'donacion',
+    loadChildren: () => import('./page/donacion/donacion.module').then( m => m.DonacionPageModule)
+  },
+  {
+    path: 'alquileres',
+    loadChildren: () => import('./page/alquileres/alquileres.module').then( m => m.AlquileresPageModule)
+  },
+  {
+    path: 'alquiler/:id',
+    loadChildren: () => import('./page/alquiler/alquiler.module').then( m => m.AlquilerPageModule)
+  },
+  {
+    path: 'donar/:id',
+    loadChildren: () => import('./page/donar/donar.module').then( m => m.DonarPageModule)
+  },
+  {
+    path: 'notificacion',
+    loadChildren: () => import('./page/notificacion/notificacion.module').then( m => m.NotificacionPageModule)
+  },
+  {
+    path: 'notificacion-alquiler',
+    loadChildren: () => import('./page/notificacion-alquiler/notificacion-alquiler.module').then( m => m.NotificacionAlquilerPageModule)
+  },
+  {
+    path: 'notificacion-donacion',
+    loadChildren: () => import('./page/notificacion-donacion/notificacion-donacion.module').then( m => m.NotificacionDonacionPageModule)
+  },
+  {
+    path: 'detallenotidonar/:id',
+    loadChildren: () => import('./page/detallenotidonar/detallenotidonar.module').then( m => m.DetallenotidonarPageModule)
+  },
+  {
+    path: 'detallenotificacion/:id',
+    loadChildren: () => import('./page/detallenotificacion/detallenotificacion.module').then( m => m.DetallenotificacionPageModule)
+  },
+
+
+
+
+
+
+
+
 
 
 

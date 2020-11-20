@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button routerLink="/alquiler-donacion"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Alquileres</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="full" *ngIf="alquileres" style="margin:10px">
+    <ion-item *ngIf="bicicleta">
+      <ion-label position="stacked"><strong>Bicicleta</strong></ion-label>
+      <br/>
+      <img [src]="bicicleta.imagen" style="height: 130px;display:block;margin:auto;margin-bottom: 10px;"/>
+    </ion-item>
+
+    <ion-item >
+      <div style="margin: 0px;padding: 0px;" *ngIf="tiendas" >
+        <ion-label position="stacked"><strong>Tienda</strong></ion-label>
+        <div >
+
+          <p >{{tiendas.nombre }}</p>
+        </div>
+      </div>
+    </ion-item>
+
+    <ion-item >
+      <ion-label>Fecha solicitud:</ion-label>
+      <p>{{fecha | date:'dd/MM/yyyy'}}</p>
+    </ion-item>
+  
+    <ion-item >
+      <ion-label>Fecha alquiler:</ion-label>
+      <p>{{fechaalquiler | date:'dd/MM/yyyy'}}</p>
+    </ion-item>
+    <ion-item >
+      <ion-label>Hora alquiler:</ion-label>
+      <p>{{alquileres.horaalquiler}}</p>
+    </ion-item>
+    <ion-item >
+      <ion-label>Fecha Devolución:</ion-label>
+      <p>{{fechadevolucion | date:'dd/MM/yyyy'}}</p>
+    </ion-item>
+    <ion-item >
+      <ion-label>Hora Devolución:</ion-label>
+      <p>{{alquileres.horadevolucion}}</p>
+    </ion-item>
+    <div *ngIf="alquileres.anular==cancelaran">
+      <div *ngIf="alquileres.aprobacion==cancelaran">
+        <ion-button  expand="full" (click)="cancelar()" color="danger">Anular</ion-button>
+      </div>
+    </div>
+    
+
+  </ion-list>
+
+</ion-content>
