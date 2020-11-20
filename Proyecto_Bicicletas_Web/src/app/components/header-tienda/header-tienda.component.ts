@@ -35,13 +35,14 @@ export class HeaderTiendaComponent implements OnInit {
   }
 
   ngOnInit() {
+    
     this.notificacionesService.getMisnotificaciones(this.id).subscribe((notificaciones) =>{
       this.notificaciones= notificaciones;
-      this.contador=0;
+      
       for(let i in this.notificaciones){
         if(this.notificaciones[i].visualizar=="No"){
           this.noti="Si";
-         //this.contador=this.contador+1;
+         console.log(this.notificaciones[i])
         }
       }
       

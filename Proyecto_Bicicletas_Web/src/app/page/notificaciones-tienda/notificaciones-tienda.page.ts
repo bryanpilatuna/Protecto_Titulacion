@@ -49,12 +49,21 @@ export class NotificacionesTiendaPage implements OnInit {
 
 
   cambiarvisualizado(notifi:NotificacionesTienda,id:string){
-        notifi.visualizar='Si';
-        this.notificacionesService.updateNotificacion(notifi,id).then(() => {
-      this.router.navigate(['/tienda-alquiler',this.tiendaid]);
+    if(this.notificacion.tipo=='Alquiler')   {
+   
+      notifi.visualizar='Si';
+      this.notificacionesService.updateNotificacion(notifi,id).then(() => {
+    this.router.navigate(['/tienda-alquiler',this.tiendaid]);
+  });
+    } 
+    else{
+      notifi.visualizar='Si';
+      this.notificacionesService.updateNotificacion(notifi,id).then(() => {
+    this.router.navigate(['/tienda-donacion',this.tiendaid]);
     });
 
-
+    }
+ 
   }
 
   cambiarvisualizadona(notifi:NotificacionesTienda,id:string){

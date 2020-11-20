@@ -29,6 +29,7 @@
                     <th scope="col">Apellido Donante</th>
                     <th scope="col">Fecha Donación</th>
                     <th scope="col">Descripción Bici</th>
+                    <th scope="col">Modo Entrega</th>
                     <th scope="col">Aprobar</th>
                     <th scope="col">Motivo Rechazo</th>
                     <th scope="col">Rechazar</th>
@@ -40,6 +41,7 @@
                <td> {{usuario.apellidos}}</td>
                <td>{{donacion.fechadonacion.toMillis() | date:'dd/MM/yyyy'}}</td>
                <td>{{donacion.descripcion}}</td>
+               <td>{{donacion.modo}}</td>
                 <td><ion-button  (click)="aprobar(donacion,donacion.id)" color="warning">
                   Aprobar
                 </ion-button></td>
@@ -80,6 +82,7 @@
                         <th scope="col">Numero Telefónico</th>
                         <th scope="col">Fecha Donacion</th>
                         <th scope="col">Descripcion Bici</th>
+                        <th scope="col">Modo Entrega</th>
                        
                       </tr>
                     </thead>
@@ -90,6 +93,7 @@
                    <td> {{usuario.telefono}}</td>
                    <td>{{donacion.fechadonacion.toMillis() | date:'dd/MM/yyyy'}}</td>
                    <td>{{donacion.descripcion}}</td>
+                   <td>{{donacion.modo}}</td>
                   </tr>
                   </tbody>
                 </div>
@@ -117,6 +121,7 @@
                             <th scope="col">Apellido Donante</th>
                             <th scope="col">Fecha Donacion</th>
                             <th scope="col">Descripcion Bici</th>
+                            <th scope="col">Modo</th>
                            
                           </tr>
                         </thead>
@@ -126,6 +131,7 @@
                        <td> {{usuario.apellidos}}</td>
                        <td>{{donacion.fechadonacion.toMillis() | date:'dd/MM/yyyy'}}</td>
                        <td>{{donacion.descripcion}}</td>
+                       <td>{{donacion.modo}}</td>
                       </tr>
                       </tbody>
                         

@@ -7,4 +7,5 @@ export interface datosDonacion{
     aprobacion: boolean;  
     idtienda:string;
     anular:boolean;
+    modo:string;
 }

@@ -38,7 +38,9 @@ export class TiendaAlquilerPage implements OnInit {
     bicicleta: '',
     fecha: this.fechaactual,
     aprobacion: false,
-    anular:false
+    anular:false,
+    horaalquiler:'',
+    horadevolucion:'',
   }
 
   constructor(private route: ActivatedRoute,
@@ -81,6 +83,7 @@ export class TiendaAlquilerPage implements OnInit {
     this.notificacion.idusuario=alquiler.idusuario;
     this.notificacion.idtipo=alquiler.id;
     this.alquilerservice.addNotificacion(this.notificacion);
+    this.notificacion.respuesta='';
 
     this.alquilerservice.actualizarAlquiler(alquiler,id).then(() => {
       this.router.navigate(['/tienda-alquiler',this.tiendaid]);

@@ -8,4 +8,6 @@ export interface datosAlquiler{
     fecha: Date;  
     aprobacion: boolean; 
     anular:boolean;
+    horaalquiler:string;
+    horadevolucion:string
 }
