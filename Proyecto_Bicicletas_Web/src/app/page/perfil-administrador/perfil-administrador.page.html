@@ -117,24 +117,7 @@
             <label position="stacked"><strong>Correo electrónico</strong></label>
             <input class="form-control" type="text" placeholder="abc@gmail.com" formControlName="emailControl" #email [(ngModel)]="usuario.correo" disabled="true">
           </div>
-          <div class="validation-errors">
-            <p class="form-error"
-              *ngIf="formGroup.get('emailControl').hasError('required') && formGroup.get('emailControl').touched">
-              *Requerido
-            </p>
-            <p class="form-error"
-              *ngIf="formGroup.get('emailControl').hasError('email') && formGroup.get('emailControl').touched">
-              *Ingrese un correo valido
-            </p>
-            <p class="form-error"
-              *ngIf="formGroup.get('emailControl').hasError('minlength') && formGroup.get('emailControl').touched">
-              *Mínimo 10 caracteres 
-            </p>
-            <p class="form-error"
-              *ngIf="formGroup.get('emailControl').hasError('maxlength') && formGroup.get('emailControl').touched">
-              *Máximo 40 caracteres  
-            </p>
-          </div>
+          
           <div class="form-group">
             <ion-button type="button" expand="block" color="tertiary" (click)="cambiarcontra()">Cambiar contraseña</ion-button>
           </div>
