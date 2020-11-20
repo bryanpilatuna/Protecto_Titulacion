@@ -26,7 +26,7 @@ export class NotificacionComponent implements OnInit {
     this.id = user;
     this.ServicioNoti.getMisnotificaciones(this.id).subscribe((notificaciones) =>{
       this.notificaciones = notificaciones;
-      console.log(this.notificaciones);
+    
       for(let i in this.notificaciones){
         if(this.notificaciones[i].visualizar=="No"){
           this.noti="Si";

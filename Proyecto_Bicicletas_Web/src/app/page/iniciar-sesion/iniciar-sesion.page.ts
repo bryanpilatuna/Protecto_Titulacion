@@ -199,7 +199,9 @@ export class IniciarSesionPage implements OnInit {
         });
       }
     } else {
-      this.router.navigate(['verify-email']);
+      this.mensaje="No se verifico el correo revisar su bandeja de mensajes.";
+      this.mensajeerror();
+      //this.router.navigate(['verify-email']);
     }
   }
 

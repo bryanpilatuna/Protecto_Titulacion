@@ -49,7 +49,7 @@ export class DetallenotificacionPage implements OnInit {
 
       this.Servicio.getAlquileres(this.idalquiler).subscribe((alquileres) =>{
         this.alquileres = alquileres;
-        console.log(this.alquileres);
+    
         this.fecha= new Date(this.alquileres.fecha['seconds']*1000);
         this.fechaalquiler= new Date(this.alquileres.fechaalquiler['seconds']*1000);
         this.fechadevolucion= new Date(this.alquileres.fechadevolucion['seconds']*1000);    
@@ -68,11 +68,11 @@ export class DetallenotificacionPage implements OnInit {
 
       this.notificacion.visualizar="Si";
       this.notificacion.color="#FFFFFF";
-      console.log(notificacion);
+ 
       if (this.id) {
         this.Service.updateTodo(this.notificacion , this.id).then(() => {
         });
-        console.log(this.notificacion.idtienda);
+     
       } 
       
     });

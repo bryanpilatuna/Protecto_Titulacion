@@ -27,7 +27,7 @@ export class DonarPage implements OnInit {
       this.fechadonar= new Date(this.donaciones.fechadonacion['seconds']*1000);
       this.Servicio.getTienda(this.donaciones.idtienda).subscribe((tiendas) =>{
         this.tiendas = tiendas;
-        console.log(this.tiendas);
+
       })
 
     })

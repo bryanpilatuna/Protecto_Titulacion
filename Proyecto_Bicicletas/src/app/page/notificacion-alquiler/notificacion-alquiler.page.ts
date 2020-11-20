@@ -21,7 +21,6 @@ export class NotificacionAlquilerPage implements OnInit {
     private Servicio:DonacionService
     ) {
       this.id = firebase.auth().currentUser.uid;
-      console.log(this.id);
       this.Service.getTodos().subscribe((notificaciones) =>{
       this.notificaciones = notificaciones;
       

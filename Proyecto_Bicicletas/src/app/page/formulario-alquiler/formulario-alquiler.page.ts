@@ -85,11 +85,11 @@ export class FormularioAlquilerPage implements OnInit {
         this.alquilerService.getBicicletas(this.tiendas[i].id).subscribe((bicicletas) =>{
           this.bicicletas2=bicicletas;
          if(bicicletas.length==0){
-          console.log("No tiene bicicleta",i);
+          
           var l = this.tiendas.indexOf( this.tiendas[i] );
           this.tiendas.splice(l,1); 
          }else{
-          console.log("Tiene");
+        
           var cont=0;
           for(let m in this.bicicletas2){
             if(this.bicicletas2[m].disponible=="Si"){

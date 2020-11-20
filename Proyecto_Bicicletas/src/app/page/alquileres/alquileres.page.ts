@@ -35,7 +35,7 @@ export class AlquileresPage implements OnInit {
     })
     this.Servicio.getTodoBicicletas().subscribe((bicicletas) =>{
       this.bicicleta = bicicletas;
-      console.log(this.bicicleta);
+  
     })
 
   }

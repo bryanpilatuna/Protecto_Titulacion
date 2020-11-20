@@ -51,7 +51,6 @@ export class AlquilerPage implements OnInit {
         })
         this.Servicio.getTienda(this.alquileres.idtienda).subscribe((tiendas) =>{
           this.tiendas = tiendas;
-          console.log(this.tiendas);
         })
  
         

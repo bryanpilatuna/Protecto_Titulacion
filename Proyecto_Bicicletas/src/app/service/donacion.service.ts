@@ -69,7 +69,6 @@ export class DonacionService {
 
   
   getdonacion(iduser:string){
-    console.log(iduser);
     this.listdonacionCollection = this.db.collection<datosDonacion>('donacion', ref => ref.orderBy("fechadonacion", "desc") );
     this.listdonacion = this.listdonacionCollection.snapshotChanges().pipe(
       map(actions => {

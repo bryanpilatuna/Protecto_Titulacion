@@ -16,7 +16,6 @@ export class NotificacionesPage implements OnInit {
     private Service: NotificacionesService, 
     private loadingController: LoadingController) {
      this.id = firebase.auth().currentUser.uid;
-     console.log(this.id);
      this.Service.getTodos().subscribe((notificaciones) =>{
       this.notificaciones = notificaciones;
     })

@@ -1,7 +1,10 @@
 export interface datosBicicleta{
-    id?: string;
-    descripcion: string;
-    disponible: string;
-    imagen: string;
-    idtienda: string;
+    id?:string;
+    nombre:string;
+    descripcion:string;
+    disponible:string;
+    idtienda:string;
+    imagen:string;
+    tipo:string;
+    color:string;
 }

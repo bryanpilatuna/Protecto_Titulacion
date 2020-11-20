@@ -52,7 +52,7 @@
     <ion-item>
       <ion-label position="stacked">Hora devolución</ion-label>
       <ion-datetime  cancelText="Cancelar"
-      doneText="Seleccionar" formControlName="horaDonacion"  min="{{fechaactual | date: 'HH:mm'}}" displayFormat="HH:mm" placeholder="Hora Minutos" (ionChange)="seleccionarhoradev($event)"></ion-datetime>
+      doneText="Seleccionar" formControlName="horaDonacion" displayFormat="HH:mm" placeholder="Hora Minutos" (ionChange)="seleccionarhoradev($event)"></ion-datetime>
     </ion-item>
 
     <ion-item  *ngIf="alquiler">

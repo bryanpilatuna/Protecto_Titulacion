@@ -39,7 +39,7 @@ export class DetallenotidonarPage implements OnInit {
   }
 
   async loadTodo(){
-    console.log(this.id);
+
     this.Service.getTodo(this.id).subscribe(notificacion => {
       
       this.notificacion = notificacion;
@@ -53,7 +53,16 @@ export class DetallenotidonarPage implements OnInit {
         })
 
       })
+      this.notificacion.visualizar="Si";
+      this.notificacion.color="#FFFFFF";
+ 
+      if (this.id) {
+        this.Service.updateTodo(this.notificacion , this.id).then(() => {
+        });
+      
+      } 
     })
+    
   }
 
 }

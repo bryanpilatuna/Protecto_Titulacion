@@ -73,7 +73,7 @@ export class FormularioDonacionPage implements OnInit {
   }
 
   onSelectChange(){
-    console.log(this.donacion.modo);
+
     var element = <HTMLInputElement> document.getElementById("dir");
     if(this.donacion.modo=="Retirar"){
       element.style.display = 'inline';

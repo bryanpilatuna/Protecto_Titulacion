@@ -17,7 +17,7 @@ export class ModalAlquilerPage implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.idtienda);
+ 
     this.alquilerService.getBicicletas(this.idtienda).subscribe((bicicletas) =>{
       this.bicicletas = bicicletas;
      
@@ -25,7 +25,7 @@ export class ModalAlquilerPage implements OnInit {
   }
 
   seleccionbicicleta(idbici:string){
-    console.log(idbici);
+
     this.modalController.dismiss({
       bici:idbici,
     });

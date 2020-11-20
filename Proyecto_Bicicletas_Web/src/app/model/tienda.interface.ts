@@ -1,4 +1,5 @@
 export interface Tienda {
+    id?: string;
     uid : string;
     nombre : string;
     direccion: string;
