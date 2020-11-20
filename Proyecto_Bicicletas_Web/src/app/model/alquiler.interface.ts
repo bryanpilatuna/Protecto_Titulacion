@@ -9,5 +9,6 @@ export interface datosAlquiler{
     aprobacion: boolean; 
     anular:boolean;
     horaalquiler:string;
+    horadevolucion:string;
     
 }
