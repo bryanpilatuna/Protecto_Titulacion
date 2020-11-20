@@ -178,17 +178,11 @@ export class FormularioAlquilerPage implements OnInit {
     this.alquiler.aprobacion= false;
     this.alquiler.fecha= this.fechaactual;
     this.alquiler.bicicleta=this.idbicicleta;
-    const loading = await this.loadingController.create({
-      message: 'Guardando....'
-    });
-
-
-   this.alquilerService.addAlquiler(this.alquiler).then(() => {
+    this.alquilerService.addAlquiler(this.alquiler).then(() => {
       this.alquilerService.updateBicicletas(this.bicicletas, this.idbicicleta).then(() => {});
       this.notificaciones.idusuario=this.alquiler.idusuario;
       this.notificaciones.idtienda=this.alquiler.idtienda;
       this.Service.addNotificacion(this.notificaciones);
-      loading.dismiss();
       this.nav.navigateForward('/menu'); 
     });
   }
