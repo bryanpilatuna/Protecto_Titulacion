@@ -141,7 +141,8 @@ const routes: Routes = [
   {
     path: 'detallenotificacion/:id',
     loadChildren: () => import('./page/detallenotificacion/detallenotificacion.module').then( m => m.DetallenotificacionPageModule)
-  },  {
+  },
+  {
     path: 'notificacion',
     loadChildren: () => import('./page/notificacion/notificacion.module').then( m => m.NotificacionPageModule)
   },
@@ -152,6 +153,10 @@ const routes: Routes = [
   {
     path: 'notificacion-donacion',
     loadChildren: () => import('./page/notificacion-donacion/notificacion-donacion.module').then( m => m.NotificacionDonacionPageModule)
+  },
+  {
+    path: 'detallenotidonar/:id',
+    loadChildren: () => import('./page/detallenotidonar/detallenotidonar.module').then( m => m.DetallenotidonarPageModule)
   },
 
 

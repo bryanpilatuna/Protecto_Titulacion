@@ -13,7 +13,7 @@ import { datosBicicleta } from 'src/app/model/bicicleta.interface';
   styleUrls: ['./detallenotificacion.page.scss'],
 })
 export class DetallenotificacionPage implements OnInit {
-  tienda:  datosTiendas;
+
   tiendas:  datosTiendas;
   notificacion:Notificaciones;
   id= null;
