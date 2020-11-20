@@ -18,8 +18,7 @@ export class TiendaAdministradorPage implements OnInit {
 
   ngOnInit() {
   }
-  buscar(busquedatienda){
-    console.log("entra");
+  buscar(busquedatienda){   
     this.Service.busqueda(busquedatienda.value).subscribe((tiendas) =>{
       this.tiendas = tiendas;
 

@@ -61,7 +61,11 @@ export class AdministradorService {
    }
 
    busqueda(nombre:string){
-    this.tiendasCollection2=this.db.collection<Tienda>('tiendas', ref => ref.orderBy('nombre').startAt(nombre).endAt(nombre+'\uf8ff'));
+     if(nombre==''){
+      this.tiendasCollection2 = this.db.collection<Tienda>('tiendas', ref => ref.orderBy('estado'));
+     }else{
+      this.tiendasCollection2=this.db.collection<Tienda>('tiendas', ref => ref.orderBy('nombre').startAt(nombre).endAt(nombre+'\uf8ff'));
+     }
     this.tiendas2=this.tiendasCollection2.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
@@ -76,7 +80,11 @@ export class AdministradorService {
   }
 
   busquedauser(nombre:string){
-    this.usuariosCollection2=this.db.collection<DatosUsuario>('users', ref => ref.orderBy('correo').startAt(nombre).endAt(nombre+'\uf8ff'));
+    if(nombre==''){
+      this.usuariosCollection2=this.db.collection<DatosUsuario>('users', ref => ref.orderBy('estado'));
+    }else{
+      this.usuariosCollection2=this.db.collection<DatosUsuario>('users', ref => ref.orderBy('correo').startAt(nombre).endAt(nombre+'\uf8ff'));
+    }
     this.usuarios2 = this.usuariosCollection2.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {

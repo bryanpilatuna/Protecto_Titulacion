@@ -7,7 +7,8 @@ import { ActivatedRoute} from '@angular/router';
 import { NavController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-
+import { AlertController } from '@ionic/angular';
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-perfil-administrador',
   templateUrl: './perfil-administrador.page.html',
@@ -18,13 +19,16 @@ export class PerfilAdministradorPage implements OnInit {
   formGroup: FormGroup;
   usuario:DatosAdministrador;
   public image: any;
+  mensaje:string;
   constructor(
     private route: ActivatedRoute, 
     private router: Router, 
     private nav: NavController, 
     private Servicio: AdministradorService, 
     private loadingController: LoadingController,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    private alertCtrl: AlertController,
+    private Service: AuthService
   ) { 
     var user = firebase.auth().currentUser.uid;
     this.id = user;
@@ -78,6 +82,32 @@ export class PerfilAdministradorPage implements OnInit {
     
     this.formGroup = this.formBuilder.group({nombreControl,apellidoControl,cedulaControl,telefonoControl,emailControl });
     
+  }
+
+  async cambiarcontra(){
+
+    this.Service.resetPassword(this.usuario.correo).then(() => {
+      this.mensaje="Se envió un correo para cambiar la contraseña. ";
+      this.mensajeerror();
+    });
+  }
+
+  //Mostrar mensaje de alerta
+  async mensajeerror() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Mensaje',
+      message: this.mensaje,
+      buttons: [
+       {
+          text: 'Aceptar',
+          handler: () => {
+            console.log('Confirm Ok');
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 
   //Cargar usuario
