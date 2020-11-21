@@ -111,7 +111,8 @@ const routes: Routes = [
   },
   {
     path: 'ubicar-tienda/:id',
-    loadChildren: () => import('./page/ubicar-tienda/ubicar-tienda.module').then( m => m.UbicarTiendaPageModule)
+    loadChildren: () => import('./page/ubicar-tienda/ubicar-tienda.module').then( m => m.UbicarTiendaPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'menu-invitado',
@@ -128,35 +129,43 @@ const routes: Routes = [
   },
   {
     path: 'notificaciones',
-    loadChildren: () => import('./page/notificaciones/notificaciones.module').then( m => m.NotificacionesPageModule)
+    loadChildren: () => import('./page/notificaciones/notificaciones.module').then( m => m.NotificacionesPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'notificaciones/:id',
-    loadChildren: () => import('./page/notificaciones/notificaciones.module').then( m => m.NotificacionesPageModule)
+    loadChildren: () => import('./page/notificaciones/notificaciones.module').then( m => m.NotificacionesPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'detallenotificacion',
-    loadChildren: () => import('./page/detallenotificacion/detallenotificacion.module').then( m => m.DetallenotificacionPageModule)
+    loadChildren: () => import('./page/detallenotificacion/detallenotificacion.module').then( m => m.DetallenotificacionPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'detallenotificacion/:id',
-    loadChildren: () => import('./page/detallenotificacion/detallenotificacion.module').then( m => m.DetallenotificacionPageModule)
+    loadChildren: () => import('./page/detallenotificacion/detallenotificacion.module').then( m => m.DetallenotificacionPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'notificacion',
-    loadChildren: () => import('./page/notificacion/notificacion.module').then( m => m.NotificacionPageModule)
+    loadChildren: () => import('./page/notificacion/notificacion.module').then( m => m.NotificacionPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'notificacion-alquiler',
-    loadChildren: () => import('./page/notificacion-alquiler/notificacion-alquiler.module').then( m => m.NotificacionAlquilerPageModule)
+    loadChildren: () => import('./page/notificacion-alquiler/notificacion-alquiler.module').then( m => m.NotificacionAlquilerPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'notificacion-donacion',
-    loadChildren: () => import('./page/notificacion-donacion/notificacion-donacion.module').then( m => m.NotificacionDonacionPageModule)
+    loadChildren: () => import('./page/notificacion-donacion/notificacion-donacion.module').then( m => m.NotificacionDonacionPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'detallenotidonar/:id',
-    loadChildren: () => import('./page/detallenotidonar/detallenotidonar.module').then( m => m.DetallenotidonarPageModule)
+    loadChildren: () => import('./page/detallenotidonar/detallenotidonar.module').then( m => m.DetallenotidonarPageModule),
+    canActivate: [AuthGuard]
   },
 
 
