@@ -49,14 +49,14 @@ export class NotificacionesTiendaPage implements OnInit {
 
 
   cambiarvisualizado(notifi:NotificacionesTienda,id:string){
-    if(this.notificacion.tipo=='Alquiler')   {
+    if(notifi.tipo=='Alquiler')   {
    
       notifi.visualizar='Si';
       this.notificacionesService.updateNotificacion(notifi,id).then(() => {
     this.router.navigate(['/tienda-alquiler',this.tiendaid]);
   });
     } 
-    else{
+    else if(notifi.tipo=='Donacion'){
       notifi.visualizar='Si';
       this.notificacionesService.updateNotificacion(notifi,id).then(() => {
     this.router.navigate(['/tienda-donacion',this.tiendaid]);
