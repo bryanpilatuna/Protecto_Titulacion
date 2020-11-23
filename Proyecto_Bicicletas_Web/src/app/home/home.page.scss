@@ -4,7 +4,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: 50%;
+  top: 30%;
   transform: translateY(-50%);
 }
 
@@ -37,4 +37,31 @@ p {
   font-size: 18px;
   font-family: Arial;
  
+}
+
+.w-100 {
+  width: 100%!important;
+  height: 350px;
+}
+
+.carousel-caption {
+  color:black;
+  text-align: left;
+}
+p,h4,button{ 
+  font-family: "Open Sans"
+}
+#map {
+  width: 100%;
+  height:100%;
+  opacity: 0;
+  transition: opacity 150ms ease-in;
+  display: block;
+  &.show-map{
+    opacity: 1;
+  }
+}
+.carousel-control-next, .carousel-control-prev{
+  
+  opacity: 40;
 }

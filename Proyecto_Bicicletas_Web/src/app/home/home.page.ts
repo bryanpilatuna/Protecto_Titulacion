@@ -1,18 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-
+import {UbicacionService}from '../services/ubicacion.service';
+import {datosUbicacion}from '../model/ubicacion.interface';
+declare var google;
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-
-  constructor() {}
+  id= null;
+  map = null;
+  idtienda=null;
+  ubicaciones: datosUbicacion[];
+  infowindow = new google.maps.InfoWindow();
+  constructor(private UbicacionService: UbicacionService) {}
 
   ngOnInit() {
-this.pintarpestaña();
+
+    this.pintarpestaña();
     
   }
+
+ 
 
   pintarpestaña(){
 
@@ -37,5 +46,8 @@ function setActive(id) {
 }
 
   }
+
+
+  
 
 }
