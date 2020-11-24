@@ -171,8 +171,8 @@ export class IniciarSesionPage implements OnInit {
           if (tienda) {
             this.router.navigate(['menu-tienda']);
           }else{
-            
-            alert("El usuario no es de tipo tienda.");
+            this.mensaje="El usuario no es de tipo tienda.";
+            this.mensajeerror();
           }
         });
         
@@ -184,7 +184,9 @@ export class IniciarSesionPage implements OnInit {
             
             this.router.navigate(['menu-cliente']);
           }else{
-            alert("El usuario no es de tipo usuario.");
+            this.mensaje="El usuario no es de tipo usuario.";
+            this.mensajeerror();
+   
           }
         });
       }else if(this.tipo=="administrador"){
@@ -194,7 +196,9 @@ export class IniciarSesionPage implements OnInit {
           if (administrador) {
             this.router.navigate(['menu-administrador']);
           }else{
-            alert("El usuario no es de tipo administrador.");
+            this.mensaje="El usuario no es de tipo administrador.";
+            this.mensajeerror();
+
           }
         });
       }
