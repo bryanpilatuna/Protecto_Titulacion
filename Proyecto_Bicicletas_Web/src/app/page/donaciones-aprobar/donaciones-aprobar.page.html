@@ -27,7 +27,7 @@
          <td>{{donacion.fechadonacion.toMillis() | date:'dd/MM/yyyy'}}</td>
          <td>{{donacion.descripcion}}</td>
          <td>{{donacion.modo}}</td>
-          <td><ion-button  (click)="aprobar(donacion,donacion.id)" color="warning">
+          <td><ion-button  *ngIf="notificacion.respuesta==''"  (click)="aprobar(donacion,donacion.id)" color="warning">
             Aprobar
           </ion-button></td>
           <td><ion-input type="text" placeholder="Ingresa el motivo" [(ngModel)]="notificacion.respuesta" required></ion-input></td>

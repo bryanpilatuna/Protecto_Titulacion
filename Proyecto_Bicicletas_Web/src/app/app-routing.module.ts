@@ -64,7 +64,7 @@ const routes: Routes = [
     loadChildren: () => import('./page/perfil-administrador/perfil-administrador.module').then( m => m.PerfilAdministradorPageModule)
   },
   {
-    path: 'editar-tienda/:id',
+    path: 'editar-tienda',
     loadChildren: () => import('./page/editar-tienda/editar-tienda.module').then( m => m.EditarTiendaPageModule)
   },
   {
@@ -182,7 +182,8 @@ const routes: Routes = [
   {
     path: 'bicis-disponibles',
     loadChildren: () => import('./page/bicis-disponibles/bicis-disponibles.module').then( m => m.BicisDisponiblesPageModule)
-  },  {
+  },
+  {
     path: 'bicis-nodisponibles',
     loadChildren: () => import('./page/bicis-nodisponibles/bicis-nodisponibles.module').then( m => m.BicisNodisponiblesPageModule)
   },

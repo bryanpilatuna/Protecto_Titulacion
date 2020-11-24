@@ -27,7 +27,7 @@
 
          <td>{{alquiler.fechadevolucion.toMillis() | date:'dd/MM/yyyy'}}</td>
          <td>{{alquiler.horadevolucion}}</td>
-          <td><ion-button  (click)="aprobaralquiler(alquiler,alquiler.id)" color="warning">
+          <td><ion-button  *ngIf="notificacion.respuesta==''" (click)="aprobaralquiler(alquiler,alquiler.id)" color="warning">
             Aprobar
           </ion-button></td>
           <td><ion-input type="text" placeholder="Ingresa el motivo" [(ngModel)]="notificacion.respuesta" required></ion-input></td>
@@ -47,6 +47,9 @@
   <div class="container">
     <div class="row mb-3">
       <div class="col-6 themed-grid-col">
+        <h5>___________</h5>
+        <h5>___________</h5>
+        <h5>___________</h5>
         <h5>___________</h5>
         <h5>___________</h5>
         <h5>___________</h5>

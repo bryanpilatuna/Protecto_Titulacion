@@ -32,7 +32,8 @@ export class DonacionesRechazadasPage implements OnInit {
     idtienda:'',
     anular:false,
     modo:'',
-    direccion:''
+    direccion:'',
+    respuesta:'',
   }
 
   notificacion:Notificaciones={

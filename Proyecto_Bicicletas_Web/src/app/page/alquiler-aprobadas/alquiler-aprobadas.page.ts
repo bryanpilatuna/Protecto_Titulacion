@@ -40,6 +40,7 @@ export class AlquilerAprobadasPage implements OnInit {
     anular:false,
     horaalquiler:'',
     horadevolucion:'',
+    respuesta:'',
   }
 
   constructor(private route: ActivatedRoute,

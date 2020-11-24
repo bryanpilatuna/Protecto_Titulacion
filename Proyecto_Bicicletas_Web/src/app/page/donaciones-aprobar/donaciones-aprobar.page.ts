@@ -32,7 +32,8 @@ export class DonacionesAprobarPage implements OnInit {
     idtienda:'',
     anular:false,
     modo:'',
-    direccion:''
+    direccion:'',
+    respuesta:'',
   }
 
   notificacion:Notificaciones={
@@ -85,10 +86,9 @@ export class DonacionesAprobarPage implements OnInit {
     this.notificacion.visualizar='No';
     this.notificacion.idusuario=donacion.iddonante;
     this.notificacion.idtipo=donacion.id;
+    donacion.respuesta='Aprobada';
     this.donacionesservice.addNotificacion(this.notificacion);
     this.notificacion.respuesta='';
-
-
     this.donacionesservice.actualizarDonacion(donacion,id).then(() => {
       this.router.navigate(['/tienda-donacion',this.tiendaid]);
     });
@@ -107,6 +107,7 @@ export class DonacionesAprobarPage implements OnInit {
       this.notificacion.visualizar='No';
       this.notificacion.idusuario=donacion.iddonante;
       this.notificacion.idtipo=donacion.id;
+      donacion.respuesta=this.notificacion.respuesta;
       this.donacionesservice.addNotificacion(this.notificacion);
       this.notificacion.respuesta='';
       this.donacionesservice.actualizarDonacion(donacion,id).then(() => {

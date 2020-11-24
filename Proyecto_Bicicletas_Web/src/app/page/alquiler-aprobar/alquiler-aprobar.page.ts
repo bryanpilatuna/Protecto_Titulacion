@@ -17,7 +17,6 @@ export class AlquilerAprobarPage implements OnInit {
   alquileres:datosAlquiler[];
   usuarios:DatosUsuario[];
   fechaactual: Date = new Date();
-
   notificacion:Notificaciones={
     respuesta:'',
     visualizar:'',
@@ -40,6 +39,7 @@ export class AlquilerAprobarPage implements OnInit {
     anular:false,
     horaalquiler:'',
     horadevolucion:'',
+    respuesta:'',
   }
   constructor(private route: ActivatedRoute,
     public alertController: AlertController,
@@ -82,7 +82,7 @@ export class AlquilerAprobarPage implements OnInit {
         this.notificacion.idtipo=alquiler.id;
         this.alquilerservice.addNotificacion(this.notificacion);
         this.notificacion.respuesta='';
-    
+        alquiler.respuesta='Alquiler Aprobado';
         this.alquilerservice.actualizarAlquiler(alquiler,id).then(() => {
           this.router.navigate(['/tienda-alquiler',this.tiendaid]);
         });
@@ -99,6 +99,7 @@ export class AlquilerAprobarPage implements OnInit {
         this.notificacion.idusuario=alquiler.idusuario;
         this.notificacion.idtipo=alquiler.id;
         this.notificacion.idtienda=this.tiendaid;
+        alquiler.respuesta=this.notificacion.respuesta;
         this.alquilerservice.addNotificacion(this.notificacion);
         this.notificacion.respuesta='';
         alquiler.aprobacion=false;

@@ -9,11 +9,9 @@
     
               <thead>
                 <tr>
-                  <th scope="col">Nombre Donante</th>
-                  <th scope="col">Apellido Donante</th>
-                  <th scope="col">Fecha Donacion</th>
-                  <th scope="col">Descripcion Bici</th>
-                  <th scope="col">Modo</th>
+                  <th scope="col">Nombree</th>
+                  <th scope="col">Apellido</th>
+                  <th scope="col">Motivo del rechazo</th>
                 
                 </tr>
               </thead>
@@ -21,9 +19,7 @@
               <tr>
             <td> {{usuario.nombres}}</td>
             <td> {{usuario.apellidos}}</td>
-            <td>{{donacion.fechadonacion.toMillis() | date:'dd/MM/yyyy'}}</td>
-            <td>{{donacion.descripcion}}</td>
-            <td>{{donacion.modo}}</td>
+            <td>{{donacion.respuesta}}</td>
             </tr>
             </tbody>
         

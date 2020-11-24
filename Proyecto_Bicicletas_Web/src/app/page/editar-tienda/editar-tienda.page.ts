@@ -10,7 +10,9 @@ import {UbicacionService}from '../../services/ubicacion.service';
 import {datosUbicacion}from '../../model/ubicacion.interface';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from '../../services/auth.service';
+
 declare var google;
+import * as firebase from 'firebase';
 
 
 @Component({
@@ -40,6 +42,7 @@ export class EditarTiendaPage implements OnInit {
   constructor(private route: ActivatedRoute, 
     private router: Router, 
     private nav: NavController, 
+    public alertController: AlertController,
     private tiendaservice:TiendaService,
     private loadingController: LoadingController,
     public formBuilder: FormBuilder,
@@ -47,13 +50,14 @@ export class EditarTiendaPage implements OnInit {
     private Service: AuthService,
     private alertCtrl: AlertController,
     private UbicacionService: UbicacionService) { 
-      
+      var user = firebase.auth().currentUser.uid;
+      this.tiendaid = user;      
   
       this.crearvalidaciones();
     }
 
   ngOnInit() {
-    this.tiendaid=this.route.snapshot.params['id'];
+    //this.tiendaid=this.route.snapshot.params['id'];
     this.loadmap();
     if (this.tiendaid){
       this.cargarTienda();
@@ -61,14 +65,10 @@ export class EditarTiendaPage implements OnInit {
   }
    //Cargar tienda
    async cargarTienda(){
-    const loading = await this.loadingController.create({
-      message: 'Cargando....'
-    });
-    await loading.present();
 
     this.tiendaservice.getTienda(this.tiendaid).subscribe(tienda =>
       {
-        loading.dismiss();
+
         this.tienda =tienda;
         this.addMarker(this.tienda.position.latitude,this.tienda.position.longitude,this.tienda.nombre);
      
@@ -77,7 +77,7 @@ export class EditarTiendaPage implements OnInit {
   }
 
   async loadmap(){
-  
+  console.log('Entro mapa');
     const myLatLng= {lat: -0.225219, lng: -78.5248};
     const mapEle: HTMLElement = document.getElementById('map');
     
@@ -150,7 +150,11 @@ export class EditarTiendaPage implements OnInit {
 
   guardartienda(){
     this.tiendaservice.updateTienda(this.tienda, this.tiendaid).then(() => {
-      this.nav.navigateForward('menu-tienda');
+      //this.nav.navigateForward('menu-tienda');
+      this.mensaje='Guardado con éxito'
+     this.presentAlert(this.mensaje);
+     this.router.navigate(['/editar-tienda']);
+    
       
     });
   }
@@ -173,7 +177,10 @@ export class EditarTiendaPage implements OnInit {
   this.tienda.position.latitude= myLatLng.lat;
   this.tienda.position.longitude= myLatLng.lng;
   this.tiendaservice.updateTienda(this.tienda, this.tiendaid).then(() => {
-    this.nav.navigateForward('menu-tienda');
+   this.mensaje='Cambio de ubicación exitosa'
+   this.presentAlert(this.mensaje);
+    this.router.navigate(['/editar-tienda']);
+   
     
   });
 
@@ -204,5 +211,16 @@ export class EditarTiendaPage implements OnInit {
     });
     await alert.present();
   }
+  async presentAlert(mensaje:string) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Atención',
+      message: mensaje,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
 
 }

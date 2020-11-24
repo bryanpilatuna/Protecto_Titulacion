@@ -22,34 +22,10 @@ export class TiendaDonacionPage implements OnInit {
   notificaciones:Notificaciones[];
   fechaactual: Date = new Date();
 
-  donacion:datosDonacion={
-    iddonante:'',
-    fechadonacion:this.fechaactual,
-    fechasolicitud:this.fechaactual,
-    estado:'',
-    descripcion:'',
-    aprobacion:false,
-    idtienda:'',
-    anular:false,
-    modo:'',
-    direccion:''
-  }
-
-  notificacion:Notificaciones={
-    respuesta:'',
-    visualizar:'',
-    fecha: this.fechaactual,
-    tipo:'donacion',
-    idusuario:'',
-    idtipo:'',
-    color:'#D7F6FC',
-    idtienda:'',
-    
-  }
+ 
   constructor(private route: ActivatedRoute,
     public alertController: AlertController,
-    private donacionesservice: DonacionesService,
-    private router: Router) {
+    private donacionesservice: DonacionesService) {
       var user = firebase.auth().currentUser.uid;
       this.tiendaid = user;
 
@@ -67,69 +43,6 @@ export class TiendaDonacionPage implements OnInit {
   })
   }
 
-  updateDonacion(acdonacion:datosDonacion,iddonacion:string){
-    acdonacion.aprobacion=true;
-    this.donacionesservice.actualizarDonacion(acdonacion,iddonacion).then(() => {
-      this.router.navigate(['/tienda-donacion',this.tiendaid]);
-      
-    });
-    
-
-  }
-
-  aprobar(donacion:datosDonacion,id:string){
-    donacion.aprobacion=true;
-    this.notificacion.idtienda=this.tiendaid;
-    this.notificacion.respuesta='Tu donación ha sido aprobado, en breve nos pondremos en contacto contigo';
-    this.notificacion.visualizar='No';
-    this.notificacion.idusuario=donacion.iddonante;
-    this.notificacion.idtipo=donacion.id;
-    this.donacionesservice.addNotificacion(this.notificacion);
-    this.notificacion.respuesta='';
-
-
-    this.donacionesservice.actualizarDonacion(donacion,id).then(() => {
-      this.router.navigate(['/tienda-donacion',this.tiendaid]);
-    });
-
-      }
-
-  rechazar(donacion:datosDonacion,id:string){
-    if(this.notificacion.respuesta=='')   {
-      this.presentAlert();
-
-    }
-    else{
-      donacion.aprobacion=false;
-      donacion.anular=true;
-      this.notificacion.idtienda=this.tiendaid;
-      this.notificacion.visualizar='No';
-      this.notificacion.idusuario=donacion.iddonante;
-      this.notificacion.idtipo=donacion.id;
-      this.donacionesservice.addNotificacion(this.notificacion);
-      this.notificacion.respuesta='';
-      this.donacionesservice.actualizarDonacion(donacion,id).then(() => {
-        this.router.navigate(['/tienda-donacion',this.tiendaid]);
-      });
-
-    }
-    
-    
-   
-    
-  }
-
-  async presentAlert() {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Atención',
-      message: 'Por favor ingresa el motivo del rechazo',
-      buttons: ['OK']
-    });
-
-    await alert.present();
-  }
-
-
+ 
 
 }
