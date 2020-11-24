@@ -128,7 +128,7 @@ export class IniciarSesionPage implements OnInit {
       if (user) {
         const isVerified = this.authSvc.isEmailVerified(user);
         this.uid = user.uid;
-        this.redirectUser(isVerified,user.uid);
+        this.redirectUser(isVerified,user.uid,email.value);
       }else{
         console.log("entra en errores");
         console.log(this.authSvc.errores);
@@ -161,7 +161,7 @@ export class IniciarSesionPage implements OnInit {
   }
 
   //Redireccionar si el correo es verificado
-  private redirectUser(isVerified: boolean,id:string): void {
+  private redirectUser(isVerified: boolean,id:string,correo:string): void {
     if (isVerified) {
       if(this.tipo=="tienda"){
         
@@ -194,7 +194,7 @@ export class IniciarSesionPage implements OnInit {
           //this.tienda = tienda;
           console.log(administrador);
           if (administrador) {
-            this.router.navigate(['menu-administrador']);
+            this.router.navigate(['perfil-administrador']);
           }else{
             this.mensaje="El usuario no es de tipo administrador.";
             this.mensajeerror();
@@ -203,7 +203,12 @@ export class IniciarSesionPage implements OnInit {
         });
       }
     } else {
-      this.mensaje="No se verifico el correo revisar su bandeja de mensajes.";
+      this.mensaje="Se envió un mensaje de confirmación al siguiente corre:"+correo;
+      try {
+        this.authSvc.sendVerifcationEmail();
+      } catch (error) {
+        console.log('Error->', error);
+      }
       this.mensajeerror();
       //this.router.navigate(['verify-email']);
     }
