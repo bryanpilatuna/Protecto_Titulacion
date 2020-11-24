@@ -112,13 +112,7 @@ export class PerfilAdministradorPage implements OnInit {
 
   //Cargar usuario
   async cargarUsuario(){
-    const loading = await this.loadingController.create({
-      message: 'Cargando....'
-    });
-    await loading.present();
-
     this.Servicio.getAdministrador(this.id).subscribe(administrador => {
-      loading.dismiss();
       console.log("usuarios",administrador);
       this.usuario = administrador;
     });
@@ -134,16 +128,10 @@ export class PerfilAdministradorPage implements OnInit {
 
     //Guardar Usuario
     async guardarUsuario() {
-      const loading = await this.loadingController.create({
-        message: 'Guardando....'
-      });
-      await loading.present();
-   
       if (this.id) {
         this.Servicio.updateAdministrador(this.usuario, this.id).then(() => {
-          loading.dismiss();
-          this.nav.navigateForward('menu-administrador');
-          
+          this.mensaje="Se actualizo tu perfil.";
+          this.mensajeerror();
         });
       } 
     }

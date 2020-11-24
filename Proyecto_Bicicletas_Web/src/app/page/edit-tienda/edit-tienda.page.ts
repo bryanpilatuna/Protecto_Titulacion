@@ -25,13 +25,8 @@ export class EditTiendaPage implements OnInit {
     }
   }
   async loadTodo(){
-    const loading = await this.loadingController.create({
-      message: 'Loading....'
-    });
-    await loading.present();
-
     this.tiendaservice.getTienda(this.iduser).subscribe(tienda => {
-      loading.dismiss();
+
       console.log(tienda);
       this.tienda = tienda;
       
@@ -39,14 +34,8 @@ export class EditTiendaPage implements OnInit {
   }
 
   async saveTodo() {
-    const loading = await this.loadingController.create({
-      message: 'Saving....'
-    });
-    await loading.present();
- 
     if (this.iduser) {
       this.tiendaservice.updateTienda(this.tienda, this.iduser).then(() => {
-        loading.dismiss();
         this.nav.navigateForward('/tienda-administrador');
       });
     } 

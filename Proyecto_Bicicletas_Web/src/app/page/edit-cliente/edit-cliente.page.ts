@@ -26,27 +26,15 @@ export class EditClientePage implements OnInit {
   }
 
   async loadTodo(){
-    const loading = await this.loadingController.create({
-      message: 'Loading....'
-    });
-    await loading.present();
-
     this.Service.getUsuario(this.iduser).subscribe(usuario => {
-      loading.dismiss();
       console.log(usuario);
       this.user = usuario;
     });
   }
 
   async saveTodo() {
-    const loading = await this.loadingController.create({
-      message: 'Saving....'
-    });
-    await loading.present();
- 
     if (this.iduser) {
       this.Service.updateUsuario(this.user, this.iduser).then(() => {
-        loading.dismiss();
         this.nav.navigateForward('/cliente-administrador');
       });
     } 

@@ -10,7 +10,7 @@ export class ClienteAdministradorPage implements OnInit {
   usuarios: DatosUsuario[];
   constructor(private Service: AdministradorService) { 
     this.Service.getUsuarios().subscribe((usuarios) =>{
-      console.log('Todoss', usuarios);
+
       this.usuarios = usuarios;
     })
   }
