@@ -12,12 +12,12 @@
     display: block;
     text-align: center;
   }
-  #login .container #login-row #login-column #login-box {
-    margin-top: 120px;
+  form {
+    margin-top: 30px;
     max-width: 600px;
-    height: 390px;
+    height: auto;
     border: 1px solid #9C9C9C;
-    background-color: #EAEAEA;
+
   }
   #login .container #login-row #login-column #login-box #login-form {
     padding: 20px;
@@ -27,7 +27,11 @@
   }
   
 
-  
+  h4 {
+    color: #4f4866;
+    font-weight: normal;
+    font-size: 25px;
+  }
 
 .btn_eye_icon{
   position: absolute;
@@ -44,3 +48,12 @@
   outline: none  !important;
   
 }
+ion-content{ 
+  font-family: "Open Sans"
+}
+h4 {
+  color: #4f4866;
+  font-weight: normal;
+  font-size: 25px;
+}
+
