@@ -126,7 +126,9 @@ export class RegistroClientePage implements OnInit {
     if (isVerified) {
       this.router.navigate(['menu']);
     } else {
-      this.router.navigate(['verify-email']);
+      this.mensaje="Se envió un mensaje de confirmación al correo ingresado.";
+      this.presentAlertConfirm();
+     
     }
   }
 

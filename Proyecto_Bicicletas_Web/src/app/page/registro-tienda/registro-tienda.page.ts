@@ -121,7 +121,7 @@ export class RegistroTiendaPage implements OnInit {
     if (isVerified) {
       this.router.navigate(['menu']);
     } else {
-      this.mensaje="Se envió un enlace de verificación al siguiente correo ingresado en el formulario.";
+      this.mensaje="Se envió un mensaje de confirmación al correo ingresado.";
       this.presentAlertConfirm();
 
       //this.router.navigate(['verify-email']);
