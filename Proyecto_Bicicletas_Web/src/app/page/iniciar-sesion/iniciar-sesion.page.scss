@@ -31,10 +31,10 @@ outline: none  !important;
 
 }
 
-#login .container #login-row #login-column #login-box {
+form {
   margin-top: 120px;
   max-width: 600px;
-  height: 390px;
+  height: auto;
   border: 1px solid #9C9C9C;
   background-color: #EAEAEA;
 }
@@ -43,6 +43,10 @@ outline: none  !important;
 }
 #login .container #login-row #login-column #login-box #login-form #register-link {
   margin-top: -85px;
+}
+
+ion-content{ 
+  font-family: "Open Sans"
 }
 
 
