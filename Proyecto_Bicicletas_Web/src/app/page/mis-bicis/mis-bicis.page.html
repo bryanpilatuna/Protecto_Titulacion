@@ -3,129 +3,29 @@
 </ion-header>
 
 <ion-content>
+  <ion-tabs>
+    <ion-tab-bar slot="top">
+      <ion-tab-button tab="disponibles">
+        <ion-icon name="checkmark-outline"></ion-icon>
+        <ion-label>Disponibles </ion-label>
+      </ion-tab-button>
 
-  <div class="container">
-  <h5 align="center">MIS BICICLETAS</h5> 
-  <h5 align="right"><ion-button  (click)="rediregistrobici()">
-    <ion-icon name="add"></ion-icon>
-    Añadir Bici
-  </ion-button></h5>
+      <ion-tab-button tab="nodisponibles">
+        <ion-icon name="close-outline"></ion-icon>
+        <ion-label>No Disponibles</ion-label>
+      </ion-tab-button>
 
-
-  <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#Poraprobar">DISPONIBLES |</a></li>
-    <li><a data-toggle="tab" href="#nodisponibles">| NO DISPONIBLES |</a></li>
-    <li><a data-toggle="tab" href="#mantenimiento">| MANTENIMIENTO</a></li>
-    
-  </ul>
+      <ion-tab-button tab="mantenimiento">
+        <ion-icon name="fitness-outline"></ion-icon>
+        <ion-label>Mantenimiento</ion-label>
+      </ion-tab-button>
+      <ion-tab-button>
+        <ion-button  (click)="rediregistrobici()">
+          <ion-icon name="add"></ion-icon>
+          Añadir Bici
+        </ion-button>
+      </ion-tab-button>
   
-  <div class="tab-content">
-
-  <div id="Poraprobar" class="tab-pane fade">    
-  <div class="table-responsive">
-    <table class="table ">
-      <thead>
-        <tr>
-          <th scope="col">Nombre</th>
-          <th scope="col">Imagen</th>
-          <th scope="col">Disponible</th>
-          <th scope="col">Editar</th>
-          <th scope="col">Cambiar Estado</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let bicis of bicicletas" >
-          <ng-container *ngIf="bicis.disponible==Si">
-          <td>{{bicis.nombre}}</td>
-          <td><img [src]="bicis.imagen" style="height:100px;display:block;margin:auto"/></td>
-          <td>{{bicis.disponible}}</td>
-          <td> <ion-button  (click)="editarbici(bicis.id)">
-            <ion-icon slot="start" name="locate"></ion-icon>
-            Editar Bici
-          </ion-button></td>
-          <td><ion-button  (click)="cambiarestado(bicis,bicis.id)">
-            <ion-icon slot="start" name="locate"></ion-icon>
-            Cambiar Estado
-          </ion-button></td>
-        </ng-container>  
-        </tr> 
-
-          </tbody>
-        </table>
-      </div>
-    </div>
-    
-    <div id="nodisponibles" class="tab-pane fade">
-          
-  <div class="table-responsive">
-    <table class="table ">
-      <thead>
-        <tr>
-          <th scope="col">Nombre</th>
-          <th scope="col">Imagen</th>
-          <th scope="col">Disponible</th>
-          <th scope="col">Editar</th>
-          <th scope="col">Cambiar Estado</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let bicis of bicicletas" >
-          <ng-container *ngIf="bicis.disponible==No">
-          <td>{{bicis.nombre}}</td>
-          <td><img [src]="bicis.imagen" style="height:100px;display:block;margin:auto"/></td>
-          <td>{{bicis.disponible}}</td>
-          <td> <ion-button  (click)="editarbici(bicis.id)">
-            <ion-icon slot="start" name="locate"></ion-icon>
-            Editar Bici
-          </ion-button></td>
-          <td><ion-button  (click)="cambiarestado(bicis,bicis.id)">
-            <ion-icon slot="start" name="locate"></ion-icon>
-            Cambiar Estado
-          </ion-button></td>
-        </ng-container>  
-        </tr> 
-
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div id="mantenimiento" class="tab-pane fade">
-          
-  <div class="table-responsive">
-    <table class="table ">
-      <thead>
-        <tr>
-          <th scope="col">Nombre</th>
-          <th scope="col">Imagen</th>
-          <th scope="col">Disponible</th>
-          <th scope="col">Editar</th>
-          <th scope="col">Cambiar Estado</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let bicis of bicicletas" >
-          <ng-container *ngIf="bicis.disponible==Mantenimiento">
-          <td>{{bicis.nombre}}</td>
-          <td><img [src]="bicis.imagen" style="height:100px;display:block;margin:auto"/></td>
-          <td>{{bicis.disponible}}</td>
-          <td> <ion-button  (click)="editarbici(bicis.id)">
-            <ion-icon slot="start" name="locate"></ion-icon>
-            Editar Bici
-          </ion-button></td>
-          <td><ion-button  (click)="cambiarestado(bicis,bicis.id)">
-            <ion-icon slot="start" name="locate"></ion-icon>
-            Cambiar Estado
-          </ion-button></td>
-        </ng-container>  
-        </tr> 
-
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-content>

@@ -1,0 +1,20 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { IonicModule } from '@ionic/angular';
+
+import { DonacionesRechazadasPageRoutingModule } from './donaciones-rechazadas-routing.module';
+
+import { DonacionesRechazadasPage } from './donaciones-rechazadas.page';
+
+@NgModule({
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    DonacionesRechazadasPageRoutingModule
+  ],
+  declarations: [DonacionesRechazadasPage]
+})
+export class DonacionesRechazadasPageModule {}

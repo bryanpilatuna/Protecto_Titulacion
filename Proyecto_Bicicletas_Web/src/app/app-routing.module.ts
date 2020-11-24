@@ -175,6 +175,36 @@ const routes: Routes = [
     path: 'detallenotificacion/:id',
     loadChildren: () => import('./page/detallenotificacion/detallenotificacion.module').then( m => m.DetallenotificacionPageModule)
   },
+  {
+    path: 'misbicis-poraprobar',
+    loadChildren: () => import('./page/misbicis-poraprobar/misbicis-poraprobar.module').then( m => m.MisbicisPoraprobarPageModule)
+  },
+  {
+    path: 'bicis-disponibles',
+    loadChildren: () => import('./page/bicis-disponibles/bicis-disponibles.module').then( m => m.BicisDisponiblesPageModule)
+  },  {
+    path: 'bicis-nodisponibles',
+    loadChildren: () => import('./page/bicis-nodisponibles/bicis-nodisponibles.module').then( m => m.BicisNodisponiblesPageModule)
+  },
+  {
+    path: 'bicis-mantenimiento',
+    loadChildren: () => import('./page/bicis-mantenimiento/bicis-mantenimiento.module').then( m => m.BicisMantenimientoPageModule)
+  },
+  {
+    path: 'donaciones-aprobar',
+    loadChildren: () => import('./page/donaciones-aprobar/donaciones-aprobar.module').then( m => m.DonacionesAprobarPageModule)
+  },
+  {
+    path: 'donaciones-aprobadas',
+    loadChildren: () => import('./page/donaciones-aprobadas/donaciones-aprobadas.module').then( m => m.DonacionesAprobadasPageModule)
+  },
+  {
+    path: 'donaciones-rechazadas',
+    loadChildren: () => import('./page/donaciones-rechazadas/donaciones-rechazadas.module').then( m => m.DonacionesRechazadasPageModule)
+  },
+
+
+ 
 
 
 
