@@ -202,6 +202,18 @@ const routes: Routes = [
     path: 'donaciones-rechazadas',
     loadChildren: () => import('./page/donaciones-rechazadas/donaciones-rechazadas.module').then( m => m.DonacionesRechazadasPageModule)
   },
+  {
+    path: 'alquiler-aprobar',
+    loadChildren: () => import('./page/alquiler-aprobar/alquiler-aprobar.module').then( m => m.AlquilerAprobarPageModule)
+  },
+  {
+    path: 'alquiler-aprobadas',
+    loadChildren: () => import('./page/alquiler-aprobadas/alquiler-aprobadas.module').then( m => m.AlquilerAprobadasPageModule)
+  },
+  {
+    path: 'alquiler-rechazadas',
+    loadChildren: () => import('./page/alquiler-rechazadas/alquiler-rechazadas.module').then( m => m.AlquilerRechazadasPageModule)
+  },
 
 
  

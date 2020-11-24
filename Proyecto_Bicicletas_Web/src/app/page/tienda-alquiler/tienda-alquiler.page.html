@@ -3,143 +3,22 @@
 </ion-header>
 
 <ion-content>
-  
-  <div class="container">
-    <h5 align="center">ALQUILERES</h5> 
-    <ul class="nav nav-tabs">
-      <li class="active"><a data-toggle="tab" href="#ParaAprobar">POR APROBAR |</a></li>
-      <li><a data-toggle="tab" href="#Aceptadas">| APROBADAS |</a></li>
-      <li><a data-toggle="tab" href="#Rechazadas">| RECHAZADAS o ANULADAS</a></li>
-    </ul>
-    
-    <div class="tab-content">
-      <div id="ParaAprobar" class="tab-pane fade in active">
-        
-    <div class="table-responsive">
-      <table class="table ">
-        
-          <div *ngFor="let alquiler of alquileres" >
-            <div *ngIf="alquiler.aprobacion==false && alquiler.anular==false">
-            <div *ngFor="let usuario of usuarios">
-              <div *ngIf="alquiler.idusuario==usuario.uid">
-                <thead>
-                  <tr>
-                    <th scope="col">Nombre Solicitante</th>
-                    <th scope="col">Apellido Solicitante</th>
-                    <th scope="col">Fecha Alquiler</th>
-                    <th scope="col">Hora Alquiler</th>
-                    <th scope="col">Fecha Devolución</th>
-                    <th scope="col">Hora Devolución</th>
-                    <th scope="col">Aprobar</th>
-                    <th scope="col">Motivo rechazo</th>
-                    <th scope="col">Rechazar</th>
-                  </tr>
-                </thead>
-                <tbody>
-                <tr>
-               <td> {{usuario.nombres}}</td>
-               <td> {{usuario.apellidos}}</td>
-               <td>{{alquiler.fechaalquiler.toMillis() | date:'dd/MM/yyyy'}}</td>
-               <td>{{alquiler.horaalquiler}}</td>
+  <ion-tabs>
+    <ion-tab-bar slot="top">
+      <ion-tab-button tab="alquiaprobar">
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+        <ion-label>Por Aprobar </ion-label>
+      </ion-tab-button>
 
-               <td>{{alquiler.fechadevolucion.toMillis() | date:'dd/MM/yyyy'}}</td>
-               <td>{{alquiler.horadevolucion}}</td>
-                <td><ion-button  (click)="aprobaralquiler(alquiler,alquiler.id)" color="warning">
-                  Aprobar
-                </ion-button></td>
-                <td><ion-input type="text" placeholder="Ingresa el motivo" [(ngModel)]="notificacion.respuesta" required></ion-input></td>
-                <td><ion-button  (click)=" rechazaralquiler(alquiler,alquiler.id)" color="danger">
-                  Rechazar
-                </ion-button></td>
-              </tr>
-              </tbody>
-            </div>
-          </div>
-        </div>
-          
-      </div> 
-  
-          </table>
-        </div>
-      </div>
+      <ion-tab-button tab="alquiaprobadas">
+        <ion-icon name="checkmark-done-circle-outline"></ion-icon>
+        <ion-label>Aprobadas</ion-label>
+      </ion-tab-button>
 
-      <div id="Aceptadas" class="tab-pane fade in active">
-        
-        <div class="table-responsive">
-          <table class="table ">
-            
-              <div *ngFor="let alquiler of alquileres" >
-                <div *ngIf="alquiler.aprobacion==true">
-                <div *ngFor="let usuario of usuarios">
-                  <div *ngIf="alquiler.idusuario==usuario.uid">
-                    <thead>
-                      <tr>
-                        <th scope="col">Nombre Solicitante</th>
-                        <th scope="col">Apellido Solicitante</th>
-                        <th scope="col">Fecha Alquiler</th>
-                        <th scope="col">Hora Alquiler</th>
-                        <th scope="col">Fecha Devolución</th>
-                        <th scope="col">Hora Devolución</th>
-                       
-                       
-                      </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                   <td> {{usuario.nombres}}</td>
-                   <td> {{usuario.apellidos}}</td>
-                   <td>{{alquiler.fechaalquiler.toMillis() | date:'dd/MM/yyyy'}}</td>
-                    <td>{{alquiler.horaalquiler}}</td>
-                    <td>{{alquiler.fechadevolucion.toMillis() | date:'dd/MM/yyyy'}}</td>
-                    <td>{{alquiler.horadevolucion}}</td>
-                  </tr>
-                  </tbody>
-                </div>
-              </div>
-            </div>
-              
-          </div> 
-      
-              </table>
-            </div>
-          </div>
-
-          <div id="Rechazadas" class="tab-pane fade in active">
-        
-            <div class="table-responsive">
-              <table class="table ">
-                
-                  <div *ngFor="let alquiler of alquileres" >
-                    <div *ngIf="alquiler.anular==true">
-                    <div *ngFor="let usuario of usuarios">
-                      <div *ngIf="alquiler.idusuario==usuario.uid">
-                        <thead>
-                          <tr>
-                            <th scope="col">Nombre Solicitante</th>
-                            <th scope="col">Apellido Solicitante</th>
-                            <th scope="col">Fecha Alquiler</th>
-                            <th scope="col">Fecha Devolución</th>                           
-                          </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                       <td> {{usuario.nombres}}</td>
-                       <td> {{usuario.apellidos}}</td>
-                       <td>{{alquiler.fechaalquiler.toMillis() | date:'dd/MM/yyyy'}}</td>
-                       <td>{{alquiler.fechadevolucion.toMillis() | date:'dd/MM/yyyy'}}</td>
-                      </tr>
-                      </tbody>
-                    </div>
-                  </div>
-                </div>
-                  
-              </div> 
-          
-                  </table>
-                </div>
-              </div>
-    
-    </div>
-  </div>
-  <app-footer></app-footer>
+      <ion-tab-button tab="alquirechazadas">
+        <ion-icon name="close-circle-outline"></ion-icon>
+        <ion-label>Rechazadas</ion-label>
+      </ion-tab-button>  
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-content>

@@ -1,20 +1,16 @@
 table th {
-    color: rgb(0, 0, 0);
-    background-color: #ffffff;
-  }
-table tr {
-    color: #fff;
-    background-color: #3ba194;
-  }
-table td,tr{
-    text-align: center; vertical-align: middle;
+  color: #fff;
+  background-color: #38A1E9;
+}
+table td,th{
+  text-align: center; vertical-align: middle;
 }
 ion-content{
-  font-family: "Open Sans"
+font-family: "Open Sans"
 }
 
 h4 {
-  color: #4f4866;
-  font-weight: normal;
-  font-size: 25px;
+color: #4f4866;
+font-weight: normal;
+font-size: 25px;
 }

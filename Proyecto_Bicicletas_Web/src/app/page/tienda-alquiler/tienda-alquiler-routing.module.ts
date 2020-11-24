@@ -6,7 +6,28 @@ import { TiendaAlquilerPage } from './tienda-alquiler.page';
 const routes: Routes = [
   {
     path: '',
-    component: TiendaAlquilerPage
+    component: TiendaAlquilerPage,
+    children: [
+      {
+        path:'alquiaprobar',
+        loadChildren:   () => import('../alquiler-aprobar/alquiler-aprobar.module').then( m => m.AlquilerAprobarPageModule)
+      },
+      {
+        path:'alquiaprobadas',
+        loadChildren: () => import('../alquiler-aprobadas/alquiler-aprobadas.module').then( m => m.AlquilerAprobadasPageModule)
+        
+      },
+      {
+        path:'alquirechazadas',
+        loadChildren: () => import('../alquiler-rechazadas/alquiler-rechazadas.module').then( m => m.AlquilerRechazadasPageModule)
+        
+      },
+      {
+        path: '',
+        redirectTo: 'alquiaprobar',
+        pathMatch: 'full'
+      }
+    ]
   }
 ];
 
