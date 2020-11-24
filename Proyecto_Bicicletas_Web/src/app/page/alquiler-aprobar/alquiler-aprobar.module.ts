@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { AlquilerAprobarPageRoutingModule } from './alquiler-aprobar-routing.module';
 
 import { AlquilerAprobarPage } from './alquiler-aprobar.page';
+import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AlquilerAprobarPageRoutingModule
+    AlquilerAprobarPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [AlquilerAprobarPage]
 })

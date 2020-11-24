@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { BicisNodisponiblesPageRoutingModule } from './bicis-nodisponibles-routing.module';
 
 import { BicisNodisponiblesPage } from './bicis-nodisponibles.page';
+import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    BicisNodisponiblesPageRoutingModule
+    BicisNodisponiblesPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [BicisNodisponiblesPage]
 })

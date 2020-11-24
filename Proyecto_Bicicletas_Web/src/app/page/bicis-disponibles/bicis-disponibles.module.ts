@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { BicisDisponiblesPageRoutingModule } from './bicis-disponibles-routing.module';
 
 import { BicisDisponiblesPage } from './bicis-disponibles.page';
+import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    BicisDisponiblesPageRoutingModule
+    BicisDisponiblesPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [BicisDisponiblesPage]
 })

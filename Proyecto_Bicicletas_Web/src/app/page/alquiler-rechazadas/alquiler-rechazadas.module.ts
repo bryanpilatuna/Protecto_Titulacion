@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { AlquilerRechazadasPageRoutingModule } from './alquiler-rechazadas-routing.module';
 
 import { AlquilerRechazadasPage } from './alquiler-rechazadas.page';
+import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AlquilerRechazadasPageRoutingModule
+    AlquilerRechazadasPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [AlquilerRechazadasPage]
 })
