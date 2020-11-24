@@ -34,6 +34,7 @@ export class EditTiendaPage implements OnInit {
       loading.dismiss();
       console.log(tienda);
       this.tienda = tienda;
+      
     });
   }
 

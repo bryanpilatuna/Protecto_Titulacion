@@ -9,13 +9,13 @@
       <div class="mx-auto">
         <form [formGroup]="formGroup" (ngSubmit)="guardarUsuario()" *ngIf="usuario" >
           <div class="row">  
-              <img [src]="usuario.foto" style="height:150px;display:block;margin:auto"/>
+              <img [src]="usuario.foto" style="height:150px;display:block;margin:auto;border-radius: 150px;border: solid rgb(0, 12, 173);"/>
           </div>
           <br/>
           <div class="row" style="display: flex;justify-content: center;">  
             <label style="color:blue">
               Cambiar foto de perfil
-              <input type="file" name="fileSubir" (change)="subirImagen($event)" style="display:none;">
+              <input type="file" accept=".png, .jpg" name="fileSubir" (change)="subirImagen($event)" style="display:none;">
             </label>
           </div>
           
