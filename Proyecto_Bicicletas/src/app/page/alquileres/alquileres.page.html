@@ -12,9 +12,9 @@
 
   <ion-list *ngIf="vacio==false; else elseBlock">
    
-    <h2 style="text-align: center;">Revisa tus alquileres</h2>
+    <h2 style="text-align: center;font-weight: bold;">Revisa tus alquileres</h2>
     <p style="text-align: left;padding-left: 10px;"><ion-icon name="flag-outline" style="color:green;font-size: 20px;"></ion-icon> Alquileres aprobados</p> 
-    <p style="text-align: left;padding-left: 10px"><ion-icon name="flag-outline" style="color:red;font-size: 20px;"></ion-icon> Alquileres rechazados</p> 
+    <p style="text-align: left;padding-left: 10px"><ion-icon name="flag-outline" style="color:red;font-size: 20px;"></ion-icon> Alquileres rechazados o anulados</p> 
  
     
     <div *ngFor="let alqui of alquiler;let indice=index">
@@ -25,7 +25,7 @@
             <ion-icon name="flag-outline" style="color:red;font-size: 20px;" *ngIf="alqui.aprobacion==false"></ion-icon>
           </ion-col>
           <ion-col>
-            <p style="font-size: 20px;padding: 0px;margin: 0px;">
+            <p style="font-size: 20px;padding: 0px;margin: 0px;font-weight: bold;">
                <!--La fecha de solicud se envió {{alqui.fecha.toMillis() | date:'dd/MM/yyyy'}}-->
                Alquiler
             </p>

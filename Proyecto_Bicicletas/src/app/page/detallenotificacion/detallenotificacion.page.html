@@ -10,47 +10,64 @@
 <ion-content>
   <ion-list lines="full" *ngIf="alquileres" style="margin:10px">
     <ion-item *ngIf="notificacion" lines="none">
-      <ion-label><strong>Respuesta</strong></ion-label>
+      <ion-label style="font-weight: bold;font-size: 20px;"><strong>Respuesta</strong></ion-label>
     </ion-item>
      <ion-item *ngIf="notificacion">
         <p >{{notificacion.respuesta }}</p>
     </ion-item>
     <ion-item  lines="none">
-      <ion-label style="text-align: center;"><strong>Detalle del Alquiler</strong></ion-label>
+      <ion-label style="text-align: center;font-weight: bold;font-size: 20px;"><strong>Detalle del Alquiler</strong></ion-label>
     </ion-item>
     
     <ion-item *ngIf="bicicleta" lines="none">
       <img [src]="bicicleta.imagen" style="height: 130px;display:block;margin:auto;margin-bottom: 10px;border-radius: 20px;border: solid#D6D6D6;"/>
     </ion-item>
 
-    <ion-item *ngIf="tiendas" lines="none">
- 
-        <ion-label><strong>Tienda</strong></ion-label>
-        <p >{{tiendas.nombre }}</p>
-  
+    <ion-item *ngIf="tiendas" lines="none">   
+      <ion-grid>  
+        <ion-row>
+          <ion-col>
+            <ion-label><strong>Tienda</strong></ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label>{{tiendas.nombre }}</ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-label><strong>Fecha solicitud:</strong></ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label>{{fecha | date:'dd/MM/yyyy'}}</ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-label><strong>Fecha alquiler:</strong></ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label>{{fechaalquiler | date:'dd/MM/yyyy'}}</ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-label><strong>Hora alquiler:</strong></ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label>{{alquileres.horaalquiler}}</ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-label><strong>Fecha Devolución:</strong></ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label>{{alquileres.horadevolucion}}</ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>  
     </ion-item>
 
-    <ion-item  lines="none">
-      <ion-label><strong>Fecha solicitud:</strong></ion-label>
-      <p>{{fecha | date:'dd/MM/yyyy'}}</p>
-    </ion-item>
-  
-    <ion-item  lines="none">
-      <ion-label><strong>Fecha alquiler:</strong></ion-label>
-      <p>{{fechaalquiler | date:'dd/MM/yyyy'}}</p>
-    </ion-item>
-    <ion-item  lines="none">
-      <ion-label><strong>Hora alquiler:</strong></ion-label>
-      <p>{{alquileres.horaalquiler}}</p>
-    </ion-item>
-    <ion-item  lines="none">
-      <ion-label><strong>Fecha Devolución:</strong></ion-label>
-      <p>{{fechadevolucion | date:'dd/MM/yyyy'}}</p>
-    </ion-item>
-    <ion-item  lines="none">
-      <ion-label><strong>Hora Devolución:</strong></ion-label>
-      <p>{{alquileres.horadevolucion}}</p>
-    </ion-item>
   </ion-list>
 
 </ion-content>

@@ -8,42 +8,48 @@
   <ion-list >
 
     <div *ngFor="let noti of notificaciones;let indice=index">
-      <div *ngIf="noti.idusuario==id" >
+      <div *ngIf="noti.idusuario==id">
         <ion-card *ngIf="noti.tipo=='donacion'" [ngStyle]="{'background':noti.color}">
-        
-          <ion-card-content>
-            <ion-row *ngFor="let tienda of tiendas;let indice=index" >
-              <ion-col *ngIf="tienda.id==noti.idtienda">
-                <p class="subtitulo">Tienda:</p>
-              </ion-col>
-              <ion-col *ngIf="tienda.id==noti.idtienda">
-                <p>{{tienda.nombre}}</p>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                <p class="subtitulo">Fecha:</p>
-              </ion-col>
-              <ion-col>
-                <p>{{noti.fecha.toMillis() | date:'dd/MM/yyyy'}}</p>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                <p class="subtitulo">Solicitud:</p>
-              </ion-col>
-              <ion-col>
-                <p>Donación</p>
-              </ion-col>
-            </ion-row>
-            <br/>
+          <ion-row style="border-bottom: solid 1px;border-color: #2355EF;">
+            <ion-col>
+              <ion-icon name="mail-outline"  style="font-size: 20px;"></ion-icon>
+  
+            </ion-col>
+            <ion-col>
+              <p style="font-size: 20px;padding: 0px;margin: 0px;font-weight: bold;">
+                 <!--La fecha de solicud se envió {{alqui.fecha.toMillis() | date:'dd/MM/yyyy'}}-->
+                 Donación
+              </p>
+                
+            </ion-col>
+            <ion-col style="text-align: center;">
+              <ion-button  button button [routerLink]="['/detallenotidonar', noti.id]" color="primary" style="height: 24px;width: 60%;">Ver</ion-button>
+            </ion-col>
+          </ion-row>
+          <div *ngFor="let tienda of tiendas;let indice=index" >
             
-            <ion-button  button [routerLink]="['/detallenotidonar', noti.id]"  expand="full" color="primary" style="width: 100px;height: 40px;">Ver</ion-button>
-          </ion-card-content>
+            <ion-row *ngIf="tienda.id==noti.idtienda">
+              <ion-col >
+                <p style="font-size: 12px;">
+                  <b>Tienda:</b> {{tienda.nombre}}
+                  <br/>
+                  <b>Fecha:</b> {{noti.fecha.toMillis() | date:'dd/MM/yyyy'}}
+                  <br/>
+                  <b>Solicitud:</b> Donación
+                  <br/>
+                </p>
+                
+              
+              </ion-col>
+       
+            </ion-row>
+          </div>
         </ion-card>
       </div>
-     
-  
+      
     </div>
+
+
+
   </ion-list>
 </ion-content>

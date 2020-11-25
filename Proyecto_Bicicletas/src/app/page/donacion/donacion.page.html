@@ -9,45 +9,49 @@
 
 <ion-content>
   <ion-list *ngIf="vacio==false; else elseBlock">
+    <h2 style="text-align: center;font-weight: bold;">Revisa tus donaciones</h2>
+    <p style="text-align: left;padding-left: 10px;"><ion-icon name="flag-outline" style="color:green;font-size: 20px;"></ion-icon> Donaciones aprobados</p> 
+    <p style="text-align: left;padding-left: 10px"><ion-icon name="flag-outline" style="color:red;font-size: 20px;"></ion-icon> Donaciones rechazados o anulados</p> 
 
     <div *ngFor="let donacion of donaciones;let indice=index">
       <ion-card *ngIf="donacion.iddonante==id">
-        <ion-card-header>
-          <ion-card-subtitle><p class="subtitulo">Fecha de solicitud:{{donacion.fechadonacion.toMillis() | date:'dd/MM/yyyy'}}</p></ion-card-subtitle>
-
-        </ion-card-header>
-      
-        <ion-card-content>
-          <ion-row *ngFor="let tienda of tiendas;let indice=index" >
-            <ion-col *ngIf="tienda.id==donacion.idtienda">
-              <p class="subtitulo">Tienda:</p>
+        <ion-row style="border-bottom: solid 1px;border-color: #2355EF;">
+          <ion-col>
+            <ion-icon name="flag-outline" style="color:green;font-size: 20px;" *ngIf="donacion.aprobacion==true"></ion-icon>
+            <ion-icon name="flag-outline" style="color:red;font-size: 20px;" *ngIf="donacion.aprobacion==false"></ion-icon>
+          </ion-col>
+          <ion-col>
+            <p style="font-size: 20px;padding: 0px;margin: 0px;font-weight: bold;">
+               <!--La fecha de solicud se envió {{alqui.fecha.toMillis() | date:'dd/MM/yyyy'}}-->
+               Donación
+            </p>
+              
+          </ion-col>
+          <ion-col style="text-align: center;">
+            <ion-button  button [routerLink]="['/donar', donacion.id]" color="primary" style="height: 24px;width: 60%;">Ver</ion-button>
+          </ion-col>
+        </ion-row>
+        <div *ngFor="let tienda of tiendas;let indice=index">
+          
+          <ion-row *ngIf="tienda.id==donacion.idtienda">
+            <ion-col >
+              <p style="font-size: 12px;">
+                <b>Tienda:</b> {{tienda.nombre}}
+                <br/>
+                <b>Fecha solicitud:</b> {{donacion.fechasolicitud.toMillis() | date:'dd/MM/yyyy'}}
+                <br/>
+                <b>Fecha donación:</b> {{donacion.fechadonacion.toMillis() | date:'dd/MM/yyyy'}}
+                <br/>
+              </p>
+              
+            
             </ion-col>
-            <ion-col *ngIf="tienda.id==donacion.idtienda">
-              <p>{{tienda.nombre}}</p>
-            </ion-col>
+     
           </ion-row>
-          <ion-row>
-            <ion-col>
-              <p class="subtitulo">Estado de la Bicicleta:</p>
-            </ion-col>
-            <ion-col>
-              <p>{{donacion.estado}}</p>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <p class="subtitulo">Descripción Bicicleta:</p>
-            </ion-col>
-            <ion-col>
-              <p>{{donacion.descripcion}}</p>
-            </ion-col>
-          </ion-row>
-          <br/>
-          <ion-button  button [routerLink]="['/donar', donacion.id]" slot="end" color="primary" style="width: 100px;height: 40px;">Ver</ion-button>
-        </ion-card-content>
+        </div>
       </ion-card>
-  
     </div>
+
   </ion-list>
   <ng-template #elseBlock>
     <ion-list><p class="centrarmensaje">No existen donaciones.</p></ion-list>
