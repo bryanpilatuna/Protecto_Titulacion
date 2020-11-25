@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { AuthService } from '../../services/auth.service';
 import * as firebase from 'firebase';
 import { NotificacionesTienda}from '../../model/notificaciones.interface';
@@ -27,6 +28,7 @@ export class HeaderTiendaComponent implements OnInit {
 
     }
   constructor(private router: Router,
+    public navCtrl: NavController,
     private Servicio:AuthService,
     private notificacionesService:NotificacionesService) { 
     var user = firebase.auth().currentUser.uid;
@@ -71,6 +73,9 @@ export class HeaderTiendaComponent implements OnInit {
 
   redinotifi(){
     this.router.navigate(['/notificaciones-tienda']);
+    this.noti='No';
+      
+  
 
   }
   salir(){
