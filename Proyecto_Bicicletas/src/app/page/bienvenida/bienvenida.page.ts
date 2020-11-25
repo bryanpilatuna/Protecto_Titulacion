@@ -21,7 +21,7 @@ export class BienvenidaPage implements OnInit {
       titulo: 'Encuentra las tiendas a través <br>del mapa en tiempo real'
     }
   ];
-  constructor(private storage: Storage,private router: Router,) { 
+  constructor(private storage: Storage,private router: Router) { 
     this.loadDate();
     //this.ganttEach();
   }

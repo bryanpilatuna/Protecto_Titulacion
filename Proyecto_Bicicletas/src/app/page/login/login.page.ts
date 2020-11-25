@@ -33,12 +33,23 @@ export class LoginPage implements OnInit {
     private storage: Storage
     ) {
     this.crearvalidaciones();
+    this.loadDate();
   
 
    }
 
   ngOnInit() {
 
+  }
+
+  loadDate(){
+    this.storage.get('estado').then((val) => {
+      if(val=="Activo"){
+        this.router.navigate(['menu']);
+        
+      }
+    
+    });
   }
 
   //Mostrar mensaje de alerta
