@@ -12,6 +12,7 @@ import { DonacionService } from 'src/app/service/donacion.service';
 })
 export class NotificacionAlquilerPage implements OnInit {
   notificaciones: Notificaciones[];
+  notificaciones2: Notificaciones[];
   id: any;
   tiendas:  datosTiendas[];
   constructor(
@@ -25,6 +26,7 @@ export class NotificacionAlquilerPage implements OnInit {
       this.notificaciones = notificaciones;
       
       })
+
 
       this.Servicio.getTiendas().subscribe((tiendas) =>{
         
