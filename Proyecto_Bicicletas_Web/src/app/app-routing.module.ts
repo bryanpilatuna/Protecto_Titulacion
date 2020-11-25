@@ -64,7 +64,7 @@ const routes: Routes = [
     loadChildren: () => import('./page/perfil-administrador/perfil-administrador.module').then( m => m.PerfilAdministradorPageModule)
   },
   {
-    path: 'editar-tienda/:id',
+    path: 'editar-tienda',
     loadChildren: () => import('./page/editar-tienda/editar-tienda.module').then( m => m.EditarTiendaPageModule)
   },
   {
@@ -175,6 +175,49 @@ const routes: Routes = [
     path: 'detallenotificacion/:id',
     loadChildren: () => import('./page/detallenotificacion/detallenotificacion.module').then( m => m.DetallenotificacionPageModule)
   },
+  {
+    path: 'misbicis-poraprobar',
+    loadChildren: () => import('./page/misbicis-poraprobar/misbicis-poraprobar.module').then( m => m.MisbicisPoraprobarPageModule)
+  },
+  {
+    path: 'bicis-disponibles',
+    loadChildren: () => import('./page/bicis-disponibles/bicis-disponibles.module').then( m => m.BicisDisponiblesPageModule)
+  },
+  {
+    path: 'bicis-nodisponibles',
+    loadChildren: () => import('./page/bicis-nodisponibles/bicis-nodisponibles.module').then( m => m.BicisNodisponiblesPageModule)
+  },
+  {
+    path: 'bicis-mantenimiento',
+    loadChildren: () => import('./page/bicis-mantenimiento/bicis-mantenimiento.module').then( m => m.BicisMantenimientoPageModule)
+  },
+  {
+    path: 'donaciones-aprobar',
+    loadChildren: () => import('./page/donaciones-aprobar/donaciones-aprobar.module').then( m => m.DonacionesAprobarPageModule)
+  },
+  {
+    path: 'donaciones-aprobadas',
+    loadChildren: () => import('./page/donaciones-aprobadas/donaciones-aprobadas.module').then( m => m.DonacionesAprobadasPageModule)
+  },
+  {
+    path: 'donaciones-rechazadas',
+    loadChildren: () => import('./page/donaciones-rechazadas/donaciones-rechazadas.module').then( m => m.DonacionesRechazadasPageModule)
+  },
+  {
+    path: 'alquiler-aprobar',
+    loadChildren: () => import('./page/alquiler-aprobar/alquiler-aprobar.module').then( m => m.AlquilerAprobarPageModule)
+  },
+  {
+    path: 'alquiler-aprobadas',
+    loadChildren: () => import('./page/alquiler-aprobadas/alquiler-aprobadas.module').then( m => m.AlquilerAprobadasPageModule)
+  },
+  {
+    path: 'alquiler-rechazadas',
+    loadChildren: () => import('./page/alquiler-rechazadas/alquiler-rechazadas.module').then( m => m.AlquilerRechazadasPageModule)
+  },
+
+
+ 
 
 
 

@@ -1,0 +1,67 @@
+
+<ion-content>
+  <div *ngFor="let donacion of donaciones" >
+    <div *ngIf="donacion.aprobacion==false && donacion.anular==false">
+    <div *ngFor="let usuario of usuarios">
+      <div *ngIf="donacion.iddonante==usuario.uid">
+     <table class="table ">
+        
+   
+
+          <thead>
+            <tr>
+              <th scope="col">Nombre Donante</th>
+              <th scope="col">Apellido Donante</th>
+              <th scope="col">Fecha Donación</th>
+              <th scope="col">Descripción Bici</th>
+              <th scope="col">Modo Entrega</th>
+              <th scope="col">Aprobar</th>
+              <th scope="col">Motivo Rechazo</th>
+              <th scope="col">Rechazar</th>
+            </tr>
+          </thead>
+          <tbody>
+          <tr>
+         <td> {{usuario.nombres}}</td>
+         <td> {{usuario.apellidos}}</td>
+         <td>{{donacion.fechadonacion.toMillis() | date:'dd/MM/yyyy'}}</td>
+         <td>{{donacion.descripcion}}</td>
+         <td>{{donacion.modo}}</td>
+          <td><ion-button  *ngIf="notificacion.respuesta==''"  (click)="aprobar(donacion,donacion.id)" color="warning">
+            Aprobar
+          </ion-button></td>
+          <td><ion-input type="text" placeholder="Ingresa el motivo" [(ngModel)]="notificacion.respuesta" required></ion-input></td>
+          <td><ion-button  (click)="rechazar(donacion,donacion.id)" color="danger">
+            Rechazar
+          </ion-button></td>
+        
+        </tr>
+        </tbody>
+
+     
+
+
+    
+
+    </table>
+  </div>
+</div>
+</div>
+
+</div> 
+
+<div>
+  <div class="container">
+    <div class="row mb-3">
+      <div class="col-6 themed-grid-col">
+        <h5>___________</h5>
+        <h5>___________</h5>
+        <h5>___________</h5>
+        <h5>___________</h5>
+      </div>
+    </div>
+   </div>
+  
+<app-footer></app-footer>
+</div>
+</ion-content>

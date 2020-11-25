@@ -1,0 +1,52 @@
+
+
+<ion-content>
+  <div *ngFor="let donacion of donaciones" >
+    <div *ngIf="donacion.aprobacion==true">
+    <div *ngFor="let usuario of usuarios">
+      <div *ngIf="donacion.iddonante==usuario.uid">
+    <table class="table ">
+          <thead>
+            <tr>
+              <th scope="col">Nombre Donante</th>
+              <th scope="col">Apellido Donante</th>
+              <th scope="col">Numero Telefónico</th>
+              <th scope="col">Fecha Donacion</th>
+              <th scope="col">Descripcion Bici</th>
+              <th scope="col">Modo Entrega</th>
+             
+            </tr>
+          </thead>
+          <tbody>
+          <tr>
+         <td> {{usuario.nombres}}</td>
+         <td> {{usuario.apellidos}}</td>
+         <td> {{usuario.telefono}}</td>
+         <td>{{donacion.fechadonacion.toMillis() | date:'dd/MM/yyyy'}}</td>
+         <td>{{donacion.descripcion}}</td>
+         <td>{{donacion.modo}}</td>
+        </tr>
+        </tbody>
+    
+
+    </table>
+  </div>
+</div>
+</div>
+
+</div> 
+<div>
+  <div class="container">
+    <div class="row mb-3">
+      <div class="col-6 themed-grid-col">
+        <h5>___________</h5>
+        <h5>___________</h5>
+        <h5>___________</h5>
+        <h5>___________</h5>
+      </div>
+    </div>
+   </div>
+  
+<app-footer></app-footer>
+</div>
+</ion-content>

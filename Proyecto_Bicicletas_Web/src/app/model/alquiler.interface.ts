@@ -10,5 +10,6 @@ export interface datosAlquiler{
     anular:boolean;
     horaalquiler:string;
     horadevolucion:string;
+    respuesta:string;
     
 }

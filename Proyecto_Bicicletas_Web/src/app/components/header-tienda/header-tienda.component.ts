@@ -42,7 +42,7 @@ export class HeaderTiendaComponent implements OnInit {
       for(let i in this.notificaciones){
         if(this.notificaciones[i].visualizar=="No"){
           this.noti="Si";
-         console.log(this.notificaciones[i])
+        // console.log(this.notificaciones[i])
         }
       }
       
@@ -56,7 +56,7 @@ export class HeaderTiendaComponent implements OnInit {
   }
 
   rediperfil(){
-    this.router.navigate(['/editar-tienda',this.id]);
+    this.router.navigate(['/editar-tienda']);
   }
   redibicicletas(){
     this.router.navigate(['/mis-bicis']);

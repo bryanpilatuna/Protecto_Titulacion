@@ -3,149 +3,22 @@
 </ion-header>
 
 <ion-content>
+  <ion-tabs>
+    <ion-tab-bar slot="top">
+      <ion-tab-button tab="donaaprobar">
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+        <ion-label>Por Aprobar </ion-label>
+      </ion-tab-button>
 
-  <div class="container">
-    <h5 align="center">DONACIONES</h5> 
-    <ul class="nav nav-tabs">
-      <li class="active"><a data-toggle="tab" href="#Disponibles">POR APROBAR |</a></li>
-      <li><a data-toggle="tab" href="#Aprobadas">| APROBADAS |</a></li>
-      <li><a data-toggle="tab" href="#anuladas">| RECHAZADAS o ANULADAS</a></li>
-    </ul>
-    
-    <div class="tab-content">
-      <div id="Disponibles" class="tab-pane fade in active">
-        
-    <div class="table-responsive">
-      <table class="table ">
-        
-          <div *ngFor="let donacion of donaciones" >
-            <div *ngIf="donacion.aprobacion==false && donacion.anular==false">
-            <div *ngFor="let usuario of usuarios">
-              <div *ngIf="donacion.iddonante==usuario.uid">
+      <ion-tab-button tab="donaaprobadas">
+        <ion-icon name="checkmark-done-circle-outline"></ion-icon>
+        <ion-label>Aprobadas</ion-label>
+      </ion-tab-button>
 
-                <thead>
-                  <tr>
-                    <th scope="col">Nombre Donante</th>
-                    <th scope="col">Apellido Donante</th>
-                    <th scope="col">Fecha Donación</th>
-                    <th scope="col">Descripción Bici</th>
-                    <th scope="col">Modo Entrega</th>
-                    <th scope="col">Aprobar</th>
-                    <th scope="col">Motivo Rechazo</th>
-                    <th scope="col">Rechazar</th>
-                  </tr>
-                </thead>
-                <tbody>
-                <tr>
-               <td> {{usuario.nombres}}</td>
-               <td> {{usuario.apellidos}}</td>
-               <td>{{donacion.fechadonacion.toMillis() | date:'dd/MM/yyyy'}}</td>
-               <td>{{donacion.descripcion}}</td>
-               <td>{{donacion.modo}}</td>
-                <td><ion-button  (click)="aprobar(donacion,donacion.id)" color="warning">
-                  Aprobar
-                </ion-button></td>
-                <td><ion-input type="text" placeholder="Ingresa el motivo" [(ngModel)]="notificacion.respuesta" required></ion-input></td>
-                <td><ion-button  (click)="rechazar(donacion,donacion.id)" color="danger">
-                  Rechazar
-                </ion-button></td>
-              
-              </tr>
-              </tbody>
-
-           
-
-
-            </div>
-          </div>
-        </div>
-          
-      </div> 
-  
-          </table>
-        </div>
-      </div>
-
-      <div id="Aprobadas" class="tab-pane fade in active">
-        
-        <div class="table-responsive">
-          <table class="table ">
-            
-              <div *ngFor="let donacion of donaciones" >
-                <div *ngIf="donacion.aprobacion==true">
-                <div *ngFor="let usuario of usuarios">
-                  <div *ngIf="donacion.iddonante==usuario.uid">
-                    <thead>
-                      <tr>
-                        <th scope="col">Nombre Donante</th>
-                        <th scope="col">Apellido Donante</th>
-                        <th scope="col">Numero Telefónico</th>
-                        <th scope="col">Fecha Donacion</th>
-                        <th scope="col">Descripcion Bici</th>
-                        <th scope="col">Modo Entrega</th>
-                       
-                      </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                   <td> {{usuario.nombres}}</td>
-                   <td> {{usuario.apellidos}}</td>
-                   <td> {{usuario.telefono}}</td>
-                   <td>{{donacion.fechadonacion.toMillis() | date:'dd/MM/yyyy'}}</td>
-                   <td>{{donacion.descripcion}}</td>
-                   <td>{{donacion.modo}}</td>
-                  </tr>
-                  </tbody>
-                </div>
-              </div>
-            </div>
-              
-          </div> 
-      
-              </table>
-            </div>
-          </div>
-
-          <div id="anuladas" class="tab-pane fade in active">
-        
-            <div class="table-responsive">
-              <table class="table ">
-                
-                  <div *ngFor="let donacion of donaciones" >
-                    <div *ngIf="donacion.anular==true">
-                    <div *ngFor="let usuario of usuarios">
-                      <div *ngIf="donacion.iddonante==usuario.uid">
-                        <thead>
-                          <tr>
-                            <th scope="col">Nombre Donante</th>
-                            <th scope="col">Apellido Donante</th>
-                            <th scope="col">Fecha Donacion</th>
-                            <th scope="col">Descripcion Bici</th>
-                            <th scope="col">Modo</th>
-                           
-                          </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                       <td> {{usuario.nombres}}</td>
-                       <td> {{usuario.apellidos}}</td>
-                       <td>{{donacion.fechadonacion.toMillis() | date:'dd/MM/yyyy'}}</td>
-                       <td>{{donacion.descripcion}}</td>
-                       <td>{{donacion.modo}}</td>
-                      </tr>
-                      </tbody>
-                        
-                    </div>
-                  </div>
-                </div>
-                  
-              </div> 
-          
-                  </table>
-                </div>
-              </div>
-    
-    </div>
-  </div>
-  <app-footer></app-footer>
+      <ion-tab-button tab="donarechazadas">
+        <ion-icon name="close-circle-outline"></ion-icon>
+        <ion-label>Rechazadas</ion-label>
+      </ion-tab-button>  
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-content>

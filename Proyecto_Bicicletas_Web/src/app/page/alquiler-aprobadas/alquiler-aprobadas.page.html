@@ -1,0 +1,54 @@
+
+<ion-content>
+  <div *ngFor="let alquiler of alquileres" >
+    <div *ngIf="alquiler.aprobacion==true">
+    <div *ngFor="let usuario of usuarios">
+      <div *ngIf="alquiler.idusuario==usuario.uid">
+  <table class="table ">
+            
+    
+          <thead>
+            <tr>
+              <th scope="col">Nombre Solicitante</th>
+              <th scope="col">Apellido Solicitante</th>
+              <th scope="col">Fecha Alquiler</th>
+              <th scope="col">Hora Alquiler</th>
+              <th scope="col">Fecha Devolución</th>
+              <th scope="col">Hora Devolución</th>
+             
+             
+            </tr>
+          </thead>
+          <tbody>
+          <tr>
+         <td> {{usuario.nombres}}</td>
+         <td> {{usuario.apellidos}}</td>
+         <td>{{alquiler.fechaalquiler.toMillis() | date:'dd/MM/yyyy'}}</td>
+          <td>{{alquiler.horaalquiler}}</td>
+          <td>{{alquiler.fechadevolucion.toMillis() | date:'dd/MM/yyyy'}}</td>
+          <td>{{alquiler.horadevolucion}}</td>
+        </tr>
+        </tbody>
+    
+
+    </table>
+  </div>
+</div>
+</div>
+
+</div> 
+<div>
+  <div class="container">
+    <div class="row mb-3">
+      <div class="col-6 themed-grid-col">
+        <h5>___________</h5>
+        <h5>___________</h5>
+        <h5>___________</h5>
+        <h5>___________</h5>
+      </div>
+    </div>
+   </div>
+  
+<app-footer></app-footer>
+</div>
+</ion-content>
