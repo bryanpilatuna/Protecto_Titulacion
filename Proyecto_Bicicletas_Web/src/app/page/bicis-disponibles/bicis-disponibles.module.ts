@@ -8,7 +8,6 @@ import { BicisDisponiblesPageRoutingModule } from './bicis-disponibles-routing.m
 
 import { BicisDisponiblesPage } from './bicis-disponibles.page';
 import { ComponentsModule } from '../../components/components.module';
-import {AppMaterialModule}from '../../app-material.module';
 
 @NgModule({
   imports: [
@@ -17,7 +16,6 @@ import {AppMaterialModule}from '../../app-material.module';
     IonicModule,
     BicisDisponiblesPageRoutingModule,
     ComponentsModule,
-    AppMaterialModule
   ],
   
   declarations: [BicisDisponiblesPage]

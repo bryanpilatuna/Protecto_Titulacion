@@ -22,8 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,ComponentsModule,AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule,AngularFireStorageModule, BrowserAnimationsModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, BrowserAnimationsModule,ComponentsModule,AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,AngularFireStorageModule],
   providers: [
     StatusBar,
     SplashScreen,
