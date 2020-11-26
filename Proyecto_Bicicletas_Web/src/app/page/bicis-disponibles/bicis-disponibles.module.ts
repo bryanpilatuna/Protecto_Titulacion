@@ -8,6 +8,7 @@ import { BicisDisponiblesPageRoutingModule } from './bicis-disponibles-routing.m
 
 import { BicisDisponiblesPage } from './bicis-disponibles.page';
 import { ComponentsModule } from '../../components/components.module';
+import {AppMaterialModule}from '../../app-material.module';
 
 @NgModule({
   imports: [
@@ -15,8 +16,10 @@ import { ComponentsModule } from '../../components/components.module';
     FormsModule,
     IonicModule,
     BicisDisponiblesPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    AppMaterialModule
   ],
+  
   declarations: [BicisDisponiblesPage]
 })
 export class BicisDisponiblesPageModule {}
