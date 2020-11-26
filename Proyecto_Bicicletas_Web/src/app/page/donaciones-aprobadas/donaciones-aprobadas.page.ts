@@ -61,7 +61,7 @@ export class DonacionesAprobadasPage implements OnInit {
   ngOnInit() {
     //this.tiendaid=this.route.snapshot.params['id'];
   this.donacionesservice.getDonacionTienda(this.tiendaid).subscribe((donaciones) =>{
-    this.donaciones = donaciones;  
+    this.donaciones = donaciones.filter(donaciones=>donaciones.aprobacion==true);  
    
     })
   }

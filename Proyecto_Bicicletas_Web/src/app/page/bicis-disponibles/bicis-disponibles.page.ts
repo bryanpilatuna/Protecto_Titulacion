@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { Router } from '@angular/router';
 import {BicicletasService}from '../../services/bicicletas.service';
@@ -34,10 +34,12 @@ export class BicisDisponiblesPage implements OnInit {
       this.tiendaid = user;
       
      }
+
   ngOnInit() {
-    
     this.bicicletasService.getBicicletas(this.tiendaid).subscribe((bicicletas) =>{
-      this.bicicletas = bicicletas;  
+
+      this.bicicletas = bicicletas.filter(bicicletas=>bicicletas.disponible=='Si'); 
+      console.log('bicicletasd disponibles', this.bicicletas);
     })
 
   }
@@ -69,7 +71,7 @@ export class BicisDisponiblesPage implements OnInit {
     this.router.navigate(['/editar-bici',id]);
 
   }
- 
+
 
   
 

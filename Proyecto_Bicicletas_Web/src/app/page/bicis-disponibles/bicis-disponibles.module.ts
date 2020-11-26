@@ -15,8 +15,9 @@ import { ComponentsModule } from '../../components/components.module';
     FormsModule,
     IonicModule,
     BicisDisponiblesPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
   ],
+  
   declarations: [BicisDisponiblesPage]
 })
 export class BicisDisponiblesPageModule {}

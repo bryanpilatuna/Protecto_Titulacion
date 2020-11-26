@@ -16,11 +16,13 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,ComponentsModule,AngularFireModule.initializeApp(environment.firebaseConfig),
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, BrowserAnimationsModule,ComponentsModule,AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,AngularFireStorageModule],
   providers: [
     StatusBar,
