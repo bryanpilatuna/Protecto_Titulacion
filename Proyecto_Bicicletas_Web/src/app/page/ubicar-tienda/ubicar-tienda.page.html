@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button routerLink="/menu"></ion-back-button>
+      <ion-back-button routerLink="/menu-cliente"></ion-back-button>
     </ion-buttons>
     <ion-title>Tiendas</ion-title>
     <ion-buttons slot="end" style="padding: 10px;" [routerLink]="['/notificacion']">
@@ -15,6 +15,6 @@
     <ion-button expand="full" (click)="alquilarbici()" [disabled]=desabilitarboton>Alquilar Bici</ion-button>
     <ion-button expand="full" (click)="donabici()" [disabled]=desabilitarboton>Donar Bici</ion-button>
   </div>
-
+  <app-footer></app-footer>
 
  </ion-content>

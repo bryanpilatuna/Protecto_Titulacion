@@ -7,13 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { DonacionPageRoutingModule } from './donacion-routing.module';
 
 import { DonacionPage } from './donacion.page';
-
+import { ComponentsModule } from '../../componentes/components.module';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DonacionPageRoutingModule
+    DonacionPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [DonacionPage]
 })

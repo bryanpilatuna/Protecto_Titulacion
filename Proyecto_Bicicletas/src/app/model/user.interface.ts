@@ -2,8 +2,7 @@ export interface User {
   uid: string;
   email: string;
   displayName: string;
-  emailVerified: boolean;
-  
+  emailVerified: boolean;  
 }
 
 export interface DatosUsuario {
@@ -16,5 +15,3 @@ export interface DatosUsuario {
   estado:string;
   foto:string;
 }
-
-

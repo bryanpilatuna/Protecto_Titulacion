@@ -1,12 +1,3 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button routerLink="/menu"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Donaciones</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
   <ion-list *ngIf="vacio==false; else elseBlock">
 
@@ -52,6 +43,7 @@
   <ng-template #elseBlock>
     <ion-list><p class="centrarmensaje">No existen donaciones.</p></ion-list>
   </ng-template>
+  <app-footer></app-footer>
 
 </ion-content>
 

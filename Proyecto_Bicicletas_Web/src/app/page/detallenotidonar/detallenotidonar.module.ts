@@ -7,13 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { DetallenotidonarPageRoutingModule } from './detallenotidonar-routing.module';
 
 import { DetallenotidonarPage } from './detallenotidonar.page';
-
+import { ComponentsModule } from '../../componentes/components.module';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DetallenotidonarPageRoutingModule
+    DetallenotidonarPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [DetallenotidonarPage]
 })

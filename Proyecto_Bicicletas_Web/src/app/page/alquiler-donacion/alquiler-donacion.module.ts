@@ -7,13 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { AlquilerDonacionPageRoutingModule } from './alquiler-donacion-routing.module';
 
 import { AlquilerDonacionPage } from './alquiler-donacion.page';
-
+import { ComponentsModule } from '../../componentes/components.module';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AlquilerDonacionPageRoutingModule
+    AlquilerDonacionPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [AlquilerDonacionPage]
 })

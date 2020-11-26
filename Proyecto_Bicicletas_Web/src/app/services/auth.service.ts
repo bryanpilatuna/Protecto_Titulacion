@@ -266,7 +266,7 @@ export class AuthService {
   async logout(): Promise<void> {
     try {
       await this.afAuth.signOut().then(() => {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/iniciar-sesion']);
       })
     } catch (error) {
       console.log('Error->', error);
