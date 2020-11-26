@@ -28,10 +28,10 @@
  
     </ul>
     <form class="form-inline my-2 my-lg-0" >
-      <ion-buttons  style="padding: 10px;" (click)="notifi()" >
+      <a style="padding: 10px;" (click)="notifi()" >
         <img *ngIf="noti=='No'" src="../../../assets/notificaciones/noti.png" button style="height: 30px;">
         <img *ngIf="noti=='Si'" src="../../../assets/notificaciones/notiactiva.png" button style="height: 30px;">
-      </ion-buttons>
+      </a>
       
       <a class="btn btn-outline-success my-2 my-sm-0" style="color: #3A6073;background-color: #fff;
       border: 1px solid #3A6073;" (click)="salir()">Cerrar Sesión</a>

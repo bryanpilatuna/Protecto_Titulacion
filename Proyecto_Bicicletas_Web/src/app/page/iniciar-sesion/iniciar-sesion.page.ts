@@ -182,7 +182,7 @@ export class IniciarSesionPage implements OnInit {
           console.log(usuario);
           if (usuario) {
             
-            this.router.navigate(['menu-cliente']);
+            this.router.navigate(['profile']);
           }else{
             this.mensaje="El usuario no es de tipo usuario.";
             this.mensajeerror();
