@@ -11,6 +11,7 @@ import * as firebase from 'firebase';
   styleUrls: ['./bicis-disponibles.page.scss'],
 })
 export class BicisDisponiblesPage implements OnInit {
+  
   id=null;
   tiendaid=null;
   Si='Si';
@@ -32,18 +33,17 @@ export class BicisDisponiblesPage implements OnInit {
 
       var user = firebase.auth().currentUser.uid;
       this.tiendaid = user;
-      
      }
 
   ngOnInit() {
     this.bicicletasService.getBicicletas(this.tiendaid).subscribe((bicicletas) =>{
-
       this.bicicletas = bicicletas.filter(bicicletas=>bicicletas.disponible=='Si'); 
-      console.log('bicicletasd disponibles', this.bicicletas);
     })
 
   }
   
+
+
   cambiarestado(bici:datosBici,id:string){
     if(bici.disponible=='Si'){
      bici.disponible='No';
@@ -64,8 +64,6 @@ export class BicisDisponiblesPage implements OnInit {
      });
  
     }   
-     
- 
    }
    editarbici(id:string){
     this.router.navigate(['/editar-bici',id]);

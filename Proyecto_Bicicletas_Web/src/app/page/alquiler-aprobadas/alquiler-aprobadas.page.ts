@@ -59,9 +59,9 @@ export class AlquilerAprobadasPage implements OnInit {
      }
 
   ngOnInit() {
+    
     this.alquilerservice.getalquileresTienda(this.tiendaid).subscribe((alquileres) =>{
-      this.alquileres = alquileres;  
-     
+      this.alquileres = alquileres.filter(alquileres=>alquileres.aprobacion==true); 
       })
     
   }
