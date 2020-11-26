@@ -77,7 +77,6 @@ export class EditarTiendaPage implements OnInit {
   }
 
   async loadmap(){
-  console.log('Entro mapa');
     const myLatLng= {lat: -0.225219, lng: -78.5248};
     const mapEle: HTMLElement = document.getElementById('map');
     
