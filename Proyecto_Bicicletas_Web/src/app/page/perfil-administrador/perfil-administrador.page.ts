@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from '../../services/auth.service';
+
 @Component({
   selector: 'app-perfil-administrador',
   templateUrl: './perfil-administrador.page.html',

@@ -11,6 +11,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { ModalAlquilerPage } from 'src/app/modal/modal-alquiler/modal-alquiler.page';
 import { NotificacionesTienda } from '../../modelm/notificaciones.interface';
 import { NotificaciontiendaService} from '../../service/notificaciontienda.service';
+import * as firebase from 'firebase';
 @Component({
   selector: 'app-formulario-alquiler',
   templateUrl: './formulario-alquiler.page.html',
@@ -57,6 +58,9 @@ export class FormularioAlquilerPage implements OnInit {
   constructor(private route: ActivatedRoute, private nav: NavController, private UsuarioService: UsuarioService,public Service:NotificaciontiendaService,
     private alquilerService: AlquilerService, private loadingController: LoadingController,public modalController: ModalController,public formBuilder: FormBuilder) { 
       //this.disableSelector = false;
+      var user = firebase.auth().currentUser.uid;
+      this.usuarioid = user;
+      console.log(this.usuarioid);
       this.desabilitarboton = true;
       this.crearvalidaciones();
     
@@ -68,7 +72,6 @@ export class FormularioAlquilerPage implements OnInit {
       this.idtienda=data;
     });
     
-    this.usuarioid=this.route.snapshot.params['id'];
     if (this.usuarioid){
       this.loadTodo();
     }

@@ -7,6 +7,7 @@ import { NavController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
+import * as firebase from 'firebase';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
@@ -39,11 +40,12 @@ export class ProfilePage implements OnInit {
     private alertCtrl: AlertController,
     ) 
   { 
+    var user = firebase.auth().currentUser.uid;
+    this.usuarioId = user;
     this.crearvalidaciones();
   }
 
   ngOnInit() {
-    this.usuarioId = this.route.snapshot.params['id'];
 
     if (this.usuarioId){
       this.cargarUsuario();

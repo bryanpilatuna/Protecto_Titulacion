@@ -13,21 +13,26 @@
         <a class="btn nav-link" (click)="rediperfil()">Perfil</a>
       </li>
       <li class="nav-item" id="tab-tienda">
-        <a class="btn nav-link" (click)="reditienda()">Alquiler</a>
+        <a class="btn nav-link" (click)="alquiler()">Alquiler</a>
       </li>
       <li class="nav-item" id="tab-clientes">
-        <a class="btn nav-link" (click)="rediusuario()" >Donación</a>
+        <a class="btn nav-link" (click)="donacion()" >Donación</a>
       </li>
       <li class="nav-item" id="tab-clientes">
-        <a class="btn nav-link" (click)="rediusuario()" >Tiendas</a>
+        <a class="btn nav-link" (click)="mensajeconfirmacion()" >Tiendas</a>
       </li>
       <li class="nav-item" id="tab-clientes">
-        <a class="btn nav-link" (click)="rediusuario()" >Mis actividades</a>
+        <a class="btn nav-link" (click)="acvididades()" >Mis actividades</a>
       </li>
  
  
     </ul>
     <form class="form-inline my-2 my-lg-0" >
+      <ion-buttons  style="padding: 10px;" (click)="notifi()" >
+        <img *ngIf="noti=='No'" src="../../../assets/notificaciones/noti.png" button style="height: 30px;">
+        <img *ngIf="noti=='Si'" src="../../../assets/notificaciones/notiactiva.png" button style="height: 30px;">
+      </ion-buttons>
+      
       <a class="btn btn-outline-success my-2 my-sm-0" style="color: #3A6073;background-color: #fff;
       border: 1px solid #3A6073;" (click)="salir()">Cerrar Sesión</a>
     </form>

@@ -4,6 +4,7 @@ import { datosUbicacion } from '../../modelm/ubicacion.interface';
 import {UbicacionService} from '../../service/ubicacion.service';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import {NavController,LoadingController} from '@ionic/angular';
+import * as firebase from 'firebase';
 declare var google;
 @Component({
   selector: 'app-ubicar-tienda',

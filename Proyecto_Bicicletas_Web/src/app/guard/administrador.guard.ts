@@ -3,11 +3,10 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Rout
 import { Observable } from 'rxjs';
 import { AuthService } from '../service/auth.service';
 import { take, map } from 'rxjs/operators';
-
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class AdministradorGuard implements CanActivate {
   constructor(private authSvc: AuthService, private router: Router) {}
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -15,12 +14,11 @@ export class AuthGuard implements CanActivate {
       return this.authSvc.user$.pipe(
         take(1),
         map((user) => {
-
           console.log(user);
           if (user) {
             return true;
           } else {
-            this.router.navigate(['/login']);
+            this.router.navigate(['/iniciar-sesion']);
             return false;
           }
         })
