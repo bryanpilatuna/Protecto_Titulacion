@@ -76,7 +76,8 @@ const routes: Routes = [
   },
   {
     path: 'menu-tienda',
-    loadChildren: () => import('./page/menu-tienda/menu-tienda.module').then( m => m.MenuTiendaPageModule)
+    loadChildren: () => import('./page/menu-tienda/menu-tienda.module').then( m => m.MenuTiendaPageModule),
+
   },
   {
     path: 'mapa',
