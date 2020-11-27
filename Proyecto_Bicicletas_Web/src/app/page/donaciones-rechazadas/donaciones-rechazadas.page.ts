@@ -17,6 +17,7 @@ export class DonacionesRechazadasPage implements OnInit {
   tiendaid=null;
   false=false;
   true=true;
+  pageActual: number= 1;
   donaciones:datosDonacion[];
   usuarios:DatosUsuario[];
   notificaciones:Notificaciones[];
@@ -61,7 +62,7 @@ export class DonacionesRechazadasPage implements OnInit {
   ngOnInit() {
     //this.tiendaid=this.route.snapshot.params['id'];
   this.donacionesservice.getDonacionTienda(this.tiendaid).subscribe((donaciones) =>{
-    this.donaciones = donaciones;  
+    this.donaciones = donaciones.filter(donaciones=>donaciones.anular==true);
    
     })
   }

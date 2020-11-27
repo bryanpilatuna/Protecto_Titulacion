@@ -8,6 +8,7 @@ import { AlquilerAprobadasPageRoutingModule } from './alquiler-aprobadas-routing
 
 import { AlquilerAprobadasPage } from './alquiler-aprobadas.page';
 import { ComponentsModule } from '../../components/components.module';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ComponentsModule } from '../../components/components.module';
     FormsModule,
     IonicModule,
     AlquilerAprobadasPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    NgxPaginationModule
   ],
   declarations: [AlquilerAprobadasPage]
 })

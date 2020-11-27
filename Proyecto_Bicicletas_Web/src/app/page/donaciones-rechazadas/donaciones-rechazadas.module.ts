@@ -8,6 +8,7 @@ import { DonacionesRechazadasPageRoutingModule } from './donaciones-rechazadas-r
 
 import { DonacionesRechazadasPage } from './donaciones-rechazadas.page';
 import { ComponentsModule } from '../../components/components.module';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ComponentsModule } from '../../components/components.module';
     FormsModule,
     IonicModule,
     DonacionesRechazadasPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    NgxPaginationModule
   ],
   declarations: [DonacionesRechazadasPage]
 })

@@ -8,6 +8,7 @@ import { BicisDisponiblesPageRoutingModule } from './bicis-disponibles-routing.m
 
 import { BicisDisponiblesPage } from './bicis-disponibles.page';
 import { ComponentsModule } from '../../components/components.module';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { ComponentsModule } from '../../components/components.module';
     IonicModule,
     BicisDisponiblesPageRoutingModule,
     ComponentsModule,
+    NgxPaginationModule
   ],
   
   declarations: [BicisDisponiblesPage]

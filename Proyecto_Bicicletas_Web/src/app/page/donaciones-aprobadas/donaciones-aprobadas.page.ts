@@ -17,6 +17,7 @@ export class DonacionesAprobadasPage implements OnInit {
   tiendaid=null;
   false=false;
   true=true;
+  pageActual: number= 1;
   donaciones:datosDonacion[];
   usuarios:DatosUsuario[];
   notificaciones:Notificaciones[];

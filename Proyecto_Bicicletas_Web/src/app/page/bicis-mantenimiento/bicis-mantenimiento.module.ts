@@ -8,6 +8,7 @@ import { BicisMantenimientoPageRoutingModule } from './bicis-mantenimiento-routi
 
 import { BicisMantenimientoPage } from './bicis-mantenimiento.page';
 import { ComponentsModule } from '../../components/components.module';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ComponentsModule } from '../../components/components.module';
     FormsModule,
     IonicModule,
     BicisMantenimientoPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    NgxPaginationModule
   ],
   declarations: [BicisMantenimientoPage]
 })

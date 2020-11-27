@@ -11,8 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let bicis of bicicletas" >
-        <ng-container *ngIf="bicis.disponible==No">
+      <tr *ngFor="let bicis of bicicletas | paginate: { itemsPerPage: 5, currentPage: pageActual }" >
         <td>{{bicis.nombre}}</td>
         <td><img [src]="bicis.imagen" style="height:100px;display:block;margin:auto"/></td>
         <td>{{bicis.disponible}}</td>
@@ -24,11 +23,11 @@
           <ion-icon slot="start" name="locate"></ion-icon>
           Cambiar Estado
         </ion-button></td>
-      </ng-container>  
       </tr> 
 
         </tbody>
       </table>
+      <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
       <div>
         <div class="container">
           <div class="row mb-3">

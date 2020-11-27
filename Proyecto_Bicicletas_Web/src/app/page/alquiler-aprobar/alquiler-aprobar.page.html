@@ -1,10 +1,6 @@
 
 <ion-content>
-  <div *ngFor="let alquiler of alquileres" >
-    <div *ngIf="alquiler.aprobacion==false && alquiler.anular==false">
-    <div *ngFor="let usuario of usuarios">
-      <div *ngIf="alquiler.idusuario==usuario.uid">
-  <table class="table ">
+  <table class="table " *ngFor="let alquiler of alquileres | paginate: { itemsPerPage: 5, currentPage: pageActual }">
           <thead>
             <tr>
               <th scope="col">Nombre Solicitante</th>
@@ -18,8 +14,8 @@
               <th scope="col">Rechazar</th>
             </tr>
           </thead>
-          <tbody>
-          <tr>
+          <tbody *ngFor="let usuario of usuarios">
+          <tr *ngIf="alquiler.idusuario==usuario.uid">
          <td> {{usuario.nombres}}</td>
          <td> {{usuario.apellidos}}</td>
          <td>{{alquiler.fechaalquiler.toMillis() | date:'dd/MM/yyyy'}}</td>
@@ -36,13 +32,9 @@
           </ion-button></td>
         </tr>
         </tbody>
-   
     </table>
-  </div>
-</div>
-</div>
-
-</div> 
+    <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
+ 
 <div>
   <div class="container">
     <div class="row mb-3">

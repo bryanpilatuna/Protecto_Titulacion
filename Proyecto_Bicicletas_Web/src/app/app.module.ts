@@ -17,12 +17,13 @@ import { environment } from 'src/environments/environment';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), BrowserAnimationsModule,AppRoutingModule,ComponentsModule,AngularFireModule.initializeApp(environment.firebaseConfig),
+  imports: [BrowserModule, IonicModule.forRoot(), NgxPaginationModule, BrowserAnimationsModule,AppRoutingModule,ComponentsModule,AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,AngularFireStorageModule],
   providers: [
     StatusBar,

@@ -17,7 +17,7 @@ export class AlquilerAprobadasPage implements OnInit {
   alquileres:datosAlquiler[];
   usuarios:DatosUsuario[];
   fechaactual: Date = new Date();
-
+  pageActual: number= 1;
   notificacion:Notificaciones={
     respuesta:'',
     visualizar:'',
