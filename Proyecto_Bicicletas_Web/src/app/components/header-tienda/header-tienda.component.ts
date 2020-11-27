@@ -64,11 +64,11 @@ export class HeaderTiendaComponent implements OnInit {
     this.router.navigate(['/mis-bicis']);
   }
   redidonaciones(){
-    this.router.navigate(['/tienda-donacion',this.id]);
+    this.router.navigate(['/tienda-donacion']);
     this.noti='No';
   }
   redialquileres(){
-    this.router.navigate(['/tienda-alquiler',this.id]);
+    this.router.navigate(['/tienda-alquiler']);
     this.noti='No';
   }
 

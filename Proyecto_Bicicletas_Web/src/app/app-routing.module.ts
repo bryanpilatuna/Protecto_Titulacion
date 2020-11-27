@@ -117,11 +117,11 @@ const routes: Routes = [
     loadChildren: () => import('./page/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
   },
   {
-    path: 'tienda-donacion/:id',
+    path: 'tienda-donacion',
     loadChildren: () => import('./page/tienda-donacion/tienda-donacion.module').then( m => m.TiendaDonacionPageModule)
   },
   {
-    path: 'tienda-alquiler/:id',
+    path: 'tienda-alquiler',
     loadChildren: () => import('./page/tienda-alquiler/tienda-alquiler.module').then( m => m.TiendaAlquilerPageModule)
   },
   {
