@@ -36,11 +36,9 @@ export class BicisNodisponiblesPage implements OnInit {
      }
 
   ngOnInit() {
-    
     this.bicicletasService.getBicicletas(this.tiendaid).subscribe((bicicletas) =>{
       this.bicicletas = bicicletas.filter(bicicletas=>bicicletas.disponible=='No');  
     })
-
   }
   
   cambiarestado(bici:datosBici,id:string){
