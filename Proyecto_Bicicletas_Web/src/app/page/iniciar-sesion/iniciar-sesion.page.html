@@ -1,96 +1,98 @@
-<app-header></app-header>
 <ion-content padding>
+  <div class="modal-dialog text-center">
+    <div class="col-sm-8 main-section">
+      <div class="modal-content">
+        <div class="col-12 user-img">
+          <img src="../../../assets/inicio/person.png">
+        </div>
+        <div class="col-12 user-name">
+          <h1 style="padding: 0px;margin:0px"><b>Login</b></h1>
+        </div>
+        <div class="col-12 form-input">
+          <form [formGroup]="formGroup" (ngSubmit)="onLogin(email, password)" id="login-form" class="form">
+            <div class="form-group">
+              <label position="stacked"><strong>Tipo</strong></label>
+              <select [(ngModel)]="tipo" formControlName="tipoControl" class="form-control">
+                <option value="administrador" selected>Administrador</option>
+                <option value="tienda">Tienda</option>
+                <option value="users">Cliente</option>
+              </select>
+            
+            </div>
+        
+            <div class="form-group">
+                <label position="stacked"><strong>Correo electrónico</strong></label>
+                <input type="email" class="form-control" placeholder="abc@gmail.com" formControlName="emailControl" #email>
+            </div>
   
-  <!--<div class="container">
-    <div class="row">
-      
-      <div class="mx-auto">
-        <form [formGroup]="formGroup" (ngSubmit)="onLogin(email, password)">
-          <div class="form-group">
-            <label position="stacked"><strong>Tipo</strong></label>
-            <select [(ngModel)]="tipo" formControlName="tipoControl" class="form-control">
-              <option value="administrador" selected>Administrador</option>
-              <option value="tienda">Tienda</option>
-              <option value="users">Cliente</option>
-            </select>
-          
-          </div>
-      
-          <div class="form-group">
-              <label position="stacked"><strong>Correo electrónico</strong></label>
-              <input type="email" class="form-control" placeholder="abc@gmail.com" formControlName="emailControl" #email>
-          </div>
-
-          <div class="validation-errors">
-              <p class="form-error"
-                *ngIf="formGroup.get('emailControl').hasError('required') && formGroup.get('emailControl').touched">
+            <div class="validation-errors">
+                <p class="form-error"
+                  *ngIf="formGroup.get('emailControl').hasError('required') && formGroup.get('emailControl').touched">
+                  *Requerido
+                </p>
+                <p class="form-error"
+                  *ngIf="formGroup.get('emailControl').hasError('email') && formGroup.get('emailControl').touched">
+                  *Ingrese un correo valido
+                </p>
+                <p class="form-error"
+                  *ngIf="formGroup.get('emailControl').hasError('minlength') && formGroup.get('emailControl').touched">
+                  *Mínimo 10 caracteres 
+                </p>
+                <p class="form-error"
+                  *ngIf="formGroup.get('emailControl').hasError('maxlength') && formGroup.get('emailControl').touched">
+                  *Máximo 40 caracteres  
+                </p>
+            </div>
+  
+            <div class="form-group">
+              <label position="stacked"><strong>Contraseña</strong></label>
+              <div class="row">
+                <div class="col-10">
+                  <ion-input formControlName="passwordControl" [type]="passwordTypeInput" #password 
+                  placeholder="***********" style="background:white;border: 1px solid #dad9d9;text-align: left;border-radius: 5px;"></ion-input>
+                </div>
+                <div class="col">
+                  <ion-input item-end type="button" class="btn_eye_icon" (click)="showPassword()">
+                    <ion-icon [name]="(passwordTypeInput === 'text')?'eye-off':'eye'" style="color:white"></ion-icon>
+                  </ion-input>
+                </div>
+              </div>
+            </div>
+        
+            <div class="validation-errors" >
+              <p class="form-error" 
+                *ngIf="formGroup.get('passwordControl').hasError('required') && formGroup.get('passwordControl').touched">
                 *Requerido
               </p>
               <p class="form-error"
-                *ngIf="formGroup.get('emailControl').hasError('email') && formGroup.get('emailControl').touched">
-                *Ingrese un correo valido
+                *ngIf="formGroup.get('passwordControl').hasError('minlength') && formGroup.get('passwordControl').touched">
+                *Mínimo 8 caracteres 
               </p>
               <p class="form-error"
-                *ngIf="formGroup.get('emailControl').hasError('minlength') && formGroup.get('emailControl').touched">
-                *Mínimo 10 caracteres 
-              </p>
-              <p class="form-error"
-                *ngIf="formGroup.get('emailControl').hasError('maxlength') && formGroup.get('emailControl').touched">
+                *ngIf="formGroup.get('emailControl').hasError('passwordControl') && formGroup.get('passwordControl').touched">
                 *Máximo 40 caracteres  
               </p>
-          </div>
-
-          <div class="form-group">
-            <label position="stacked"><strong>Contraseña</strong></label>
-            <div class="row">
-              <div class="col-sm">
-                <ion-input formControlName="passwordControl" [type]="passwordTypeInput" #password 
-                placeholder="***********"></ion-input>
-              </div>
-              <div class="col-sm">
-                <button item-end type="button" class="btn_eye_icon" color="royal" style="border: none;" (click)="showPassword()">
-                  <ion-icon [name]="(passwordTypeInput === 'text')?'eye-off':'eye'"></ion-icon>
-                </button>
-              </div>
             </div>
-          </div>
-      
-          <div class="validation-errors">
-            <p class="form-error"
-              *ngIf="formGroup.get('passwordControl').hasError('required') && formGroup.get('passwordControl').touched">
-              *Requerido
-            </p>
-            <p class="form-error"
-              *ngIf="formGroup.get('passwordControl').hasError('minlength') && formGroup.get('passwordControl').touched">
-              *Mínimo 8 caracteres 
-            </p>
-            <p class="form-error"
-              *ngIf="formGroup.get('emailControl').hasError('passwordControl') && formGroup.get('passwordControl').touched">
-              *Máximo 40 caracteres  
-            </p>
-          </div>
-      
-          <div class="form-group">
-            <ion-button [disabled]="!formGroup.valid" type="submit" expand="block">
-              Iniciar sesión
-            </ion-button>
-          </div>
         
-    
-        </form>
-      </div>
-    </div>
-
-  <div class="row">
-      <div class="col"></div>
-      <div class="col">
-        <p class="center-span">
+            <div class="form-group">
+              <ion-button [disabled]="!formGroup.valid" type="submit" expand="block">
+                Iniciar sesión
+              </ion-button>
+            </div>
+          
+      
+          </form>
+        </div>
+        <div class="col-12 link-part" style="margin:0px;padding:0px">
           <a class="btn btn-link" (click)="olvidar()">¿Olvidaste tu contraseña?</a>
-        </p>
+          <br/>
+          <a class="btn btn-link" href="registro">Registrarse</a> <a class="btn btn-link" href="home">Regresar al inicio</a>
+         
+        </div>
       </div>
-      <div class="col"></div>
     </div>
-  </div>-->
+  </div>
+<!-- 
   <div id="login">
     <div class="container">
         <div id="login-row" class="row justify-content-center align-items-center">
@@ -175,5 +177,5 @@
         </div>
     </div>
   </div>
-  <app-footer></app-footer>
+-->
 </ion-content>
