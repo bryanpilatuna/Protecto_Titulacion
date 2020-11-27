@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router  } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { map } from "rxjs/operators";
@@ -7,7 +7,7 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AdministradorGuard implements CanActivate {
+export class TiendaGuard implements CanActivate {
   constructor(private AFauth : AngularFireAuth,
     private router: Router,private authSvc: AuthService ) {}
   canActivate(
@@ -15,10 +15,8 @@ export class AdministradorGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       return this.AFauth.authState.pipe(map( auth => {
 
-        if(auth.uid=="Ge5Aqe0G3oQG6TncEMtsk6nTEQ43"){
-          return true;
-          
-          
+        if(auth){
+          return true;  
         }else{
           this.router.navigate(['/iniciar-sesion']);
           return false;

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AdministradorGuard } from './guard/administrador.guard';
 import { AuthGuard } from './guard/auth.guard';
+import { TiendaGuard } from './guard/tienda.guard';
 const routes: Routes = [
   {
     path: 'home',
@@ -31,7 +32,8 @@ const routes: Routes = [
   },
   {
     path: 'menu',
-    loadChildren: () => import('./page/menu/menu.module').then( m => m.MenuPageModule)
+    loadChildren: () => import('./page/menu/menu.module').then( m => m.MenuPageModule),
+    canActivate: [TiendaGuard]
   },
   {
     path: 'verify-email',
@@ -56,27 +58,31 @@ const routes: Routes = [
   },
   {
     path: 'tienda-administrador',
-    loadChildren: () => import('./page/tienda-administrador/tienda-administrador.module').then( m => m.TiendaAdministradorPageModule)
+    loadChildren: () => import('./page/tienda-administrador/tienda-administrador.module').then( m => m.TiendaAdministradorPageModule),
+    canActivate: [AdministradorGuard]
 
     
   },
   {
     path: 'cliente-administrador',
-    loadChildren: () => import('./page/cliente-administrador/cliente-administrador.module').then( m => m.ClienteAdministradorPageModule)
+    loadChildren: () => import('./page/cliente-administrador/cliente-administrador.module').then( m => m.ClienteAdministradorPageModule),
+    canActivate: [AdministradorGuard]
   },
   {
     path: 'perfil-administrador',
     loadChildren: () => import('./page/perfil-administrador/perfil-administrador.module').then( m => m.PerfilAdministradorPageModule),
-    canActivate: [AuthGuard]
+    canActivate: [AdministradorGuard]
  
   },
   {
     path: 'editar-tienda',
-    loadChildren: () => import('./page/editar-tienda/editar-tienda.module').then( m => m.EditarTiendaPageModule)
+    loadChildren: () => import('./page/editar-tienda/editar-tienda.module').then( m => m.EditarTiendaPageModule),
+    canActivate: [TiendaGuard]
   },
   {
     path: 'menu-tienda',
     loadChildren: () => import('./page/menu-tienda/menu-tienda.module').then( m => m.MenuTiendaPageModule),
+    canActivate: [TiendaGuard]
 
   },
   {
@@ -85,15 +91,18 @@ const routes: Routes = [
   },
   {
     path: 'registro-bici',
-    loadChildren: () => import('./page/registro-bici/registro-bici.module').then( m => m.RegistroBiciPageModule)
+    loadChildren: () => import('./page/registro-bici/registro-bici.module').then( m => m.RegistroBiciPageModule),
+    canActivate: [TiendaGuard]
   },
   {
     path: 'mis-bicis',
-    loadChildren: () => import('./page/mis-bicis/mis-bicis.module').then( m => m.MisBicisPageModule)
+    loadChildren: () => import('./page/mis-bicis/mis-bicis.module').then( m => m.MisBicisPageModule),
+    canActivate: [TiendaGuard]
   },
   {
     path: 'edit-tienda/:id',
-    loadChildren: () => import('./page/edit-tienda/edit-tienda.module').then( m => m.EditTiendaPageModule)
+    loadChildren: () => import('./page/edit-tienda/edit-tienda.module').then( m => m.EditTiendaPageModule),
+    canActivate: [TiendaGuard]
   },
   {
     path: 'editar-bici/:id',

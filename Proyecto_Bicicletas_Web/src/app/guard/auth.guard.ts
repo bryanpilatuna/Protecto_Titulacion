@@ -18,13 +18,6 @@ export class AuthGuard implements CanActivate {
 
           console.log(user);
           if (user) {
-            this.authSvc.getUsuario(user.uid).subscribe(usuario => {
-              if (usuario) {
-                console.log("Si llega");
-              }else{
-                console.log("No llega");
-              }
-            });
             return true;
           } else {
             this.router.navigate(['/iniciar-sesion']);

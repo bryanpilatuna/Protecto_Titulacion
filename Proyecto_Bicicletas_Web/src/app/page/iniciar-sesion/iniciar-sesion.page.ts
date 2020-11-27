@@ -123,6 +123,7 @@ export class IniciarSesionPage implements OnInit {
   //Login con un registro
   async onLogin(email, password) {
     try {
+      console.log(this.tipo,"ds");
       const user = await this.authSvc.login(email.value, password.value);
       if (user) {
         const isVerified = this.authSvc.isEmailVerified(user);
@@ -161,7 +162,6 @@ export class IniciarSesionPage implements OnInit {
 
   //Redireccionar si el correo es verificado
   private redirectUser(isVerified: boolean,id:string,correo:string): void {
-
     if (isVerified) {
       if(this.tipo=="tienda"){
         
@@ -194,7 +194,7 @@ export class IniciarSesionPage implements OnInit {
           //this.tienda = tienda;
           console.log(administrador);
           if (administrador) {
-            this.router.navigate(['menu']);
+            this.router.navigate(['perfil-administrador']);
           }else{
             this.mensaje="El usuario no es de tipo administrador.";
             this.mensajeerror();

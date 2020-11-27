@@ -76,6 +76,17 @@ export class AuthService {
     );
    }
 
+   obtenerusuario(){
+    this.user$ = this.afAuth.authState.pipe(
+      switchMap((user) => {
+        if (user) {
+          return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+        }
+        return of(null);
+      })
+    );
+   }
+
   getTienda(id: string){
     return this.tiendasCollection.doc<Tienda>(id).valueChanges();
   }
