@@ -1,4 +1,5 @@
 <ion-content>
+<div style="min-height: 300px;"> 
   <ion-list *ngIf="vacio==false; else elseBlock">
     <h2 style="text-align: center;font-weight: bold;">Revisa tus donaciones</h2>
     <p style="text-align: left;padding-left: 10px;"><ion-icon name="flag-outline" style="color:green;font-size: 20px;"></ion-icon> Donaciones aprobados</p> 
@@ -47,7 +48,7 @@
   <ng-template #elseBlock>
     <ion-list><p class="centrarmensaje">No existen donaciones.</p></ion-list>
   </ng-template>
-
+</div> 
   <app-footer></app-footer>
 
 </ion-content>

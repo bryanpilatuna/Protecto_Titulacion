@@ -1,6 +1,6 @@
 <ion-content>
   
-  
+<div style="min-height: 300px;"> 
   <ion-list *ngIf="vacio==false; else elseBlock">
    
     <h2 style="text-align: center;font-weight: bold;">Revisa tus alquileres</h2>
@@ -74,7 +74,7 @@
   <ng-template #elseBlock>
     <ion-list><p class="centrarmensaje">No existen alquileres.</p></ion-list>
   </ng-template>
- 
+</div>
   <app-footer></app-footer>
   
  
