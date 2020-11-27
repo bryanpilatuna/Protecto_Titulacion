@@ -5,10 +5,9 @@
 <ion-content>
 
   <div class="container">
-    <h5 align="center">MIS NOTIFICACIONES</h5> 
+    <h3 align="center">MIS NOTIFICACIONES</h3> 
      
           <div *ngFor="let notificacion of notificaciones" >
-            <div *ngIf="notificacion.visualizar==No">
             <div *ngFor="let usuario of usuarios">
               <div *ngIf="notificacion.idusuario==usuario.uid">
                 <ion-card>
@@ -20,16 +19,13 @@
                     <label>{{notificacion.fecha.toMillis() | date:'dd/MM/yyyy'}}</label>
                     <br>
                     <ion-button  (click)=" cambiarvisualizado(notificacion,notificacion.id)" color="warning">
-                      Revisar
+                      Revisar Todos
                     </ion-button>
                   </ion-card-content>
                 </ion-card>
                 
              </div>
             </div>
-           </div>
-          
             </div> 
-  </div>
-     
+  </div>    
 </ion-content>

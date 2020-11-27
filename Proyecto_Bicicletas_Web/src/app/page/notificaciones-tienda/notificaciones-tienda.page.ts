@@ -43,7 +43,7 @@ export class NotificacionesTiendaPage implements OnInit {
   ngOnInit() {
 
     this.notificacionesService.getMisnotificaciones(this.tiendaid).subscribe((notificaciones) =>{
-      this.notificaciones= notificaciones; 
+      this.notificaciones=notificaciones.filter(notificaciones=>notificaciones.visualizar=='No');
     })
   }
 
@@ -53,26 +53,30 @@ export class NotificacionesTiendaPage implements OnInit {
    
       notifi.visualizar='Si';
       this.notificacionesService.updateNotificacion(notifi,id).then(() => {
-    this.router.navigate(['/tienda-alquiler',this.tiendaid]);
-  });
+    for (let index = 0; index < this.notificaciones.length; index++) {
+      if(this.notificaciones[index].tipo=='Alquiler'){
+        this.notificaciones[index].visualizar='Si';
+        this.notificacionesService.updateNotificacion(this.notificaciones[index],this.notificaciones[index].id);
+      }
+      
+    }
+    this.router.navigate(['/tienda-alquiler']);
+      });
+
     } 
     else if(notifi.tipo=='Donacion'){
       notifi.visualizar='Si';
       this.notificacionesService.updateNotificacion(notifi,id).then(() => {
-    this.router.navigate(['/tienda-donacion',this.tiendaid]);
+        for (let index = 0; index < this.notificaciones.length; index++) {
+          if(this.notificaciones[index].tipo=='Donacion'){
+            this.notificaciones[index].visualizar='Si';
+            this.notificacionesService.updateNotificacion(this.notificaciones[index],this.notificaciones[index].id);
+          }
+        }
+    this.router.navigate(['/tienda-donacion']);
     });
-
     }
- 
   }
 
-  cambiarvisualizadona(notifi:NotificacionesTienda,id:string){
-    notifi.visualizar='Si';
-    this.notificacionesService.updateNotificacion(notifi,id).then(() => {
-  this.router.navigate(['/tienda-donacion',this.tiendaid]);
-});
-
-
-}
 
 }

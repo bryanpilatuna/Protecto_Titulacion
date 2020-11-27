@@ -1,5 +1,9 @@
 
 <ion-content>
+  <ng-container *ngIf="!bicicletas || bicicletas.length == 0">
+    <h3>Ninguna bicicleta no disponible </h3>
+  </ng-container>
+  <div class="table-responsive table-striped table-bordered">
   <table class="table ">
     <thead>
       <tr>
@@ -28,11 +32,11 @@
         </tbody>
       </table>
       <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
+    </div>
       <div>
         <div class="container">
           <div class="row mb-3">
             <div class="col-6 themed-grid-col">
-              <h5>___________</h5>
               <h5>___________</h5>
               <h5>___________</h5>
               <h5>___________</h5>

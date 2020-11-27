@@ -3,6 +3,8 @@ import { ActivatedRoute} from '@angular/router';
 import { datosDonacion } from '../../model/donacion.interface';
 import { Notificaciones} from '../../model/notificaciones.interface';
 import {DonacionesService} from '../../services/donaciones.service';
+import { NotificacionesTienda}from '../../model/notificaciones.interface';
+import {NotificacionesService} from '../../services/notificaciones.service';
 import { DatosUsuario } from '../../model/user.interface';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
@@ -15,6 +17,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class DonacionesAprobarPage implements OnInit {
   tiendaid=null;
+  notificacionesti:NotificacionesTienda[];
   false=false;
   true=true;
   pageActual: number= 1;
@@ -50,6 +53,7 @@ export class DonacionesAprobarPage implements OnInit {
   }
   constructor(private route: ActivatedRoute,
     public alertController: AlertController,
+    private notificacionesService:NotificacionesService,
     private donacionesservice: DonacionesService,
     private router: Router) {
       var user = firebase.auth().currentUser.uid;
@@ -68,6 +72,20 @@ export class DonacionesAprobarPage implements OnInit {
     this.donaciones = donaciones.filter(donaciones=>donaciones.aprobacion==false && donaciones.anular==false); 
    
     })
+
+    this.notificacionesService.getMisnotificaciones(this.tiendaid).subscribe((notificaciones) =>{
+      this.notificacionesti=notificaciones.filter(notificaciones=>notificaciones.visualizar=='No');
+    })
+    this.desactivarnoti();
+  }
+
+  desactivarnoti(){
+    for (let index = 0; index < this.notificaciones.length; index++) {
+      if(this.notificaciones[index].tipo=='Donacion'){
+        this.notificaciones[index].visualizar='Si';
+        this.notificacionesService.updateNotificacion(this.notificaciones[index],this.notificaciones[index].id);
+      } 
+    }
   }
 
   updateDonacion(acdonacion:datosDonacion,iddonacion:string){

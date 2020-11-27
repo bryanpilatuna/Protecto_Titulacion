@@ -3,7 +3,9 @@ import { ActivatedRoute} from '@angular/router';
 import { datosAlquiler } from '../../model/alquiler.interface';
 import { DatosUsuario } from '../../model/user.interface';
 import { Notificaciones } from '../../model/notificaciones.interface';
+import { NotificacionesTienda}from '../../model/notificaciones.interface';
 import {AlquileresService} from '../../services/alquileres.service';
+import {NotificacionesService} from '../../services/notificaciones.service';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
@@ -14,6 +16,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class AlquilerAprobarPage implements OnInit {
   tiendaid=null;
+    notificaciones:NotificacionesTienda[];
   alquileres:datosAlquiler[];
   usuarios:DatosUsuario[];
   pageActual: number= 1;
@@ -45,6 +48,7 @@ export class AlquilerAprobarPage implements OnInit {
   constructor(private route: ActivatedRoute,
     public alertController: AlertController,
     private alquilerservice: AlquileresService,
+    private notificacionesService:NotificacionesService,
     private router: Router) { 
       var user = firebase.auth().currentUser.uid;
       this.tiendaid = user;
@@ -61,7 +65,20 @@ export class AlquilerAprobarPage implements OnInit {
       this.alquileres = alquileres.filter(alquileres=>alquileres.aprobacion==false &&alquileres.aprobacion==false );
      
       })
-    
+
+      this.notificacionesService.getMisnotificaciones(this.tiendaid).subscribe((notificaciones) =>{
+        this.notificaciones=notificaciones.filter(notificaciones=>notificaciones.visualizar=='No');
+      })
+///////////Desactivar notificaciones
+      this.desactivarnoti();
+      }
+      desactivarnoti(){
+        for (let index = 0; index < this.notificaciones.length; index++) {
+          if(this.notificaciones[index].tipo=='Alquiler'){
+            this.notificaciones[index].visualizar='Si';
+            this.notificacionesService.updateNotificacion(this.notificaciones[index],this.notificaciones[index].id);
+          } 
+        }
       }
     
       updateAlquiler(acalquiler:datosAlquiler,id:string){
