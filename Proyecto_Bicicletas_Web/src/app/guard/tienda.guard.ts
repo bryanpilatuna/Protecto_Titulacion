@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router  } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { map } from "rxjs/operators";
@@ -15,8 +15,10 @@ export class TiendaGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       return this.AFauth.authState.pipe(map( auth => {
 
-        if(auth){
-          return true;  
+        if(auth.uid){
+          return true;
+          
+          
         }else{
           this.router.navigate(['/iniciar-sesion']);
           return false;
