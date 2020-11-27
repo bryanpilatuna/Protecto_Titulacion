@@ -8,43 +8,65 @@
 </ion-header>
 
 <ion-content>
-  <ion-list lines="full" *ngIf="donaciones" style="margin:10px">
+<div style="margin:10px;display: flex;justify-content: center;align-items: center;">
+  <ion-list lines="full" *ngIf="donaciones" >
     <ion-item >
-      <ion-label position="stacked"><strong>Descripción</strong></ion-label>
-      <p>{{donaciones.descripcion}}</p>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-label><strong>Descripción</strong></ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label>{{donaciones.descripcion}}</ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="tiendas">
+          <ion-col>
+            <ion-label><strong>Tienda</strong></ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label>{{tiendas.nombre}}</ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-label><strong>Fecha Donación:</strong></ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label>{{fechadonar | date:'dd/MM/yyyy'}}</ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-label><strong>Estado:</strong></ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label>{{donaciones.estado}}</ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-label><strong>Modo de entrega:</strong></ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label>{{donaciones.modo}}</ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-item>
 
-    <ion-item *ngIf="tiendas">
-      <ion-label position="stacked"><strong>Tienda</strong></ion-label>
-      <div>
-        <p>{{tiendas.nombre}}</p>
-      </div>
-    </ion-item>
-
-    <ion-item >
-      <ion-label>Fecha Donación:</ion-label>
-      <p>{{fechadonar | date:'dd/MM/yyyy'}}</p>
-    </ion-item>
-
-    <ion-item >
-      <ion-label position="stacked"><strong>Estado: </strong></ion-label>
-      <p>{{donaciones.estado}}</p>
-    </ion-item>
-
-    <ion-item >
-      <ion-label position="stacked"><strong>Modo de entrega: </strong></ion-label>
-      <p>{{donaciones.modo}}</p>
-    </ion-item>
     <div *ngIf="donaciones.anular==cancelaran">
       <div *ngIf="donaciones.aprobacion==cancelaran">
-        <ion-button  expand="full" (click)="cancelar()"  color="danger">Anular</ion-button>
+
+        <ion-button  (click)="cancelar()" expand="block" shape="round" color="danger">Anular</ion-button>
       </div>
     </div>
-
-    <app-footer></app-footer>
+    
   
    
 
   </ion-list>
-
+</div>
+<app-footer></app-footer>
 </ion-content>

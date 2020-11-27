@@ -174,7 +174,8 @@ export class FormularioAlquilerPage implements OnInit {
       this.notificaciones.idusuario=this.alquiler.idusuario;
       this.notificaciones.idtienda=this.alquiler.idtienda;
       this.Service.addNotificacion(this.notificaciones);
-      this.nav.navigateForward('/profile'); 
+      //this.nav.navigateForward('/profile'); 
+      window.location.href = 'formulario-alquiler' ;
     });
   }
 
