@@ -122,7 +122,7 @@ export class FormularioDonacionPage implements OnInit {
         this.notificaciones.idusuario=this.donacion.iddonante;
         this.notificaciones.idtienda=this.donacion.idtienda; 
         this.Service.addNotificacion(this.notificaciones);
-          this.nav.navigateForward('/menu-cliente');
+          this.nav.navigateForward('/profile');
       });
   }
 

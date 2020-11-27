@@ -72,10 +72,7 @@ export class FormularioAlquilerPage implements OnInit {
       this.idtienda=data;
     });
     
-    if (this.usuarioid){
-      this.loadTodo();
-    }
-    
+  
     this.alquiler.idusuario=this.usuarioid;
 
     this.alquilerService.getTiendas().subscribe((tiendas) =>{
@@ -165,13 +162,6 @@ export class FormularioAlquilerPage implements OnInit {
     })
   }*/
 
-  async loadTodo(){
-    const loading = await this.loadingController.create({
-      message: 'Loading....'
-    });
-    
-  }
-
   async crearAlquiler(){
 
     this.alquiler.idusuario=this.usuarioid;
@@ -184,7 +174,7 @@ export class FormularioAlquilerPage implements OnInit {
       this.notificaciones.idusuario=this.alquiler.idusuario;
       this.notificaciones.idtienda=this.alquiler.idtienda;
       this.Service.addNotificacion(this.notificaciones);
-      this.nav.navigateForward('/menu'); 
+      this.nav.navigateForward('/profile'); 
     });
   }
 
