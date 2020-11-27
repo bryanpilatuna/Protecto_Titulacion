@@ -17,6 +17,7 @@ export class DonacionesAprobarPage implements OnInit {
   tiendaid=null;
   false=false;
   true=true;
+  pageActual: number= 1;
   donaciones:datosDonacion[];
   usuarios:DatosUsuario[];
   notificaciones:Notificaciones[];
@@ -64,7 +65,7 @@ export class DonacionesAprobarPage implements OnInit {
     
   //this.tiendaid=this.route.snapshot.params['id'];
   this.donacionesservice.getDonacionTienda(this.tiendaid).subscribe((donaciones) =>{
-    this.donaciones = donaciones;  
+    this.donaciones = donaciones.filter(donaciones=>donaciones.aprobacion==false && donaciones.anular==false); 
    
     })
   }

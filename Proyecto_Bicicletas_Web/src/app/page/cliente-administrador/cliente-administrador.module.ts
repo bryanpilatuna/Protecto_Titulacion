@@ -8,6 +8,7 @@ import { ClienteAdministradorPageRoutingModule } from './cliente-administrador-r
 
 import { ClienteAdministradorPage } from './cliente-administrador.page';
 import { ComponentsModule } from '../../components/components.module';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ComponentsModule } from '../../components/components.module';
     FormsModule,
     IonicModule,
     ClienteAdministradorPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    NgxPaginationModule
   ],
   declarations: [ClienteAdministradorPage]
 })

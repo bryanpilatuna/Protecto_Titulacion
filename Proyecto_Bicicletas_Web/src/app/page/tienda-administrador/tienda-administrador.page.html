@@ -29,7 +29,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let tienda of tiendas ;let indice=index">
+          <tr *ngFor="let tienda of tiendas | paginate: { itemsPerPage: 5, currentPage: pageActual } ;let indice=index">
             <td scope="row">{{indice+1}}</td>
             <td><img [src]="tienda.logo" style="height:100px;display:block;margin:auto"/></td>
             <td>{{tienda.nombre}}</td>
@@ -41,6 +41,7 @@
           
         </tbody>
       </table>
+      <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
     </div>
 
     <br/>

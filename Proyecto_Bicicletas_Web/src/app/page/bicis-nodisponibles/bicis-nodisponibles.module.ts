@@ -8,6 +8,7 @@ import { BicisNodisponiblesPageRoutingModule } from './bicis-nodisponibles-routi
 
 import { BicisNodisponiblesPage } from './bicis-nodisponibles.page';
 import { ComponentsModule } from '../../components/components.module';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ComponentsModule } from '../../components/components.module';
     FormsModule,
     IonicModule,
     BicisNodisponiblesPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    NgxPaginationModule
   ],
   declarations: [BicisNodisponiblesPage]
 })

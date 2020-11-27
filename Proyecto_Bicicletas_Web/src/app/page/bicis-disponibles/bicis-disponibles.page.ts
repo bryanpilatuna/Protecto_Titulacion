@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import {BicicletasService}from '../../services/bicicletas.service';
 import {datosBici}from '../../model/bicicletas.interface';
 import * as firebase from 'firebase';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @Component({
   selector: 'app-bicis-disponibles',
@@ -11,7 +12,7 @@ import * as firebase from 'firebase';
   styleUrls: ['./bicis-disponibles.page.scss'],
 })
 export class BicisDisponiblesPage implements OnInit {
-  
+  pageActual: number= 1;
   id=null;
   tiendaid=null;
   Si='Si';

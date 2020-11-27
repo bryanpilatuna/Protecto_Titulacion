@@ -1,10 +1,6 @@
 
 <ion-content>
-  <div *ngFor="let donacion of donaciones" >
-    <div *ngIf="donacion.aprobacion==true">
-    <div *ngFor="let usuario of usuarios">
-      <div *ngIf="donacion.iddonante==usuario.uid">
-       <table class="table ">
+       <table class="table " *ngFor="let donacion of donaciones | paginate: { itemsPerPage: 5, currentPage: pageActual }">
           <thead>
             <tr>
               <th scope="col">Nombre</th>
@@ -16,8 +12,8 @@
              
             </tr>
           </thead>
-          <tbody>
-          <tr>
+          <tbody *ngFor="let usuario of usuarios">
+          <tr *ngIf="donacion.iddonante==usuario.uid">
          <td> {{usuario.nombres}}</td>
          <td> {{usuario.apellidos}}</td>
          <td> {{usuario.telefono}}</td>
@@ -27,14 +23,14 @@
         </tr>
         </tbody>
     </table>
-  </div>
-</div>
-</div>
-</div> 
+    <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
 <div>
   <div class="container">
     <div class="row mb-3">
       <div class="col-6 themed-grid-col">
+        <h5>___________</h5>
+        <h5>___________</h5>
+        <h5>___________</h5>
         <h5>___________</h5>
         <h5>___________</h5>
         <h5>___________</h5>

@@ -11,6 +11,7 @@ import * as firebase from 'firebase';
 })
 export class BicisMantenimientoPage implements OnInit {
   id=null;
+  pageActual: number= 1;
   tiendaid=null;
   Si='Si';
   No='No';
@@ -37,7 +38,7 @@ export class BicisMantenimientoPage implements OnInit {
   ngOnInit() {
     
     this.bicicletasService.getBicicletas(this.tiendaid).subscribe((bicicletas) =>{
-      this.bicicletas = bicicletas;  
+      this.bicicletas = bicicletas.filter(bicicletas=>bicicletas.disponible=='Mantenimiento'); 
     })
 
   }

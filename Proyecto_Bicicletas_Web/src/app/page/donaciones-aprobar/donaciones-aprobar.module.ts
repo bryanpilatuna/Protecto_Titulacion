@@ -8,6 +8,7 @@ import { DonacionesAprobarPageRoutingModule } from './donaciones-aprobar-routing
 
 import { DonacionesAprobarPage } from './donaciones-aprobar.page';
 import { ComponentsModule } from '../../components/components.module';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ComponentsModule } from '../../components/components.module';
     FormsModule,
     IonicModule,
     DonacionesAprobarPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    NgxPaginationModule
   ],
   declarations: [DonacionesAprobarPage]
 })

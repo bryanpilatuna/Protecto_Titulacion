@@ -9,6 +9,7 @@ import { AdministradorService } from '../../services/administrador.service';
 })
 export class TiendaAdministradorPage implements OnInit {
   tiendas: Tienda[];
+  pageActual: number= 1;
   constructor(private Service: AdministradorService) {
     this.Service.getTiendas().subscribe((tiendas) =>{
       console.log('Todoss', tiendas);

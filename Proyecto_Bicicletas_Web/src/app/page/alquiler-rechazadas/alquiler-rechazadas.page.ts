@@ -18,6 +18,7 @@ export class AlquilerRechazadasPage implements OnInit {
   alquileres:datosAlquiler[];
   usuarios:DatosUsuario[];
   fechaactual: Date = new Date();
+  pageActual: number= 1;
 
   notificacion:Notificaciones={
     respuesta:'',
@@ -60,7 +61,7 @@ export class AlquilerRechazadasPage implements OnInit {
 
   ngOnInit() {
     this.alquilerservice.getalquileresTienda(this.tiendaid).subscribe((alquileres) =>{
-      this.alquileres = alquileres;  
+      this.alquileres = alquileres.filter(alquileres=>alquileres.anular==true );
      
       })
     

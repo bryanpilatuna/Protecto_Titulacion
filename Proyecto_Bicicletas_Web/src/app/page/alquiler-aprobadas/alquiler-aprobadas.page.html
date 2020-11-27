@@ -1,6 +1,6 @@
 
 <ion-content>
-        <table class="table " *ngFor="let alquiler of alquileres">
+        <table class="table " *ngFor="let alquiler of alquileres | paginate: { itemsPerPage: 5, currentPage: pageActual }">
           <thead>
             <tr>
               <th scope="col">Nombre Solicitante</th>
@@ -12,7 +12,7 @@
             </tr>
           </thead>
           <tbody *ngFor="let usuario of usuarios">
-          <tr *ngIf="alquiler.idusuario==usuario.uid">
+          <tr *ngIf="alquiler.idusuario==usuario.uid ">
          <td> {{usuario.nombres}}</td>
          <td> {{usuario.apellidos}}</td>
          <td>{{alquiler.fechaalquiler.toMillis() | date:'dd/MM/yyyy'}}</td>
@@ -24,6 +24,7 @@
     
 
     </table>
+    <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
 
 
 <div>

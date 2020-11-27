@@ -16,6 +16,7 @@ export class AlquilerAprobarPage implements OnInit {
   tiendaid=null;
   alquileres:datosAlquiler[];
   usuarios:DatosUsuario[];
+  pageActual: number= 1;
   fechaactual: Date = new Date();
   notificacion:Notificaciones={
     respuesta:'',
@@ -57,7 +58,7 @@ export class AlquilerAprobarPage implements OnInit {
 
     ngOnInit() {
       this.alquilerservice.getalquileresTienda(this.tiendaid).subscribe((alquileres) =>{
-      this.alquileres = alquileres;  
+      this.alquileres = alquileres.filter(alquileres=>alquileres.aprobacion==false &&alquileres.aprobacion==false );
      
       })
     
