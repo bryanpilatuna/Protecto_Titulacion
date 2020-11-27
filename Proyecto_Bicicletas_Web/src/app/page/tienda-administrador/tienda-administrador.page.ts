@@ -22,8 +22,6 @@ export class TiendaAdministradorPage implements OnInit {
   buscar(busquedatienda){   
     this.Service.busqueda(busquedatienda.value).subscribe((tiendas) =>{
       this.tiendas = tiendas;
-
     })
   }
-
 }

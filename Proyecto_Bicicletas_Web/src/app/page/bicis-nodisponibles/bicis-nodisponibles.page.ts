@@ -61,17 +61,9 @@ export class BicisNodisponiblesPage implements OnInit {
      this.bicicletasService.updateBici(bici,id).then(() => {
        this.router.navigate(['/mis-bicis']);
      });
- 
     }   
-     
- 
    }
    editarbici(id:string){
     this.router.navigate(['/editar-bici',id]);
-
   }
- 
-
-  
-
 }
