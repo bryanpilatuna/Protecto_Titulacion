@@ -8,6 +8,7 @@ import { AdministradorService } from '../../services/administrador.service';
 })
 export class ClienteAdministradorPage implements OnInit {
   usuarios: DatosUsuario[];
+  pageActual: number= 1;
   constructor(private Service: AdministradorService) { 
     this.Service.getUsuarios().subscribe((usuarios) =>{
 
