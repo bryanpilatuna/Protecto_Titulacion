@@ -1,16 +1,28 @@
-strong{
-    color: #0059ff;
-}
+
 
 .subtitulo{
     color: #337aff;
 }
 ion-col{
-    padding: 0px;
+    padding: 10px;
     margin: 0px;
 }
 ion-list{
     margin:10px;
+}
+
+ion-content{
+    --background: url("../../../assets/login/bg.jpg") 0 0/100% 100% no-repeat;
+}
+
+.centrarmensaje{
+    text-align: center;
+}
+p{
+    color:black;
+}
+ion-card{
+    width: 500px;
 }
 
 ion-content{

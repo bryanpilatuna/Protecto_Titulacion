@@ -6,11 +6,14 @@ strong{
     color: #337aff;
 }
 ion-col{
-    padding: 0px;
+    padding: 10px;
     margin: 0px;
 }
 ion-list{
     margin:10px;
+}
+p{
+    color:black;
 }
 
 ion-content{
@@ -18,4 +21,7 @@ ion-content{
 }
 .centrarmensaje{
     text-align: center;
+}
+ion-card{
+    width: 500px;
 }

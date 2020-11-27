@@ -56,8 +56,8 @@ const routes: Routes = [
   },
   {
     path: 'tienda-administrador',
-    loadChildren: () => import('./page/tienda-administrador/tienda-administrador.module').then( m => m.TiendaAdministradorPageModule),
-    canActivate: [AuthGuard]
+    loadChildren: () => import('./page/tienda-administrador/tienda-administrador.module').then( m => m.TiendaAdministradorPageModule)
+
     
   },
   {
