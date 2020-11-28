@@ -70,21 +70,13 @@ export class AlquilerAprobarPage implements OnInit {
         this.notificaciones=notificaciones.filter(notificaciones=>notificaciones.visualizar=='No');
       })
 ///////////Desactivar notificaciones
-      this.desactivarnoti();
       }
-      desactivarnoti(){
-        for (let index = 0; index < this.notificaciones.length; index++) {
-          if(this.notificaciones[index].tipo=='Alquiler'){
-            this.notificaciones[index].visualizar='Si';
-            this.notificacionesService.updateNotificacion(this.notificaciones[index],this.notificaciones[index].id);
-          } 
-        }
-      }
+     
     
       updateAlquiler(acalquiler:datosAlquiler,id:string){
       acalquiler.aprobacion=true;
       this.alquilerservice.actualizarAlquiler(acalquiler,id).then(() => {
-      this.router.navigate(['/tienda-alquiler',this.tiendaid]);
+      this.router.navigate(['/tienda-alquiler']);
       
         });
     
@@ -102,7 +94,7 @@ export class AlquilerAprobarPage implements OnInit {
         this.notificacion.respuesta='';
         alquiler.respuesta='Alquiler Aprobado';
         this.alquilerservice.actualizarAlquiler(alquiler,id).then(() => {
-          this.router.navigate(['/tienda-alquiler',this.tiendaid]);
+          this.router.navigate(['/tienda-alquiler']);
         });
     
        
@@ -123,7 +115,7 @@ export class AlquilerAprobarPage implements OnInit {
         alquiler.aprobacion=false;
         alquiler.anular=true;
         this.alquilerservice.actualizarAlquiler(alquiler,id).then(() => {
-          this.router.navigate(['/tienda-alquiler',this.tiendaid]);
+          this.router.navigate(['/tienda-alquiler']);
         });
       }
       }
