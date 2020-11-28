@@ -7,11 +7,12 @@
      <table class="table " *ngFor="let donacion of donaciones | paginate: { itemsPerPage: 5, currentPage: pageActual }">
           <thead>
             <tr>
-              <th scope="col">Nombre Donante</th>
-              <th scope="col">Apellido Donante</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellido</th>
+              <th scope="col">Cedula</th>
               <th scope="col">Fecha Donación</th>
               <th scope="col">Descripción Bici</th>
-              <th scope="col">Modo Entrega</th>
+              <th scope="col">Tipo de Entrega</th>
               <th scope="col">Aprobar</th>
               <th scope="col">Motivo Rechazo</th>
               <th scope="col">Rechazar</th>

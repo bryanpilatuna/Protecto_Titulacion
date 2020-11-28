@@ -1,14 +1,14 @@
 
 <ion-content>
   <ng-container *ngIf="!alquileres || alquileres.length == 0">
-    <h3>No tienes donaciones rechazadas</h3>
+    <h3>No tienes donaciones para aprobar</h3>
   </ng-container>
   <div class="table-responsive table-striped table-bordered">
   <table class="table " *ngFor="let alquiler of alquileres | paginate: { itemsPerPage: 5, currentPage: pageActual }">
           <thead>
             <tr>
-              <th scope="col">Nombre Solicitante</th>
-              <th scope="col">Apellido Solicitante</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellido</th>
               <th scope="col">Fecha Alquiler</th>
               <th scope="col">Hora Alquiler</th>
               <th scope="col">Fecha Devolución</th>

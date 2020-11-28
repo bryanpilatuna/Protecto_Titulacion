@@ -11,7 +11,7 @@
         <th scope="col">Imagen</th>
         <th scope="col">Disponible</th>
         <th scope="col">Editar</th>
-        <th scope="col">Cambiar Estado</th>
+        <th scope="col">Cambiar a mantenimiento</th>
       </tr>
     </thead>
     <tbody>
@@ -21,11 +21,11 @@
         <td>{{bicis.disponible}}</td>
         <td> <ion-button  (click)="editarbici(bicis.id)">
           <ion-icon slot="start" name="locate"></ion-icon>
-          Editar Bici
+          Editar
         </ion-button></td>
         <td><ion-button  (click)="cambiarestado(bicis,bicis.id)">
           <ion-icon slot="start" name="locate"></ion-icon>
-          Cambiar Estado
+          Cambiar
         </ion-button></td>
       </tr> 
 

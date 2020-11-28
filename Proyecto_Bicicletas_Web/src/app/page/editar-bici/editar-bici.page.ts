@@ -97,11 +97,14 @@ export class EditarBiciPage implements OnInit {
   }
   guardarBici(){
     this.bicicletaservice.updateBici(this.bicicleta, this.idbici).then(() => {
-      this.nav.navigateForward('menu-tienda');
+      this.nav.navigateForward('mis-bicis');
       
     });
   }
+regresar(){
+  this.nav.navigateForward('mis-bicis');
 
+}
 
 
 }
