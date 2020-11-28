@@ -62,13 +62,10 @@ export class AlquilerAprobarPage implements OnInit {
 
     ngOnInit() {
       this.alquilerservice.getalquileresTienda(this.tiendaid).subscribe((alquileres) =>{
-      this.alquileres = alquileres.filter(alquileres=>alquileres.aprobacion==false &&alquileres.aprobacion==false );
+      this.alquileres = alquileres.filter(alquileres=>alquileres.aprobacion==false &&alquileres.anular==false );
      
       })
 
-      this.notificacionesService.getMisnotificaciones(this.tiendaid).subscribe((notificaciones) =>{
-        this.notificaciones=notificaciones.filter(notificaciones=>notificaciones.visualizar=='No');
-      })
 ///////////Desactivar notificaciones
       }
      

@@ -22,6 +22,7 @@
           <tr *ngIf="donacion.iddonante==usuario.uid">
          <td> {{usuario.nombres}}</td>
          <td> {{usuario.apellidos}}</td>
+         <td> {{usuario.cedula}}</td>
          <td>{{donacion.fechadonacion.toMillis() | date:'dd/MM/yyyy'}}</td>
          <td>{{donacion.descripcion}}</td>
          <td>{{donacion.modo}}</td>

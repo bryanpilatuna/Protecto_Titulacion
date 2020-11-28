@@ -98,7 +98,7 @@ export class DonacionesAprobarPage implements OnInit {
     this.notificacion.visualizar='No';
     this.notificacion.idusuario=donacion.iddonante;
     this.notificacion.idtipo=donacion.id;
-    donacion.respuesta='Aprobada';
+    donacion.respuesta='Tu donación ha sido aprobado, en breve nos pondremos en contacto contigo';
     this.donacionesservice.addNotificacion(this.notificacion);
     this.notificacion.respuesta='';
     this.donacionesservice.actualizarDonacion(donacion,id).then(() => {
