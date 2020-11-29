@@ -84,11 +84,13 @@ const routes: Routes = [
   },
   {
     path: 'tienda-donacion',
-    loadChildren: () => import('./page/tienda-donacion/tienda-donacion.module').then( m => m.TiendaDonacionPageModule)
+    loadChildren: () => import('./page/tienda-donacion/tienda-donacion.module').then( m => m.TiendaDonacionPageModule),
+    canActivate: [TiendaGuard]
   },
   {
     path: 'tienda-alquiler',
-    loadChildren: () => import('./page/tienda-alquiler/tienda-alquiler.module').then( m => m.TiendaAlquilerPageModule)
+    loadChildren: () => import('./page/tienda-alquiler/tienda-alquiler.module').then( m => m.TiendaAlquilerPageModule),
+    canActivate: [TiendaGuard]
   },
   {
     path: 'registro',
@@ -96,7 +98,8 @@ const routes: Routes = [
   },
   {
     path: 'notificaciones-tienda',
-    loadChildren: () => import('./page/notificaciones-tienda/notificaciones-tienda.module').then( m => m.NotificacionesTiendaPageModule)
+    loadChildren: () => import('./page/notificaciones-tienda/notificaciones-tienda.module').then( m => m.NotificacionesTiendaPageModule),
+    canActivate: [TiendaGuard]
   },
   {
     path: 'profile',
@@ -174,45 +177,56 @@ const routes: Routes = [
   },
   {
     path: 'misbicis-poraprobar',
-    loadChildren: () => import('./page/misbicis-poraprobar/misbicis-poraprobar.module').then( m => m.MisbicisPoraprobarPageModule)
+    loadChildren: () => import('./page/misbicis-poraprobar/misbicis-poraprobar.module').then( m => m.MisbicisPoraprobarPageModule),
+    canActivate: [TiendaGuard]
 
   },
   {
     path: 'bicis-disponibles',
-    loadChildren: () => import('./page/bicis-disponibles/bicis-disponibles.module').then( m => m.BicisDisponiblesPageModule)
+    loadChildren: () => import('./page/bicis-disponibles/bicis-disponibles.module').then( m => m.BicisDisponiblesPageModule),
+    canActivate: [TiendaGuard]
   },
   {
     path: 'bicis-nodisponibles',
-    loadChildren: () => import('./page/bicis-nodisponibles/bicis-nodisponibles.module').then( m => m.BicisNodisponiblesPageModule)
+    loadChildren: () => import('./page/bicis-nodisponibles/bicis-nodisponibles.module').then( m => m.BicisNodisponiblesPageModule),
+    canActivate: [TiendaGuard]
   },
   {
     path: 'bicis-mantenimiento',
-    loadChildren: () => import('./page/bicis-mantenimiento/bicis-mantenimiento.module').then( m => m.BicisMantenimientoPageModule)
+    loadChildren: () => import('./page/bicis-mantenimiento/bicis-mantenimiento.module').then( m => m.BicisMantenimientoPageModule),
+    canActivate: [TiendaGuard]
   },
   {
     path: 'donaciones-aprobar',
-    loadChildren: () => import('./page/donaciones-aprobar/donaciones-aprobar.module').then( m => m.DonacionesAprobarPageModule)
+    loadChildren: () => import('./page/donaciones-aprobar/donaciones-aprobar.module').then( m => m.DonacionesAprobarPageModule),
+    canActivate: [TiendaGuard]
   },
   {
     path: 'donaciones-aprobadas',
-    loadChildren: () => import('./page/donaciones-aprobadas/donaciones-aprobadas.module').then( m => m.DonacionesAprobadasPageModule)
+    loadChildren: () => import('./page/donaciones-aprobadas/donaciones-aprobadas.module').then( m => m.DonacionesAprobadasPageModule),
+    canActivate: [TiendaGuard]
   },
   {
     path: 'donaciones-rechazadas',
-    loadChildren: () => import('./page/donaciones-rechazadas/donaciones-rechazadas.module').then( m => m.DonacionesRechazadasPageModule)
+    loadChildren: () => import('./page/donaciones-rechazadas/donaciones-rechazadas.module').then( m => m.DonacionesRechazadasPageModule),
+    canActivate: [TiendaGuard]
   },
   {
     path: 'alquiler-aprobar',
-    loadChildren: () => import('./page/alquiler-aprobar/alquiler-aprobar.module').then( m => m.AlquilerAprobarPageModule)
+    loadChildren: () => import('./page/alquiler-aprobar/alquiler-aprobar.module').then( m => m.AlquilerAprobarPageModule),
+    canActivate: [TiendaGuard]
   },
   {
     path: 'alquiler-aprobadas',
-    loadChildren: () => import('./page/alquiler-aprobadas/alquiler-aprobadas.module').then( m => m.AlquilerAprobadasPageModule)
+    loadChildren: () => import('./page/alquiler-aprobadas/alquiler-aprobadas.module').then( m => m.AlquilerAprobadasPageModule),
+    canActivate: [TiendaGuard]
   },
   {
     path: 'alquiler-rechazadas',
-    loadChildren: () => import('./page/alquiler-rechazadas/alquiler-rechazadas.module').then( m => m.AlquilerRechazadasPageModule)
-  },  {
+    loadChildren: () => import('./page/alquiler-rechazadas/alquiler-rechazadas.module').then( m => m.AlquilerRechazadasPageModule),
+    canActivate: [TiendaGuard]
+  },
+  {
     path: 'pruebas',
     loadChildren: () => import('./page/pruebas/pruebas.module').then( m => m.PruebasPageModule)
   },
