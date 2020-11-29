@@ -32,6 +32,7 @@ export class EditarTiendaPage implements OnInit {
   telefono:'',
   estado:'',
   logo:'',
+  auxilio:'',
   position:{latitude:0,longitude:0}
   }
   public image: any;

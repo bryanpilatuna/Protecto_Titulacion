@@ -3,6 +3,10 @@
 </ion-header>
 
 <ion-content>
+  <ion-button fill="clear" (click)="regresar()">
+    <ion-icon name="arrow-back-outline"></ion-icon>
+    Regresar
+  </ion-button>
   <div class="mx-auto">
 
     <form [formGroup]="formGroup" (ngSubmit)="guardarbici()">
