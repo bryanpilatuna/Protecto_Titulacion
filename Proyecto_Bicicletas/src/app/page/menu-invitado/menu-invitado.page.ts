@@ -35,7 +35,7 @@ export class MenuInvitadoPage implements OnInit {
     const alert = await this.alertCtrl.create({
       cssClass: 'my-custom-class',
       header: 'Mensaje',
-      message: 'Se necesita activar la ubicación de su dispositivo para visualizar las tiendas.',
+      message: 'Se necesita activar la ubicación de su dispositivo para visualizar las tiendas en tiempo real.',
       buttons: [
        {
           text: 'Aceptar',
@@ -61,31 +61,31 @@ export class MenuInvitadoPage implements OnInit {
 
 
   notificaciones(){
-    this.mensaje="Necesita registrarse para tener notificaciones.";
+    this.mensaje="Necesitas registrarte para visualizar tus notificaciones.";
     this.mensajemostrar();
   }
 
   //Mensaje de de alert en modulo perfil
   perfil(){
-    this.mensaje="Necesita registrarse para visualizar y editar su perfil.";
+    this.mensaje="Necesitas registrarte para visualizar y editar su perfil.";
     this.mensajemostrar();
   }
 
   //Mensaje de de alert en modulo mis alquileres
   misalquileres(){
-    this.mensaje="Necesita registrarse para visualizar sus alquileres y donaciones.";
+    this.mensaje="Necesitas registrarte para visualizar tus alquileres y donaciones.";
     this.mensajemostrar();
   }
 
   //Mensaje de de alert en modulo alquiler
   alquiler(){
-    this.mensaje="Necesita registrarse para alquilar bicicletas.";
+    this.mensaje="Necesitas registrarte para alquilar una bicicleta.";
     this.mensajemostrar();
   }
 
   //Mensaje de de alert en modulo donacion
   donar(){
-    this.mensaje="Necesita registrarse para donacinar bicicletas.";
+    this.mensaje="Necesitas registrarte para donar tus bicicletas.";
     this.mensajemostrar();
   }
 

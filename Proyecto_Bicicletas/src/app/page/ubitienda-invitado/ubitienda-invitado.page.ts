@@ -101,6 +101,8 @@ export class UbitiendaInvitadoPage implements OnInit {
       this.infowindow.open(this.map, puntos);
     });
     }    
-
+    regresar(){
+      window.location.href = 'menu-invitado' ;
+    }
 
 }
