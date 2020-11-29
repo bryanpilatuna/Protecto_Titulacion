@@ -6,26 +6,55 @@
 
   <div class="container">
     <h3 align="center">MIS NOTIFICACIONES</h3> 
-     
-          <div *ngFor="let notificacion of notificaciones" >
-            <div *ngFor="let usuario of usuarios">
-              <div *ngIf="notificacion.idusuario==usuario.uid">
-                <ion-card>
-                  <ion-card-header>
-                    <ion-card-title>{{usuario.nombres}},{{usuario.apellidos}}</ion-card-title>
-                    <ion-card-subtitle>{{notificacion.tipo}}</ion-card-subtitle>
-                  </ion-card-header>
-                  <ion-card-content>
-                    <label>{{notificacion.fecha.toMillis() | date:'dd/MM/yyyy'}}</label>
-                    <br>
-                    <ion-button  (click)=" cambiarvisualizado(notificacion,notificacion.id)" color="warning">
-                      Revisar Todos
-                    </ion-button>
-                  </ion-card-content>
-                </ion-card>
-                
-             </div>
+    <div class="container">
+      <div class="row mb-3">
+        <div class="col-6 themed-grid-col">
+ 
+          <div class="container justify-content-center" >
+            <div class="row justify-content-center">
+              <div class="col-sm-8">
+                <div class="card">
+                    <div class="card-block">
+                        <h4 class="card-title">Alquileres</h4>
+                        <div class="card-text">
+                           Tienes:  {{ numeroalqui}} pendientes
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                     <ion-button (click)="alquiler()"> Revisar Alquileres</ion-button>
+                    </div>
+                    
+                </div>
             </div>
-            </div> 
+            </div>
+            <br>
+          </div>
+
+        </div>
+        <div class="col-6 themed-grid-col">
+          
+          <div class="container justify-content-center" >
+            <div class="row justify-content-center">
+              <div class="col-sm-8">
+                <div class="card">
+                    <div class="card-block">
+                        <h4 class="card-title">Donaciones</h4>
+                        <div class="card-text">
+                           Tienes:  {{ numerodonas}} pendientes
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                     <ion-button (click)="donacion()"> Revisar Donaciones</ion-button>
+                    </div>
+                    
+                </div>
+            </div>
+            </div>
+            <br>
+          </div>
+        </div>
+      </div>
+     </div>
+    
   </div>    
 </ion-content>

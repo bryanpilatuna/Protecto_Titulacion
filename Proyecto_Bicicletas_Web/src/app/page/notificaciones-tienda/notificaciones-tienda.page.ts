@@ -17,8 +17,12 @@ export class NotificacionesTiendaPage implements OnInit {
   No='No';
   Alquiler='Alquiler';
   Donacion='Donacion';
+  numeroalqui=0;
+  numerodonas=0
   fechaactual: Date = new Date();
   notificaciones:NotificacionesTienda[];
+  notificacionesDona:NotificacionesTienda[];
+  notificacionesAlqui:NotificacionesTienda[];
   usuarios:DatosUsuario[];
   notificacion:NotificacionesTienda={
   visualizar: '',
@@ -45,6 +49,25 @@ export class NotificacionesTiendaPage implements OnInit {
     this.notificacionesService.getMisnotificaciones(this.tiendaid).subscribe((notificaciones) =>{
       this.notificaciones=notificaciones.filter(notificaciones=>notificaciones.visualizar=='No');
     })
+    this.notificacionesalquiler();
+    this.notificacionesdonacion();
+  }
+
+  notificacionesalquiler(){
+    this.notificacionesService.getMisnotificaciones(this.tiendaid).subscribe((notificaciones) =>{
+      this.notificacionesAlqui=notificaciones.filter(notificaciones=>notificaciones.visualizar=='No' && notificaciones.tipo=='Alquiler');
+      this.numeroalqui=this.notificacionesAlqui.length;
+      console.log('alquileres',this.numeroalqui)
+    })
+
+  }
+  notificacionesdonacion(){
+    this.notificacionesService.getMisnotificaciones(this.tiendaid).subscribe((notificaciones) =>{
+      this.notificacionesDona=notificaciones.filter(notificaciones=>notificaciones.visualizar=='No' && notificaciones.tipo=='Donacion');
+      this.numerodonas=this.notificacionesDona.length;
+      console.log('donaciones',this.numerodonas)
+    })
+
   }
 
 
@@ -77,6 +100,13 @@ export class NotificacionesTiendaPage implements OnInit {
     });
     }
   }
-
+  alquiler(){
+    this.numeroalqui=0;
+    this.router.navigate(['/tienda-alquiler']);
+  }
+  donacion(){
+    this.numerodonas=0;
+    this.router.navigate(['/tienda-donacion']);
+  }
 
 }
