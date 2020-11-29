@@ -13,25 +13,37 @@
           <div *ngFor="let notificacion of notificaciones" >
             <div *ngFor="let usuario of usuarios">
               <div *ngIf="notificacion.idusuario==usuario.uid">
-                <ion-card>
-                  <ion-card-header>
-                    <ion-card-title>{{usuario.nombres}},{{usuario.apellidos}}</ion-card-title>
-                    <ion-card-subtitle>{{notificacion.tipo}}</ion-card-subtitle>
-                  </ion-card-header>
-                  <ion-card-content>
-                    <label>{{notificacion.fecha.toMillis() | date:'dd/MM/yyyy'}}</label>
-                    <br>
-                    <ion-button  (click)=" cambiarvisualizado(notificacion,notificacion.id)" color="warning">
-                      <ion-icon name="eye-outline"></ion-icon>
-                      Revisar
-                    </ion-button>
-                    <ion-button  (click)=" aprobar(notificacion,notificacion.id)" color="success">
-                      <ion-icon name="thumbs-up-outline"></ion-icon>
-                      Ya la aprobé/rechazé
-                    </ion-button>
-                    
-                  </ion-card-content>
-                </ion-card>
+                <div class="row justify-content-center">
+                  <div class="col-sm-8">
+                    <div class="card">
+                        <div class="card-block">
+                            <h4 class="card-title">{{usuario.nombres}}, {{usuario.apellidos}}</h4>
+                            <div class="meta">
+                                <label>{{notificacion.tipo}}</label>
+                            </div>
+                            <div class="card-text">
+                              <label>Fecha: </label> {{notificacion.fecha.toMillis() | date:'dd/MM/yyyy'}}
+                            </div>
+                            
+                        </div>
+                        <div class="card-footer">
+                          <ion-button  (click)=" cambiarvisualizado(notificacion,notificacion.id)" color="warning">
+                            <ion-icon name="eye-outline"></ion-icon>
+                            Revisar
+                          </ion-button>
+                          <ion-button  (click)=" aprobar(notificacion,notificacion.id)" color="success">
+                            <ion-icon name="thumbs-up-outline"></ion-icon>
+                            Ya la aprobé/rechazé
+                          </ion-button>
+                        </div>
+                        
+                    </div>
+                </div>
+                </div>
+
+
+
+
                 
              </div>
             </div>

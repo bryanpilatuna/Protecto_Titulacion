@@ -65,16 +65,13 @@ export class HeaderTiendaComponent implements OnInit {
   }
   redidonaciones(){
     this.router.navigate(['/tienda-donacion']);
-    this.noti='No';
   }
   redialquileres(){
     this.router.navigate(['/tienda-alquiler']);
-    this.noti='No';
   }
 
   redinotifi(){
     this.router.navigate(['/notificaciones-tienda']);
-    this.noti='No';
       
   
 

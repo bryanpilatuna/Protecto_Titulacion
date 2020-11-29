@@ -60,7 +60,7 @@ export class NotificacionesTiendaPage implements OnInit {
       }
       
     }
-    this.router.navigate(['/tienda-alquiler']);
+    window.location.href = '/tienda-alquiler' ;
       });
 
     } 
@@ -73,7 +73,7 @@ export class NotificacionesTiendaPage implements OnInit {
             this.notificacionesService.updateNotificacion(this.notificaciones[index],this.notificaciones[index].id);
           }
         }
-    this.router.navigate(['/tienda-donacion']);
+        window.location.href = '/tienda-donacion' ;
     });
     }
   }
@@ -90,6 +90,7 @@ export class NotificacionesTiendaPage implements OnInit {
       }
       
     }
+    window.location.href = '/notificaciones-tienda' ;
       });
 
     } 
@@ -102,6 +103,7 @@ export class NotificacionesTiendaPage implements OnInit {
             this.notificacionesService.updateNotificacion(this.notificaciones[index],this.notificaciones[index].id);
           }
         }
+        window.location.href = '/notificaciones-tienda' ;
     });
     }
   }
