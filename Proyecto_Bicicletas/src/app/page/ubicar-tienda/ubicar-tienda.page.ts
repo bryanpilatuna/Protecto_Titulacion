@@ -99,8 +99,9 @@ this.nav.navigateForward(['/formulario-donacion', this.id]);
       const detallemarker = 
     '<h3>Nombre: '+marker.nombre+'</h3>' +
     "<p>"+'<img src="https://png.pngtree.com/png-vector/20190826/ourlarge/pngtree-house-location-icon-png-image_1701248.jpg" height="25px" width="25px" />'+" <b>Dirección: </b>"+marker.direccion+"</b></p>" +
-    "<p>"+'<img src="https://i.pinimg.com/originals/b9/2f/b6/b92fb6bd92b53e40ad90b1a160b33b0d.jpg" height="20px" width="20px" />'+" <b>Teléfono: </b>"+marker.telefono+"</b> </p>"+
-    "<p>"+'<img src="https://i.pinimg.com/originals/23/98/2d/23982d31ee932c26a021b175c47bb157.png" height="20px" width="20px" />'+" <b>Correo: </b>"+marker.correo+"</b> </p>";
+    "<p>"+'<img src="https://i.pinimg.com/originals/b9/2f/b6/b92fb6bd92b53e40ad90b1a160b33b0d.jpg" height="20px" width="20px" />'+" <b>Teléfono: </b>"+'<a href="tel:+593'+marker.telefono+'">'+marker.telefono+'</a>'+"</b> </p>"+
+    "<p>"+'<img src="https://i.pinimg.com/originals/23/98/2d/23982d31ee932c26a021b175c47bb157.png" height="20px" width="20px" />'+" <b>Correo: </b>"+marker.correo+"</b> </p>"+
+    "<p>"+'<img src="https://m.media-amazon.com/images/I/61d9rNNsMiL._AC_UL320_ML3_.jpg" height="20px" width="20px" />'+" <b>Auxilio mecánico: </b>"+marker.auxilio+"</b> </p>";
         
     puntos.addListener("click", () => {
       this.infowindow.setContent(detallemarker);

@@ -12,4 +12,5 @@ export interface datosUbicacion {
       logo:string,
       nombre:string,
       tipo:string,
+      auxilio:string,
 }
