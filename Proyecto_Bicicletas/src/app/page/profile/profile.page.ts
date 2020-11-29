@@ -52,6 +52,23 @@ export class ProfilePage implements OnInit {
     } 
   }
 
+  async mensajeconfirmacion() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Mensaje',
+      message: this.mensaje,
+      buttons: [
+       {
+          text: 'Aceptar',
+          handler: () => {
+            this.nav.navigateForward('menu');
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
   //Mostrar mensaje de alerta
   async mensajeerror() {
     const alert = await this.alertCtrl.create({
@@ -134,7 +151,8 @@ export class ProfilePage implements OnInit {
   async guardarUsuario() {
     if (this.usuarioId) {
       this.usuarioService.updateUsuario(this.usuario, this.usuarioId).then(() => {
-        this.nav.navigateForward('menu');
+        this.mensaje="Se actualizo su perfil correctamente.";
+        this.mensajeconfirmacion();
       });
     } 
   }
