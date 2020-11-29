@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UbicacionService}from '../services/ubicacion.service';
 import {datosUbicacion}from '../model/ubicacion.interface';
+import { Router } from '@angular/router'
 declare var google;
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ export class HomePage implements OnInit {
   idtienda=null;
   ubicaciones: datosUbicacion[];
   infowindow = new google.maps.InfoWindow();
-  constructor(private UbicacionService: UbicacionService) { }
+  constructor(private UbicacionService: UbicacionService,private router: Router) { }
 
   ngOnInit() {
     this.loadmap();
@@ -21,6 +22,10 @@ export class HomePage implements OnInit {
 
     
   }
+  iniciar(){
+    this.router.navigate(['iniciar-sesion']);
+  }
+
   async loadmap(){
   
     const myLatLng= {lat: -0.225219, lng: -78.5248};
