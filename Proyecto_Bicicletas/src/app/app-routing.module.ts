@@ -63,6 +63,7 @@ const routes: Routes = [
   {
     path: 'bienvenida',
     loadChildren: () => import('./page/bienvenida/bienvenida.module').then( m => m.BienvenidaPageModule)
+    
   },
   {
     path: 'alquiler/:id',
