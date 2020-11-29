@@ -18,13 +18,14 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), NgxPaginationModule, BrowserAnimationsModule,AppRoutingModule,ComponentsModule,AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule,AngularFireStorageModule],
+    AngularFireAuthModule,AngularFireStorageModule, NgbModule],
   providers: [
     StatusBar,
     SplashScreen,

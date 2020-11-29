@@ -12,6 +12,7 @@ import { ModalAlquilerPage } from 'src/app/modal/modal-alquiler/modal-alquiler.p
 import { NotificacionesTienda } from '../../modelm/notificaciones.interface';
 import { NotificaciontiendaService} from '../../service/notificaciontienda.service';
 import * as firebase from 'firebase';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-formulario-alquiler',
   templateUrl: './formulario-alquiler.page.html',
@@ -55,7 +56,7 @@ export class FormularioAlquilerPage implements OnInit {
   desabilitarboton:boolean;
   formGroup: FormGroup; 
 
-  constructor(private route: ActivatedRoute, private nav: NavController, private UsuarioService: UsuarioService,public Service:NotificaciontiendaService,
+  constructor(config: NgbModalConfig, private modalService: NgbModal,private route: ActivatedRoute, private nav: NavController, private UsuarioService: UsuarioService,public Service:NotificaciontiendaService,
     private alquilerService: AlquilerService, private loadingController: LoadingController,public modalController: ModalController,public formBuilder: FormBuilder) { 
       //this.disableSelector = false;
       var user = firebase.auth().currentUser.uid;
@@ -63,7 +64,8 @@ export class FormularioAlquilerPage implements OnInit {
       console.log(this.usuarioid);
       this.desabilitarboton = true;
       this.crearvalidaciones();
-    
+      config.backdrop = 'static';
+      config.keyboard = false;
      
     }
 
@@ -96,7 +98,9 @@ export class FormularioAlquilerPage implements OnInit {
       }
     })
   }
-
+  open(content) {
+    this.modalService.open(content);
+  }
 
   //Crear validaciones para el form 
   crearvalidaciones(){
