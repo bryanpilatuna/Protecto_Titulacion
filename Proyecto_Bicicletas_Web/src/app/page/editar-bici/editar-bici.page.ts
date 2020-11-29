@@ -5,6 +5,7 @@ import { NavController, LoadingController } from '@ionic/angular';
 import {BicicletasService}from '../../services/bicicletas.service';
 import {datosBici}from '../../model/bicicletas.interface';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-editar-bici',
@@ -14,6 +15,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 export class EditarBiciPage implements OnInit {
   public image: any;
   idbici=null;
+  mensaje:string;
   formGroup: FormGroup;
 
   bicicleta:datosBici={
@@ -30,6 +32,7 @@ export class EditarBiciPage implements OnInit {
     private nav: NavController, 
     private bicicletaservice: BicicletasService, 
     private loadingController: LoadingController,
+    public alertController: AlertController,
     public formBuilder: FormBuilder,) {
 
       this.crearvalidaciones();
@@ -97,6 +100,8 @@ export class EditarBiciPage implements OnInit {
   }
   guardarBici(){
     this.bicicletaservice.updateBici(this.bicicleta, this.idbici).then(() => {
+      this.mensaje='Guardado con éxito'
+     this.presentAlert(this.mensaje);
       this.nav.navigateForward('mis-bicis');
       
     });
@@ -106,5 +111,15 @@ regresar(){
 
 }
 
+async presentAlert(mensaje:string) {
+  const alert = await this.alertController.create({
+    cssClass: 'my-custom-class',
+    header: 'Atención',
+    message: mensaje,
+    buttons: ['OK']
+  });
+
+  await alert.present();
+}
 
 }
