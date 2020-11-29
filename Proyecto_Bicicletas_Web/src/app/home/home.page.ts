@@ -13,41 +13,60 @@ export class HomePage implements OnInit {
   idtienda=null;
   ubicaciones: datosUbicacion[];
   infowindow = new google.maps.InfoWindow();
-  constructor(private UbicacionService: UbicacionService) {}
+  constructor(private UbicacionService: UbicacionService) { }
 
   ngOnInit() {
+    this.loadmap();
 
-    this.pintarpestaña();
+
     
   }
-
- 
-
-  pintarpestaña(){
-
-    /// Url actual
-let url = window.location.href;
-
-/// Elementos de li
-const tabs = ["home", "mapa", "registro-cliente", "registro-tienda", "descagar-app"];
-
-tabs.forEach(e => {
-    /// Agregar .php y ver si lo contiene en la url
-    if (url.indexOf(e) !== -1) {
-        /// Agregar tab- para hacer que coincida la Id
-        setActive("tab-" + e);
+  async loadmap(){
+  
+    const myLatLng= {lat: -0.225219, lng: -78.5248};
+    console.log(myLatLng);
+    const mapEle: HTMLElement = document.getElementById('map');
+    
+    this.map = new google.maps.Map(mapEle, {
+      center: myLatLng,
+      zoom:12
+    });
+    google.maps.event.addListenerOnce(this.map, 'idle', () => {   
+  
+      mapEle.classList.add('show-map');
+     this.renderMarker();
+     
+    });
+    
     }
 
-});
 
-/// Funcion que asigna la clase active
-function setActive(id) {
-    document.getElementById(id).setAttribute("class", "nav-item active");
-}
+    
+    renderMarker(){
+      this.UbicacionService.getUbicaciones().subscribe((ubicaciones) =>{
+        this.ubicaciones = ubicaciones;
+        for (let index = 0; index < ubicaciones.length; index++) {
+          this.addMarker(ubicaciones[index]);
+        }
+      })
+    }
 
-  }
+    addMarker(marker: datosUbicacion) {
+      const puntos= new google.maps.Marker({
+        position: { lat: marker.position.latitude, lng: marker.position.longitude },
+        map: this.map,
+        animation: google.maps.Animation.DROP,
+      });
+      const detallemarker = 
+    '<h3>Nombre: '+marker.nombre+'</h3>';
+    
+    puntos.addListener("click", () => {
+     this.infowindow.setContent(detallemarker);
+      this.infowindow.open(this.map, puntos);
+     console.log(marker.nombre);
+    });
+    }    
 
 
-  
 
 }

@@ -1,67 +1,84 @@
-#container {
-  text-align: center;
+.carousel-item {
+  height: 400px;
+  background: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+section {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
 
+.lnr {
+  display: inline-block;
+  fill: currentColor;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.05em;
+  stroke-width: 1;
+}
+
+.services-icon {
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+bgc2, .vLine, .hLine {
+    background-color: #0F52BA;
+}
+
+.quote-icon {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+.services-icon {
+    font-size: 60px;
+    margin-left: 2rem;
+}
+.button {
+  position: relative;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background: rgb(230, 9, 9);
+  padding: 10px;
+  border: none;
+  color: white;
+  font-size: 1.2em;
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+  border-radius: 100px;
+}
+.button span {
+  position: relative;
+  pointer-events: none;
+}
+.button::before {
+  --size: 0;
+  content: '';
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 30%;
-  transform: translateY(-50%);
+  left: var(--x);
+  top: var(--y);
+  width: var(--size);
+  height: var(--size);
+  background: radial-gradient(circle closest-side, #4405f7, transparent);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  transition: width .2s ease, height .2s ease;
+}
+.button:hover::before {
+  --size: 400px;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
-}
-
-h4 {
-  color: #4f4866;
-  font-weight: normal;
-  font-size: 25px;
-
-}
-p {
-  font-weight: normal;
-  font-size: 18px;
-  font-family: Arial;
- 
-}
-
-.w-100 {
-  width: 100%!important;
-  height: 350px;
-}
-
-.carousel-caption {
-  color:black;
-  text-align: left;
-}
-p,h4,button{ 
-  font-family: "Open Sans"
-}
 #map {
-  width: 100%;
-  height:100%;
+  width: auto;
+  height:500px;
   opacity: 0;
   transition: opacity 150ms ease-in;
   display: block;
   &.show-map{
     opacity: 1;
   }
-}
-.carousel-control-next, .carousel-control-prev{
-  
-  opacity: 40;
 }

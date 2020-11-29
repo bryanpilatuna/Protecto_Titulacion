@@ -1,116 +1,121 @@
-<app-header></app-header>
 <ion-content>
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-          <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-          </ol>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img class="d-block w-100" src="../../assets/inicio/page2.webp" alt="First slide" width="100px" height="600px">
-              <div class="carousel-caption d-none d-md-block">
-                <h4 style="color:rgb(255, 255, 255);text-align: left;font-size: 30px;font-weight: bold;">Bienvenidos a BICIS QUITO</h4>
-                <a href="home#conocenos"><button type="button" class="btn btn-success">Conocenos</button></a>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <img class="d-block w-100" src="./../assets/inicio/page8.jpg" alt="Second slide" width="100px" height="600px">
-              <div class="carousel-caption d-none d-md-block">
-                <h4 style="color:white;text-align: left;;font-size: 30px;font-weight: bold;">Descargar nuestra APP</h4>
-                <a href="home#descarga" ><button style="width: 100px;" type="button" class="btn btn-success">Ver</button></a>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <img class="d-block w-100" src="./../assets/inicio/page7.jpeg" alt="Third slide" width="100px" height="600px">
-              <div class="carousel-caption d-none d-md-block">
-                <h4 style="color:white;text-align: left;font-size: 30px;font-weight: bold;">Registrate</h4>
-                <a href="registro"><button style="width: 100px;" type="button" class="btn btn-success">Ver</button></a>
-              </div>
-            </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="home">
+        <img src="assets/inicio/bicisin.png" height="50">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <button class="button">
+              <span>Iniciar Sesión</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <header>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <!-- Slide One - Set the background image for this slide in the line below -->
+        <div class="carousel-item active" style="background-image:  url('./../assets/inicio/page7.jpeg') ">
+          <div class="carousel-caption d-none d-md-block">
+            <h2 class="display-4">First Slide</h2>
+            <p class="lead">This is a description for the first slide.</p>
           </div>
-          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        </div>
+        <!-- Slide Two - Set the background image for this slide in the line below -->
+        <div class="carousel-item" style="background-image: url('./../assets/inicio/gif.gif');background-position: center; ">
+          <div class="carousel-caption d-none d-md-block">
+            <h2 class="display-4">Second Slide</h2>
+            <p class="lead">This is a description for the second slide.</p>
+          </div>
+        </div>
+        <!-- Slide Three - Set the background image for this slide in the line below -->
+        <div class="carousel-item" style="background-image: url('./../assets/inicio/3.jpg')">
+          <div class="carousel-caption d-none d-md-block">
+            <h2 class="display-4">Third Slide</h2>
+            <p class="lead">This is a description for the third slide.</p>
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
           </a>
-          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
-            
           </a>
-        </div>
-        
-        <div class="container" id="conocenos">
-
-          <div class="row" style="margin:0px;padding:0px">
-            <div class="col" style="display: flex;justify-content: center; align-content: center;flex-direction: column;">
-              <img class="d-block w-100" src="./../assets/inicio/primero.jpg" alt="Second slide" width="100px" height="600px">
-            </div>
-            <div class="col" style="display: flex;justify-content: center; align-content: center; flex-direction: column;">
-              <h4 class=" font-weight-bold text-center my-5">¿Que es Bicis-Quito?</h4>
-                        <p class="text-justify w-responsive mx-auto pb-5">
-                          Bicis-Quito es una alternativa económica y ecológica para transportarnos en la ciudad, donde permitie registrar negocios talleres de bicicletas en Quito, 
-                          con el objetivo de que puedan alquilar bicicletas y recibir donaciones de las mismas para aquellos ciudadanos quienes lo necesiten.<br>
-                          Bicis-Quito es un proyecto de grado de la Escuela Politécnica Nacional y Escuela de Formacion de Tecnólogos
-                          de la carrera Analisis de Sistemas Informáticos</p>
-            </div>
-          </div>
-
-          <div class="row" style="margin:0px;padding:0px">
-            <div class="col" style="display: flex;justify-content: center; align-content: center;flex-direction: column;">
-              <h4 class=" font-weight-bold text-center" style="margin:0px;padding:0px">Registrate</h4>
-              <br/>
-            </div>
-          
-          </div>
+    </div>
+  </header>
   
-          <div class="row" style="margin:0px;padding:0px">
-            <div class="col" style="margin:0px;padding:0px;display: flex;justify-content: center; align-content: center; flex-direction: column;align-content: center;">
-              <h4 class=" font-weight-bold text-center" style="margin:0px;padding:0px">Cliente</h4>
-              <br/>
-              <img src="./../assets/inicio/perfiles.png" style="height: 200px;width: 200px;display:block;
-              margin-left:auto;margin-right: auto;">
-              <br/>
-              <p class="text-justify w-responsive mx-auto pb-5">
-                Para el perfil cliente puedes:
-                <li>Buscar distintas tiendas y talleres en la ciudad de Quito.</li> 
-                <li>Enviar formularios de solicitud de alquileres y donaciones de bicicletas.</li>
-                <li>Recibir notificaciones de solicitudes de alquileres y donaciones.</li>
-              </p>           
-            </div>
-            <div class="col" style="margin:0px;padding:0px;display: flex;justify-content: center; align-content: center; flex-direction: column;align-content: center;">
-              <h4 class=" font-weight-bold text-center" style="margin:0px;padding:0px">Tienda</h4>
-              <br/>
-              <img src="./../assets/inicio/tienda.png" style="height: 200px;width: 200px;display:block;
-              margin-left:auto;margin-right: auto;">
-              <br/>
-              <p class="text-justify w-responsive mx-auto pb-5">
-                Si tienes una tienda regístrate para realizar:
-                <li>Registrar bicicletas para ser alquiladas.</li>
-                <li>Aceptar o rechazar solicitudes de alquileres y donaciones.</li>
-                <li>Recibir notificaciones de solicitudes de alquileres y donaciones.</li>
-
-              </p>
-      
-                          
-            </div>
-          
-          </div>
-
-          <div class="row" style="margin:0px;padding:0px" id="descarga">
-            <div class="col" style="display: flex;justify-content: center; align-content: center;flex-direction: column;">
-              <img class="d-block w-100" src="./../assets/inicio/descagarapp.png" alt="Second slide" style="height: 150px;">
-            </div>
-            <div class="col" style="display: flex;justify-content: center; align-content: center; flex-direction: column;">
-              <h4 class=" font-weight-bold text-center my-5">Descarga nuestra APP</h4>
-                        <p class="text-justify w-responsive mx-auto pb-5">
-                          Descarga nuestra APP desde la Google Play Store de tu celular <a href=""><button type="button" class="btn btn-success">Ir a enlace</button></a></p>
-                         
-            </div>
-          </div>
-       
+  <!-- Page Content -->
+  <section class="py-5 text-center">
+        <div class="container"> 
+          <h2 class="text-center">¿Que es Bicis-Quito?</h2>
+          <p class="text-muted mb-5 text-center">Bicis-Quito es una alternativa económica y ecológica para transportarnos en la ciudad, donde permitie registrar negocios talleres de bicicletas en Quito, 
+            con el objetivo de que puedan alquilar bicicletas y recibir donaciones de las mismas para aquellos ciudadanos quienes lo necesiten.<br>
+            Bicis-Quito es un proyecto de grado de la Escuela Politécnica Nacional y Escuela de Formacion de Tecnólogos
+            de la carrera Analisis de Sistemas Informáticos.</p>
         </div>
-       
-        
-        <app-footer></app-footer>
+  </section>
+     
+     <!-- Header -->
+  <header class="bg-primary text-center py-5 mb-4">
+    <div class="container">
+      <h1 class="font-weight-light text-white">Servicios</h1>
+    </div>
+  </header>
+  
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row">
+      <!-- Team Member 1 -->
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-0 shadow">
+          <img src="../../assets/inicio/alquilerser.jpg" style="height:300px">
+          <div class="card-body text-center">
+            <h5 class="card-title mb-0">Alquiler</h5>
+            <div class="card-text text-black-50">El servicio funciona previo al registro en donde el cual a través de un formulario puedes solicitar la alquilación de bicicletas.</div>
+          </div>
+        </div>
+      </div>
+      <!-- Team Member 2 -->
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-0 shadow">
+          <img src="../../assets/inicio/donacionser.jpg" style="height:300px">
+          <div class="card-body text-center">
+            <h5 class="card-title mb-0">Donación</h5>
+            <div class="card-text text-black-50">El servicio funciona previo al registro en donde si tienes una bicicleta que no utilices la puedes donar a las diferentes tiendas registradas en la aplicación. </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- /.row -->
+  
+  </div>
+
+  <header class="bg-primary text-center py-5 mb-4">
+    <div class="container">
+      <h1 class="font-weight-light text-white">Listado de tiendas</h1>
+    </div>
+  </header>
+
+  <div class="container">
+    <div id="map"></div>
+  </div>
+  <app-footer></app-footer>
 </ion-content>
+
