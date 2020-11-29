@@ -7,6 +7,7 @@
     <ion-icon name="arrow-back-outline"></ion-icon>
     Regresar
   </ion-button>
+  <div class="modal-content">
   <div class="mx-auto">
 
     <form [formGroup]="formGroup" (ngSubmit)="guardarbici()">
@@ -69,7 +70,7 @@
       
       <div class="form-group">
         <label position="stacked"><strong>Descripción</strong></label>
-        <input type="text" class="form-control" placeholder="Nueva" formControlName="descripcionControl" [(ngModel)]="bici.descripcion" >
+        <textarea type="text" class="form-control" placeholder="Nueva" formControlName="descripcionControl" [(ngModel)]="bici.descripcion" rows="2" cols="50" ></textarea>
       </div>
       <div class="validation-errors">
         <p class="form-error"
@@ -85,8 +86,6 @@
           *Máximo 40 caracteres  
         </p>
       </div>
-
-      
       <div class="row">
         <label position="stacked"><strong>Logo</strong></label>
         <input formControlName="foto" type="file" accept=".png, .jpg" (change)="enviarimagen($event)" style="color:black"/>
@@ -98,6 +97,7 @@
     </div>
   </form>
   </div>
+</div>
 
   
 

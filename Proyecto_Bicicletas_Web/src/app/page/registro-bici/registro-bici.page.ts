@@ -16,6 +16,7 @@ export class RegistroBiciPage implements OnInit {
   public formGroup: FormGroup;
   public image: any;
   tiendaid=null;
+  mensaje:string;
 
   bici:datosBici = {
     descripcion: '',
@@ -30,6 +31,7 @@ export class RegistroBiciPage implements OnInit {
   constructor(private route: ActivatedRoute,
     private bicicletasservice:BicicletasService,
     private nav: NavController,
+    public alertController: AlertController,
     public formBuilder: FormBuilder,
     ) { this.crearvalidaciones();
       var user = firebase.auth().currentUser.uid;
@@ -77,6 +79,19 @@ guardarbici(){
 
   this.bicicletasservice.addbici(this.bici,this.image)
   this.nav.navigateForward('/mis-bicis');
+  this.mensaje='Guardado con éxito'
+     this.presentAlert(this.mensaje);
+
+}
+async presentAlert(mensaje:string) {
+  const alert = await this.alertController.create({
+    cssClass: 'my-custom-class',
+    header: 'Atención',
+    message: mensaje,
+    buttons: ['OK']
+  });
+
+  await alert.present();
 }
   enviarimagen(event: any): void {
     this.image = event.target.files[0];
