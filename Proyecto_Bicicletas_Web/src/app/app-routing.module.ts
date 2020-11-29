@@ -15,42 +15,16 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'preguntas-frecuentes',
-    loadChildren: () => import('./page/preguntas-frecuentes/preguntas-frecuentes.module').then( m => m.PreguntasFrecuentesPageModule)
-  },
-  {
     path: 'registro-tienda',
     loadChildren: () => import('./page/registro-tienda/registro-tienda.module').then( m => m.RegistroTiendaPageModule)
-  },
-  {
-    path: 'descagar-app',
-    loadChildren: () => import('./page/descagar-app/descagar-app.module').then( m => m.DescagarAppPageModule)
   },
   {
     path: 'iniciar-sesion',
     loadChildren: () => import('./page/iniciar-sesion/iniciar-sesion.module').then( m => m.IniciarSesionPageModule)
   },
   {
-    path: 'menu',
-    loadChildren: () => import('./page/menu/menu.module').then( m => m.MenuPageModule),
-    canActivate: [TiendaGuard]
-  },
-  {
-    path: 'verify-email',
-    loadChildren: () => import('./page/verify-email/verify-email.module').then( m => m.VerifyEmailPageModule)
-  },
-  {
-    path: 'menu-cliente',
-    loadChildren: () => import('./page/menu-cliente/menu-cliente.module').then( m => m.MenuClientePageModule),
-    canActivate: [AuthGuard]
-  },
-  {
     path: 'registro-cliente',
     loadChildren: () => import('./page/registro-cliente/registro-cliente.module').then( m => m.RegistroClientePageModule)
-  },
-  {
-    path: 'registro-administrador',
-    loadChildren: () => import('./page/registro-administrador/registro-administrador.module').then( m => m.RegistroAdministradorPageModule)
   },
   {
     path: 'menu-administrador',
@@ -86,10 +60,6 @@ const routes: Routes = [
 
   },
   {
-    path: 'mapa',
-    loadChildren: () => import('./page/mapa/mapa.module').then( m => m.MapaPageModule)
-  },
-  {
     path: 'registro-bici',
     loadChildren: () => import('./page/registro-bici/registro-bici.module').then( m => m.RegistroBiciPageModule),
     canActivate: [TiendaGuard]
@@ -111,10 +81,6 @@ const routes: Routes = [
   {
     path: 'edit-cliente/:id',
     loadChildren: () => import('./page/edit-cliente/edit-cliente.module').then( m => m.EditClientePageModule)
-  },
-  {
-    path: 'forgot-password',
-    loadChildren: () => import('./page/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
   },
   {
     path: 'tienda-donacion',
@@ -246,7 +212,11 @@ const routes: Routes = [
   {
     path: 'alquiler-rechazadas',
     loadChildren: () => import('./page/alquiler-rechazadas/alquiler-rechazadas.module').then( m => m.AlquilerRechazadasPageModule)
+  },  {
+    path: 'pruebas',
+    loadChildren: () => import('./page/pruebas/pruebas.module').then( m => m.PruebasPageModule)
   },
+
 
 
  
