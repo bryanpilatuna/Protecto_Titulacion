@@ -25,7 +25,7 @@ section {
   font-size: 30px;
 }
 bgc2, .vLine, .hLine {
-    background-color: #0F52BA;
+    background-color: #3A6073;
 }
 
 .quote-icon {
@@ -41,7 +41,7 @@ bgc2, .vLine, .hLine {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  background: rgb(230, 9, 9);
+  background:#3B4ACA;
   padding: 10px;
   border: none;
   color: white;
@@ -63,7 +63,7 @@ bgc2, .vLine, .hLine {
   top: var(--y);
   width: var(--size);
   height: var(--size);
-  background: radial-gradient(circle closest-side, #4405f7, transparent);
+  background: radial-gradient(circle closest-side, #CC31B5, transparent);
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   transition: width .2s ease, height .2s ease;
@@ -81,4 +81,8 @@ bgc2, .vLine, .hLine {
   &.show-map{
     opacity: 1;
   }
+}
+
+.bg-primary {
+  background-color:#3A6073!important;
 }
