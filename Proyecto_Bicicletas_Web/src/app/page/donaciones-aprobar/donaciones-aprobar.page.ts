@@ -17,7 +17,8 @@ import { AlertController } from '@ionic/angular';
 })
 export class DonacionesAprobarPage implements OnInit {
   tiendaid=null;
-  notificacionesti:NotificacionesTienda[];
+  notificacionesAlqui:NotificacionesTienda[];
+  numeroalqui=0;
   false=false;
   true=true;
   pageActual: number= 1;
@@ -73,10 +74,19 @@ export class DonacionesAprobarPage implements OnInit {
    
     })
 
-    this.notificacionesService.getMisnotificaciones(this.tiendaid).subscribe((notificaciones) =>{
-      this.notificacionesti=notificaciones.filter(notificaciones=>notificaciones.visualizar=='No');
-    })
+    
     //this.desactivarnoti();
+  }
+  notificacionesalquiler(){
+    this.notificacionesService.getMisnotificaciones(this.tiendaid).subscribe((notificaciones) =>{
+      this.notificacionesAlqui=notificaciones.filter(notificaciones=>notificaciones.visualizar=='No' && notificaciones.tipo=='Donacion');
+      this.numeroalqui=this.notificacionesAlqui.length;
+      for (let index = 0; index < this.numeroalqui; index++) {
+        this.notificacionesAlqui[index].visualizar='Si';
+        this.notificacionesService.updateNotificacion(this.notificacionesAlqui[index],this.notificacionesAlqui[index].id)
+        
+      }
+    })
   }
 
   
@@ -98,10 +108,12 @@ export class DonacionesAprobarPage implements OnInit {
     this.notificacion.visualizar='No';
     this.notificacion.idusuario=donacion.iddonante;
     this.notificacion.idtipo=donacion.id;
-    donacion.respuesta='Tu donación ha sido aprobado, en breve nos pondremos en contacto contigo';
+    donacion.respuesta='Aprobada';
     this.donacionesservice.addNotificacion(this.notificacion);
     this.notificacion.respuesta='';
+    
     this.donacionesservice.actualizarDonacion(donacion,id).then(() => {
+      //this.notificacionesalquiler();
       this.router.navigate(['/tienda-donacion']);
     });
 
@@ -113,6 +125,7 @@ export class DonacionesAprobarPage implements OnInit {
 
     }
     else{
+      //this.notificacionesalquiler();
       donacion.aprobacion=false;
       donacion.anular=true;
       this.notificacion.idtienda=this.tiendaid;
@@ -120,6 +133,7 @@ export class DonacionesAprobarPage implements OnInit {
       this.notificacion.idusuario=donacion.iddonante;
       this.notificacion.idtipo=donacion.id;
       donacion.respuesta=this.notificacion.respuesta;
+      
       this.donacionesservice.addNotificacion(this.notificacion);
       this.notificacion.respuesta='';
       this.donacionesservice.actualizarDonacion(donacion,id).then(() => {
@@ -143,7 +157,7 @@ export class DonacionesAprobarPage implements OnInit {
 
     await alert.present();
   }
-
+ 
 
 
 

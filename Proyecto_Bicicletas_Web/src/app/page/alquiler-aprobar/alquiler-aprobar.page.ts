@@ -16,8 +16,9 @@ import { AlertController } from '@ionic/angular';
 })
 export class AlquilerAprobarPage implements OnInit {
   tiendaid=null;
-    notificaciones:NotificacionesTienda[];
+    notificacionesAlqui:NotificacionesTienda[];
   alquileres:datosAlquiler[];
+  numeroalqui=0;
   usuarios:DatosUsuario[];
   pageActual: number= 1;
   fechaactual: Date = new Date();
@@ -65,12 +66,25 @@ export class AlquilerAprobarPage implements OnInit {
       this.alquileres = alquileres.filter(alquileres=>alquileres.aprobacion==false &&alquileres.anular==false );
      
       })
+      
 
 ///////////Desactivar notificaciones
+      }
+      notificacionesalquiler(){
+        this.notificacionesService.getMisnotificaciones(this.tiendaid).subscribe((notificaciones) =>{
+          this.notificacionesAlqui=notificaciones.filter(notificaciones=>notificaciones.visualizar=='No' && notificaciones.tipo=='Alquiler');
+          this.numeroalqui=this.notificacionesAlqui.length;
+          for (let index = 0; index < this.numeroalqui; index++) {
+            this.notificacionesAlqui[index].visualizar='Si';
+            this.notificacionesService.updateNotificacion(this.notificacionesAlqui[index],this.notificacionesAlqui[index].id)
+            
+          }
+        })
       }
      
     
       updateAlquiler(acalquiler:datosAlquiler,id:string){
+       
       acalquiler.aprobacion=true;
       this.alquilerservice.actualizarAlquiler(acalquiler,id).then(() => {
       this.router.navigate(['/tienda-alquiler']);
@@ -90,6 +104,7 @@ export class AlquilerAprobarPage implements OnInit {
         this.alquilerservice.addNotificacion(this.notificacion);
         this.notificacion.respuesta='';
         alquiler.respuesta='Alquiler Aprobado';
+        //this.notificacionesalquiler();
         this.alquilerservice.actualizarAlquiler(alquiler,id).then(() => {
           this.router.navigate(['/tienda-alquiler']);
         });
@@ -102,6 +117,7 @@ export class AlquilerAprobarPage implements OnInit {
           this.presentAlert();
     
         }else{
+         // this.notificacionesalquiler();
         this.notificacion.visualizar='No';
         this.notificacion.idusuario=alquiler.idusuario;
         this.notificacion.idtipo=alquiler.id;
