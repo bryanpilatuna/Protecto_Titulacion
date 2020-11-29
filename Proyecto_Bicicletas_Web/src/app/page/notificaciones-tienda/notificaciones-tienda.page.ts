@@ -78,5 +78,33 @@ export class NotificacionesTiendaPage implements OnInit {
     }
   }
 
+  aprobar(notifi:NotificacionesTienda,id:string){
+    if(notifi.tipo=='Alquiler')   {
+   
+      notifi.visualizar='Si';
+      this.notificacionesService.updateNotificacion(notifi,id).then(() => {
+    for (let index = 0; index < this.notificaciones.length; index++) {
+      if(this.notificaciones[index].tipo=='Alquiler'){
+        this.notificaciones[index].visualizar='Si';
+        this.notificacionesService.updateNotificacion(this.notificaciones[index],this.notificaciones[index].id);
+      }
+      
+    }
+      });
+
+    } 
+    else if(notifi.tipo=='Donacion'){
+      notifi.visualizar='Si';
+      this.notificacionesService.updateNotificacion(notifi,id).then(() => {
+        for (let index = 0; index < this.notificaciones.length; index++) {
+          if(this.notificaciones[index].tipo=='Donacion'){
+            this.notificaciones[index].visualizar='Si';
+            this.notificacionesService.updateNotificacion(this.notificaciones[index],this.notificaciones[index].id);
+          }
+        }
+    });
+    }
+  }
+
 
 }

@@ -6,6 +6,9 @@
 
   <div class="container">
     <h3 align="center">MIS NOTIFICACIONES</h3> 
+    <ng-container *ngIf="!notificaciones || notificaciones.length == 0">
+      <h3>No tienes notificaciones</h3>
+    </ng-container>
      
           <div *ngFor="let notificacion of notificaciones" >
             <div *ngFor="let usuario of usuarios">
@@ -18,8 +21,13 @@
                   <ion-card-content>
                     <label>{{notificacion.fecha.toMillis() | date:'dd/MM/yyyy'}}</label>
                     <br>
+                    <ion-button  (click)=" aprobar(notificacion,notificacion.id)" color="success">
+                      <ion-icon name="thumbs-up-outline"></ion-icon>
+                      Ya la aprobé
+                    </ion-button>
                     <ion-button  (click)=" cambiarvisualizado(notificacion,notificacion.id)" color="warning">
-                      Revisar Todos
+                      <ion-icon name="eye-outline"></ion-icon>
+                      Revisar
                     </ion-button>
                   </ion-card-content>
                 </ion-card>
