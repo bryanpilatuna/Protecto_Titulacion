@@ -84,5 +84,10 @@ guardarbici(){
     
   }
 
+  regresar(){
+    this.nav.navigateForward('mis-bicis');
+  
+  }
+
 
 }

@@ -6,6 +6,7 @@ export interface Tienda {
     correo : string;
     telefono : string;
     estado : string;
+    auxilio: string;
     logo : string;
     position: {latitude:number,
               longitude:number};

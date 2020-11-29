@@ -76,22 +76,15 @@ export class DonacionesAprobarPage implements OnInit {
     this.notificacionesService.getMisnotificaciones(this.tiendaid).subscribe((notificaciones) =>{
       this.notificacionesti=notificaciones.filter(notificaciones=>notificaciones.visualizar=='No');
     })
-    this.desactivarnoti();
+    //this.desactivarnoti();
   }
 
-  desactivarnoti(){
-    for (let index = 0; index < this.notificaciones.length; index++) {
-      if(this.notificaciones[index].tipo=='Donacion'){
-        this.notificaciones[index].visualizar='Si';
-        this.notificacionesService.updateNotificacion(this.notificaciones[index],this.notificaciones[index].id);
-      } 
-    }
-  }
+  
 
   updateDonacion(acdonacion:datosDonacion,iddonacion:string){
     acdonacion.aprobacion=true;
     this.donacionesservice.actualizarDonacion(acdonacion,iddonacion).then(() => {
-      this.router.navigate(['/tienda-donacion',this.tiendaid]);
+      this.router.navigate(['/tienda-donacion']);
       
     });
     
@@ -105,11 +98,11 @@ export class DonacionesAprobarPage implements OnInit {
     this.notificacion.visualizar='No';
     this.notificacion.idusuario=donacion.iddonante;
     this.notificacion.idtipo=donacion.id;
-    donacion.respuesta='Aprobada';
+    donacion.respuesta='Tu donación ha sido aprobado, en breve nos pondremos en contacto contigo';
     this.donacionesservice.addNotificacion(this.notificacion);
     this.notificacion.respuesta='';
     this.donacionesservice.actualizarDonacion(donacion,id).then(() => {
-      this.router.navigate(['/tienda-donacion',this.tiendaid]);
+      this.router.navigate(['/tienda-donacion']);
     });
 
       }
@@ -130,7 +123,7 @@ export class DonacionesAprobarPage implements OnInit {
       this.donacionesservice.addNotificacion(this.notificacion);
       this.notificacion.respuesta='';
       this.donacionesservice.actualizarDonacion(donacion,id).then(() => {
-        this.router.navigate(['/tienda-donacion',this.tiendaid]);
+        this.router.navigate(['/tienda-donacion']);
       });
 
     }

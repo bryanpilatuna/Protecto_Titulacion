@@ -5,13 +5,21 @@
 <ion-content>
   <div class="container">
     <div class="row mb-3">
-      <div class="col-6 themed-grid-col"><ion-col>
+      <div class="col-6 themed-grid-col">
+        <br>
         <div id="map" ></div>
         <ul class="list-group">
-          <li class="list-group-item list-group-item-warning">La ubicación guardada de tu tienda</li>         
+          <li class="list-group-item list-group-item-warning">La ubicación guardada de tu tienda</li> 
+          <ion-button  (click)="cambiarUbicacion()">
+            <ion-icon slot="start" name="locate"></ion-icon>
+            Actualizar mi Ubicación
+          </ion-button>
+          <ion-label >Se guardará tu ubicación actual</ion-label>        
         </ul>
-      </ion-col></div>
+      </div>
       <div class="col-6 themed-grid-col">
+        <br>
+        <div class="modal-content">
         <ion-grid>
           <ion-row>
             <ion-col>
@@ -31,7 +39,6 @@
         </ion-grid>
         
       
-        <div class="table-responsive table-striped table-bordered">
         <div class="mx-auto">
         <form [formGroup]="formGroup" (ngSubmit)="guardartienda()" *ngIf="tienda" >      
       
@@ -86,7 +93,7 @@
               <ion-col>
                       
                   <div>
-                    <ion-label position="stacked"><strong>CORREO ELECTRÓNICO</strong></ion-label>
+                    <ion-label position="stacked"><strong>EMAIL</strong></ion-label>
                     <ion-input  formControlName="emailControl" #email type="email" [(ngModel)]="tienda.correo" placeholder="abc@gmail.com" readonly></ion-input>
                   </div>
                   <div class="validation-errors">
@@ -134,35 +141,19 @@
             </div>   
               </ion-col>
             </ion-row>
-            <ion-row>
-              <ion-col>
-              <div>
-                <ion-button  (click)=" cambiarcontra()">
+          </ion-grid> 
+                <ion-button  (click)="cambiarcontra()" expand="block" color="warning">
                   <ion-icon slot="start" ></ion-icon>
                   Cambiar contraseña
                 </ion-button>
-              </div>
-              <div></div>
-            </ion-col>
-            <ion-col>
-            <div>
-              <ion-button  (click)="cambiarUbicacion()">
-                <ion-icon slot="start" name="locate"></ion-icon>
-                Actualizar mi Ubicación
-              </ion-button>
-              <ion-label position="stacked">Se guardará tu ubicación actual</ion-label>
-            </div>
-            <div></div>
-          </ion-col>
-          </ion-row>
-          </ion-grid> 
+          
             <div class="row" style="display: flex;justify-content: center;">
               <ion-button type="submit" [disabled]="!formGroup.valid" expand="block">Guardar</ion-button>
           </div>
         </form>
       </div>
-        </div>
       </div>
+    </div>
     </div>
    </div>
    <app-footer></app-footer>
