@@ -5,7 +5,7 @@
 <ion-content>
   <section class="py-5 text-center">
     <div class="container"> 
-      <div class="row" style="border: 8px groove;">
+      <div class="row" >
         <div class="col" style="background-color: #3A6073;display: flex;
         align-items: center;justify-content: center;">
         <div class="row" style="align-items: center;justify-content: center;">
@@ -15,7 +15,7 @@
           <img src="../../../assets/administrador/administrador.jpg" style="height:300px">
         </div>
         </div>
-        <div class="col">   
+        <div class="col" style="border: #3A6073 2px solid;" >   
             <div class="row">
               
                 <form [formGroup]="formGroup" (ngSubmit)="guardarUsuario()" *ngIf="usuario" >
