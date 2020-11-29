@@ -26,7 +26,8 @@ export class AlquilerService {
 
   private Bicicleta2Collection: AngularFirestoreCollection<datosBicicleta>;
   private bicicleta2: Observable<datosBicicleta[]>;
-
+  private tiendaCollection2: AngularFirestoreCollection<datosTiendas>;
+  private tienda2: Observable<datosTiendas[]>;
   constructor(private db:AngularFirestore) { 
     
     
@@ -88,7 +89,7 @@ export class AlquilerService {
   }
 
   getBicicletas(idtienda:string){
-    this.BicicletaCollection = this.db.collection<datosBicicleta>('bicicleta', ref => ref.where('idtienda', '==', idtienda));
+    this.BicicletaCollection = this.db.collection<datosBicicleta>('bicicleta', ref => ref.where('idtienda', '==', idtienda).where('disponible','==','Si'));
     this.bicicleta = this.BicicletaCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
@@ -141,11 +142,19 @@ export class AlquilerService {
     return this.alquilerid;
   }
 
-  formtDate(date: Date): string {
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
+  getbustieact(){
+    this.tiendaCollection2 = this.db.collection<datosTiendas>('tiendas', ref => ref.where('estado', '==', 'Activo'));
+    this.tienda2 = this.tiendaCollection2.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+        
+          return {id, ...data};
+        });
+      })
+    );
+    return this.tienda2;
   }
 
 

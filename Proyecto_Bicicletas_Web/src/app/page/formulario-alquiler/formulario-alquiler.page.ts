@@ -68,26 +68,18 @@ export class FormularioAlquilerPage implements OnInit {
     }
 
   ngOnInit() {
-    this.UsuarioService.$getObjeto.subscribe(data=>{
-      this.idtienda=data;
-    });
-    
-  
     this.alquiler.idusuario=this.usuarioid;
-
-    this.alquilerService.getTiendas().subscribe((tiendas) =>{
+    
+    this.alquilerService.getbustieact().subscribe((tiendas) =>{
     
       this.tiendas = tiendas;
-
       for(let i in this.tiendas){
         this.alquilerService.getBicicletas(this.tiendas[i].id).subscribe((bicicletas) =>{
           this.bicicletas2=bicicletas;
-         if(bicicletas.length==0){
-          
+         if(bicicletas.length==0){    
           var l = this.tiendas.indexOf( this.tiendas[i] );
           this.tiendas.splice(l,1); 
          }else{
-        
           var cont=0;
           for(let m in this.bicicletas2){
             if(this.bicicletas2[m].disponible=="Si"){

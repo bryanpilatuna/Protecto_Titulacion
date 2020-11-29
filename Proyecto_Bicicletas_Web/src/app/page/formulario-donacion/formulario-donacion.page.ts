@@ -58,16 +58,11 @@ export class FormularioDonacionPage implements OnInit {
   ngOnInit() {
     this.donacion.iddonante=this.donanteid;
     this.donacion.fechadonacion=this.fechaactual;
-    this.donacionService.getTiendas().subscribe((tiendas) =>{
+    this.donacionService.getbustieact().subscribe((tiendas) =>{
       this.tiendas = tiendas;
-      for(let i in this.tiendas){
-
-        if(this.tiendas[i].estado=="Inactivo"){
-          var l = this.tiendas.indexOf( this.tiendas[i] );
-          this.tiendas.splice(l,1); 
-        }
-      }
     })
+
+
     
   }
 
