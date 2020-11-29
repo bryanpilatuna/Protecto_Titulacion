@@ -117,7 +117,6 @@ export class EditarTiendaPage implements OnInit {
       Validators.required,
       Validators.minLength(3),
       Validators.maxLength(40),
-      Validators.pattern("(?=[^A-Z]*[A-Z])[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]*"),
     ]));
 
     const direccionControl = new FormControl('', Validators.compose([
@@ -127,6 +126,9 @@ export class EditarTiendaPage implements OnInit {
 
     ]));
 
+    const tipoControl = new FormControl('', Validators.compose([
+      Validators.required,
+  ]));
     const emailControl = new FormControl('', Validators.compose([
       Validators.required,
       Validators.email,
@@ -142,7 +144,7 @@ export class EditarTiendaPage implements OnInit {
       Validators.pattern("[0-9]*"),
     ]));
     
-    this.formGroup = this.formBuilder.group({nombreControl,direccionControl,telefonoControl,emailControl });
+    this.formGroup = this.formBuilder.group({nombreControl,direccionControl,telefonoControl,emailControl,tipoControl });
     
   }
 

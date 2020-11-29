@@ -234,6 +234,7 @@ export class AuthService {
                 telefono : telefonoform,
                 estado : "Activo",
                 logo : this.photoURL,
+                auxilio:"No",
                 position: {latitude:lat,longitude:lng}
                 
               })
