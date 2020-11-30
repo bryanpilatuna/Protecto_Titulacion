@@ -80,7 +80,7 @@
                     <ion-item  *ngIf="alquiler">
                       <ion-label>Seleccione la  Tienda</ion-label>
                       <ion-select [(ngModel)]="alquiler.idtienda" ok-text="Seleccionar" 
-                      cancel-text="Cancelar" formControlName="tindaSeleccion" (ionChange)="onSelectChange()" >
+                      cancel-text="Cancelar" formControlName="tindaSeleccion" (ionChange)="onSelectChange(content)" >
                         <ion-select-option *ngFor="let tienda of tiendas" [value]="tienda.id"> 
                           <ion-label>
                           {{ tienda.nombre}}
@@ -97,6 +97,12 @@
                     
                     </div>
                   </div>
+                  <ion-item *ngIf="imgbici">
+                    <img height="100" [src]="imgbici" style="display:block;
+                            margin:auto;margin-top: 10px;margin-bottom: 10px;">
+                  </ion-item>
+              
+                  
      
                   <div class="form-group">
                     <ion-button [disabled]="!formGroup.valid" expand="full" (click)="crearAlquiler()">Realizar Alquiler</ion-button>
@@ -105,20 +111,27 @@
                 
                 <ng-template #content let-c="close" let-d="dismiss">
                   <div class="modal-header">
-                    <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
+                    <h4 class="modal-title" id="modal-basic-title">Seleccionar Bicicleta</h4>
                     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
                   <div class="modal-body">
-                    <p>Hello, World!</p>
+                    <ion-item-sliding *ngFor="let bicicleta of bicicletas4">
+                      <ion-item button  (click)="seleccionarbici(bicicleta.id)">
+                        <ion-label>
+                          <img [src]="bicicleta.imagen" style="height: 130px;display:block;margin:auto;margin-bottom: 10px;"/>
+                     
+                
+                       
+                        </ion-label>
+                      </ion-item> 
+                    </ion-item-sliding>
                   </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
-                  </div>
+             
                 </ng-template>
                 
-                <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
+
             
             
         </div>

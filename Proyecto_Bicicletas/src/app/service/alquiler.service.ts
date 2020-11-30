@@ -17,7 +17,8 @@ export class AlquilerService {
   private tiendaCollection: AngularFirestoreCollection<datosTiendas>;
   private tienda: Observable<datosTiendas[]>;
 
-
+  private tiendaCollection2: AngularFirestoreCollection<datosTiendas>;
+  private tienda2: Observable<datosTiendas[]>;
   private alquileridCollection: AngularFirestoreCollection<datosAlquiler>;
   private alquilerid: Observable<datosAlquiler[]>;
 
@@ -101,6 +102,22 @@ export class AlquilerService {
     );
     return this.bicicleta;
   }
+
+  getbustieact(){
+    this.tiendaCollection2 = this.db.collection<datosTiendas>('tiendas', ref => ref.where('estado', '==', 'Activo'));
+    this.tienda2 = this.tiendaCollection2.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+        
+          return {id, ...data};
+        });
+      })
+    );
+    return this.tienda2;
+  }
+
 
   getAlquileres(id: string){
     return this.alquilerCollection.doc<datosAlquiler>(id).valueChanges();

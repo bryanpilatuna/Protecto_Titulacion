@@ -12,17 +12,21 @@ import { ModalAlquilerPage } from 'src/app/modal/modal-alquiler/modal-alquiler.p
 import { NotificacionesTienda } from '../../modelm/notificaciones.interface';
 import { NotificaciontiendaService} from '../../service/notificaciontienda.service';
 import * as firebase from 'firebase';
-import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-formulario-alquiler',
   templateUrl: './formulario-alquiler.page.html',
   styleUrls: ['./formulario-alquiler.page.scss'],
 })
 export class FormularioAlquilerPage implements OnInit {
+  imgbici:string;
   usuarioid= null;
+  modal : NgbModalRef;
   tiendas: datosTiendas[];
   bicicletas:datosBicicleta;
+  
   bicicletas2:datosBicicleta[];
+  bicicletas4:datosBicicleta[];
   fechaactual: Date = new Date();
   idbicicleta=null;
   idtienda=null;
@@ -67,6 +71,7 @@ export class FormularioAlquilerPage implements OnInit {
       config.backdrop = 'static';
       config.keyboard = false;
      
+     
     }
 
   ngOnInit() {
@@ -98,9 +103,7 @@ export class FormularioAlquilerPage implements OnInit {
       }
     })
   }
-  open(content) {
-    this.modalService.open(content);
-  }
+ 
 
   //Crear validaciones para el form 
   crearvalidaciones(){
@@ -124,11 +127,34 @@ export class FormularioAlquilerPage implements OnInit {
     this.formGroup = this.formBuilder.group({fechaAlquiler,fechaDevolucion,tindaSeleccion,horaAlquiler,horaDonacion});
   }
 
-  async onSelectChange(){
+  async onSelectChange(content){
     this.desabilitarboton = false;
-    this.abrirmodal();
+    console.log(this.alquiler.idtienda);
+    this.alquilerService.getBicicletas(this.alquiler.idtienda).subscribe((bicicletas) =>{
+      this.bicicletas4 = bicicletas;
+      console.log(this.bicicletas4);
+     
+    })
+    this.modal =this.modalService.open(content,{centered:true});
+    
+    //this.abrirmodal();
   }
+ 
+  seleccionarbici(idbici:string){
+   this.modal.close();
+   this.alquiler.bicicleta=idbici;
+   
+   this.alquilerService.getBicicleta(this.alquiler.bicicleta).subscribe((bicicletas) =>{
+    //this.bicicletas = bicicletas;
+    console.log(bicicletas);
+    this.imgbici=bicicletas.imagen;
+ 
 
+  })
+ 
+   
+ 
+  }
 
   async abrirmodal(){
     const modal = await this.modalController.create({
