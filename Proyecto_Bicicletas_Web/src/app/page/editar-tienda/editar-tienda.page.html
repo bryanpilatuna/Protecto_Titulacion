@@ -2,161 +2,133 @@
   <app-header-tienda></app-header-tienda>
 </ion-header>
 
-<ion-content>
-  <div class="container">
-    <div class="row mb-3">
-      <div class="col-6 themed-grid-col">
-        <br>
-        <div id="map" ></div>
-        <ul class="list-group">
-          <li class="list-group-item list-group-item-warning">La ubicación guardada de tu tienda</li> 
-          <ion-button  (click)="cambiarUbicacion()">
-            <ion-icon slot="start" name="locate"></ion-icon>
-            Actualizar mi Ubicación
-          </ion-button>
-          <ion-label >Se guardará tu ubicación actual</ion-label>        
-        </ul>
-      </div>
-      <div class="col-6 themed-grid-col">
-       
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-              <div class="row" style="display: flex;justify-content: center;">  
-                <img [src]="tienda.logo" style="width:40%;height:40%;display:block;margin:auto"/>
-            </div>
-            <br/>
-            <div class="row" style="display: flex;justify-content: center;">  
-              <label style="color:blue">
-                Cambiar foto de perfil
-                <input type="file" name="fileSubir" (change)="subirImagen($event)" style="display:none;">
-              </label>
-              </div>
-            </ion-col>
-            
-          </ion-row>
-        </ion-grid>
-        
-        <div class="modal-content">
-        <div class="mx-auto">
-        <form [formGroup]="formGroup" (ngSubmit)="guardartienda()" *ngIf="tienda" > 
-          <ion-grid>
-            <ion-row>
-              <ion-col>
-                  <ion-label position="stacked"><strong>NOMBRE</strong></ion-label>
-                  <ion-input formControlName="nombreControl" type="text" #nombre [(ngModel)]="tienda.nombre" placeholder="Bryan"></ion-input>
-                <div class="validation-errors">
-                  <p class="form-error"
-                    *ngIf="formGroup.get('nombreControl').hasError('required') && formGroup.get('nombreControl').touched">
-                    *Requerido
-                  </p>
-                  <p class="form-error"
-                    *ngIf="formGroup.get('nombreControl').hasError('minlength') && formGroup.get('nombreControl').touched">
-                    *Mínimo 3 caracteres 
-                  </p>
-                  <p class="form-error"
-                    *ngIf="formGroup.get('nombreControl').hasError('maxlength') && formGroup.get('nombreControl').touched">
-                    *Máximo 40 caracteres  
-                  </p>
-                </div>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                <ion-label position="stacked"><strong>DIRECCIÓN</strong></ion-label>
-                <ion-textarea formControlName="direccionControl" #direccion type="text" [(ngModel)]="tienda.direccion" placeholder="AV. Mariscal Sucre"></ion-textarea>
 
-              <div class="validation-errors">
-                <p class="form-error"
-                  *ngIf="formGroup.get('direccionControl').hasError('required') && formGroup.get('direccionControl').touched">
-                  *Requerido
-                </p>
-                <p class="form-error"
-                  *ngIf="formGroup.get('direccionControl').hasError('minlength') && formGroup.get('direccionControl').touched">
-                  *Mínimo 3 caracteres 
-                </p>
-                <p class="form-error"
-                  *ngIf="formGroup.get('direccionControl').hasError('maxlength') && formGroup.get('direccionControl').touched">
-                  *Máximo 40 caracteres  
-                </p>
-              </div>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                <ion-label  position="stacked"><strong>¿Realizas auxilio mecánico? </strong></ion-label >
-                <select [(ngModel)]="tienda.auxilio" formControlName="tipoControl" class="form-control">
-                  <option value="Si" selected>Si</option>
-                  <option value="No">No</option>
-                </select>
-              </ion-col>
-            </ion-row>
-              <ion-row> 
-              <ion-col>
-                      
-             
-                    <ion-label position="stacked"><strong>EMAIL</strong></ion-label>
-                    <ion-input  formControlName="emailControl" #email type="email" [(ngModel)]="tienda.correo" placeholder="abc@gmail.com" readonly></ion-input>
-            
-                  <div class="validation-errors">
-                    <p class="form-error"
-                      *ngIf="formGroup.get('emailControl').hasError('required') && formGroup.get('emailControl').touched">
-                      *Requerido
-                    </p>
-                    <p class="form-error"
-                      *ngIf="formGroup.get('emailControl').hasError('email') && formGroup.get('emailControl').touched">
-                      *Ingrese un correo valido
-                    </p>
-                    <p class="form-error"
-                      *ngIf="formGroup.get('emailControl').hasError('minlength') && formGroup.get('emailControl').touched">
-                      *Mínimo 10 caracteres 
-                    </p>
-                    <p class="form-error"
-                      *ngIf="formGroup.get('emailControl').hasError('maxlength') && formGroup.get('emailControl').touched">
-                      *No permitido 
-                    </p>
+
+<ion-content>
+  <section class="py-5 text-center">
+    <div class="container"> 
+      <div class="row" >
+        <div class="col" >
+          <div id="map" ></div>  
+            <ion-button type="button" expand="block" color="tertiary" (click)="cambiarUbicacion()"><ion-icon slot="start" name="locate"></ion-icon>
+              Actualizar mi Ubicación
+            </ion-button>  
+                 
+    
+        </div>
+        <div class="col" style="border: #3A6073 2px solid;" >   
+            <div class="row">
+              
+                <form [formGroup]="formGroup" (ngSubmit)="guardartienda()" *ngIf="tienda" >
+                  <div class="row">  
+                      <img [src]="tienda.logo" style="height:120px;display:block;margin:auto;padding-top: 10px;"/>
+                  </div>
+                  <br/>
+                  <div class="row" style="display: flex;justify-content: center;">  
+                    <label style="color:blue">
+                      Cambiar foto de perfil
+                      <input type="file" accept=".png, .jpg" name="fileSubir" (change)="subirImagen($event)" style="display:none;">
+                    </label>
+                  </div>
+                  
+                  <div class="form-group row">
+                    <div class="col">
+                      <label position="stacked"><strong>Nombre</strong></label>
+                      <input class="form-control" type="text" placeholder="Bryan" formControlName="nombreControl" #nombre [(ngModel)]="tienda.nombre">
+                      <div class="validation-errors">
+                        <p class="form-error"
+                          *ngIf="formGroup.get('nombreControl').hasError('required') && formGroup.get('nombreControl').touched">
+                          *Requerido
+                        </p>
+                        <p class="form-error"
+                          *ngIf="formGroup.get('nombreControl').hasError('minlength') && formGroup.get('nombreControl').touched">
+                          *Mínimo 3 caracteres 
+                        </p>
+                        <p class="form-error"
+                          *ngIf="formGroup.get('nombreControl').hasError('maxlength') && formGroup.get('nombreControl').touched">
+                          *Máximo 40 caracteres  
+                        </p>
+                      </div>
                     </div>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-              <ion-label position="stacked"><strong>TELÉFONO</strong></ion-label>
-              <ion-input formControlName="telefonoControl"#telefono  type="tel" [(ngModel)]="tienda.telefono" placeholder="0999999999" ></ion-input>
-            <div class="validation-errors">
-              <p class="form-error"
-                *ngIf="formGroup.get('telefonoControl').hasError('required') && formGroup.get('telefonoControl').touched">
-                *Requerido
-              </p>
-              <p class="form-error"
-                *ngIf="formGroup.get('telefonoControl').hasError('minlength') && formGroup.get('telefonoControl').touched">
-                *Mínimo 7 números 
-              </p>
-              <p class="form-error"
-                *ngIf="formGroup.get('telefonoControl').hasError('maxlength') && formGroup.get('telefonoControl').touched">
-                *Máximo 10 números 
-              </p>
-              <p class="form-error"
-                *ngIf="formGroup.get('telefonoControl').hasError('pattern') && formGroup.get('telefonoControl').touched">
-                *El nombre debe tener solo números
-              </p>
-            </div>   
-              </ion-col>
-            </ion-row>
-          </ion-grid> 
-                <ion-button  (click)="cambiarcontra()" expand="block" color="warning">
-                  <ion-icon slot="start" ></ion-icon>
-                  Cambiar contraseña
-                </ion-button>
-          
-            <div class="row" style="display: flex;justify-content: center;">
-              <ion-button type="submit" [disabled]="!formGroup.valid" expand="block">Guardar</ion-button>
-          </div>
-        </form>
+                    <div class="col">
+                      <label position="stacked"><strong>Teléfono</strong></label>
+                      <input class="form-control" type="text" placeholder="0999999999" formControlName="telefonoControl" #telefono [(ngModel)]="tienda.telefono">
+                      <div class="validation-errors">
+                        <p class="form-error"
+                          *ngIf="formGroup.get('telefonoControl').hasError('required') && formGroup.get('telefonoControl').touched">
+                          *Requerido
+                        </p>
+                        <p class="form-error"
+                          *ngIf="formGroup.get('telefonoControl').hasError('minlength') && formGroup.get('telefonoControl').touched">
+                          *Mínimo 7 números 
+                        </p>
+                        <p class="form-error"
+                          *ngIf="formGroup.get('telefonoControl').hasError('maxlength') && formGroup.get('telefonoControl').touched">
+                          *Máximo 10 números 
+                        </p>
+                        <p class="form-error"
+                          *ngIf="formGroup.get('telefonoControl').hasError('pattern') && formGroup.get('telefonoControl').touched">
+                          *El nombre debe tener solo números
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label position="stacked"><strong>Direccion</strong></label>
+                    <textarea type="text" class="form-control" placeholder="Av. Las Americas N°212" formControlName="direccionControl" #direccion [(ngModel)]="tienda.direccion"  rows="2" cols="50"></textarea>
+                  </div> 
+                    <div class="validation-errors">
+                      <p class="form-error"
+                        *ngIf="formGroup.get('direccionControl').hasError('required') && formGroup.get('direccionControl').touched">
+                        *Requerido
+                      </p>
+                      <p class="form-error"
+                        *ngIf="formGroup.get('direccionControl').hasError('minlength') && formGroup.get('direccionControl').touched">
+                        *Mínimo 3 caracteres 
+                      </p>
+                      <p class="form-error"
+                        *ngIf="formGroup.get('direccionControl').hasError('maxlength') && formGroup.get('direccionControl').touched">
+                        *Máximo 40 caracteres  
+                      </p>
+                    </div>
+                  <div class="form-group row">
+                    <div class="col">
+                      <ion-label  position="stacked"><strong>¿Realizas auxilio mecánico? </strong></ion-label >
+                        <select [(ngModel)]="tienda.auxilio" formControlName="tipoControl" class="form-control">
+                          <option value="Si" selected>Si</option>
+                          <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label position="stacked"><strong>Correo electrónico</strong></label>
+                        <input class="form-control" type="text" placeholder="abc@gmail.com" formControlName="emailControl" #email [(ngModel)]="tienda.correo" readonly>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <ion-button type="button" expand="block" color="tertiary" (click)="cambiarcontra()">Cambiar contraseña</ion-button>
+                  </div>
+                  <div class="form-group">
+                    <ion-button type="submit" [disabled]="!formGroup.valid" expand="block">Guardar</ion-button>
+                  </div>
+                </form>
+            
+            </div>
+        </div>
       </div>
-      </div>
+      
     </div>
-    </div>
-   </div>
-   <app-footer></app-footer>
+  </section>
+
+  <app-footer></app-footer>
 </ion-content>
+
+
+
+
+
+
+
+
 

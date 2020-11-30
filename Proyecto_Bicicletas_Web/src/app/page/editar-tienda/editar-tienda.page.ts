@@ -122,7 +122,7 @@ export class EditarTiendaPage implements OnInit {
     const direccionControl = new FormControl('', Validators.compose([
       Validators.required,
       Validators.minLength(3),
-      Validators.maxLength(40),
+      Validators.maxLength(100),
 
     ]));
 

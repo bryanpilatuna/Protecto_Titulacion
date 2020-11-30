@@ -1,44 +1,8 @@
-.mx-auto {
-  display: flex;  /*display: flex; el cual vuelve al contenedor un elemento flex*/
-  
-  align-items: center;  /*justify-content: center; le decimos a los elementos del contenedor flex que se ubiquen al centro del eje principal eje horizontal*/
-  
-  justify-content: center; /*align-items: center; estamos diciendo que queremos que los elementos dentro del contenedor flex se ubiquen en el centro del eje secundario eje vertical*/
-  
-  margin: 10px;
-}
-
-.center-span {
-  display: block;
-  text-align: center;
-}
 
 
-
-.btn_eye_icon{
-position: absolute;
-right: 0;
-bottom: 4px;
-background: transparent;
-ion-icon{
-    font-size: 22px;
-    color:#757575;
-}
-}
-
-.btn_eye_icon:focus{
-outline: none  !important;
-
-}
-ion-input{
-  border: 1px solid ; 
-  border-radius: 4px;
-
-}
-ion-content{
   #map {
     width: 100%;
-    height:80%;
+    height:90%;
     opacity: 0;
     transition: opacity 150ms ease-in;
     display: block;
@@ -46,71 +10,14 @@ ion-content{
       opacity: 1;
     }
   }
-
+  label,input{
+    font-size: 12px;
+  }
+  .row {
   
-}
+    margin-left: 0px;
+  }
+  
 
 
-h4 {
-  color: #4f4866;
-  font-weight: normal;
-  font-size: 25px;
-  font-family: Arial;
-}
-p {
-  font-weight: normal;
-  font-size: 18px;
-  font-family: Arial;
- 
-}
-///////////////
-
-
-
-
-ion-textarea{
-  border: 1px solid ; 
-  border-radius: 4px;
-
-}
-.user-img {
-	margin-top: -50px;
-}
-.user-img img {
-	height: 100px;
-	width: 100px;
-}
-.main-section {
-	margin: 0 auto;
-	margin-top: 80px;
-	padding: 0;
-}
-
-.user-name {
-	margin: 10px 0;
-}
-.user-name h1 {
-	font-size: 14px;
-  color: white;
-  padding: 0px;
-  margin:0px;
-}
-.form-input button {
-	width: 100%;
-
-}
-.btn-success {
-	background-color: #2ecc71;
-	border: 1px solid #2ecc71;
-}
-.btn-success:hover {
-	background-color: #27ae60;
-	border: 1px solid #27ae60;
-}
-.link-part {
-	background-color: #ecf0f1;
-	padding: 15px;
-	border-radius: 0 0 5px 5px;
-	border-top: 1px solid #c2c2c2;
-}
 

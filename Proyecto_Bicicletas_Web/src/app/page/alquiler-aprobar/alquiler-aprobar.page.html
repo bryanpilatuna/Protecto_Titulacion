@@ -3,6 +3,8 @@
   <ng-container *ngIf="!alquileres || alquileres.length == 0">
     <h3>No tienes alquileres pendientes</h3>
   </ng-container>
+
+  
   <div class="table-responsive table-striped table-bordered">
   <table class="table " *ngFor="let alquiler of alquileres | paginate: { itemsPerPage: 5, currentPage: pageActual }">
           <thead>
