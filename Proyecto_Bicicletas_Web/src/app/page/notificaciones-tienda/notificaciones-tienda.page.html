@@ -10,7 +10,7 @@
       <h3>No tienes notificaciones</h3>
     </ng-container>
      
-          <div *ngFor="let notificacion of notificaciones" >
+          <div *ngFor="let notificacion of notificaciones | paginate: { itemsPerPage: 5, currentPage: pageActual }" >
             <div *ngFor="let usuario of usuarios">
               <div *ngIf="notificacion.idusuario==usuario.uid">
                 <div class="row justify-content-center">
@@ -48,5 +48,22 @@
              </div>
             </div>
             </div> 
-  </div>    
+            <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
+  </div>  
+  <div>
+    <div class="container">
+      <div class="row mb-3">
+        <div class="col-6 themed-grid-col">
+          <h5>___________</h5>
+          <h5>___________</h5>
+          <h5>___________</h5>
+          <h5>___________</h5>
+          <h5>___________</h5>
+          <h5>___________</h5>
+        </div>
+      </div>
+     </div>
+    
+  <app-footer></app-footer>
+  </div>
 </ion-content>

@@ -8,6 +8,7 @@ import { NotificacionesTiendaPageRoutingModule } from './notificaciones-tienda-r
 
 import { NotificacionesTiendaPage } from './notificaciones-tienda.page';
 import { ComponentsModule } from '../../components/components.module';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ComponentsModule } from '../../components/components.module';
     FormsModule,
     IonicModule,
     NotificacionesTiendaPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    NgxPaginationModule
   ],
   declarations: [NotificacionesTiendaPage]
 })
