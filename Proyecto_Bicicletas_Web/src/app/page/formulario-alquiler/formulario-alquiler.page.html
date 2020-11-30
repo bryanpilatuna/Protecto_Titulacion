@@ -126,18 +126,33 @@
                     
                     </div>
                   </div>
+                  <ion-item *ngIf="direc">
+                    <ion-label position="stacked">Dirección Tienda</ion-label>
+                    <p>{{direc}}</p>
+                  </ion-item>
                   <ion-item *ngIf="imgbici">
                     <img height="100" [src]="imgbici" style="display:block;
                             margin:auto;margin-top: 10px;margin-bottom: 10px;">
                   </ion-item>
+                 
               
                   
      
                   <div class="form-group">
-                    <ion-button [disabled]="!formGroup.valid" expand="full" (click)="crearAlquiler()">Realizar Alquiler</ion-button>
+                    <ion-button [disabled]="!formGroup.valid" expand="full" (click)="crearAlquiler(content2)">Realizar Alquiler</ion-button>
                   </div>
                 </form>
-                
+                <ng-template #content2 let-c="close" let-d="dismiss">
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title">Mensaje</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>Se envió correctamente su formulario de alquiler.</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" (click)="close()">Aceptar</button>
+                  </div>
+                </ng-template>
                 <ng-template #content let-c="close" let-d="dismiss">
                   <div class="modal-header">
                     <h4 class="modal-title" id="modal-basic-title">Seleccionar Bicicleta</h4>

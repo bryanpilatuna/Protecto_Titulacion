@@ -74,13 +74,14 @@
       </p>
     
     </div>
-    <ion-item *ngIf="direc">
-      <ion-label position="stacked">Dirección</ion-label>
-      <p>{{direc}}</p>
-    </ion-item>
+    
     <ion-item *ngIf="imgbici">
       <img height="100" [src]="imgbici" style="display:block;
               margin:auto;margin-top: 10px;margin-bottom: 10px;">
+    </ion-item>
+    <ion-item *ngIf="direc">
+      <ion-label position="stacked">Dirección</ion-label>
+      <p>{{direc}}</p>
     </ion-item>
 
 

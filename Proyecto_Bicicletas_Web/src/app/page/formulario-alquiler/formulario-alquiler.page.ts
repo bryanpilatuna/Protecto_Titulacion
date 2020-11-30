@@ -20,8 +20,10 @@ import { NgbModalConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstra
 })
 export class FormularioAlquilerPage implements OnInit {
   imgbici:string;
+  direc:string;
   usuarioid= null;
   modal : NgbModalRef;
+  modal2 : NgbModalRef;
   tiendas: datosTiendas[];
   bicicletas:datosBicicleta;
   
@@ -128,6 +130,9 @@ export class FormularioAlquilerPage implements OnInit {
   }
 
   async onSelectChange(content){
+    this.alquilerService.getTienda(this.alquiler.idtienda).subscribe((tienda) =>{
+      this.direc=tienda.direccion;
+    })
     this.desabilitarboton = false;
     console.log(this.alquiler.idtienda);
     this.alquilerService.getBicicletas(this.alquiler.idtienda).subscribe((bicicletas) =>{
@@ -146,6 +151,7 @@ export class FormularioAlquilerPage implements OnInit {
    this.idbicicleta =idbici;
    this.alquilerService.getBicicleta(this.idbicicleta).subscribe((bicicletas) =>{
     this.bicicletas = bicicletas;
+    this.bicicletas.disponible="No";
     this.imgbici=bicicletas.imagen;
   })
  
@@ -180,8 +186,11 @@ export class FormularioAlquilerPage implements OnInit {
   
     })
   }*/
-
-  async crearAlquiler(){
+  close() {
+    this.modal.close();
+    window.location.href = 'formulario-alquiler' ;
+  }
+  async crearAlquiler(content2){
 
     this.alquiler.idusuario=this.usuarioid;
     this.alquiler.idtienda=this.alquiler.idtienda;
@@ -193,8 +202,9 @@ export class FormularioAlquilerPage implements OnInit {
       this.notificaciones.idusuario=this.alquiler.idusuario;
       this.notificaciones.idtienda=this.alquiler.idtienda;
       this.Service.addNotificacion(this.notificaciones);
+      this.modal2 =this.modalService.open(content2,{centered:true});
       //this.nav.navigateForward('/profile'); 
-      window.location.href = 'formulario-alquiler' ;
+      //window.location.href = 'formulario-alquiler' ;
     });
   }
 
