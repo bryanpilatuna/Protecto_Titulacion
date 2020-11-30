@@ -27,7 +27,7 @@ export class EditTiendaPage implements OnInit {
   async loadTodo(){
     this.tiendaservice.getTienda(this.iduser).subscribe(tienda => {
 
-
+      console.log(tienda);
       this.tienda = tienda;
       
     });

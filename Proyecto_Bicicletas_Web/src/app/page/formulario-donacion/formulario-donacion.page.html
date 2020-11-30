@@ -6,9 +6,17 @@
   <section class="py-5 text-center">
     <div class="container"> 
       <div class="row" >
-        <div class="col" style="border: #3A6073 2px solid;">
-          <h2 style="text-align:center">Editar Perfil</h2>
+      
+
+
+        <div class="col" style="border: #3A6073 2px solid;display: flex;
+        align-items: center;justify-content: center;">
+        <div class="row" style="align-items: center;justify-content: center;">
+          <h2 style="text-align:center">Formulario de Alquiler</h2>
+        
+          
           <img src="../../../assets/ciudadano/donar.jpg" style="height:300px">
+        </div>
         </div>
         <div class="col" style="border: #3A6073 2px solid;" >   
                 <form [formGroup]="formGroup" *ngIf="donacion" (ngSubmit)="crearDonacion(content)" >

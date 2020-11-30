@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { EditTiendaPageRoutingModule } from './edit-tienda-routing.module';
 
 import { EditTiendaPage } from './edit-tienda.page';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ComponentsModule } from '../../components/components.module';
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ComponentsModule } from '../../components/components.module';
     FormsModule,
     IonicModule,
     EditTiendaPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    ReactiveFormsModule
   ],
   declarations: [EditTiendaPage]
 })
