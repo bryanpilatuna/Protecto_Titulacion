@@ -153,11 +153,11 @@ export class EditTiendaPage implements OnInit {
  
 
   guardartienda(){
-    this.tiendaservice.updateTienda(this.tienda, this.tiendaid).then(() => {
+    this.tiendaservice.updateTienda(this.tienda, this.iduser).then(() => {
       //this.nav.navigateForward('menu-tienda');
       this.mensaje='Guardado con éxito'
      this.presentAlert(this.mensaje);
-     this.router.navigate(['/editar-tienda']);
+     this.router.navigate(['/perfil-administrador']);
     
       
     });
