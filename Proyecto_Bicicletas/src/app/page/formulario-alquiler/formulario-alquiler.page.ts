@@ -11,14 +11,16 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { ModalAlquilerPage } from 'src/app/modal/modal-alquiler/modal-alquiler.page';
 import { NotificacionesTienda } from '../../model/notificaciones.interface';
 import { NotificaciontiendaService} from '../../service/notificaciontienda.service';
-
+import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-formulario-alquiler',
   templateUrl: './formulario-alquiler.page.html',
   styleUrls: ['./formulario-alquiler.page.scss'],
 })
 export class FormularioAlquilerPage implements OnInit {
-
+  imgbici:string;
+  direc:string;
+  mensaje:string;
   usuarioid= null;
   tiendas: datosTiendas[];
   bicicletas:datosBicicleta;
@@ -56,7 +58,7 @@ export class FormularioAlquilerPage implements OnInit {
   desabilitarboton:boolean;
   formGroup: FormGroup; 
 
-  constructor(private route: ActivatedRoute, private nav: NavController, private UsuarioService: UsuarioService,public Service:NotificaciontiendaService,
+  constructor(private alertCtrl: AlertController,private route: ActivatedRoute, private nav: NavController, private UsuarioService: UsuarioService,public Service:NotificaciontiendaService,
     private alquilerService: AlquilerService, private loadingController: LoadingController,public modalController: ModalController,public formBuilder: FormBuilder) { 
       //this.disableSelector = false;
       this.desabilitarboton = true;
@@ -71,10 +73,6 @@ export class FormularioAlquilerPage implements OnInit {
     });
     
     this.usuarioid=this.route.snapshot.params['id'];
-    if (this.usuarioid){
-      this.loadTodo();
-    }
-    
     this.alquiler.idusuario=this.usuarioid;
 
     this.alquilerService.getTiendas().subscribe((tiendas) =>{
@@ -108,6 +106,23 @@ export class FormularioAlquilerPage implements OnInit {
   }
 
 
+  async mensajeconfirmacion() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Mensaje',
+      message: this.mensaje,
+      buttons: [
+       {
+          text: 'Aceptar',
+          handler: () => {
+            this.nav.navigateForward('menu');
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
   //Crear validaciones para el form 
   crearvalidaciones(){
     const fechaAlquiler = new FormControl('', Validators.compose([
@@ -131,6 +146,9 @@ export class FormularioAlquilerPage implements OnInit {
   }
 
   async onSelectChange(){
+    this.alquilerService.getTienda(this.alquiler.idtienda).subscribe((tienda) =>{
+      this.direc=tienda.direccion;
+    })
     this.desabilitarboton = false;
     this.abrirmodal();
   }
@@ -150,7 +168,7 @@ export class FormularioAlquilerPage implements OnInit {
     this.alquilerService.getBicicleta(this.idbicicleta).subscribe((bicicletas) =>{
       this.bicicletas = bicicletas;
       this.bicicletas.disponible="No";
-    
+      this.imgbici=bicicletas.imagen;
 
     })
   }
@@ -164,12 +182,7 @@ export class FormularioAlquilerPage implements OnInit {
     })
   }*/
 
-  async loadTodo(){
-    const loading = await this.loadingController.create({
-      message: 'Loading....'
-    });
-    
-  }
+
 
   async crearAlquiler(){
 
@@ -183,7 +196,9 @@ export class FormularioAlquilerPage implements OnInit {
       this.notificaciones.idusuario=this.alquiler.idusuario;
       this.notificaciones.idtienda=this.alquiler.idtienda;
       this.Service.addNotificacion(this.notificaciones);
-      this.nav.navigateForward('/menu'); 
+      this.mensaje="Se envió correctamente su formulario de alquiler.";
+      this.mensajeconfirmacion();
+    
     });
   }
 
@@ -215,5 +230,7 @@ export class FormularioAlquilerPage implements OnInit {
     this.nav.navigateForward('/menu'); 
     this.idbicicleta=null;
   }
+
+  
   
 }

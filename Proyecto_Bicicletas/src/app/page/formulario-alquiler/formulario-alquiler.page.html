@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button routerLink="/menu"></ion-back-button>
     </ion-buttons>
-    <ion-title>Formulario Alquiler</ion-title>
+    <ion-title>Formulario de Alquiler</ion-title>
     <ion-buttons slot="end" style="padding: 10px;" [routerLink]="['/notificacion']">
       <app-notificacion></app-notificacion>
     </ion-buttons>
@@ -63,7 +63,6 @@
           <ion-label>
           {{ tienda.nombre}}
         </ion-label>
-        <ion-note slot="end" color="primary">{{ tienda.direccion }}</ion-note>
         </ion-select-option>
       </ion-select>
     </ion-item>   
@@ -74,6 +73,13 @@
       </p>
     
     </div>
+    <ion-item>
+      <p>{{direc}}</p>
+    </ion-item>
+    <ion-item>
+      <img height="100" [src]="this.imgbici" style="display:block;
+              margin:auto;margin-top: 10px;margin-bottom: 10px;">
+    </ion-item>
 
 
     <!--<ion-button disabled={{desabilitarboton}} expand="full" (click)="abrirmodal()">Seleccione la Bicicleta</ion-button>-->

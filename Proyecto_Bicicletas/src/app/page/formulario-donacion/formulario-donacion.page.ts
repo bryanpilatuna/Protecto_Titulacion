@@ -8,7 +8,7 @@ import { ActivatedRoute} from '@angular/router';
 import { NavController, LoadingController } from '@ionic/angular';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import * as firebase from 'firebase';
-
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-formulario-donacion',
@@ -16,6 +16,7 @@ import * as firebase from 'firebase';
   styleUrls: ['./formulario-donacion.page.scss'],
 })
 export class FormularioDonacionPage implements OnInit {
+  mensaje:string;
   tiendas: datosTiendas[];
   donanteid= null;
   fechaactual: Date = new Date();
@@ -47,7 +48,8 @@ export class FormularioDonacionPage implements OnInit {
     private donacionService: DonacionService, 
     private loadingController: LoadingController,
     public formBuilder: FormBuilder,
-    public Service:NotificaciontiendaService
+    public Service:NotificaciontiendaService,
+    private alertCtrl: AlertController,
      ) {
       var user = firebase.auth().currentUser.uid;
       this.donanteid = user;
@@ -70,6 +72,23 @@ export class FormularioDonacionPage implements OnInit {
       }
     })
     
+  }
+
+  async mensajeconfirmacion() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Mensaje',
+      message: this.mensaje,
+      buttons: [
+       {
+          text: 'Aceptar',
+          handler: () => {
+            this.nav.navigateForward('menu');
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 
   onSelectChange(){
@@ -124,7 +143,9 @@ export class FormularioDonacionPage implements OnInit {
         this.notificaciones.idtienda=this.donacion.idtienda;
         
         this.Service.addNotificacion(this.notificaciones);
-          this.nav.navigateForward('/menu');
+        this.mensaje="Se envió correctamente su formulario de donación.";
+        this.mensajeconfirmacion();
+        
       
       });
     

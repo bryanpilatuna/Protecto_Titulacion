@@ -109,6 +109,10 @@ this.nav.navigateForward(['/formulario-donacion', this.id]);
      // this.idtienda=marker.id;
       this.desabilitarboton = false;
     });
-    }    
+    }  
+    
+    salir(){
+      window.location.href = 'menu' ;
+    }
 
 }
