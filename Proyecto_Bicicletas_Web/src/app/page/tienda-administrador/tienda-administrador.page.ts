@@ -12,7 +12,7 @@ export class TiendaAdministradorPage implements OnInit {
   pageActual: number= 1;
   constructor(private Service: AdministradorService) {
     this.Service.getTiendas().subscribe((tiendas) =>{
-      console.log('Todoss', tiendas);
+ 
       this.tiendas = tiendas;
     })
    }

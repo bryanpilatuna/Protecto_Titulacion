@@ -46,7 +46,7 @@ export class IniciarSesionPage implements OnInit {
        {
           text: 'Enviar',
           handler: data => {
-            console.log(data.correo);
+        
             this.onResetPassword(data.correo);
           }
         }
@@ -130,8 +130,7 @@ export class IniciarSesionPage implements OnInit {
         this.uid = user.uid;
         this.redirectUser(isVerified,user.uid,email.value);
       }else{
-        console.log("entra en errores");
-        console.log(this.authSvc.errores);
+      
         if(this.authSvc.errores=="The password is invalid or the user does not have a password."){
           this.mensaje="La contraseña es incorrecta.";
           this.mensajeerror();
@@ -167,7 +166,7 @@ export class IniciarSesionPage implements OnInit {
         
         this.authSvc.getTienda(id).subscribe(tienda => {
           //this.tienda = tienda;
-          console.log(tienda);
+         
           if (tienda) {
             this.router.navigate(['mis-bicis']);
           }else{
@@ -179,7 +178,7 @@ export class IniciarSesionPage implements OnInit {
       }else if(this.tipo=="users"){
         this.authSvc.getUsuario(id).subscribe(usuario => {
           //this.tienda = tienda;
-          console.log(usuario);
+          
           if (usuario) {
             
             this.router.navigate(['profile']);
@@ -192,7 +191,7 @@ export class IniciarSesionPage implements OnInit {
       }else if(this.tipo=="administrador"){
         this.authSvc.getAdministrador(id).subscribe(administrador => {
           //this.tienda = tienda;
-          console.log(administrador);
+        
           if (administrador) {
             this.router.navigate(['perfil-administrador']);
           }else{

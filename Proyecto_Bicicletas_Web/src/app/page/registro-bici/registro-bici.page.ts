@@ -96,7 +96,7 @@ async presentAlert(mensaje:string) {
 }
   enviarimagen(event: any): void {
     this.image = event.target.files[0];
-    console.log(this.image);
+ 
     
   }
 

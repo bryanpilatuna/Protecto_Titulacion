@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate {
         take(1),
         map((user) => {
 
-          console.log(user);
+  
           if (user) {
             return true;
           } else {

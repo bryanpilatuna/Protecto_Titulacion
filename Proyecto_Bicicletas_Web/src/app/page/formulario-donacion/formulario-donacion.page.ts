@@ -8,16 +8,19 @@ import { ActivatedRoute} from '@angular/router';
 import { NavController, LoadingController } from '@ionic/angular';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import * as firebase from 'firebase';
-
+import { AlertController } from '@ionic/angular';
+import { NgbModalConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-formulario-donacion',
   templateUrl: './formulario-donacion.page.html',
   styleUrls: ['./formulario-donacion.page.scss'],
 })
 export class FormularioDonacionPage implements OnInit {
+  mensaje:string;
   tiendas: datosTiendas[];
   donanteid= null;
   fechaactual: Date = new Date();
+  modal : NgbModalRef;
   notificaciones:NotificacionesTienda= {
     visualizar: 'No',
     fecha: this.fechaactual,
@@ -46,12 +49,17 @@ export class FormularioDonacionPage implements OnInit {
     private donacionService: DonacionService, 
     private loadingController: LoadingController,
     public formBuilder: FormBuilder,
-    public Service:NotificaciontiendaService
+    public Service:NotificaciontiendaService,
+    private alertCtrl: AlertController,
+    config: NgbModalConfig, private modalService: NgbModal,
      ) {
+      config.backdrop = 'static';
+      config.keyboard = false;
       var user = firebase.auth().currentUser.uid;
       this.donanteid = user;
       this.crearvalidaciones();
       }
+      
 
 
 
@@ -65,6 +73,12 @@ export class FormularioDonacionPage implements OnInit {
 
     
   }
+
+  close() {
+    this.modal.close();
+    window.location.href = 'formulario-donacion' ;
+  }
+
 
   onSelectChange(){
 
@@ -109,16 +123,33 @@ export class FormularioDonacionPage implements OnInit {
     this.formGroup = this.formBuilder.group({fechaControl,tiendaControl,estadoControl,descripcionControl, modoControl,direccionControl });
   }
 
-
+  async mensajeconfirmacion() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Mensaje',
+      message: this.mensaje,
+      buttons: [
+       {
+          text: 'Aceptar',
+          handler: () => {
+            this.nav.navigateForward('formulario-donacion');
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
 
   //Crear la donacion
-  async crearDonacion(){
+  async crearDonacion(content){
       this.donacionService.addDonacion(this.donacion).then(() => {
         this.notificaciones.idusuario=this.donacion.iddonante;
         this.notificaciones.idtienda=this.donacion.idtienda; 
         this.Service.addNotificacion(this.notificaciones);
-          //this.nav.navigateForward('/profile');
-          window.location.href = 'formulario-donacion' ;
+        this.modal =this.modalService.open(content,{centered:true});
+        //this.mensaje="Se envió correctamente su formulario de donación.";
+        //this.mensajeconfirmacion();
+        
       });
   }
 

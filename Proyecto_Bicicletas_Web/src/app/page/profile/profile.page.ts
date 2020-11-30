@@ -131,11 +131,29 @@ export class ProfilePage implements OnInit {
     });
   }
 
+  async mensajeconfirmacion() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Mensaje',
+      message: this.mensaje,
+      buttons: [
+       {
+          text: 'Aceptar',
+          handler: () => {
+            this.nav.navigateForward('profile');
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
   //Guardar Usuario
   async guardarUsuario() {
     if (this.usuarioId) {
       this.usuarioService.updateUsuario(this.usuario, this.usuarioId).then(() => {
-        this.nav.navigateForward('menu-cliente');
+        this.mensaje="Se actualizo su perfil correctamente.";
+        this.mensajeconfirmacion();
       });
     } 
   }

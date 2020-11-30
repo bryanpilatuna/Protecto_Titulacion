@@ -27,7 +27,7 @@ export class EditClientePage implements OnInit {
 
   async loadTodo(){
     this.Service.getUsuario(this.iduser).subscribe(usuario => {
-      console.log(usuario);
+    
       this.user = usuario;
     });
   }

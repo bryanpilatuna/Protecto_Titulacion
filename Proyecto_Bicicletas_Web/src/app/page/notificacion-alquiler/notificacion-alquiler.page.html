@@ -3,7 +3,7 @@
   <ion-list >
     <div *ngFor="let noti of notificaciones;let indice=index" style="display: flex;justify-content: center;align-items: center;">
       <div *ngIf="noti.idusuario==id">
-        <ion-card *ngIf="noti.tipo=='alquiler'" [ngStyle]="{'background':noti.color}" >
+        <ion-card *ngIf="noti.tipo=='alquiler'" [ngStyle]="{'background':noti.color}">
           <ion-row style="border-bottom: solid 1px;border-color: #2355EF;">
             <ion-col>
               <ion-icon name="mail-outline"  style="font-size: 20px;"></ion-icon>

@@ -37,7 +37,7 @@ export class PerfilAdministradorPage implements OnInit {
       this.cargarUsuario();
      
     } 
-    console.log(this.id);
+    
     this.crearvalidaciones();
   }
 
@@ -115,7 +115,7 @@ export class PerfilAdministradorPage implements OnInit {
   //Cargar usuario
   async cargarUsuario(){
     this.Servicio.getAdministrador(this.id).subscribe(administrador => {
-      console.log("usuarios",administrador);
+    
       this.usuario = administrador;
     });
   }

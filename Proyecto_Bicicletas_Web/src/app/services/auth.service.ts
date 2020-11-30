@@ -181,7 +181,7 @@ export class AuthService {
         .pipe(
            finalize(() => {
             fileRef.getDownloadURL().subscribe(urlImage => {
-              console.log(urlImage);
+       
               this.photoURL=urlImage;
               this.afs.collection('administrador').doc(uid).set({
                 uid : uid,

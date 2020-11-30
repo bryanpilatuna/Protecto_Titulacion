@@ -64,7 +64,7 @@ export class BicicletasService {
         .pipe(
            finalize(() => {
             fileRef.getDownloadURL().subscribe(urlImage => {
-              console.log(urlImage);
+          
               this.photoURL=urlImage;
               bici.imagen=this.photoURL;
               this.bicisCollection.add(bici);
