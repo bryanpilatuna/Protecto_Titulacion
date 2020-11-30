@@ -16,10 +16,10 @@
                           <label><strong>Alquiler Rechazado</strong></label>
                       </div>
                       <div class="card-text">
-                          Fecha y hora alquiler: {{alquiler.fechaalquiler.toMillis() | date:'dd/MM/yyyy'}}, {{alquiler.horaalquiler}}
+                          Fecha alquiler: {{alquiler.fechaalquiler.toMillis() | date:'dd/MM/yyyy'}}
                       </div>
                       <div class="card-text">
-                        Fecha y hora devolución: {{alquiler.fechadevolucion.toMillis() | date:'dd/MM/yyyy'}}, {{alquiler.horadevolucion}}
+                        Fecha devolución: {{alquiler.fechadevolucion.toMillis() | date:'dd/MM/yyyy'}}
                     </div>
                     <div class="card-text">
                       Motivo del rechazo: {{alquiler.respuesta}}
