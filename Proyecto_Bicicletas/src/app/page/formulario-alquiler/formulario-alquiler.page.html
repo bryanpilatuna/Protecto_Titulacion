@@ -29,12 +29,26 @@
       >
       </ion-datetime>
     </ion-item>
+    <div class="validation-errors">
+      <p class="form-error"
+        *ngIf="formGroup.get('fechaAlquiler').hasError('required') && formGroup.get('fechaAlquiler').touched">
+        *Requerido
+      </p>
+    
+    </div>
     
     <ion-item>
       <ion-label position="stacked">Hora alquiler</ion-label>
       <ion-datetime cancelText="Cancelar"
       doneText="Seleccionar" formControlName="horaAlquiler"  displayFormat="HH:mm" placeholder="Hora Minutos" (ionChange)="seleccionarhora($event)"></ion-datetime>
     </ion-item>
+    <div class="validation-errors">
+      <p class="form-error"
+        *ngIf="formGroup.get('horaAlquiler').hasError('required') && formGroup.get('horaAlquiler').touched">
+        *Requerido
+      </p>
+    
+    </div>
 
     <ion-item>
       <ion-label position="stacked">Seleccione la fecha de devolución</ion-label>
@@ -49,11 +63,25 @@
       >
       </ion-datetime>
     </ion-item>
+    <div class="validation-errors">
+      <p class="form-error"
+        *ngIf="formGroup.get('fechaDevolucion').hasError('required') && formGroup.get('fechaDevolucion').touched">
+        *Requerido
+      </p>
+    
+    </div>
     <ion-item>
       <ion-label position="stacked">Hora devolución</ion-label>
       <ion-datetime  cancelText="Cancelar"
       doneText="Seleccionar" formControlName="horaDonacion" displayFormat="HH:mm" placeholder="Hora Minutos" (ionChange)="seleccionarhoradev($event)"></ion-datetime>
     </ion-item>
+    <div class="validation-errors">
+      <p class="form-error"
+        *ngIf="formGroup.get('horaDonacion').hasError('required') && formGroup.get('horaDonacion').touched">
+        *Requerido
+      </p>
+    
+    </div>
     <ion-item lines="none">
       <ion-label position="stacked">Seleccione la  Tienda</ion-label>
     </ion-item>
