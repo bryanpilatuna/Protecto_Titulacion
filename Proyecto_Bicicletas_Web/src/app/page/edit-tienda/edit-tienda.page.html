@@ -3,28 +3,111 @@
 </ion-header>
 
 <ion-content>
-  <ion-list lines="full" *ngIf="tienda">
-    <ion-item>
-      <ion-input required type="text" placeholder="Task" [(ngModel)]="tienda.nombre"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input required type="text" placeholder="Task" [(ngModel)]="tienda.direccion"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input required type="text" placeholder="Task" [(ngModel)]="tienda.telefono"></ion-input>
-    </ion-item>
-    <div class="form-group">
-      <label for="inputState">Estado</label>
-      <select id="inputState" class="form-control"  [(ngModel)]="tienda.estado">
-        <option value="Activo" selected *ngIf="tienda.estado=='Activo'; else elseBlock">Activo</option>
-        <ng-template #elseBlock><option value="Activo">Activo</option></ng-template>
-        <option value="Inactivo" selected *ngIf="tienda.estado=='Inactivo'; else elseBlock2">Inactivo</option>
-        <ng-template #elseBlock2><option value="Inactivo">Inactivo</option></ng-template>
-      </select>
-    </div>
+  <section class="py-5 text-center">
+    <div class="container"> 
+      <div class="row" >
+        <div class="col" >
+             
+          <img [src]="tienda.logo" style="display:block;margin:auto;padding-top: 10px;"/>
     
+        </div>
+        <div class="col" style="border: #3A6073 2px solid;" >   
+            <div class="row">
+              
+                <form [formGroup]="formGroup" (ngSubmit)="guardartienda()" *ngIf="tienda" >
+                  <div class="row">  
+                     
+                  </div>
+                  <br/>
+                  <div class="row" style="display: flex;justify-content: center;">  
+                  </div>
+                  
+                  <div class="form-group row">
+                    <div class="col">
+                      <label position="stacked"><strong>Nombre</strong></label>
+                      <input class="form-control" type="text" placeholder="Bryan" formControlName="nombreControl" #nombre [(ngModel)]="tienda.nombre" readonly>
+                      <div class="validation-errors">
+                        <p class="form-error"
+                          *ngIf="formGroup.get('nombreControl').hasError('required') && formGroup.get('nombreControl').touched">
+                          *Requerido
+                        </p>
+                        <p class="form-error"
+                          *ngIf="formGroup.get('nombreControl').hasError('minlength') && formGroup.get('nombreControl').touched">
+                          *Mínimo 3 caracteres 
+                        </p>
+                        <p class="form-error"
+                          *ngIf="formGroup.get('nombreControl').hasError('maxlength') && formGroup.get('nombreControl').touched">
+                          *Máximo 40 caracteres  
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <label position="stacked"><strong>Teléfono</strong></label>
+                      <input class="form-control" type="text" placeholder="0999999999" formControlName="telefonoControl" #telefono [(ngModel)]="tienda.telefono" readonly>
+                      <div class="validation-errors">
+                        <p class="form-error"
+                          *ngIf="formGroup.get('telefonoControl').hasError('required') && formGroup.get('telefonoControl').touched">
+                          *Requerido
+                        </p>
+                        <p class="form-error"
+                          *ngIf="formGroup.get('telefonoControl').hasError('minlength') && formGroup.get('telefonoControl').touched">
+                          *Mínimo 7 números 
+                        </p>
+                        <p class="form-error"
+                          *ngIf="formGroup.get('telefonoControl').hasError('maxlength') && formGroup.get('telefonoControl').touched">
+                          *Máximo 10 números 
+                        </p>
+                        <p class="form-error"
+                          *ngIf="formGroup.get('telefonoControl').hasError('pattern') && formGroup.get('telefonoControl').touched">
+                          *El nombre debe tener solo números
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label position="stacked"><strong>Dirección</strong></label>
+                    <textarea type="text" class="form-control" placeholder="Av. Las Americas N°212" formControlName="direccionControl" #direccion [(ngModel)]="tienda.direccion"  rows="2" cols="50" readonly></textarea>
+                  </div> 
+                    <div class="validation-errors">
+                      <p class="form-error"
+                        *ngIf="formGroup.get('direccionControl').hasError('required') && formGroup.get('direccionControl').touched">
+                        *Requerido
+                      </p>
+                      <p class="form-error"
+                        *ngIf="formGroup.get('direccionControl').hasError('minlength') && formGroup.get('direccionControl').touched">
+                        *Mínimo 3 caracteres 
+                      </p>
+                      <p class="form-error"
+                        *ngIf="formGroup.get('direccionControl').hasError('maxlength') && formGroup.get('direccionControl').touched">
+                        *Máximo 40 caracteres  
+                      </p>
+                    </div>
+                  <div class="form-group row">
+                    <div class="col">
+                      <ion-label  position="stacked"><strong>Estado de Tienda </strong></ion-label >
+                        <select [(ngModel)]="tienda.estado" formControlName="tipoControl" class="form-control" enabled="false">
+                          <option value="Activo" selected>Activo</option>
+                          <option value="Inactivo">Inactivo</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label position="stacked"><strong>Correo electrónico</strong></label>
+                        <input class="form-control" type="text" placeholder="abc@gmail.com" formControlName="emailControl" #email [(ngModel)]="tienda.correo" readonly>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <ion-button type="submit" [disabled]="!formGroup.valid" expand="block">Guardar</ion-button>
+                  </div>
+                </form>
+            
+            </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
 
-  </ion-list>
-  <ion-button expand="full" (click)="saveTodo()">Guardar</ion-button>
   <app-footer></app-footer>
 </ion-content>

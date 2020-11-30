@@ -9,6 +9,7 @@ import { EditTiendaPageRoutingModule } from './edit-tienda-routing.module';
 import { EditTiendaPage } from './edit-tienda.page';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ComponentsModule } from '../../components/components.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
