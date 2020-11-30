@@ -65,19 +65,6 @@ export class AlquilerPage implements OnInit {
   ngOnInit() {
   }
 
-  /*async loadTodo(){
-    const loading = await this.loadingController.create({
-      message: 'Loading....'
-    });
-    await loading.present();
-
-    this.Servicio.getodosAlquileres().subscribe(todo => {
-      loading.dismiss();
-      this.alquileres2 = todo;
-      console.log(this.alquileres2);
-    });
-  }*/
-
   async mensajeconfirmacion() {
     const alert = await this.alertCtrl.create({
       cssClass: 'my-custom-class',

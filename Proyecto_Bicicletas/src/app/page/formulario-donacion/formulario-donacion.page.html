@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button routerLink="/menu"></ion-back-button>
     </ion-buttons>
-    <ion-title>Formulario de Donación</ion-title>
+    <ion-title style="font-size: 15px;">Formulario de Donación</ion-title>
     <ion-buttons slot="end" style="padding: 10px;" [routerLink]="['/notificacion']">
       <app-notificacion></app-notificacion>
     </ion-buttons>
@@ -37,10 +37,32 @@
         *Requerido
       </p>
     </div>
-    <ion-item >
-      <ion-label>Tienda</ion-label>
+    <ion-item>
+      <ion-label position="stacked">Descripción</ion-label>
+      <ion-input required type="text" placeholder="Descripción" [(ngModel)]="donacion.descripcion"
+      formControlName="descripcionControl"></ion-input>
+    </ion-item>
+
+    <div class="validation-errors">
+      <p class="form-error"
+        *ngIf="formGroup.get('descripcionControl').hasError('required') && formGroup.get('descripcionControl').touched">
+        *Requerido
+      </p>
+      <p class="form-error"
+      *ngIf="formGroup.get('descripcionControl').hasError('minlength') && formGroup.get('descripcionControl').touched">
+      *Mínimo 5 caracteres 
+    </p>
+    <p class="form-error"
+      *ngIf="formGroup.get('descripcionControl').hasError('maxlength') && formGroup.get('descripcionControl').touched">
+      *Máximo 30 caracteres  
+    </p>
+    </div>
+    <ion-item lines="none">
+      <ion-label position="stacked">Tienda</ion-label>
+    </ion-item>
+    <ion-item lines="none">
       <ion-select [(ngModel)]="donacion.idtienda" ok-text="Seleccionar" 
-      cancel-text="Cancelar" formControlName="tiendaControl" >
+      cancel-text="Cancelar" formControlName="tiendaControl" style="width: 100%;">
         <ion-select-option *ngFor="let tienda of tiendas" [value]="tienda.id"> 
           <ion-label>
           {{ tienda.nombre}}
@@ -55,11 +77,12 @@
         *Requerido
       </p>
     </div>
-
-    <ion-item >
-      <ion-label>Estado de bicicleta</ion-label>
+    <ion-item lines="none">
+      <ion-label position="stacked">Estado de bicicleta</ion-label>
+    </ion-item>
+    <ion-item lines="none">
       <ion-select [(ngModel)]="donacion.estado" ok-text="Seleccionar" 
-      cancel-text="Cancelar" formControlName="estadoControl" >
+      cancel-text="Cancelar" formControlName="estadoControl" style="width: 100%;">
         <ion-select-option value="Bueno"> 
           <ion-label>
             Bueno
@@ -82,31 +105,13 @@
 
     
     
-    <ion-item>
-      <ion-label position="stacked">Descripción</ion-label>
-      <ion-input required type="text" placeholder="Descripción" [(ngModel)]="donacion.descripcion"
-      formControlName="descripcionControl"></ion-input>
+    
+    <ion-item lines="none">
+      <ion-label position="stacked">Tipo entrega</ion-label>
     </ion-item>
-
-    <div class="validation-errors">
-      <p class="form-error"
-        *ngIf="formGroup.get('descripcionControl').hasError('required') && formGroup.get('descripcionControl').touched">
-        *Requerido
-      </p>
-      <p class="form-error"
-      *ngIf="formGroup.get('descripcionControl').hasError('minlength') && formGroup.get('descripcionControl').touched">
-      *Mínimo 5 caracteres 
-    </p>
-    <p class="form-error"
-      *ngIf="formGroup.get('descripcionControl').hasError('maxlength') && formGroup.get('descripcionControl').touched">
-      *Máximo 30 caracteres  
-    </p>
-    </div>
-
-    <ion-item >
-      <ion-label>Tipo entrega</ion-label>
+    <ion-item lines="none">
       <ion-select [(ngModel)]="donacion.modo" ok-text="Seleccionar" 
-      formControlName="modoControl" cancel-text="Cancelar"  (ionChange)="onSelectChange()">
+      formControlName="modoControl" cancel-text="Cancelar"  (ionChange)="onSelectChange()" style="width: 100%;">
         <ion-select-option value="Entregar"> 
           <ion-label>
             Entregar a la tienda

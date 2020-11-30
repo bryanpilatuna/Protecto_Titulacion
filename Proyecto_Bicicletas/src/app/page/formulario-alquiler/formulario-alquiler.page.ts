@@ -170,14 +170,6 @@ export class FormularioAlquilerPage implements OnInit {
     })
   }
 
-  /*async onSelectChange() : Promise<void> {
-    console.log(this.alquiler.idtienda);
-    this.alquilerService.getBicicletas(this.alquiler.idtienda).subscribe((bicicletas) =>{
-      this.bicicletas = bicicletas;
-      
-  
-    })
-  }*/
 
 
 

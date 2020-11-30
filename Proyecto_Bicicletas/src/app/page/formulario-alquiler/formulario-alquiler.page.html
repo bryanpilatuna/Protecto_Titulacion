@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button routerLink="/menu"></ion-back-button>
     </ion-buttons>
-    <ion-title>Formulario de Alquiler</ion-title>
+    <ion-title style="font-size: 15px;">Formulario de Alquiler</ion-title>
     <ion-buttons slot="end" style="padding: 10px;" [routerLink]="['/notificacion']">
       <app-notificacion></app-notificacion>
     </ion-buttons>
@@ -54,11 +54,12 @@
       <ion-datetime  cancelText="Cancelar"
       doneText="Seleccionar" formControlName="horaDonacion" displayFormat="HH:mm" placeholder="Hora Minutos" (ionChange)="seleccionarhoradev($event)"></ion-datetime>
     </ion-item>
-
-    <ion-item  *ngIf="alquiler">
-      <ion-label>Seleccione la  Tienda</ion-label>
+    <ion-item lines="none">
+      <ion-label position="stacked">Seleccione la  Tienda</ion-label>
+    </ion-item>
+    <ion-item  *ngIf="alquiler" lines="none">
       <ion-select [(ngModel)]="alquiler.idtienda" ok-text="Seleccionar" 
-      cancel-text="Cancelar" formControlName="tindaSeleccion" (ionChange)="onSelectChange()" >
+      cancel-text="Cancelar" formControlName="tindaSeleccion" (ionChange)="onSelectChange()" style="width: 100%;">
         <ion-select-option *ngFor="let tienda of tiendas" [value]="tienda.id"> 
           <ion-label>
           {{ tienda.nombre}}
@@ -73,10 +74,11 @@
       </p>
     
     </div>
-    <ion-item>
+    <ion-item *ngIf="direc">
+      <ion-label position="stacked">Dirección</ion-label>
       <p>{{direc}}</p>
     </ion-item>
-    <ion-item>
+    <ion-item *ngIf="imgbici">
       <img height="100" [src]="imgbici" style="display:block;
               margin:auto;margin-top: 10px;margin-bottom: 10px;">
     </ion-item>
