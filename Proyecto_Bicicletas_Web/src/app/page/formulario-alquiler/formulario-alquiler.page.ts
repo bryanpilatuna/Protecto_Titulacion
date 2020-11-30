@@ -142,21 +142,18 @@ export class FormularioAlquilerPage implements OnInit {
  
   seleccionarbici(idbici:string){
    this.modal.close();
-   this.alquiler.bicicleta=idbici;
-   
-   this.alquilerService.getBicicleta(this.alquiler.bicicleta).subscribe((bicicletas) =>{
-    //this.bicicletas = bicicletas;
-    console.log(bicicletas);
-    this.imgbici=bicicletas.imagen;
- 
 
+   this.idbicicleta =idbici;
+   this.alquilerService.getBicicleta(this.idbicicleta).subscribe((bicicletas) =>{
+    this.bicicletas = bicicletas;
+    this.imgbici=bicicletas.imagen;
   })
  
    
  
   }
 
-  async abrirmodal(){
+  /*async abrirmodal(){
     const modal = await this.modalController.create({
       component: ModalAlquilerPage,
       componentProps: {
@@ -173,7 +170,7 @@ export class FormularioAlquilerPage implements OnInit {
     
 
     })
-  }
+  }*/
 
   /*async onSelectChange() : Promise<void> {
     console.log(this.alquiler.idtienda);
@@ -225,9 +222,9 @@ export class FormularioAlquilerPage implements OnInit {
   cambiofecha2(event){
     this.alquiler.fechadevolucion= new Date(event.detail.value);
   }
-  cancelarAlquiler(){
+  /*cancelarAlquiler(){
     this.nav.navigateForward('/menu-cliente'); 
     this.idbicicleta=null;
-  }
+  }*/
   
 }

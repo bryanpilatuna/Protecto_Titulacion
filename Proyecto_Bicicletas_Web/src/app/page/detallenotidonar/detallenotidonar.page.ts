@@ -38,6 +38,11 @@ export class DetallenotidonarPage implements OnInit {
     }
   }
 
+  irnotificacion(){
+    window.location.href = 'notificacion' ;
+  }
+  
+
   async loadTodo(){
 
     this.Service.getTodo(this.id).subscribe(notificacion => {
