@@ -10,15 +10,23 @@
 <ion-content>
   <ion-list *ngIf="vacio==false; else elseBlock">
     <h2 style="text-align: center;font-weight: bold;">Revisa tus donaciones</h2>
-    <p style="text-align: left;padding-left: 10px;"><ion-icon name="flag-outline" style="color:green;font-size: 20px;"></ion-icon> Donaciones aprobados</p> 
-    <p style="text-align: left;padding-left: 10px"><ion-icon name="flag-outline" style="color:red;font-size: 20px;"></ion-icon> Donaciones rechazados o anulados</p> 
+    <p style="text-align: left;padding-left: 10px;"><ion-icon name="flag-outline" style="color:green;font-size: 20px;"></ion-icon> Aprobados</p> 
+    <p style="text-align: left;padding-left: 10px"><ion-icon name="flag-outline" style="color:red;font-size: 20px;"></ion-icon> Rechazados o anulados</p> 
+    <p style="text-align: left;padding-left: 10px"><ion-icon name="flag-outline" style="color:#ffbb00;font-size: 20px;"></ion-icon> Pendientes</p> 
 
     <div *ngFor="let donacion of donaciones;let indice=index">
       <ion-card *ngIf="donacion.iddonante==id">
         <ion-row style="border-bottom: solid 1px;border-color: #2355EF;">
           <ion-col>
-            <ion-icon name="flag-outline" style="color:green;font-size: 20px;" *ngIf="donacion.aprobacion==true"></ion-icon>
-            <ion-icon name="flag-outline" style="color:red;font-size: 20px;" *ngIf="donacion.aprobacion==false"></ion-icon>
+            <div *ngIf="donacion.respuesta; else elseBlock">
+              <ion-icon name="flag-outline" style="color:green;font-size: 20px;" *ngIf="donacion.aprobacion==true"></ion-icon>
+              <ion-icon name="flag-outline" style="color:red;font-size: 20px;" *ngIf="donacion.aprobacion==false"></ion-icon>
+            </div>     
+            <ng-template #elseBlock>
+              <ion-icon name="flag-outline" style="color:#ffbb00;font-size: 20px;"></ion-icon>
+            </ng-template>
+
+            
           </ion-col>
           <ion-col>
             <p style="font-size: 20px;padding: 0px;margin: 0px;font-weight: bold;">
@@ -45,6 +53,10 @@
               </p>
               
             
+            </ion-col>
+            <ion-col size="5">
+              <img height="80" src="../../../assets/donacion/imagendocion.jpg" style="display:block;
+              margin:auto;">
             </ion-col>
      
           </ion-row>

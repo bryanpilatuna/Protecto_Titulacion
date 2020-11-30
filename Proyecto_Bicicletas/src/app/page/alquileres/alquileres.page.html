@@ -13,16 +13,22 @@
   <ion-list *ngIf="vacio==false; else elseBlock">
    
     <h2 style="text-align: center;font-weight: bold;">Revisa tus alquileres</h2>
-    <p style="text-align: left;padding-left: 10px;"><ion-icon name="flag-outline" style="color:green;font-size: 20px;"></ion-icon> Alquileres aprobados</p> 
-    <p style="text-align: left;padding-left: 10px"><ion-icon name="flag-outline" style="color:red;font-size: 20px;"></ion-icon> Alquileres rechazados o anulados</p> 
- 
+    
+    <p style="text-align: left;padding-left: 10px;"><ion-icon name="flag-outline" style="color:green;font-size: 20px;"></ion-icon> Aprobados</p> 
+    <p style="text-align: left;padding-left: 10px"><ion-icon name="flag-outline" style="color:red;font-size: 20px;"></ion-icon> Rechazados o anulados</p> 
+    <p style="text-align: left;padding-left: 10px"><ion-icon name="flag-outline" style="color:#ffbb00;font-size: 20px;"></ion-icon> Pendientes</p> 
     
     <div *ngFor="let alqui of alquiler;let indice=index">
       <ion-card *ngIf="alqui.idusuario==id">
         <ion-row style="border-bottom: solid 1px;border-color: #2355EF;">
           <ion-col>
-            <ion-icon name="flag-outline" style="color:green;font-size: 20px;" *ngIf="alqui.aprobacion==true"></ion-icon>
+            <div *ngIf="alqui.respuesta; else elseBlock">
+              <ion-icon name="flag-outline" style="color:green;font-size: 20px;" *ngIf="alqui.aprobacion==true"></ion-icon>
             <ion-icon name="flag-outline" style="color:red;font-size: 20px;" *ngIf="alqui.aprobacion==false"></ion-icon>
+            </div>     
+            <ng-template #elseBlock>
+              <ion-icon name="flag-outline" style="color:#ffbb00;font-size: 20px;"></ion-icon>
+            </ng-template>
           </ion-col>
           <ion-col>
             <p style="font-size: 20px;padding: 0px;margin: 0px;font-weight: bold;">
