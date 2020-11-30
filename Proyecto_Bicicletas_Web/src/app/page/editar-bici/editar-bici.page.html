@@ -26,7 +26,7 @@
                   <div class="form-group row">
                     <div class="col">
                       <label position="stacked"><strong>Nombre</strong></label>
-                      <input class="form-control" type="text" placeholder="Bryan" formControlName="nombreControl" #nombre [(ngModel)]="bicicleta.nombre">
+                      <input class="form-control" type="text" placeholder="Ejemplo: Bicicleta202" formControlName="nombreControl" #nombre [(ngModel)]="bicicleta.nombre">
                       <div class="validation-errors">
                         <p class="form-error"
                           *ngIf="formGroup.get('nombreControl').hasError('required') && formGroup.get('nombreControl').touched">
@@ -44,7 +44,7 @@
                     </div>
                     <div class="col">
                       <label position="stacked"><strong>Color: </strong></label>
-                      <input class="form-control" type="text" placeholder="Rojo" formControlName="colorControl"  [(ngModel)]="bicicleta.color">
+                      <input class="form-control" type="text" placeholder="Ejemplo: Rojo" formControlName="colorControl"  [(ngModel)]="bicicleta.color">
                       <div class="validation-errors">
                         <p class="form-error"
                           *ngIf="formGroup.get('colorControl').hasError('required') && formGroup.get('colorControl').touched">
@@ -63,7 +63,7 @@
                   </div>
                   <div class="form-group">
                     <label position="stacked"><strong>Descripción</strong></label>
-                    <textarea type="text" class="form-control" placeholder="Reparada pedal" formControlName="descripcionControl"  [(ngModel)]="bicicleta.descripcion"  rows="2" cols="50"></textarea>
+                    <textarea type="text" class="form-control" placeholder="Ejemplo: Reparada pedal" formControlName="descripcionControl"  [(ngModel)]="bicicleta.descripcion"  rows="2" cols="50"></textarea>
                   </div> 
                   <div class="validation-errors">
                         <p class="form-error"

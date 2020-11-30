@@ -1,106 +1,114 @@
-<ion-header>
-  <app-header-tienda></app-header-tienda>
-</ion-header>
 
 <ion-content>
   <ion-button fill="clear" (click)="regresar()">
     <ion-icon name="arrow-back-outline"></ion-icon>
     Regresar
   </ion-button>
-  <div class="modal-content">
-  <div class="mx-auto">
+  <section class="py-5 text-center">
+    <div class="container"> 
+      <div class="row" >
 
-    <form [formGroup]="formGroup" (ngSubmit)="guardarbici()">
-      <div class="form-group">
-        <label position="stacked"><strong>Nombre de la Bicicleta</strong></label>
-        <input type="text" class="form-control" placeholder="bici01" formControlName="nombreControl" [(ngModel)]="bici.nombre">
+        <div class="col" style="background-color: #3A6073;display: flex; align-items: center;justify-content: center;">
+        <div class="row" style="align-items: center;justify-content: center;">
+          <div class="row">  
+            <img src="https://cdn.shopify.com/s/files/1/0284/0798/8312/products/teammachine_slr01_one_cbn_wht_red_heroview_1_2048x2048.png?v=1600795198" style="width:80%;margin:auto;padding-top: 10px;padding-bottom: 10px;"/>
+        </div>
+        
+        </div>
+        </div>
+     
+        <div class="col" style="border: #3A6073 2px solid;" >   
+            <div class="row">
+              
+                <form [formGroup]="formGroup" (ngSubmit)="guardarbici()" *ngIf="bici" >
+                  
+                  <div class="row">
+                    <label position="stacked"><strong>Imagen :</strong></label>
+                    <input formControlName="foto" type="file" accept=".png, .jpg" (change)="enviarimagen($event)" style="color:black"/>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col">
+                      <label position="stacked"><strong>Nombre</strong></label>
+                      <input class="form-control" type="text" placeholder="Ejemplo: Bicicleta102" formControlName="nombreControl" #nombre [(ngModel)]="bici.nombre">
+                      <div class="validation-errors">
+                        <p class="form-error"
+                          *ngIf="formGroup.get('nombreControl').hasError('required') && formGroup.get('nombreControl').touched">
+                          *Requerido
+                        </p>
+                        <p class="form-error"
+                          *ngIf="formGroup.get('nombreControl').hasError('minlength') && formGroup.get('nombreControl').touched">
+                          *Mínimo 3 caracteres 
+                        </p>
+                        <p class="form-error"
+                          *ngIf="formGroup.get('nombreControl').hasError('maxlength') && formGroup.get('nombreControl').touched">
+                          *Máximo 40 caracteres  
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <label position="stacked"><strong>Color: </strong></label>
+                      <input class="form-control" type="text" placeholder="Ejemplo: Rojo" formControlName="colorControl"  [(ngModel)]="bici.color">
+                      <div class="validation-errors">
+                        <p class="form-error"
+                          *ngIf="formGroup.get('colorControl').hasError('required') && formGroup.get('colorControl').touched">
+                          *Requerido
+                        </p>
+                        <p class="form-error"
+                          *ngIf="formGroup.get('colorControl').hasError('minlength') && formGroup.get('colorControl').touched">
+                          *Mínimo 3 caracteres 
+                        </p>
+                        <p class="form-error"
+                          *ngIf="formGroup.get('colorControl').hasError('maxlength') && formGroup.get('colorControl').touched">
+                          *Máximo 40 caracteres  
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label position="stacked"><strong>Descripción</strong></label>
+                    <textarea type="text" class="form-control" placeholder="Ejemplo: Reparada pedal" formControlName="descripcionControl"  [(ngModel)]="bici.descripcion"  rows="2" cols="50"></textarea>
+                  </div> 
+                  <div class="validation-errors">
+                        <p class="form-error"
+                        *ngIf="formGroup.get('descripcionControl').hasError('required') && formGroup.get('descripcionControl').touched">
+                    *Requerido
+                    </p>
+                    <p class="form-error"
+                    *ngIf="formGroup.get('descripcionControl').hasError('minlength') && formGroup.get('descripcionControl').touched">
+                    *Mínimo 3 caracteres 
+                    </p>
+                    <p class="form-error"
+                    *ngIf="formGroup.get('descripcionControl').hasError('maxlength') && formGroup.get('descripcionControl').touched">
+                    *Máximo 40 caracteres  
+                    </p>
+                </div>
+                  <div class="form-group row">
+                    <div class="col">
+                      <label position="stacked"><strong>Tipo de bicicleta</strong></label>
+                        <select [(ngModel)]="bici.tipo" formControlName="tipoControl" class="form-control">
+                          <option value="Bicicleta de Carretera" selected>Bicicleta de Carretera</option>
+                          <option value="Bicicleta de Montaña">Bicicleta de Montaña</option>
+                          <option value="BMX">BMX</option>
+                          <option value="Bicicleta híbrida o urbana">Bicicleta híbrida o urbana</option>
+                          <option value="Para contrarreloj">Para contrarreloj</option>
+                          <option value="‘Cruiser’ o playera">‘Cruiser’ o playera</option>
+                          <option value="Infantil">Infantil</option>
+                          <option value="Reclinada">Reclinada</option>
+                          <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <ion-button type="submit" [disabled]="!formGroup.valid" expand="block">Guardar</ion-button>
+                  </div>
+                </form>
+            
+            </div>
+        </div>
       </div>
-      <div class="validation-errors">
-        <p class="form-error"
-          *ngIf="formGroup.get('nombreControl').hasError('required') && formGroup.get('nombreControl').touched">
-          *Requerido
-        </p>
-        <p class="form-error"
-          *ngIf="formGroup.get('nombreControl').hasError('minlength') && formGroup.get('nombreControl').touched">
-          *Mínimo 3 caracteres 
-        </p>
-        <p class="form-error"
-          *ngIf="formGroup.get('nombreControl').hasError('maxlength') && formGroup.get('nombreControl').touched">
-          *Máximo 40 caracteres  
-        </p>
-        <p class="form-error"
-          *ngIf="formGroup.get('nombreControl').hasError('pattern') && formGroup.get('nombreControl').touched">
-          *El nombre debe tener solo letras, la primera letra con mayúscula y sin espacios
-        </p>
-      </div>
-      <div class="form-group">
-        <label position="stacked"><strong>Color de la bicicleta</strong></label>
-        <input type="text" class="form-control" placeholder="Rojo" formControlName="colorControl" [(ngModel)]="bici.color">
-      </div>
-      <div class="validation-errors">
-        <p class="form-error"
-          *ngIf="formGroup.get('colorControl').hasError('required') && formGroup.get('colorControl').touched">
-          *Requerido
-        </p>
-        <p class="form-error"
-          *ngIf="formGroup.get('colorControl').hasError('minlength') && formGroup.get('colorControl').touched">
-          *Mínimo 3 caracteres 
-        </p>
-        <p class="form-error"
-          *ngIf="formGroup.get('colorControl').hasError('maxlength') && formGroup.get('colorControl').touched">
-          *Máximo 40 caracteres  
-        </p>
-        <p class="form-error"
-          *ngIf="formGroup.get('colorControl').hasError('pattern') && formGroup.get('colorControl').touched">
-          *El nombre debe tener solo letras, la primera letra con mayúscula y sin espacios
-        </p>
-      </div>
-          <label position="stacked"><strong>Tipo</strong></label>
-            <select [(ngModel)]="bici.tipo" formControlName="tipoControl" class="form-control">
-              <option value="Bicicleta de Carretera" selected>Bicicleta de Carretera</option>
-              <option value="Bicicleta de Montaña">Bicicleta de Montaña</option>
-              <option value="BMX">BMX</option>
-              <option value="Bicicleta híbrida o urbana">Bicicleta híbrida o urbana</option>
-              <option value="Para contrarreloj">Para contrarreloj</option>
-              <option value="‘Cruiser’ o playera">‘Cruiser’ o playera</option>
-              <option value="Infantil">Infantil</option>
-              <option value="Reclinada">Reclinada</option>
-              <option value="Otro">Otro</option>
-            </select>
       
-      <div class="form-group">
-        <label position="stacked"><strong>Descripción</strong></label>
-        <textarea type="text" class="form-control" placeholder="Nueva" formControlName="descripcionControl" [(ngModel)]="bici.descripcion" rows="2" cols="50" ></textarea>
-      </div>
-      <div class="validation-errors">
-        <p class="form-error"
-          *ngIf="formGroup.get('descripcionControl').hasError('required') && formGroup.get('descripcionControl').touched">
-          *Requerido
-        </p>
-        <p class="form-error"
-          *ngIf="formGroup.get('descripcionControl').hasError('minlength') && formGroup.get('descripcionControl').touched">
-          *Mínimo 3 caracteres 
-        </p>
-        <p class="form-error"
-          *ngIf="formGroup.get('descripcionControl').hasError('maxlength') && formGroup.get('descripcionControl').touched">
-          *Máximo 40 caracteres  
-        </p>
-      </div>
-      <div class="row">
-        <label position="stacked"><strong>Logo</strong></label>
-        <input formControlName="foto" type="file" accept=".png, .jpg" (change)="enviarimagen($event)" style="color:black"/>
-      </div>
-      <br/>
-
-      <div class="form-group">
-        <ion-button type="submit" [disabled]="!formGroup.valid" expand="block">Guardar Bici</ion-button>
     </div>
-  </form>
-  </div>
-</div>
+  </section>
 
-  
-
-  <app-footer></app-footer> 
-  
+  <app-footer></app-footer>
 </ion-content>
