@@ -13,6 +13,7 @@ import { DatosUsuario } from '../../model/user.interface';
 })
 export class NotificacionesTiendaPage implements OnInit {
   tiendaid=null;
+  pageActual: number= 1;
   Si='Si';
   No='No';
   Alquiler='Alquiler';
