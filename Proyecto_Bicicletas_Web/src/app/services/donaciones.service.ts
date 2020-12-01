@@ -22,6 +22,8 @@ export class DonacionesService {
 
   private donacionidCollection: AngularFirestoreCollection<datosDonacion>;
   private donacionid: Observable<datosDonacion[]>;
+  private donacion2Collection: AngularFirestoreCollection<datosDonacion>;
+  private donacion2: Observable<datosDonacion[]>;
 
   constructor(private db:AngularFirestore) {
 
@@ -60,6 +62,17 @@ export class DonacionesService {
           });
         })
       );
+      this.donacion2Collection = this.db.collection<datosDonacion>('donacion',ref => ref.orderBy('fechadonacion', "desc"));
+      this.donacion2 = this.donacion2Collection.snapshotChanges().pipe(
+        map(actions => {
+          return actions.map(a => {
+            const data = a.payload.doc.data();
+            const id = a.payload.doc.id;
+            return {id, ...data};
+          });
+        })
+      );
+
     
    }
 
@@ -91,7 +104,9 @@ export class DonacionesService {
   } 
 
 
-
+  getalquileresdonacionfecha(){
+    return this.donacion2;
+  }
 
 
 }

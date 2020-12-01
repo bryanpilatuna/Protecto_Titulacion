@@ -22,6 +22,9 @@ export class AlquileresService {
   private alquileridCollection: AngularFirestoreCollection<datosAlquiler>;
   private alquilerid: Observable<datosAlquiler[]>;
 
+  private alquiler2Collection: AngularFirestoreCollection<datosAlquiler>;
+  private alquiler2: Observable<datosAlquiler[]>;
+
   constructor(private db:AngularFirestore) {
     this.alquilerCollection = db.collection<datosAlquiler>('alquiler');
     this.alquiler = this.alquilerCollection.snapshotChanges().pipe(
@@ -58,6 +61,18 @@ export class AlquileresService {
         });
       })
     );
+
+    this.alquiler2Collection = this.db.collection<datosAlquiler>('alquiler',ref => ref.orderBy('fechaalquiler', "desc"));
+    this.alquiler2 = this.alquiler2Collection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return {id, ...data};
+        });
+      })
+    );
+
   
 
    }
@@ -84,6 +99,9 @@ export class AlquileresService {
 
    }
 
+   getalquilerestiendafecha(){
+    return this.alquiler2;
+  }
 
    getUsuarios(){
     return this.usuario;

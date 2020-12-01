@@ -19,6 +19,7 @@ export class DonacionesAprobadasPage implements OnInit {
   true=true;
   pageActual: number= 1;
   donaciones:datosDonacion[];
+  donaciones2:datosDonacion[];
   usuarios:DatosUsuario[];
   notificaciones:Notificaciones[];
   fechaactual: Date = new Date();
@@ -61,10 +62,9 @@ export class DonacionesAprobadasPage implements OnInit {
 
   ngOnInit() {
     //this.tiendaid=this.route.snapshot.params['id'];
-  this.donacionesservice.getDonacionTienda(this.tiendaid).subscribe((donaciones) =>{
-    this.donaciones = donaciones.filter(donaciones=>donaciones.aprobacion==true);  
-   
-    })
+    this.donacionesservice.getalquileresdonacionfecha().subscribe((donacion) =>{
+      this.donaciones2 = donacion.filter(donacion=>donacion.aprobacion==true );
+      })
   }
   
  

@@ -168,7 +168,7 @@ export class IniciarSesionPage implements OnInit {
           //this.tienda = tienda;
          
           if (tienda) {
-            this.router.navigate(['mis-bicis']);
+            this.router.navigate(['editar-tienda']);
           }else{
             this.mensaje="El usuario no es de tipo tienda.";
             this.mensajeerror();
