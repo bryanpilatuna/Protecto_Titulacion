@@ -23,6 +23,7 @@ export class DonacionesAprobarPage implements OnInit {
   true=true;
   pageActual: number= 1;
   donaciones:datosDonacion[];
+  donaciones2:datosDonacion[];
   usuarios:DatosUsuario[];
   notificaciones:Notificaciones[];
   fechaactual: Date = new Date();
@@ -68,27 +69,11 @@ export class DonacionesAprobarPage implements OnInit {
 
   ngOnInit() {
     
-  //this.tiendaid=this.route.snapshot.params['id'];
-  this.donacionesservice.getDonacionTienda(this.tiendaid).subscribe((donaciones) =>{
-    this.donaciones = donaciones.filter(donaciones=>donaciones.aprobacion==false && donaciones.anular==false); 
-   
-    })
-
-    
-    //this.desactivarnoti();
-  }
-  notificacionesalquiler(){
-    this.notificacionesService.getMisnotificaciones(this.tiendaid).subscribe((notificaciones) =>{
-      this.notificacionesAlqui=notificaciones.filter(notificaciones=>notificaciones.visualizar=='No' && notificaciones.tipo=='Donacion');
-      this.numeroalqui=this.notificacionesAlqui.length;
-      for (let index = 0; index < this.numeroalqui; index++) {
-        this.notificacionesAlqui[index].visualizar='Si';
-        this.notificacionesService.updateNotificacion(this.notificacionesAlqui[index],this.notificacionesAlqui[index].id)
-        
-      }
+  this.donacionesservice.getalquileresdonacionfecha().subscribe((donacion) =>{
+    this.donaciones2 = donacion.filter(donacion=>donacion.aprobacion== false && donacion.anular==false);
     })
   }
-
+ 
   
 
   updateDonacion(acdonacion:datosDonacion,iddonacion:string){
