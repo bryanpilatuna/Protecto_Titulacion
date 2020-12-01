@@ -223,6 +223,9 @@ export class EditTiendaPage implements OnInit {
     await alert.present();
   }
 
+  irtiendas(){
+    this.nav.navigateForward('tienda-administrador');
+  }
 
   
 }
