@@ -8,13 +8,15 @@ import { AlquileresPageRoutingModule } from './alquileres-routing.module';
 
 import { AlquileresPage } from './alquileres.page';
 import { ComponentsModule } from '../../componentes/components.module';
+import {NgxPaginationModule} from 'ngx-pagination';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     AlquileresPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    NgxPaginationModule
   ],
   declarations: [AlquileresPage]
 })
