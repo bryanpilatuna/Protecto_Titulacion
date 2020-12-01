@@ -131,6 +131,9 @@ export class EditTiendaPage implements OnInit {
     const tipoControl = new FormControl('', Validators.compose([
       Validators.required,
   ]));
+  const auxilioControl = new FormControl('', Validators.compose([
+    Validators.required,
+]));
     const emailControl = new FormControl('', Validators.compose([
       Validators.required,
       Validators.email,
@@ -146,7 +149,7 @@ export class EditTiendaPage implements OnInit {
       Validators.pattern("[0-9]*"),
     ]));
     
-    this.formGroup = this.formBuilder.group({nombreControl,direccionControl,telefonoControl,emailControl,tipoControl });
+    this.formGroup = this.formBuilder.group({nombreControl,direccionControl,telefonoControl,emailControl,tipoControl,auxilioControl });
     
   }
 
