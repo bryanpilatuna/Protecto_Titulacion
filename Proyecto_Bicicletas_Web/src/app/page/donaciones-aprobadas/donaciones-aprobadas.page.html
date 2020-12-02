@@ -1,11 +1,12 @@
 
 <ion-content>
-  <ng-container *ngIf="!donaciones || donaciones.length == 0">
+  <ng-container *ngIf="!donaciones2 || donaciones2.length == 0">
     <h3>No tienes donaciones aprobadas</h3>
   </ng-container>
 
   <div class="container justify-content-center" >
-    <div *ngFor="let donacion of donaciones | paginate: { itemsPerPage: 5, currentPage: pageActual }">
+    <div *ngFor="let donacion of donaciones2 | paginate: { itemsPerPage: 5, currentPage: pageActual }">
+      <div *ngIf="donacion.idtienda==tiendaid">
       <div *ngFor="let usuario of usuarios">
         <div *ngIf="donacion.iddonante==usuario.uid">
           <div class="container justify-content-center" >
@@ -40,6 +41,7 @@
        </div>
       </div>
       </div> 
+    </div>
       <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
     </div>
   

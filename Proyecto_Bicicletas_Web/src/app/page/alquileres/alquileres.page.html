@@ -9,7 +9,7 @@
     <p style="text-align: left;padding-left: 10px"><ion-icon name="flag-outline" style="color:#ffbb00;font-size: 20px;"></ion-icon> Pendientes</p>  
  
     
-    <div *ngFor="let alqui of alquiler;let indice=index" style="display: flex;justify-content: center;align-items: center;">
+    <div *ngFor="let alqui of alquiler | paginate: { itemsPerPage: 5, currentPage: pageActual };let indice=index" style="display: flex;justify-content: center;align-items: center;">
       <ion-card *ngIf="alqui.idusuario==id">
         <ion-row style="border-bottom: solid 1px;border-color: #2355EF;">
           <ion-col>
@@ -57,6 +57,7 @@
         </div>
       </ion-card>
     </div>
+    <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
     
 
     <!--<div *ngFor="let alqui of alquiler;let indice=index">

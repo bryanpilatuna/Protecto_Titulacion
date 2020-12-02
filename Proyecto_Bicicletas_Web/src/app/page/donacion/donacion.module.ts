@@ -8,13 +8,15 @@ import { DonacionPageRoutingModule } from './donacion-routing.module';
 
 import { DonacionPage } from './donacion.page';
 import { ComponentsModule } from '../../componentes/components.module';
+import {NgxPaginationModule} from 'ngx-pagination';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     DonacionPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    NgxPaginationModule
   ],
   declarations: [DonacionPage]
 })

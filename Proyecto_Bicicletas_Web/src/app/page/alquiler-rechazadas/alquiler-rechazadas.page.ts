@@ -16,6 +16,7 @@ import { AlertController } from '@ionic/angular';
 export class AlquilerRechazadasPage implements OnInit {
   tiendaid=null;
   alquileres:datosAlquiler[];
+  alquileres2:datosAlquiler[];
   usuarios:DatosUsuario[];
   fechaactual: Date = new Date();
   pageActual: number= 1;
@@ -60,10 +61,11 @@ export class AlquilerRechazadasPage implements OnInit {
     }
 
   ngOnInit() {
-    this.alquilerservice.getalquileresTienda(this.tiendaid).subscribe((alquileres) =>{
-      this.alquileres = alquileres.filter(alquileres=>alquileres.anular==true );
-     
+    this.alquilerservice.getalquilerestiendafecha().subscribe((alquileres) =>{
+      this.alquileres2 = alquileres.filter(alquileres=>alquileres.anular==true );
       })
+
+
     
   }
 

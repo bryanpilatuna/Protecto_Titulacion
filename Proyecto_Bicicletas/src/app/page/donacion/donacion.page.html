@@ -14,7 +14,7 @@
     <p style="text-align: left;padding-left: 10px"><ion-icon name="flag-outline" style="color:red;font-size: 20px;"></ion-icon> Rechazados o anulados</p> 
     <p style="text-align: left;padding-left: 10px"><ion-icon name="flag-outline" style="color:#ffbb00;font-size: 20px;"></ion-icon> Pendientes</p> 
 
-    <div *ngFor="let donacion of donaciones;let indice=index">
+    <div *ngFor="let donacion of donaciones | paginate: { itemsPerPage: 5, currentPage: pageActual };let indice=index">
       <ion-card *ngIf="donacion.iddonante==id">
         <ion-row style="border-bottom: solid 1px;border-color: #2355EF;">
           <ion-col>
@@ -63,6 +63,7 @@
         </div>
       </ion-card>
     </div>
+    <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
 
   </ion-list>
   <ng-template #elseBlock>

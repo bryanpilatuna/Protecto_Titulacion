@@ -16,7 +16,8 @@ import { AlertController } from '@ionic/angular';
 })
 export class AlquilerAprobarPage implements OnInit {
   tiendaid=null;
-    notificacionesAlqui:NotificacionesTienda[];
+  notificacionesAlqui:NotificacionesTienda[];
+  alquileres2:datosAlquiler[];
   alquileres:datosAlquiler[];
   numeroalqui=0;
   usuarios:DatosUsuario[];
@@ -62,28 +63,12 @@ export class AlquilerAprobarPage implements OnInit {
     }
 
     ngOnInit() {
-      this.alquilerservice.getalquileresTienda(this.tiendaid).subscribe((alquileres) =>{
-      this.alquileres = alquileres.filter(alquileres=>alquileres.aprobacion==false &&alquileres.anular==false );
-     
-      })
-      
-
-///////////Desactivar notificaciones
-      }
-      notificacionesalquiler(){
-        this.notificacionesService.getMisnotificaciones(this.tiendaid).subscribe((notificaciones) =>{
-          this.notificacionesAlqui=notificaciones.filter(notificaciones=>notificaciones.visualizar=='No' && notificaciones.tipo=='Alquiler');
-          this.numeroalqui=this.notificacionesAlqui.length;
-          for (let index = 0; index < this.numeroalqui; index++) {
-            this.notificacionesAlqui[index].visualizar='Si';
-            this.notificacionesService.updateNotificacion(this.notificacionesAlqui[index],this.notificacionesAlqui[index].id)
-            
-          }
+      this.alquilerservice.getalquilerestiendafecha().subscribe((alquileres) =>{
+        this.alquileres2 = alquileres.filter(alquileres=>alquileres.aprobacion==false && alquileres.anular==false );
         })
+
       }
-     
-    
-      updateAlquiler(acalquiler:datosAlquiler,id:string){
+   updateAlquiler(acalquiler:datosAlquiler,id:string){
        
       acalquiler.aprobacion=true;
       this.alquilerservice.actualizarAlquiler(acalquiler,id).then(() => {
