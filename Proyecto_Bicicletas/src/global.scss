@@ -45,4 +45,33 @@ ion-content,ion-header,ion-title,p,div,ion-list ,ion-item,h3,h4,ion-label,strong
   font-family: "Verdana"
 }
 
+ion-alert:not(.select-alert) {
+
+  .alert-message{
+    color: black;
+    margin-top: 10px;
+  }
+  .alert-title{
+    color:white;
+    
+    
+  }
+  .alert-head{
+    background:#3880ff;
+  }
+
+
+
+
+}
+.alert-radio-label.sc-ion-alert-md {
+  color:black
+}
+.alert-head.sc-ion-alert-md {
+  background:#3880ff;
   
+}
+.alert-title.sc-ion-alert-md {
+  color:white;
+}
+

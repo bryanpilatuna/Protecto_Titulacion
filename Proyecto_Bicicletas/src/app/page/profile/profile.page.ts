@@ -72,8 +72,8 @@ export class ProfilePage implements OnInit {
   //Mostrar mensaje de alerta
   async mensajeerror() {
     const alert = await this.alertCtrl.create({
-      cssClass: 'my-custom-class',
       header: 'Mensaje',
+      cssClass:'my-custom-class',
       message: this.mensaje,
       buttons: [
        {
