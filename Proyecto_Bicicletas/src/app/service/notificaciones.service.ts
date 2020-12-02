@@ -60,4 +60,35 @@ export class NotificacionesService {
     );
     return this.notificaciones2;
   }
+  getMisnotificacionesalqui(iduser:string){
+
+    this.notificacionesCollection2 =this.db.collection<Notificaciones>('notificaciones', ref => ref.where('idusuario', '==', iduser).where('tipo', '==', 'alquiler'));
+    this.notificaciones2 = this.notificacionesCollection2.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+        
+          return {id, ...data};
+        });
+      })
+    );
+    return this.notificaciones2;
+  }
+
+  getMisnotificacionesdona(iduser:string){
+
+    this.notificacionesCollection2 =this.db.collection<Notificaciones>('notificaciones', ref => ref.where('idusuario', '==', iduser).where('tipo', '==', 'donacion'));
+    this.notificaciones2 = this.notificacionesCollection2.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+        
+          return {id, ...data};
+        });
+      })
+    );
+    return this.notificaciones2;
+  }
 }

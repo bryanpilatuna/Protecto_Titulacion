@@ -12,9 +12,11 @@ import { DonacionService } from 'src/app/service/donacion.service';
 })
 export class NotificacionAlquilerPage implements OnInit {
   notificaciones: Notificaciones[];
-  notificaciones2: Notificaciones[];
+  misnotificaciones:Notificaciones[];
   id: any;
   tiendas:  datosTiendas[];
+
+  vacio:boolean=true;
   constructor(
     private nav: NavController, 
     private Service: NotificacionesService, 
@@ -25,6 +27,15 @@ export class NotificacionAlquilerPage implements OnInit {
       this.Service.getTodos().subscribe((notificaciones) =>{
       this.notificaciones = notificaciones;
       
+      })
+
+      this.Service.getMisnotificacionesalqui(this.id).subscribe((misnotificaciones) =>{
+        this.misnotificaciones= misnotificaciones;
+        if( misnotificaciones.length==0){
+          this.vacio=true;
+        }else{
+          this.vacio=false;
+        }
       })
 
 

@@ -112,7 +112,7 @@ export class FormularioAlquilerPage implements OnInit {
        {
           text: 'Aceptar',
           handler: () => {
-            this.nav.navigateForward('menu');
+            //this.nav.navigateForward('menu');
           }
         }
       ]
@@ -185,6 +185,7 @@ export class FormularioAlquilerPage implements OnInit {
       this.notificaciones.idusuario=this.alquiler.idusuario;
       this.notificaciones.idtienda=this.alquiler.idtienda;
       this.Service.addNotificacion(this.notificaciones);
+      this.nav.navigateForward('/menu');
       this.mensaje="Se envió correctamente su formulario de alquiler.";
       this.mensajeconfirmacion();
     

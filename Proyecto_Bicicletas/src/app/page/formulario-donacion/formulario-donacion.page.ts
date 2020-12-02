@@ -83,7 +83,7 @@ export class FormularioDonacionPage implements OnInit {
        {
           text: 'Aceptar',
           handler: () => {
-            this.nav.navigateForward('menu');
+            //this.nav.navigateForward('menu');
           }
         }
       ]
@@ -143,6 +143,7 @@ export class FormularioDonacionPage implements OnInit {
         this.notificaciones.idtienda=this.donacion.idtienda;
         
         this.Service.addNotificacion(this.notificaciones);
+        this.nav.navigateForward('/menu');
         this.mensaje="Se envió correctamente su formulario de donación.";
         this.mensajeconfirmacion();
         
