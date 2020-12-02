@@ -6,6 +6,7 @@ import { DatosUsuario } from '../../model/user.interface';
 import { AlertController } from '@ionic/angular';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { Storage } from '@ionic/storage';
+import { NavController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +31,8 @@ export class LoginPage implements OnInit {
     public formBuilder: FormBuilder,
     private alertCtrl: AlertController,
     private localNotifications: LocalNotifications,
-    private storage: Storage
+    private storage: Storage,
+    private loadingController: LoadingController
     ) {
     this.crearvalidaciones();
     this.loadDate();
@@ -42,11 +44,15 @@ export class LoginPage implements OnInit {
 
   }
 
-  loadDate(){
+  async loadDate(){
+    const loading = await this.loadingController.create({
+      message: 'Loading....'
+    });
+    await loading.present();
     this.storage.get('estado').then((val) => {
+      loading.dismiss();
       if(val=="Activo"){
-        this.router.navigate(['menu']);
-        
+        this.router.navigate(['menu']);  
       }
     
     });

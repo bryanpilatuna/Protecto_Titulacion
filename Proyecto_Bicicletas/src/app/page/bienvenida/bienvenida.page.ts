@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
+import { NavController, LoadingController } from '@ionic/angular';
 @Component({
   selector: 'app-bienvenida',
   templateUrl: './bienvenida.page.html',
@@ -21,21 +22,26 @@ export class BienvenidaPage implements OnInit {
       titulo: 'Encuentras los talleres de bicicletas más cercanos a través de un mapa activo.'
     }
   ];
-  constructor(private storage: Storage,private router: Router) { 
-    //this.loadDate();
+  constructor(private storage: Storage,private router: Router,private loadingController: LoadingController) { 
+    this.loadDate();
     //this.ganttEach();
   }
 
   ngOnInit() {
   }
-  /*loadDate(){
+  async loadDate(){
+    const loading = await this.loadingController.create({
+      message: 'Loading....'
+    });
+    await loading.present();
     this.storage.get('estado').then((val) => {
+      loading.dismiss();
       if(val=="Activo"){
         this.router.navigate(['menu']);  
       }
     
     });
-  }*/
+  }
 
   /*ganttEach() {
     alert("entra");
