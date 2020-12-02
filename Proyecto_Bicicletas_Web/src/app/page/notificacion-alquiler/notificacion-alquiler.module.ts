@@ -8,13 +8,15 @@ import { NotificacionAlquilerPageRoutingModule } from './notificacion-alquiler-r
 
 import { NotificacionAlquilerPage } from './notificacion-alquiler.page';
 import { ComponentsModule } from '../../componentes/components.module';
+import {NgxPaginationModule} from 'ngx-pagination';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     NotificacionAlquilerPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    NgxPaginationModule
   ],
   declarations: [NotificacionAlquilerPage]
 })

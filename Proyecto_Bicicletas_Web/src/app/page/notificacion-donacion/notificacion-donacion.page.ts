@@ -13,6 +13,7 @@ import { DonacionService } from 'src/app/service/donacion.service';
 export class NotificacionDonacionPage implements OnInit {
   notificaciones: Notificaciones[];
   id: any;
+  pageActual: number= 1;
   tiendas:  datosTiendas[];
   vacio:boolean=true;
   constructor(
