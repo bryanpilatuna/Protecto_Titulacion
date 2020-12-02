@@ -14,6 +14,7 @@ export class NotificacionAlquilerPage implements OnInit {
   notificaciones: Notificaciones[];
   misnotificaciones:Notificaciones[];
   id: any;
+  pageActual: number= 1;
   tiendas:  datosTiendas[];
 
   vacio:boolean=true;

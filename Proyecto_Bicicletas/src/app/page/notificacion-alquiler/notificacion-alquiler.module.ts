@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { NotificacionAlquilerPageRoutingModule } from './notificacion-alquiler-routing.module';
 
 import { NotificacionAlquilerPage } from './notificacion-alquiler.page';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    NotificacionAlquilerPageRoutingModule
+    NotificacionAlquilerPageRoutingModule,
+    NgxPaginationModule
   ],
   declarations: [NotificacionAlquilerPage]
 })

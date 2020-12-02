@@ -7,7 +7,7 @@
 <ion-content>
 
   <ion-list *ngIf="vacio==false">
-    <div *ngFor="let noti of notificaciones;let indice=index">
+    <div *ngFor="let noti of notificaciones | paginate: { itemsPerPage: 5, currentPage: pageActual };let indice=index">
       <div *ngIf="noti.idusuario==id">
         <ion-card *ngIf="noti.tipo=='alquiler'" [ngStyle]="{'background':noti.color}">
           <ion-row style="border-bottom: solid 1px;border-color: #2355EF;">
@@ -48,6 +48,7 @@
       </div>
       
     </div>
+    <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
 
   </ion-list>
     

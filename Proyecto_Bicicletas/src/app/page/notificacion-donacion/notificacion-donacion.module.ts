@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { NotificacionDonacionPageRoutingModule } from './notificacion-donacion-routing.module';
 
 import { NotificacionDonacionPage } from './notificacion-donacion.page';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    NotificacionDonacionPageRoutingModule
+    NotificacionDonacionPageRoutingModule,
+    NgxPaginationModule
   ],
   declarations: [NotificacionDonacionPage]
 })
