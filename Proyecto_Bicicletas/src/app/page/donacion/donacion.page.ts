@@ -11,6 +11,7 @@ import { DonacionService } from 'src/app/service/donacion.service';
 })
 export class DonacionPage implements OnInit {
   tiendas:  datosTiendas[];
+  pageActual: number= 1;
   donaciones: datosDonacion[];
   id: any;
   vacio:boolean=true;

@@ -13,6 +13,7 @@ import { datosBicicleta } from 'src/app/model/bicicleta.interface';
 })
 export class AlquileresPage implements OnInit {
   tiendas:  datosTiendas[];
+  pageActual: number= 1;
   alquiler: datosAlquiler[];
   id: any;
   vacio:boolean=true;
