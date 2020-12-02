@@ -14,6 +14,7 @@ export class NotificacionDonacionPage implements OnInit {
   notificaciones: Notificaciones[];
   id: any;
   tiendas:  datosTiendas[];
+  vacio:boolean=true;
   constructor(
     private nav: NavController, 
     private Service: NotificacionesService, 
@@ -23,6 +24,13 @@ export class NotificacionDonacionPage implements OnInit {
   
       this.Service.getTodos().subscribe((notificaciones) =>{
       this.notificaciones = notificaciones;
+      })
+      this.Service.getMisnotificacionesdona(this.id).subscribe((misnotificaciones) =>{
+        if( misnotificaciones.length==0){
+          this.vacio=true;
+        }else{
+          this.vacio=false;
+        }
       })
 
       this.Servicio.getTiendas().subscribe((tiendas) =>{

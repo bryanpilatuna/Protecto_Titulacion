@@ -1,6 +1,6 @@
 <ion-content>
 <div style="min-height: 300px;"> 
-  <ion-list *ngIf="misnotificaciones; else elseBlock">
+  <ion-list *ngIf="vacio==false">
     <div *ngFor="let noti of notificaciones;let indice=index" style="display: flex;justify-content: center;align-items: center;">
       <div *ngIf="noti.idusuario==id">
         <ion-card *ngIf="noti.tipo=='alquiler'" [ngStyle]="{'background':noti.color}">
@@ -44,9 +44,8 @@
     </div>
 
   </ion-list>
-  <ng-template #elseBlock>
-    <ion-list><p class="centrarmensaje">No existen alquileres.</p></ion-list>
-  </ng-template>
+
+  <ion-list *ngIf="vacio==true;"><p class="centrarmensaje">No tiene notificaciones de alquileres.</p></ion-list>
 </div>   
   <app-footer></app-footer>
 

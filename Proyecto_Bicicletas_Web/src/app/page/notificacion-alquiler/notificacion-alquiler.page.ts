@@ -16,6 +16,8 @@ export class NotificacionAlquilerPage implements OnInit {
   misnotificaciones:Notificaciones[];
   id: any;
   tiendas:  datosTiendas[];
+
+  vacio:boolean=true;
   constructor(
     private nav: NavController, 
     private Service: NotificacionesService, 
@@ -24,12 +26,19 @@ export class NotificacionAlquilerPage implements OnInit {
     ) {
       this.id = firebase.auth().currentUser.uid;
       this.Service.getTodos().subscribe((notificaciones) =>{
-      this.notificaciones = notificaciones;
+        this.notificaciones=notificaciones;
+    
       
       })
 
-      this.Service.getMisnotificaciones(this.id).subscribe((misnotificaciones) =>{
+      this.Service.getMisnotificacionesalqui(this.id).subscribe((misnotificaciones) =>{
         this.misnotificaciones= misnotificaciones;
+        if( misnotificaciones.length==0){
+          this.vacio=true;
+        }else{
+          this.vacio=false;
+        }
+        console.log(misnotificaciones.length);
         console.log(this.misnotificaciones);
       })
         
