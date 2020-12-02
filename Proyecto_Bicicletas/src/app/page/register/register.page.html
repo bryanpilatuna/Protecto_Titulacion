@@ -143,7 +143,7 @@
     <div class="row">
       <ion-label position="stacked"><strong>Foto</strong></ion-label>
       <br/>
-        <input formControlName="foto" type="file" accept=".png, .jpg" (change)="enviarimagen($event)" style="color:black"/>
+        <ion-input formControlName="foto" type="file" accept="image/*" (change)="enviarimagen($event)" style="color:black"></ion-input>
     </div>
   </ion-item>
   <br/>
