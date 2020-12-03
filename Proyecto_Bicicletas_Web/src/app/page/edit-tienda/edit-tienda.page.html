@@ -11,14 +11,12 @@
   <section class="py-5 text-center">
     <div class="container"> 
       <div class="row" >
-        <div class="col" >
-             
+        <div class="col" style="border: #3A6073 2px solid" >
+          <h2 style="text-align:center">Editar Tienda</h2>
           <img [src]="tienda.logo" style="display:block;margin:auto;padding-top: 10px;"/>
     
         </div>
-        <div class="col" style="border: #3A6073 2px solid;" >   
-            <div class="row">
-              
+        <div class="col" style="border: #3A6073 2px solid;" >           
                 <form [formGroup]="formGroup" (ngSubmit)="guardartienda()" *ngIf="tienda" >
                   <div class="row">  
                      
@@ -89,7 +87,7 @@
                     </div>
                   <div class="form-group row">
                     <div class="col">
-                      <ion-label  position="stacked"><strong>Estado de Tienda </strong></ion-label >
+                        <label position="stacked"><strong>Estado de Tienda</strong></label>
                         <select [(ngModel)]="tienda.estado" formControlName="tipoControl" class="form-control" enabled="false">
                           <option value="Activo" selected>Activo</option>
                           <option value="Inactivo">Inactivo</option>
@@ -98,15 +96,15 @@
                     <div class="col">
                       <div class="form-group">
                         <label position="stacked"><strong>Correo electrónico</strong></label>
-                        <input class="form-control" type="text" placeholder="abc@gmail.com" formControlName="emailControl" #email [(ngModel)]="tienda.correo" readonly>
+                        <p style="padding:10px;border: #3A6073 2px solid;border-radius: 5px;">{{tienda.correo}}</p>
                       </div>
                     </div>
                   </div>
                   <div class="form-group row">
                     <div class="col">
-                      <ion-label  position="stacked"><strong>¿Realiza auxilio mecánico? </strong></ion-label >
+                        <label position="stacked"><strong>¿Realiza auxilio mecánico?</strong></label>
                         <select [(ngModel)]="tienda.auxilio" formControlName="auxilioControl" class="form-control">
-                          <option value="Si" selected>Si</option>
+                          <option value="Si">Si</option>
                           <option value="No">No</option>
                         </select>
                     </div>
@@ -115,8 +113,7 @@
                     <ion-button type="submit" [disabled]="!formGroup.valid" expand="block">Guardar</ion-button>
                   </div>
                 </form>
-            
-            </div>
+
         </div>
       </div>
       

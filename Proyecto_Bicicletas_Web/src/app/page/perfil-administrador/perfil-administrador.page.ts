@@ -74,15 +74,9 @@ export class PerfilAdministradorPage implements OnInit {
       Validators.pattern("[0-9]*"),
     ]));
 
-    const emailControl = new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.email,
-        Validators.minLength(10),
-        Validators.maxLength(40)
-
-    ]));
+      
     
-    this.formGroup = this.formBuilder.group({nombreControl,apellidoControl,cedulaControl,telefonoControl,emailControl });
+    this.formGroup = this.formBuilder.group({nombreControl,apellidoControl,cedulaControl,telefonoControl });
     
   }
 

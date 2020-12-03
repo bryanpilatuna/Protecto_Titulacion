@@ -8,6 +8,8 @@ import { EditClientePageRoutingModule } from './edit-cliente-routing.module';
 
 import { EditClientePage } from './edit-cliente.page';
 import { ComponentsModule } from '../../components/components.module';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   imports: [
@@ -15,7 +17,8 @@ import { ComponentsModule } from '../../components/components.module';
     FormsModule,
     IonicModule,
     EditClientePageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    ReactiveFormsModule
   ],
   declarations: [EditClientePage]
 })

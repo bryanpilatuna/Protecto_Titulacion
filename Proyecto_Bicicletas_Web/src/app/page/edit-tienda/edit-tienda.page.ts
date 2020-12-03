@@ -134,13 +134,6 @@ export class EditTiendaPage implements OnInit {
   const auxilioControl = new FormControl('', Validators.compose([
     Validators.required,
 ]));
-    const emailControl = new FormControl('', Validators.compose([
-      Validators.required,
-      Validators.email,
-      Validators.minLength(10),
-      Validators.maxLength(40)
-
-  ]));
 
     const telefonoControl = new FormControl('', Validators.compose([
       Validators.required,
@@ -149,7 +142,8 @@ export class EditTiendaPage implements OnInit {
       Validators.pattern("[0-9]*"),
     ]));
     
-    this.formGroup = this.formBuilder.group({nombreControl,direccionControl,telefonoControl,emailControl,tipoControl,auxilioControl });
+
+    this.formGroup = this.formBuilder.group({nombreControl,direccionControl,telefonoControl,tipoControl,auxilioControl });
     
   }
 
@@ -158,9 +152,9 @@ export class EditTiendaPage implements OnInit {
   guardartienda(){
     this.tiendaservice.updateTienda(this.tienda, this.iduser).then(() => {
       //this.nav.navigateForward('menu-tienda');
-      this.mensaje='Guardado con éxito'
+      this.mensaje='Se edito la tienda correctamente.'
      this.presentAlert(this.mensaje);
-     this.router.navigate(['/perfil-administrador']);
+     this.router.navigate(['/tienda-administrador']);
     
       
     });

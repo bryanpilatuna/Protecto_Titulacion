@@ -286,5 +286,15 @@ export class AuthService {
       console.log('Error->', error);
     }
   }
+  async logoutlogin(): Promise<void> {
+    try {
+      await this.afAuth.signOut().then(() => {
+      
+        //this.router.navigate(['/iniciar-sesion']);
+      })
+    } catch (error) {
+      console.log('Error->', error);
+    }
+  }
 
 }

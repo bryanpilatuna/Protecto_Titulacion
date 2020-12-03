@@ -168,7 +168,14 @@ export class IniciarSesionPage implements OnInit {
           //this.tienda = tienda;
          
           if (tienda) {
-            this.router.navigate(['editar-tienda']);
+            if(tienda.estado=="Inactivo"){
+              this.mensaje="La tienda esta desabilitada.";
+              this.authSvc.logoutlogin();
+              this.mensajeerror();
+            }else{
+              this.router.navigate(['editar-tienda']);
+            }
+            
           }else{
             this.mensaje="El usuario no es de tipo tienda.";
             this.mensajeerror();
@@ -180,8 +187,14 @@ export class IniciarSesionPage implements OnInit {
           //this.tienda = tienda;
           
           if (usuario) {
+            if(usuario.estado=="Inactivo"){
+              this.mensaje="La cliente esta desabilitada.";
+              this.authSvc.logoutlogin();
+              this.mensajeerror();
+            }else{
+              this.router.navigate(['profile']);
+            }
             
-            this.router.navigate(['profile']);
           }else{
             this.mensaje="El usuario no es de tipo usuario.";
             this.mensajeerror();
