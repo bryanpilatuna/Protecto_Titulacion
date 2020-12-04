@@ -17,6 +17,7 @@ export class MisBicisPage implements OnInit {
 
   ngOnInit() {
     
+   // document.getElementById("tab-mis-bicis").setAttribute("class", "nav-item active");
 
   }
   rediregistrobici(){

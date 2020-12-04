@@ -17,6 +17,7 @@ export class HeaderTiendaComponent implements OnInit {
   No='No';
   Si='Si';
   id=null;
+  variable=0;
     fechaactual: Date = new Date();
     notificaciones:NotificacionesTienda[];
     contador=0;
@@ -60,6 +61,8 @@ export class HeaderTiendaComponent implements OnInit {
 
   rediperfil(){
     this.router.navigate(['/editar-tienda']);
+
+  
   }
   redibicicletas(){
     this.router.navigate(['/mis-bicis']);
@@ -80,6 +83,30 @@ export class HeaderTiendaComponent implements OnInit {
   salir(){
 
     this.Servicio.logout();
+  }
+
+  pintarpestaña(){
+
+    /// Url actual
+let url = window.location.href;
+
+/// Elementos de li
+const tabs = ["home", "mapa", "registro-cliente", "registro-tienda", "descagar-app"];
+
+tabs.forEach(e => {
+    /// Agregar .php y ver si lo contiene en la url
+    if (url.indexOf(e) !== -1) {
+        /// Agregar tab- para hacer que coincida la Id
+        setActive("tab-" + e);
+    }
+
+});
+
+/// Funcion que asigna la clase active
+function setActive(id) {
+    document.getElementById(id).setAttribute("class", "nav-item active");
+}
+
   }
  
 

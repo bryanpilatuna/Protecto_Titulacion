@@ -63,6 +63,8 @@ export class EditarTiendaPage implements OnInit {
   ngOnInit() {
     //this.tiendaid=this.route.snapshot.params['id'];
     this.loadmap();
+    //document.getElementById("tab-editar-tienda").setAttribute("class", "nav-item active");
+   
      
   }
    //Cargar tienda
