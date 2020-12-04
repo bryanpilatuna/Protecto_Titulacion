@@ -4,7 +4,7 @@
   </ng-container>
   <div class="container justify-content-center" >
   <div *ngFor="let alquiler of alquileres2 | paginate: { itemsPerPage: 5, currentPage: pageActual }" >
-    <div *ngIf="alquiler.idtienda==tiendaid">
+ <!--   <div *ngIf="alquiler.idtienda==tiendaid"> -->
     <div *ngFor="let usuario of usuarios">
       <div *ngIf="alquiler.idusuario==usuario.uid">
         <div class="container justify-content-center" >
@@ -42,7 +42,7 @@
      </div>
     </div>
     </div>
-  </div> 
+ <!-- </div>  -->
     <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
   </div>
 

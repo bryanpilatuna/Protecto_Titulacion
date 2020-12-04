@@ -65,6 +65,11 @@ export class AlquilerAprobadasPage implements OnInit {
       this.alquileres2 = alquileres.filter(alquileres=>alquileres.aprobacion==true );
       console.log("alquileres 2",this.alquileres2);
       })
+
+      this.alquilerservice.getalquileresTienda(this.tiendaid).subscribe((alquileres) =>{
+        this.alquileres = alquileres.filter(alquileres=>alquileres.aprobacion==true );
+        console.log("alquileres 2",this.alquileres);
+        })
     
   }
 

@@ -52,7 +52,10 @@ export class EditarTiendaPage implements OnInit {
     private alertCtrl: AlertController,
     private UbicacionService: UbicacionService) { 
       var user = firebase.auth().currentUser.uid;
-      this.tiendaid = user;      
+      this.tiendaid = user;     
+      if (this.tiendaid){
+        this.cargarTienda();
+      } 
   
       this.crearvalidaciones();
     }
@@ -60,9 +63,7 @@ export class EditarTiendaPage implements OnInit {
   ngOnInit() {
     //this.tiendaid=this.route.snapshot.params['id'];
     this.loadmap();
-    if (this.tiendaid){
-      this.cargarTienda();
-    } 
+     
   }
    //Cargar tienda
    async cargarTienda(){
@@ -144,7 +145,7 @@ export class EditarTiendaPage implements OnInit {
       Validators.pattern("[0-9]*"),
     ]));
     
-    this.formGroup = this.formBuilder.group({nombreControl,direccionControl,telefonoControl,emailControl,tipoControl });
+    this.formGroup = this.formBuilder.group({nombreControl,direccionControl,telefonoControl,tipoControl });
     
   }
 

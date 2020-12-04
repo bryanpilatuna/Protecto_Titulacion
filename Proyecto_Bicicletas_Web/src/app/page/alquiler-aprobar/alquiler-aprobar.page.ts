@@ -67,6 +67,10 @@ export class AlquilerAprobarPage implements OnInit {
         this.alquileres2 = alquileres.filter(alquileres=>alquileres.aprobacion==false && alquileres.anular==false );
         })
 
+        this.alquilerservice.getalquileresTienda(this.tiendaid).subscribe((alquileres) =>{
+          this.alquileres = alquileres.filter(alquileres=>alquileres.aprobacion==false && alquileres.anular==false );
+          })
+
       }
    updateAlquiler(acalquiler:datosAlquiler,id:string){
        
@@ -82,7 +86,7 @@ export class AlquilerAprobarPage implements OnInit {
       aprobaralquiler(alquiler:datosAlquiler,id:string){
         alquiler.aprobacion=true;
         this.notificacion.idtienda=this.tiendaid;
-        this.notificacion.respuesta='Tu Alquiler ha sido aprobado';
+        this.notificacion.respuesta='Tu alquiler ha sido aprobado';
         this.notificacion.visualizar='No';
         this.notificacion.idusuario=alquiler.idusuario;
         this.notificacion.idtipo=alquiler.id;

@@ -65,6 +65,10 @@ export class AlquilerRechazadasPage implements OnInit {
       this.alquileres2 = alquileres.filter(alquileres=>alquileres.anular==true );
       })
 
+      this.alquilerservice.getalquileresTienda(this.tiendaid).subscribe((alquileres) =>{
+        this.alquileres = alquileres.filter(alquileres=>alquileres.anular==true );
+        })
+
 
     
   }

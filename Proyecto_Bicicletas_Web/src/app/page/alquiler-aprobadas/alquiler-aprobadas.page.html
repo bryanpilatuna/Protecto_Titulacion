@@ -1,11 +1,11 @@
 
 <ion-content>
-  <ng-container *ngIf="!alquileres2 || alquileres2.length == 0">
+  <ng-container *ngIf="!alquileres || alquileres.length == 0">
     <h3>No tienes alquileres aprobados</h3>
   </ng-container>
   <div class="container justify-content-center" >
-  <div *ngFor="let alquiler of alquileres2 | paginate: { itemsPerPage: 5, currentPage: pageActual }" >
-    <div *ngIf="alquiler.idtienda==tiendaid">
+  <div *ngFor="let alquiler of alquileres | paginate: { itemsPerPage: 5, currentPage: pageActual }" >
+  <!--   <div *ngIf="alquiler.idtienda==tiendaid"> -->
     <div *ngFor="let usuario of usuarios">
       <div *ngIf="alquiler.idusuario==usuario.uid">
         <div class="container justify-content-center" >
@@ -37,7 +37,7 @@
 
        
         
-     </div>
+    <!-- </div> -->
     </div>
   </div>
 </div>

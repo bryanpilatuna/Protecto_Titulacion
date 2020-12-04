@@ -72,6 +72,10 @@ export class DonacionesAprobarPage implements OnInit {
   this.donacionesservice.getalquileresdonacionfecha().subscribe((donacion) =>{
     this.donaciones2 = donacion.filter(donacion=>donacion.aprobacion== false && donacion.anular==false);
     })
+
+    this.donacionesservice.getDonacionTienda(this.tiendaid).subscribe((donacion) =>{
+      this.donaciones = donacion.filter(donacion=>donacion.aprobacion== false && donacion.anular==false);
+      })
   }
  
   

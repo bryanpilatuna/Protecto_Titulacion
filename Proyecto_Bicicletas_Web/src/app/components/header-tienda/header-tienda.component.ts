@@ -5,6 +5,7 @@ import { AuthService } from '../../services/auth.service';
 import * as firebase from 'firebase';
 import { NotificacionesTienda}from '../../model/notificaciones.interface';
 import {NotificacionesService} from '../../services/notificaciones.service';
+import { RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-header-tienda',
