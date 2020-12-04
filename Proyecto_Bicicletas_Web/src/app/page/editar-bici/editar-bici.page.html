@@ -8,10 +8,16 @@
     <div class="container"> 
       <div class="row" >
 
-        <div class="col" style="background-color: #3A6073;display: flex; align-items: center;justify-content: center;">
+        <div class="col" style="background-color: #ffffff;border: #3A6073 2px solid;display: flex; align-items: center;justify-content: center;">
         <div class="row" style="align-items: center;justify-content: center;">
           <div class="row">  
             <img [src]="bicicleta.imagen" style="width:80%;margin:auto;padding-top: 10px;padding-bottom: 10px;"/>
+        </div>
+        <div class="row" style="display: flex;justify-content: center;">  
+          <label style="color:blue">
+            Cambiar foto de perfil
+            <input type="file" accept=".png, .jpg" name="fileSubir" (change)="subirImagen($event)" style="display:none;">
+          </label>
         </div>
         
         </div>
