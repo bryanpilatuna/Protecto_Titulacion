@@ -63,7 +63,8 @@ export class HomePage implements OnInit {
         animation: google.maps.Animation.DROP,
       });
       const detallemarker = 
-    '<h3>Nombre: '+marker.nombre+'</h3>';
+    '<h3>Nombre: '+marker.nombre+'</h3>'+
+    "<b>Regístrate para ver toda la información. </b>";
     
     puntos.addListener("click", () => {
      this.infowindow.setContent(detallemarker);

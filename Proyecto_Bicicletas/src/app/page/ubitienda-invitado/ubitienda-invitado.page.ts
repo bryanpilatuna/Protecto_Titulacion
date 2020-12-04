@@ -67,7 +67,7 @@ export class UbitiendaInvitadoPage implements OnInit {
       });
       const detallemarker = 
     '<h3>Nombre: '+marker.nombre+'</h3>' +
-    "<b>Regístrate para ver toda la información: </b>";
+    "<b>Regístrate para ver toda la información. </b>";
   
         
     puntos.addListener("click", () => {
