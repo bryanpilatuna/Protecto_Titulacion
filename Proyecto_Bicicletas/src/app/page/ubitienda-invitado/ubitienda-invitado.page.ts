@@ -3,7 +3,6 @@ import { ActivatedRoute,Router} from '@angular/router';
 import { datosUbicacion } from '../../model/ubicacion.interface';
 import {UbicacionService} from '../../service/ubicacion.service';
 import {UsuarioService} from '../../service/usuario.service';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
 import {NavController,LoadingController} from '@ionic/angular';
 declare var google;
 
@@ -18,7 +17,6 @@ export class UbitiendaInvitadoPage implements OnInit {
   map = null;
 
   constructor( private UbicacionService: UbicacionService,
-    private geolocation: Geolocation,
     private nav: NavController,
     private UsuarioService: UsuarioService,
     private loadinCtrl: LoadingController,
@@ -30,13 +28,8 @@ export class UbitiendaInvitadoPage implements OnInit {
   }
 
   async loadmap(){
-    this.geolocation.getCurrentPosition().then((resp) => {
-    
-    }).catch((error) => {
-      console.log('Error al obtener la ubicacion', error);
-    });
-    const rta= await this.geolocation.getCurrentPosition();
-    const myLatLng= {lat: rta.coords.latitude, lng: rta.coords.longitude};
+   
+    const myLatLng= {lat: -0.225219, lng: -78.5248};
     const mapEle: HTMLElement = document.getElementById('map');
     
     this.map = new google.maps.Map(mapEle, {
@@ -50,28 +43,10 @@ export class UbitiendaInvitadoPage implements OnInit {
      
     });
 
-    this.miubicacion(rta.coords.latitude,rta.coords.longitude);
+    //this.miubicacion(rta.coords.latitude,rta.coords.longitude);
     
     }
     
-    miubicacion(lat: number, lng: number){
-   
-      const miubicacion= new google.maps.Marker({
-      position: {lat,lng},
-      map: this.map,
-      title: 'ESTAS AQUI',
-      animation: google.maps.Animation.DROP,
-      icon: { url: "../assets/icon/green-dot.png",
-      scaledSize: new google.maps.Size(35, 35) },   
-      
-      });
-      const detallemarker = 
-      '<h5>Estas Aquí</h5>';
-      miubicacion.addListener("click", () => {
-        this.infowindow.setContent(detallemarker);
-        this.infowindow.open(this.map,miubicacion);
-      });
-    }
 
     renderMarker(){
       this.UbicacionService.getUbicaciones().subscribe((ubicaciones) =>{
@@ -92,10 +67,8 @@ export class UbitiendaInvitadoPage implements OnInit {
       });
       const detallemarker = 
     '<h3>Nombre: '+marker.nombre+'</h3>' +
-    "<p>"+'<img src="https://png.pngtree.com/png-vector/20190826/ourlarge/pngtree-house-location-icon-png-image_1701248.jpg" height="25px" width="25px" />'+" <b>Dirección: </b>"+marker.direccion+"</b></p>" +
-    "<p>"+'<img src="https://i.pinimg.com/originals/b9/2f/b6/b92fb6bd92b53e40ad90b1a160b33b0d.jpg" height="20px" width="20px" />'+" <b>Teléfono: </b>"+'<a href="tel:+593'+marker.telefono+'">'+marker.telefono+'</a>'+"</b> </p>"+
-    "<p>"+'<img src="https://i.pinimg.com/originals/23/98/2d/23982d31ee932c26a021b175c47bb157.png" height="20px" width="20px" />'+" <b>Correo: </b>"+marker.correo+"</b> </p>"+
-    "<p>"+'<img src="https://m.media-amazon.com/images/I/61d9rNNsMiL._AC_UL320_ML3_.jpg" height="20px" width="20px" />'+" <b>Auxilio mecánico: </b>"+marker.auxilio+"</b> </p>";
+    "<b>Regístrate para ver toda la información: </b>";
+  
         
     puntos.addListener("click", () => {
       this.infowindow.setContent(detallemarker);
