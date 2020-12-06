@@ -68,10 +68,13 @@ export class RegisterPage implements OnInit {
     const passwordControl = new FormControl('', Validators.compose([
       Validators.required,
       Validators.minLength(8),
-        Validators.maxLength(40),
+      Validators.maxLength(40),
       
     ]));
-    const foto = new FormControl('', Validators.required)
+    const foto = new FormControl('', Validators.compose([
+      Validators.required,
+      
+    ]));
 
     this.formGroup = this.formBuilder.group({nombreControl,apellidoControl,cedulaControl,telefonoControl,emailControl,passwordControl,foto });
   }
@@ -109,7 +112,7 @@ export class RegisterPage implements OnInit {
         this.redirectUser(isVerified);
       }else{
         if(this.authSvc.errores=="The email address is already in use by another account."){
-          this.mensaje="El correo ya esta usado por otro usuario.";
+          this.mensaje="El correo ya está usado por otro usuario.";
           this.presentAlertConfirm();
         }
       }

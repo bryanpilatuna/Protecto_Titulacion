@@ -63,6 +63,7 @@ export class FormularioAlquilerPage implements OnInit {
       //this.disableSelector = false;
       this.desabilitarboton = true;
       this.crearvalidaciones();
+      console.log(new Date());
     
      
     }
