@@ -88,6 +88,25 @@ export class AlquilerPage implements OnInit {
     await alert.present();
   }
 
+  //Mostrar mensaje de alerta
+  async mensajeconf() {
+    const alert = await this.alertCtrl.create({
+      header: 'Mensaje',
+      cssClass:'my-custom-class',
+      message: 'Se anulo correctamente el alquiler.',
+      buttons: [
+       {
+          text: 'Aceptar',
+          handler: () => {
+            console.log('Confirm Ok');
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+
   async cancelar(){
     this.mensajeconfirmacion();
   }
@@ -98,6 +117,7 @@ export class AlquilerPage implements OnInit {
       this.Servicio.updateAlquileres(this.alquileres, this.idalquiler).then(() => {
         this.bicicleta.disponible="Si";
         this.Servicio.updateBicicletas(this.bicicleta,this.idbici);
+        this.mensajeconf();
         this.nav.navigateForward('/alquiler-donacion');
       });
     } 

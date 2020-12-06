@@ -62,6 +62,24 @@ export class DonarPage implements OnInit {
     await alert.present();
   }
 
+  //Mostrar mensaje de alerta
+  async mensajeconf() {
+    const alert = await this.alertCtrl.create({
+      header: 'Mensaje',
+      cssClass:'my-custom-class',
+      message: 'Se anulo correctamente la donación.',
+      buttons: [
+       {
+          text: 'Aceptar',
+          handler: () => {
+            console.log('Confirm Ok');
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
 
   async cancelar(){
     this.mensajeconfirmacion();
@@ -72,6 +90,7 @@ export class DonarPage implements OnInit {
     this.donaciones.anular=true;
     if (this.iddonar) {
       this.Servicio.updateDonacion(this.donaciones, this.iddonar).then(() => {
+        this.mensajeconf();
         this.nav.navigateForward('/alquiler-donacion');
       });
     }
