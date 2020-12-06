@@ -130,8 +130,14 @@ export class ProfilePage implements OnInit {
       Validators.pattern("[0-9]*"),
     ]));
 
+    const emailControl = new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.email,
+        Validators.minLength(10),
+        Validators.maxLength(40)
 
-    this.formGroup = this.formBuilder.group({nombreControl,apellidoControl,cedulaControl,telefonoControl });
+    ])); 
+    this.formGroup = this.formBuilder.group({nombreControl,apellidoControl,cedulaControl,telefonoControl,emailControl });
   }
 
   //Cargar usuario
@@ -146,7 +152,7 @@ export class ProfilePage implements OnInit {
     if (this.usuarioId) {
       this.usuarioService.updateUsuario(this.usuario, this.usuarioId).then(() => {
         this.nav.navigateForward('menu');
-        this.mensaje="Se actualizó su perfil correctamente.";
+        this.mensaje="Se actualizo correctamente su perfil.";
         this.mensajeconfirmacion();
       });
     } 
