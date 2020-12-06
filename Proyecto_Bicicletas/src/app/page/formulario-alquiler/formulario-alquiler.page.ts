@@ -12,6 +12,8 @@ import { ModalAlquilerPage } from 'src/app/modal/modal-alquiler/modal-alquiler.p
 import { NotificacionesTienda } from '../../model/notificaciones.interface';
 import { NotificaciontiendaService} from '../../service/notificaciontienda.service';
 import { AlertController } from '@ionic/angular';
+import * as firebase from 'firebase';
+
 @Component({
   selector: 'app-formulario-alquiler',
   templateUrl: './formulario-alquiler.page.html',
@@ -57,13 +59,40 @@ export class FormularioAlquilerPage implements OnInit {
   }
   desabilitarboton:boolean;
   formGroup: FormGroup; 
-
+  alquilerid: datosAlquiler[];
+  id: any;
+  fechacom:any;
+  fechaac:any;
+  contador=0;
+  limite=false;
   constructor(private alertCtrl: AlertController,private route: ActivatedRoute, private nav: NavController, private UsuarioService: UsuarioService,public Service:NotificaciontiendaService,
-    private alquilerService: AlquilerService, private loadingController: LoadingController,public modalController: ModalController,public formBuilder: FormBuilder) { 
+    private alquilerService: AlquilerService, private loadingController: LoadingController,public modalController: ModalController,public formBuilder: FormBuilder,private Servicio:AlquilerService) { 
       //this.disableSelector = false;
+      this.id = firebase.auth().currentUser.uid;
+      this.fechaac = new Date(this.fechaactual).toDateString();
+      this.Servicio.getAlquiler(this.id).subscribe((alquileres) =>{
+        this.alquilerid = alquileres;
+        for(let i in this.alquilerid){
+          //console.log(this.contador);
+          this.fechacom = new Date(this.alquilerid[i].fecha['seconds']*1000).toDateString();
+          if(this.fechaac==this.fechacom){
+            this.contador=this.contador+1;
+          }
+        }
+        //console.log(this.contador);
+        if(this.contador<2){
+          this.limite=false;
+        }else{
+          this.limite=true;
+        }
+        //console.log(this.limite)
+        //console.log(new Date(this.alquilerid[0].fecha['seconds']*1000).toDateString());
+  
+      })
+
       this.desabilitarboton = true;
       this.crearvalidaciones();
-      console.log(new Date());
+      //console.log(new Date());
     
      
     }
@@ -138,15 +167,15 @@ export class FormularioAlquilerPage implements OnInit {
     const horaDonacion = new FormControl('', Validators.compose([
       Validators.required,
     ]));
-  
+    const dirDonacion = new FormControl('', Validators.compose([
+      Validators.required,
+    ]));
     
-    this.formGroup = this.formBuilder.group({fechaAlquiler,fechaDevolucion,tindaSeleccion,horaAlquiler,horaDonacion});
+    this.formGroup = this.formBuilder.group({fechaAlquiler,fechaDevolucion,tindaSeleccion,horaAlquiler,horaDonacion,dirDonacion});
   }
 
   async onSelectChange(){
-    this.alquilerService.getTienda(this.alquiler.idtienda).subscribe((tienda) =>{
-      this.direc=tienda.direccion;
-    })
+    
     this.desabilitarboton = false;
     this.abrirmodal();
   }
@@ -161,36 +190,51 @@ export class FormularioAlquilerPage implements OnInit {
       }
     });
     await modal.present();
+    
     const { data } = await modal.onDidDismiss();
-    this.idbicicleta = data.bici;
-    this.alquilerService.getBicicleta(this.idbicicleta).subscribe((bicicletas) =>{
-      this.bicicletas = bicicletas;
-      this.bicicletas.disponible="No";
-      this.imgbici=bicicletas.imagen;
-
-    })
+    if(data.bici){
+      this.alquilerService.getTienda(this.alquiler.idtienda).subscribe((tienda) =>{
+        this.direc=tienda.direccion;
+      })
+      this.idbicicleta = data.bici;
+      this.alquilerService.getBicicleta(this.idbicicleta).subscribe((bicicletas) =>{
+        this.bicicletas = bicicletas;
+        this.bicicletas.disponible="No";
+        this.imgbici=bicicletas.imagen;
+  
+      })
+    }else{
+      this.direc="";
+    }
+    
   }
 
 
 
 
   async crearAlquiler(){
-
-    this.alquiler.idusuario=this.usuarioid;
-    this.alquiler.idtienda=this.alquiler.idtienda;
-    this.alquiler.aprobacion= false;
-    this.alquiler.fecha= this.fechaactual;
-    this.alquiler.bicicleta=this.idbicicleta;
-    this.alquilerService.addAlquiler(this.alquiler).then(() => {
-      this.alquilerService.updateBicicletas(this.bicicletas, this.idbicicleta).then(() => {});
-      this.notificaciones.idusuario=this.alquiler.idusuario;
-      this.notificaciones.idtienda=this.alquiler.idtienda;
-      this.Service.addNotificacion(this.notificaciones);
-      this.nav.navigateForward('/menu');
-      this.mensaje="Se envió correctamente su formulario de alquiler.";
+    if(this.limite==true){
+      //alert("Ya paso su limite");
+      this.mensaje="El limite de alquileres realizados en un día son 2.";
       this.mensajeconfirmacion();
-    
-    });
+    }else{
+      this.alquiler.idusuario=this.usuarioid;
+      this.alquiler.idtienda=this.alquiler.idtienda;
+      this.alquiler.aprobacion= false;
+      this.alquiler.fecha= this.fechaactual;
+      this.alquiler.bicicleta=this.idbicicleta;
+      this.alquilerService.addAlquiler(this.alquiler).then(() => {
+        this.alquilerService.updateBicicletas(this.bicicletas, this.idbicicleta).then(() => {});
+        this.notificaciones.idusuario=this.alquiler.idusuario;
+        this.notificaciones.idtienda=this.alquiler.idtienda;
+        this.Service.addNotificacion(this.notificaciones);
+        this.nav.navigateForward('/menu');
+        this.mensaje="Se envió correctamente su formulario de alquiler.";
+        this.mensajeconfirmacion();
+      
+      });
+    }
+
   }
 
   cambiofecha(event){

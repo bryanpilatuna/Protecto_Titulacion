@@ -55,7 +55,7 @@
       <ion-datetime displayFormat="DD MMMM YYYY"   
       (ionChange)="cambiofecha2($event)"
       placeholder="Dia Mes Año"    
-      min="{{fechaactual | date: 'yyyy-MM-dd'}}" 
+      min="{{alquiler.fechaalquiler | date: 'yyyy-MM-dd'}}" 
       max="2021-12-31" 
       cancelText="Cancelar"
       doneText="Seleccionar"
@@ -116,7 +116,7 @@
     </ion-item>
     <ion-item *ngIf="direc">
       <ion-label position="stacked">Dirección</ion-label>
-      <p>{{direc}}</p>
+      <ion-input formControlName="dirDonacion" type="text" [(ngModel)]="direc"></ion-input>
     </ion-item>
 
 
