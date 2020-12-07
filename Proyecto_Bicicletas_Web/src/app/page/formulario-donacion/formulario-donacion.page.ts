@@ -10,6 +10,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import * as firebase from 'firebase';
 import { AlertController } from '@ionic/angular';
 import { NgbModalConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-formulario-donacion',
   templateUrl: './formulario-donacion.page.html',
@@ -44,6 +45,7 @@ export class FormularioDonacionPage implements OnInit {
   formGroup: FormGroup; 
   
   constructor(
+    private router: Router,
     private route: ActivatedRoute, 
     private nav: NavController,
     private donacionService: DonacionService, 
@@ -76,7 +78,7 @@ export class FormularioDonacionPage implements OnInit {
 
   close() {
     this.modal.close();
-    window.location.href = 'formulario-donacion' ;
+    
   }
 
 
@@ -132,7 +134,7 @@ export class FormularioDonacionPage implements OnInit {
        {
           text: 'Aceptar',
           handler: () => {
-            this.nav.navigateForward('formulario-donacion');
+            //this.nav.navigateForward('alquiler-donacion');
           }
         }
       ]
@@ -146,10 +148,14 @@ export class FormularioDonacionPage implements OnInit {
         this.notificaciones.idusuario=this.donacion.iddonante;
         this.notificaciones.idtienda=this.donacion.idtienda; 
         this.Service.addNotificacion(this.notificaciones);
-        this.modal =this.modalService.open(content,{centered:true});
-        //this.mensaje="Se envió correctamente su formulario de donación.";
-        //this.mensajeconfirmacion();
-        
+        this.nav.navigateForward('alquiler-donacion');
+        //this.router.navigate(['alquiler-donacion']);
+        //this.modal =this.modalService.open(content,{centered:true});
+        this.mensaje="Se envió correctamente su formulario de donación.";
+        this.mensajeconfirmacion();
+        this.donacion.modo='';   
+        this.donacion.idtienda='';
+        this.donacion.descripcion='';     
       });
   }
 

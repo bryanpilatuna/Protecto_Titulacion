@@ -37,7 +37,7 @@
                       </ion-item>
                       <div class="validation-errors">
                         <p class="form-error"
-                          *ngIf="formGroup.get('fechaControl').hasError('required') && formGroup.get('fechaControl').touched">
+                          *ngIf="(formGroup.get('fechaControl').hasError('required') && formGroup.get('fechaControl').touched) || formGroup.get('fechaControl').untouched">
                           *Requerido
                         </p>
                       </div>
@@ -60,7 +60,7 @@
                       </ion-item>
                       <div class="validation-errors">
                         <p class="form-error"
-                          *ngIf="formGroup.get('tiendaControl').hasError('required') && formGroup.get('tiendaControl').touched">
+                          *ngIf="(formGroup.get('tiendaControl').hasError('required') && formGroup.get('tiendaControl').touched) || formGroup.get('tiendaControl').untouched">
                           *Requerido
                         </p>
                       </div>
@@ -90,7 +90,7 @@
                       </ion-item>
                       <div class="validation-errors">
                         <p class="form-error"
-                          *ngIf="formGroup.get('estadoControl').hasError('required') && formGroup.get('estadoControl').touched">
+                          *ngIf="(formGroup.get('estadoControl').hasError('required') && formGroup.get('estadoControl').touched) || formGroup.get('estadoControl').untouched">
                           *Requerido
                         </p>
                       </div>
@@ -107,7 +107,7 @@
             
                       <div class="validation-errors">
                         <p class="form-error"
-                          *ngIf="formGroup.get('descripcionControl').hasError('required') && formGroup.get('descripcionControl').touched">
+                          *ngIf="(formGroup.get('descripcionControl').hasError('required') && formGroup.get('descripcionControl').touched) || formGroup.get('descripcionControl').untouched">
                           *Requerido
                         </p>
                         <p class="form-error"
@@ -128,12 +128,12 @@
                         <ion-label>Tipo de entrega</ion-label>
                         <ion-select [(ngModel)]="donacion.modo" ok-text="Seleccionar" 
                         formControlName="modoControl" cancel-text="Cancelar"  (ionChange)="onSelectChange()">
-                          <ion-select-option value="Entregar"> 
+                          <ion-select-option value=" A la tienda"> 
                             <ion-label>
                               A la tienda
                             </ion-label>
                           </ion-select-option>
-                          <ion-select-option value="Retirar"> 
+                          <ion-select-option value="A mi domicilio"> 
                             <ion-label>
                               A mi domicilio
                             </ion-label>
@@ -144,7 +144,7 @@
             
                       <div class="validation-errors">
                         <p class="form-error"
-                          *ngIf="formGroup.get('modoControl').hasError('required') && formGroup.get('modoControl').touched">
+                          *ngIf="(formGroup.get('modoControl').hasError('required') && formGroup.get('modoControl').touched) || formGroup.get('modoControl').untouched">
                           *Requerido
                         </p>
                       

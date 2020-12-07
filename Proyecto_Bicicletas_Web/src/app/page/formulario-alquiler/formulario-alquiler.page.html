@@ -37,7 +37,7 @@
                       </ion-item>
                       <div class="validation-errors">
                         <p class="form-error"
-                          *ngIf="formGroup.get('fechaAlquiler').hasError('required') && formGroup.get('fechaAlquiler').touched">
+                          *ngIf="(formGroup.get('fechaAlquiler').hasError('required') && formGroup.get('fechaAlquiler').touched) || formGroup.get('fechaAlquiler').untouched">
                           *Requerido
                         </p>
                       
@@ -55,7 +55,7 @@
                       </ion-item>
                       <div class="validation-errors">
                         <p class="form-error"
-                          *ngIf="formGroup.get('horaAlquiler').hasError('required') && formGroup.get('horaAlquiler').touched">
+                          *ngIf="(formGroup.get('horaAlquiler').hasError('required') && formGroup.get('horaAlquiler').touched) || formGroup.get('horaAlquiler').untouched">
                           *Requerido
                         </p>
                       
@@ -66,11 +66,11 @@
                   <div class="form-group row">
                     <div class="col">
                       <ion-item>
-                        <ion-label position="stacked">Seleccione la fecha de devolución</ion-label>
+                        <ion-label position="stacked">Seleccione fecha de devolución</ion-label>
                         <ion-datetime displayFormat="DD MMMM YYYY"   
                         (ionChange)="cambiofecha2($event)"
                         placeholder="Dia Mes Año"    
-                        min="{{fechaactual | date: 'yyyy-MM-dd'}}" 
+                        min="{{alquiler.fechaalquiler | date: 'yyyy-MM-dd'}}" 
                         max="2021-12-31" 
                         cancelText="Cancelar"
                         doneText="Seleccionar"
@@ -80,7 +80,7 @@
                       </ion-item>
                       <div class="validation-errors">
                         <p class="form-error"
-                          *ngIf="formGroup.get('fechaDevolucion').hasError('required') && formGroup.get('fechaDevolucion').touched">
+                          *ngIf="(formGroup.get('fechaDevolucion').hasError('required') && formGroup.get('fechaDevolucion').touched) || formGroup.get('fechaDevolucion').untouched">
                           *Requerido
                         </p>
                       
@@ -96,7 +96,7 @@
                       </ion-item>
                       <div class="validation-errors">
                         <p class="form-error"
-                          *ngIf="formGroup.get('horaDonacion').hasError('required') && formGroup.get('horaDonacion').touched">
+                          *ngIf="(formGroup.get('horaDonacion').hasError('required') && formGroup.get('horaDonacion').touched) || formGroup.get('horaDonacion').untouched">
                           *Requerido
                         </p>
                       
@@ -120,7 +120,7 @@
                     </ion-item>   
                     <div class="validation-errors">
                       <p class="form-error"
-                        *ngIf="formGroup.get('tindaSeleccion').hasError('required') && formGroup.get('tindaSeleccion').touched">
+                        *ngIf="(formGroup.get('tindaSeleccion').hasError('required') && formGroup.get('tindaSeleccion').touched) || formGroup.get('tindaSeleccion').untouched">
                         *Requerido
                       </p>
                     

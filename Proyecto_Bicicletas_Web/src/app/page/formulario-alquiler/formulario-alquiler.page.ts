@@ -13,6 +13,7 @@ import { NotificacionesTienda } from '../../modelm/notificaciones.interface';
 import { NotificaciontiendaService} from '../../service/notificaciontienda.service';
 import * as firebase from 'firebase';
 import { NgbModalConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-formulario-alquiler',
   templateUrl: './formulario-alquiler.page.html',
@@ -41,7 +42,7 @@ export class FormularioAlquilerPage implements OnInit {
   };
   hora:any;
   minutos:any;
-  
+  mensaje:string;
   //disableSelector:boolean;
 
   alquiler: datosAlquiler ={
@@ -63,7 +64,7 @@ export class FormularioAlquilerPage implements OnInit {
   formGroup: FormGroup; 
 
   constructor(config: NgbModalConfig, private modalService: NgbModal,private route: ActivatedRoute, private nav: NavController, private UsuarioService: UsuarioService,public Service:NotificaciontiendaService,
-    private alquilerService: AlquilerService, private loadingController: LoadingController,public modalController: ModalController,public formBuilder: FormBuilder) { 
+    private alquilerService: AlquilerService, private loadingController: LoadingController,public modalController: ModalController,public formBuilder: FormBuilder,private alertCtrl: AlertController) { 
       //this.disableSelector = false;
       var user = firebase.auth().currentUser.uid;
       this.usuarioid = user;
@@ -202,10 +203,29 @@ export class FormularioAlquilerPage implements OnInit {
       this.notificaciones.idusuario=this.alquiler.idusuario;
       this.notificaciones.idtienda=this.alquiler.idtienda;
       this.Service.addNotificacion(this.notificaciones);
-      this.modal2 =this.modalService.open(content2,{centered:true});
-      //this.nav.navigateForward('/profile'); 
+      //this.modal2 =this.modalService.open(content2,{centered:true});
+      this.nav.navigateForward('alquiler-donacion'); 
       //window.location.href = 'formulario-alquiler' ;
+      this.mensaje="Se envió correctamente su formulario de alquiler.";
+      this.mensajeconfirmacion();
     });
+  }
+
+  async mensajeconfirmacion() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Mensaje',
+      message: this.mensaje,
+      buttons: [
+       {
+          text: 'Aceptar',
+          handler: () => {
+            //this.nav.navigateForward('alquiler-donacion');
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 
   cambiofecha(event){
