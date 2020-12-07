@@ -10,6 +10,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { AlertController } from '@ionic/angular';
 import { AuthService } from '../../services/auth.service';
 
+
 @Component({
   selector: 'app-perfil-administrador',
   templateUrl: './perfil-administrador.page.html',
@@ -79,6 +80,31 @@ export class PerfilAdministradorPage implements OnInit {
     this.formGroup = this.formBuilder.group({nombreControl,apellidoControl,cedulaControl,telefonoControl });
     
   }
+  
+  redihome(){
+    this.router.navigate(['menu-administrador']);
+  }
+
+
+  rediperfil(){
+    this.router.navigate(['perfil-administrador']);
+  }
+
+  redicrearadm(){
+    this.router.navigate(['registro-administrador']);
+  }
+
+  reditienda(){
+    this.router.navigate(['tienda-administrador']);
+  }
+
+  rediusuario(){
+    this.router.navigate(['cliente-administrador']);
+  }
+  salir(){
+    this.Service.logout();
+  }
+
 
   async cambiarcontra(){
 
