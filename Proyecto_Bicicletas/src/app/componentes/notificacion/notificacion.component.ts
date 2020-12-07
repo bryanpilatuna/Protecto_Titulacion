@@ -16,6 +16,8 @@ export class NotificacionComponent implements OnInit {
   noti:string="No";
   No='No';
   Si='Si';
+  cont=true;
+  contador=0;
   constructor(
     private router: Router,
     private localNotifications: LocalNotifications,
@@ -26,13 +28,25 @@ export class NotificacionComponent implements OnInit {
     this.id = user;
     this.ServicioNoti.getMisnotificaciones(this.id).subscribe((notificaciones) =>{
       this.notificaciones = notificaciones;
-    
-      for(let i in this.notificaciones){
+      if(this.notificaciones.length==0){
+        console.log("No tiene ");
+        this.noti="../../../assets/notificaciones/noti.png";
+      }else{
+        this.noti="../../../assets/notificaciones/notiactiva.png";
+        console.log('Tiene');
+      }
+      //this.noti="../../../assets/notificaciones/notiactiva.png";
+      /*for(let i in this.notificaciones){
         if(this.notificaciones[i].visualizar=="No"){
-          this.noti="Si";
+          this.noti="../../../assets/notificaciones/notiactiva.png";
           this.send();
+          this.contador=this.contador+1;
         }
       }
+      if(this.contador==0){
+        this.noti="../../../assets/notificaciones/noti.png";
+      }*/
+      
     })
     
 

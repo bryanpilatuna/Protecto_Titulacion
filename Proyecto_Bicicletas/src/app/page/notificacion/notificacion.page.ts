@@ -14,8 +14,8 @@ export class NotificacionPage implements OnInit {
   ngOnInit() {
   }
   click(){
-    window.location.href = 'menu' ;
-   
+ 
+    this.navCtrl.navigateForward('menu');
   }
 
 }
