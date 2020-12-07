@@ -78,7 +78,7 @@ export class RegistroBiciPage implements OnInit {
 guardarbici(){
 
   this.bicicletasservice.addbici(this.bici,this.image)
-  this.mensaje='Creada con éxito'
+  this.mensaje='Bicicleta creada con éxito'
      this.presentAlert(this.mensaje);
   this.nav.navigateForward('/mis-bicis');
   

@@ -5,24 +5,30 @@
 <ion-content>
 
   <div class="container">
-    <h3 align="center">MIS NOTIFICACIONES</h3> 
-    <ng-container *ngIf="!notificaciones || notificaciones.length == 0">
-      <h3>No tienes notificaciones</h3>
-    </ng-container>
-     
-          <div *ngFor="let notificacion of notificaciones | paginate: { itemsPerPage: 5, currentPage: pageActual }" >
+    <h2 style="text-align:center">Mis Notificaciones</h2>
+   
+    
+    <div class="container">
+      <div class="row mb-3">
+        <div class="col-6 themed-grid-col">
+          <ng-container *ngIf="!notificaciones || notificaciones.length == 0 ">
+            <h3>No tienes notificaciones de alquileres</h3>
+          </ng-container>
+          <div *ngFor="let notificacion of notificaciones;let indice=index" >
             <div *ngFor="let usuario of usuarios">
               <div *ngIf="notificacion.idusuario==usuario.uid">
+               
                 <div class="row justify-content-center">
                   <div class="col-sm-8">
-                    <div class="card">
-                        <div class="card-block">
-                            <h4 class="card-title">{{usuario.nombres}}, {{usuario.apellidos}}</h4>
+                    <div class="card" *ngIf="indice==0"  >
+                        <div class="card-block" >
+                            <h4 class="card-title">{{usuario.nombres}}, {{usuario.apellidos}} </h4>
                             <div class="meta">
                                 <label>{{notificacion.tipo}}</label>
                             </div>
                             <div class="card-text">
                               <label>Fecha: </label> {{notificacion.fecha.toMillis() | date:'dd/MM/yyyy'}}
+                              <h5>{{indice+1}}</h5>
                             </div>
                             
                         </div>
@@ -31,24 +37,63 @@
                             <ion-icon name="eye-outline"></ion-icon>
                             Revisar Todo
                           </ion-button>
-                          <ion-button  (click)=" aprobar(notificacion,notificacion.id)" color="success">
-                            <ion-icon name="thumbs-up-outline"></ion-icon>
-                            Ya las aprobé/rechazé
-                          </ion-button>
+                        
                         </div>
                         
                     </div>
                 </div>
-                </div>
 
 
 
 
-                
+              </div>
              </div>
             </div>
             </div> 
-            <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
+
+
+        </div>
+        <div class="col-6 themed-grid-col">
+          <ng-container *ngIf=" !notificaciones2 || notificaciones2.length == 0">
+            <h3>No tienes notificaciones de donaciones</h3>
+          </ng-container>
+          <div *ngFor="let notificacion of notificaciones2;let indice=index " >
+            <div *ngFor="let usuario of usuarios">
+              <div *ngIf="notificacion.idusuario==usuario.uid">
+                  <div class="row justify-content-center">
+                    <div class="col-sm-8">
+                      <div class="card" *ngIf="indice==0"  >
+                          <div class="card-block" >
+                              <h4 class="card-title"> {{usuario.nombres}}, {{usuario.apellidos}}</h4>
+                              <div class="meta">
+                                  <label>{{notificacion.tipo}}</label>
+                              </div>
+                              <div class="card-text">
+                                <label>Fecha: </label> {{notificacion.fecha.toMillis() | date:'dd/MM/yyyy'}}
+                                <h5>{{indice+1}}</h5>
+                              </div>
+                              
+                          </div>
+                          <div class="card-footer">
+                            <ion-button  (click)=" cambiarvisualizado(notificacion,notificacion.id)" color="warning">
+                              <ion-icon name="eye-outline"></ion-icon>
+                              Revisar Todo
+                            </ion-button>
+                     
+                          </div>
+                          
+                      </div>
+                  </div>
+  
+               </div>
+              </div>
+              </div> 
+            </div>
+        </div>
+      </div>
+     </div>
+         
+           
   </div>  
   <div>
     <div class="container">

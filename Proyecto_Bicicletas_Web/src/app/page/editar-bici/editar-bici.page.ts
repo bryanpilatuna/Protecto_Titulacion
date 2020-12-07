@@ -47,7 +47,7 @@ export class EditarBiciPage implements OnInit {
 
   async cargarbici(){
     const loading = await this.loadingController.create({
-      message: 'Loading....'
+      message: 'Cargando....'
     });
     await loading.present();
 
@@ -100,7 +100,7 @@ export class EditarBiciPage implements OnInit {
   }
   guardarBici(){
     this.bicicletaservice.updateBici(this.bicicleta, this.idbici).then(() => {
-      this.mensaje='Guardado con éxito'
+      this.mensaje='Bicicleta actualizada con éxito'
      this.presentAlert(this.mensaje);
       this.nav.navigateForward('mis-bicis');
       
