@@ -16,27 +16,14 @@ export class AlquileresPage implements OnInit {
   pageActual: number= 1;
   alquiler: datosAlquiler[];
   id: any;
-  vacio:boolean=true;
   bicicleta:datosBicicleta[];
   constructor(private Servicio:AlquilerService,
     private route: ActivatedRoute) { 
     this.id = firebase.auth().currentUser.uid;
-    console.log(this.id);
-    this.Servicio.getAlquiler(this.id).subscribe((alquileres) =>{
-      this.alquiler = alquileres;
-      console.log(alquileres);
-      for(let i in this.alquiler){
-        if(this.alquiler[i].idusuario==this.id){
-          this.vacio=false;
-        }else{
-          var l = this.alquiler.indexOf( this.alquiler[i] );
-          console.log(l);
-          this.alquiler.splice(l,1); 
-        }
-        
-      }
- 
+    this.Servicio.getAlquiler().subscribe((alquileres) =>{
+      this.alquiler = alquileres.filter(alquileres=>alquileres.idusuario == this.id); 
     })
+    
     this.Servicio.getTiendas().subscribe((tiendas) =>{
       this.tiendas = tiendas;
    

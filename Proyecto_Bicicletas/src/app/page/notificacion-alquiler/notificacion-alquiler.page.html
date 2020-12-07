@@ -5,8 +5,10 @@
 </ion-header>
 
 <ion-content>
-
-  <ion-list *ngIf="vacio==false">
+  <ng-container *ngIf="!notificaciones || notificaciones.length == 0">
+    <p class="centrarmensaje">No existe notificaciones de alquileres.</p>
+  </ng-container>
+  <ion-list>
     <div *ngFor="let noti of notificaciones | paginate: { itemsPerPage: 5, currentPage: pageActual };let indice=index">
       <div *ngIf="noti.idusuario==id">
         <ion-card *ngIf="noti.tipo=='alquiler'" [ngStyle]="{'background':noti.color}">
@@ -52,7 +54,7 @@
 
   </ion-list>
     
-  <ion-list *ngIf="vacio==true;"><p class="centrarmensaje">No tiene notificaciones de alquileres.</p></ion-list>
+
 
 
 </ion-content>

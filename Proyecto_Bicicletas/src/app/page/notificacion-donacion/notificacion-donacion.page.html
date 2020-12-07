@@ -5,7 +5,10 @@
 </ion-header>
 
 <ion-content>
-  <ion-list *ngIf="vacio==false;" >
+  <ng-container *ngIf="!notificaciones || notificaciones.length == 0">
+    <p class="centrarmensaje">No existe notificaciones de donaciones.</p>
+  </ng-container>
+  <ion-list >
 
     <div *ngFor="let noti of notificaciones | paginate: { itemsPerPage: 5, currentPage: pageActual };let indice=index">
       <div *ngIf="noti.idusuario==id">
@@ -53,5 +56,4 @@
 
 
   </ion-list>
-  <ion-list *ngIf="vacio==true;"><p class="centrarmensaje">No tiene notificaciones de donaciones.</p></ion-list>
 </ion-content>

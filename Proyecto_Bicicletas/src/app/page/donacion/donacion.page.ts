@@ -14,23 +14,11 @@ export class DonacionPage implements OnInit {
   pageActual: number= 1;
   donaciones: datosDonacion[];
   id: any;
-  vacio:boolean=true;
-  fechabusqueda:Date;
   constructor(private Servicio:DonacionService,
     private route: ActivatedRoute) {
     this.id = firebase.auth().currentUser.uid;
-    this.Servicio.getdonacion(this.id).subscribe((donaciones) =>{
-      this.donaciones = donaciones;
-      for(let i in this.donaciones){
-   
-        if(this.donaciones[i].iddonante==this.id){
-          this.vacio=false;
-        }else{
-          var l = this.donaciones.indexOf( this.donaciones[i] );
-          console.log(l);
-          this.donaciones.splice(l,1); 
-        }
-      }
+    this.Servicio.getdonacion().subscribe((donaciones) =>{
+      this.donaciones = donaciones.filter(donaciones=>donaciones.iddonante == this.id);
     })
 
     this.Servicio.getTiendas().subscribe((tiendas) =>{

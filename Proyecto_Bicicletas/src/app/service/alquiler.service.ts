@@ -142,7 +142,7 @@ export class AlquilerService {
     return this.alquilerCollection.doc(id).update(todo);
   }
 
-  getAlquiler(iduser:string){
+  getAlquiler(){
     this.alquileridCollection = this.db.collection<datosAlquiler>('alquiler', ref => ref.orderBy("fecha", "desc") );
     this.alquilerid = this.alquileridCollection.snapshotChanges().pipe(
       map(actions => {

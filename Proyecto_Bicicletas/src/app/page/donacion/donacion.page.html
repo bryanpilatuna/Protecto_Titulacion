@@ -8,14 +8,17 @@
 </ion-header>
 
 <ion-content>
-  <ion-list *ngIf="vacio==false; else elseBlock">
+  
+  <ion-list>
     <h2 style="text-align: center;font-weight: bold;">Revisa tus donaciones</h2>
     <p style="text-align: left;padding-left: 10px;"><ion-icon name="flag-outline" style="color:green;font-size: 20px;"></ion-icon> Aprobados</p> 
     <p style="text-align: left;padding-left: 10px"><ion-icon name="flag-outline" style="color:red;font-size: 20px;"></ion-icon> Rechazados o anulados</p> 
     <p style="text-align: left;padding-left: 10px"><ion-icon name="flag-outline" style="color:#ffbb00;font-size: 20px;"></ion-icon> Pendientes</p> 
-
+    <ng-container *ngIf="!donaciones || donaciones.length == 0">
+      <p class="centrarmensaje">No existe registrós de donaciones.</p>
+    </ng-container>
     <div *ngFor="let donacion of donaciones | paginate: { itemsPerPage: 5, currentPage: pageActual };let indice=index">
-      <ion-card *ngIf="donacion.iddonante==id">
+      <ion-card>
         <ion-row style="border-bottom: solid 1px;border-color: #2355EF;">
           <ion-col>
             <div *ngIf="donacion.respuesta; else elseBlock">
@@ -66,8 +69,6 @@
     <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
 
   </ion-list>
-  <ng-template #elseBlock>
-    <ion-list><p class="centrarmensaje">No existen donaciones.</p></ion-list>
-  </ng-template>
+
 
 </ion-content>
