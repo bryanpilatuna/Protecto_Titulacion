@@ -19,6 +19,9 @@ export class DonacionService {
   private tiendaCollection: AngularFirestoreCollection<datosTiendas>;
   private tienda: Observable<datosTiendas[]>;
 
+  private tiendaCollection2: AngularFirestoreCollection<datosTiendas>;
+  private tienda2: Observable<datosTiendas[]>;
+
   constructor(private db:AngularFirestore) { 
     this.donacionCollection = db.collection<datosDonacion>('donacion');
     this.donacion = this.donacionCollection.snapshotChanges().pipe(
@@ -53,6 +56,20 @@ export class DonacionService {
 
   getTiendas(){
     return this.tienda;
+  }
+  getTiendasActivas(){
+    this.tiendaCollection2 = this.db.collection<datosTiendas>('tiendas', ref => ref.where('estado', '==', 'Activo'));
+    this.tienda2 = this.tiendaCollection2.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+        
+          return {id, ...data};
+        });
+      })
+    );
+    return this.tienda2;
   }
   getTienda(id: string){
     return this.tiendaCollection.doc<datosTiendas>(id).valueChanges();

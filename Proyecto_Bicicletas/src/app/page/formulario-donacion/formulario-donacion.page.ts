@@ -55,22 +55,17 @@ export class FormularioDonacionPage implements OnInit {
       this.donanteid = user;
       this.crearvalidaciones();
       }
+     
 
 
 
   ngOnInit() {
     this.donacion.iddonante=this.donanteid;
     this.donacion.fechadonacion=this.fechaactual;
-    this.donacionService.getTiendas().subscribe((tiendas) =>{
+    this.donacionService.getTiendasActivas().subscribe((tiendas) =>{
       this.tiendas = tiendas;
-      for(let i in this.tiendas){
-
-        if(this.tiendas[i].estado=="Inactivo"){
-          var l = this.tiendas.indexOf( this.tiendas[i] );
-          this.tiendas.splice(l,1); 
-        }
-      }
     })
+    this.donacion.direccion=".";
     
   }
 
@@ -128,6 +123,7 @@ export class FormularioDonacionPage implements OnInit {
 
     ]));
     const direccionControl = new FormControl('', Validators.compose([
+      Validators.minLength(0),
       Validators.maxLength(50)
     ]));
     
