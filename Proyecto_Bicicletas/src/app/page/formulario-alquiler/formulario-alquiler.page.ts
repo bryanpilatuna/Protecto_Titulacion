@@ -80,7 +80,7 @@ export class FormularioAlquilerPage implements OnInit {
           }
         }
         console.log(this.contador);
-        if(this.contador<=2){
+        if(this.contador<2){
           this.limite=false;
         }else{
           this.limite=true;
