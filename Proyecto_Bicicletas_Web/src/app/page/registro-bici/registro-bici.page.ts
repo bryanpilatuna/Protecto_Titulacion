@@ -57,6 +57,7 @@ export class RegistroBiciPage implements OnInit {
       Validators.required,
       Validators.minLength(3),
       Validators.maxLength(40),
+      Validators.pattern("[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]*")
     ]));
 
     const tipoControl = new FormControl('', Validators.compose([
