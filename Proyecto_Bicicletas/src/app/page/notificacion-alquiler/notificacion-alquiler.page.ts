@@ -27,7 +27,15 @@ export class NotificacionAlquilerPage implements OnInit {
       this.id = firebase.auth().currentUser.uid;
       this.Service.getTodos().subscribe((notificaciones) =>{
       this.notificaciones = notificaciones;
-      
+          for(let i in this.notificaciones){
+            if(this.notificaciones[i].idusuario==this.id && this.notificaciones[i].tipo=="alquiler"){
+              console.log("")
+            }else{
+              var l = this.notificaciones.indexOf( this.notificaciones[i] );
+              console.log(l);
+              this.notificaciones.splice(l,1); 
+            }
+          }
       })
 
       this.Service.getMisnotificacionesalqui(this.id).subscribe((misnotificaciones) =>{

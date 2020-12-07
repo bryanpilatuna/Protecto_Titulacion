@@ -25,6 +25,15 @@ export class NotificacionDonacionPage implements OnInit {
   
       this.Service.getTodos().subscribe((notificaciones) =>{
       this.notificaciones = notificaciones;
+        for(let i in this.notificaciones){
+          if(this.notificaciones[i].idusuario==this.id && this.notificaciones[i].tipo=="donacion" ){
+            console.log("")
+          }else{
+            var l = this.notificaciones.indexOf( this.notificaciones[i] );
+            console.log(l);
+            this.notificaciones.splice(l,1); 
+          }
+      }
       })
       this.Service.getMisnotificacionesdona(this.id).subscribe((misnotificaciones) =>{
         if( misnotificaciones.length==0){

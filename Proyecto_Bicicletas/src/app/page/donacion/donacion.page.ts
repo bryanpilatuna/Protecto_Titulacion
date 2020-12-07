@@ -25,6 +25,10 @@ export class DonacionPage implements OnInit {
    
         if(this.donaciones[i].iddonante==this.id){
           this.vacio=false;
+        }else{
+          var l = this.donaciones.indexOf( this.donaciones[i] );
+          console.log(l);
+          this.donaciones.splice(l,1); 
         }
       }
     })

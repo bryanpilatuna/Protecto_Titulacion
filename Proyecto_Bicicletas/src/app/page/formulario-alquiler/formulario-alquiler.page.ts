@@ -70,7 +70,7 @@ export class FormularioAlquilerPage implements OnInit {
       //this.disableSelector = false;
       this.id = firebase.auth().currentUser.uid;
       this.fechaac = new Date(this.fechaactual).toDateString();
-      this.Servicio.getAlquiler(this.id).subscribe((alquileres) =>{
+      this.Servicio.getAlquiler2(this.id).subscribe((alquileres) =>{
         this.alquilerid = alquileres;
         for(let i in this.alquilerid){
           //console.log(this.contador);
@@ -79,7 +79,7 @@ export class FormularioAlquilerPage implements OnInit {
             this.contador=this.contador+1;
           }
         }
-        //console.log(this.contador);
+        console.log(this.contador);
         if(this.contador<=2){
           this.limite=false;
         }else{

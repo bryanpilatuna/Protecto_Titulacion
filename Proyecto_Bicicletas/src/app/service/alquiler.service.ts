@@ -158,6 +158,23 @@ export class AlquilerService {
     return this.alquilerid;
   }
 
+
+  getAlquiler2(iduser:string){
+    this.alquileridCollection = this.db.collection<datosAlquiler>('alquiler', ref => ref.where('idusuario', '==', iduser));
+    this.alquilerid = this.alquileridCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+        
+          return {id, ...data};
+        });
+      })
+    );
+   
+    return this.alquilerid;
+  }
+
   formtDate(date: Date): string {
     const day = date.getDate();
     const month = date.getMonth() + 1;

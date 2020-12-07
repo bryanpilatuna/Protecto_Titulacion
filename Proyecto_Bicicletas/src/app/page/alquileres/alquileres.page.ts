@@ -21,12 +21,19 @@ export class AlquileresPage implements OnInit {
   constructor(private Servicio:AlquilerService,
     private route: ActivatedRoute) { 
     this.id = firebase.auth().currentUser.uid;
+    console.log(this.id);
     this.Servicio.getAlquiler(this.id).subscribe((alquileres) =>{
       this.alquiler = alquileres;
+      console.log(alquileres);
       for(let i in this.alquiler){
         if(this.alquiler[i].idusuario==this.id){
           this.vacio=false;
+        }else{
+          var l = this.alquiler.indexOf( this.alquiler[i] );
+          console.log(l);
+          this.alquiler.splice(l,1); 
         }
+        
       }
  
     })
