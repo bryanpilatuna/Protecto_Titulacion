@@ -6,42 +6,53 @@
   <div class="container justify-content-center" >
   <div *ngFor="let alquiler of alquileres | paginate: { itemsPerPage: 5, currentPage: pageActual }" >
   <!--   <div *ngIf="alquiler.idtienda==tiendaid"> -->
+    <div *ngFor="let bicis of bicicletas">
     <div *ngFor="let usuario of usuarios">
       <div *ngIf="alquiler.idusuario==usuario.uid">
+        <div *ngIf="alquiler.bicicleta==bicis.id">
         <div class="container justify-content-center" >
           <div class="row justify-content-center">
-            <div class="col-sm-8">
-              <div class="card">
-                  <div class="card-block">
-                      <h4 class="card-title">{{usuario.nombres}} {{usuario.apellidos}}</h4>
-                      <div class="meta">
-                          <label><strong>Alquiler Aprobado</strong></label>
-                      </div>
-                      <div class="card-text">
-                          Fecha alquiler: {{alquiler.fechaalquiler.toMillis() | date:'dd/MM/yyyy'}}
-                      </div>
-                      <div class="card-text">
-                        Fecha devolución: {{alquiler.fechadevolucion.toMillis() | date:'dd/MM/yyyy'}}
+            <div class="col-md-6">
+               <div class="card flex-lg-row mb-5 shadow-lg h-md-250">
+                  <div class="card-body d-flex flex-column align-items-start">
+                     <strong class="d-inline-block mb-2 text-primary">{{usuario.nombres}} {{usuario.apellidos}}</strong>
+                     <h6 class="mb-0">
+                      <label>Alquiler aprobado</label>
+                     </h6>
+                     <div class="card-text">
+                      Cédula: {{usuario.cedula}}
+                  </div>
+                    <div class="card-text">
+                        Fecha y hora alquiler : {{alquiler.fechaalquiler.toMillis() | date:'dd/MM/yyyy'}} {{alquiler.horaalquiler}}
                     </div>
+                    <div class="card-text">
+                      Fecha y hora devolución : {{alquiler.fechadevolucion.toMillis() | date:'dd/MM/yyyy'}} {{alquiler.horadevolucion}}
                   </div>
-                  <div class="card-footer">
-                    <span class="float-left">Número telefónico</span>
-                      <span class="float-right">{{usuario.telefono}}</span>
+                    <div class="card-text">
+                      Número de telf: {{usuario.telefono}} 
                   </div>
-                  
-              </div>
+                
+   
+                  </div>
+                  <img class="card-img-right flex-auto d-none d-lg-block"  src="{{bicis.imagen}}" style="width: 200px; height: 150px;">
+               </div>
+               
+            </div>
           </div>
-          </div>
+
+
           <br>
         </div>
 
        
         
     <!-- </div> -->
+  </div>
     </div>
   </div>
 </div>
-    <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
+</div>
+    <pagination-controls (pageChange)="pageActual = $event" style="text-align: center;"></pagination-controls>
   </div>
 
 
