@@ -6,6 +6,8 @@ import { Notificaciones } from '../../model/notificaciones.interface';
 import { NotificacionesTienda}from '../../model/notificaciones.interface';
 import {AlquileresService} from '../../services/alquileres.service';
 import {NotificacionesService} from '../../services/notificaciones.service';
+import {BicicletasService}from '../../services/bicicletas.service';
+import {datosBici}from '../../model/bicicletas.interface';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
@@ -20,6 +22,7 @@ export class AlquilerAprobarPage implements OnInit {
   alquileres2:datosAlquiler[];
   alquileres:datosAlquiler[];
   numeroalqui=0;
+  bicicletas: datosBici[];
   usuarios:DatosUsuario[];
   pageActual: number= 1;
   fechaactual: Date = new Date();
@@ -50,6 +53,7 @@ export class AlquilerAprobarPage implements OnInit {
   constructor(private route: ActivatedRoute,
     public alertController: AlertController,
     private alquilerservice: AlquileresService,
+    private bicicletasService: BicicletasService,
     private notificacionesService:NotificacionesService,
     private router: Router) { 
       var user = firebase.auth().currentUser.uid;
@@ -63,6 +67,9 @@ export class AlquilerAprobarPage implements OnInit {
     }
 
     ngOnInit() {
+      this.bicicletasService.getBicicletas(this.tiendaid).subscribe((bicicletas) =>{
+        this.bicicletas = bicicletas 
+      })
       this.alquilerservice.getalquilerestiendafecha().subscribe((alquileres) =>{
         this.alquileres2 = alquileres.filter(alquileres=>alquileres.aprobacion==false && alquileres.anular==false );
         })
