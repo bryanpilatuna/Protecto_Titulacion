@@ -5,6 +5,7 @@ import * as firebase from 'firebase';
 import { NotificacionesTienda}from '../../model/notificaciones.interface';
 import {NotificacionesService} from '../../services/notificaciones.service';
 import { DatosUsuario } from '../../model/user.interface';
+import { NavController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-notificaciones-tienda',
@@ -14,12 +15,15 @@ import { DatosUsuario } from '../../model/user.interface';
 export class NotificacionesTiendaPage implements OnInit {
   tiendaid=null;
   pageActual: number= 1;
+  contador1=0;
+  contador2=0;
   Si='Si';
   No='No';
   Alquiler='Alquiler';
   Donacion='Donacion';
   fechaactual: Date = new Date();
   notificaciones:NotificacionesTienda[];
+  notificaciones2:NotificacionesTienda[];
   usuarios:DatosUsuario[];
   notificacion:NotificacionesTienda={
   visualizar: '',
@@ -30,6 +34,7 @@ export class NotificacionesTiendaPage implements OnInit {
   }
   constructor(private router: Router,
     private Servicio:AuthService,
+    private loadingController: LoadingController,
     private notificacionesService:NotificacionesService) {
       var user = firebase.auth().currentUser.uid;
       this.tiendaid = user;
@@ -44,14 +49,20 @@ export class NotificacionesTiendaPage implements OnInit {
   ngOnInit() {
 
     this.notificacionesService.getMisnotificaciones(this.tiendaid).subscribe((notificaciones) =>{
-      this.notificaciones=notificaciones.filter(notificaciones=>notificaciones.visualizar=='No');
+      this.notificaciones=notificaciones.filter(notificaciones=>notificaciones.visualizar=='No' &&notificaciones.tipo=='Alquiler');
+    })
+    this.notificacionesService.getMisnotificaciones(this.tiendaid).subscribe((notificaciones) =>{
+      this.notificaciones2=notificaciones.filter(notificaciones=>notificaciones.visualizar=='No'&&notificaciones.tipo=='Donacion');
     })
   }
 
 
-  cambiarvisualizado(notifi:NotificacionesTienda,id:string){
+  async cambiarvisualizado(notifi:NotificacionesTienda,id:string){
     if(notifi.tipo=='Alquiler')   {
-   
+      const loading = await this.loadingController.create({
+        message: 'Cargando....'
+      });
+      await loading.present();
       notifi.visualizar='Si';
       this.notificacionesService.updateNotificacion(notifi,id).then(() => {
     for (let index = 0; index < this.notificaciones.length; index++) {
@@ -62,10 +73,15 @@ export class NotificacionesTiendaPage implements OnInit {
       
     }
     window.location.href = '/tienda-alquiler' ;
+    loading.dismiss();
       });
 
     } 
     else if(notifi.tipo=='Donacion'){
+      const loading = await this.loadingController.create({
+        message: 'Cargando....'
+      });
+      await loading.present();
       notifi.visualizar='Si';
       this.notificacionesService.updateNotificacion(notifi,id).then(() => {
         for (let index = 0; index < this.notificaciones.length; index++) {
@@ -75,6 +91,7 @@ export class NotificacionesTiendaPage implements OnInit {
           }
         }
         window.location.href = '/tienda-donacion' ;
+        loading.dismiss();
     });
     }
   }
