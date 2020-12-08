@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class NotificacionComponent implements OnInit {
   notificaciones: Notificaciones[];
   id: any;
-  noti:string="No";
+  noti:string="../../../assets/notificaciones/noti.png";
   No='No';
   Si='Si';
   cont=true;
