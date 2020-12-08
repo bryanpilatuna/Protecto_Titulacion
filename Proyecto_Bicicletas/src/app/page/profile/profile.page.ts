@@ -146,7 +146,7 @@ export class ProfilePage implements OnInit {
     if (this.usuarioId) {
       this.usuarioService.updateUsuario(this.usuario, this.usuarioId).then(() => {
         this.nav.navigateForward('menu');
-        this.mensaje="Se actualizo correctamente su perfil.";
+        this.mensaje="Se actualizó correctamente su perfil.";
         this.mensajeconfirmacion();
       });
     } 
