@@ -23,6 +23,7 @@ export class ClienteAdministradorPage implements OnInit {
   }
 
   buscar(busquedanombre){
+    console.log(busquedanombre.value);
     this.Service.busquedauser(busquedanombre.value).subscribe((usuarios) =>{
       this.usuarios = usuarios;
 

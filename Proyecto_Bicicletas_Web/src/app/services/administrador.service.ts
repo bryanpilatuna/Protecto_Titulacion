@@ -83,7 +83,7 @@ export class AdministradorService {
     if(nombre==''){
       this.usuariosCollection2=this.db.collection<DatosUsuario>('users', ref => ref.orderBy('estado'));
     }else{
-      this.usuariosCollection2=this.db.collection<DatosUsuario>('users', ref => ref.orderBy('correo').startAt(nombre).endAt(nombre+'\uf8ff'));
+      this.usuariosCollection2=this.db.collection<DatosUsuario>('users', ref => ref.orderBy('nombres').startAt(nombre).endAt(nombre+'\uf8ff'));
     }
     this.usuarios2 = this.usuariosCollection2.snapshotChanges().pipe(
       map(actions => {

@@ -36,5 +36,6 @@ export class ModalAlquilerPage implements OnInit {
     this.modalController.dismiss();
   }
 
+  
 
 }

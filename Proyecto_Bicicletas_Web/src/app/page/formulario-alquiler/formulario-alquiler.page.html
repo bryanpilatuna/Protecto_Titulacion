@@ -121,20 +121,24 @@
               </p>
             
             </div>
-            <ion-item *ngIf="alquiler">
-              <ion-label>Seleccione la  Tienda</ion-label>
-    
-           
+            <ion-item lines="none">
+              <ion-grid class="ion-no-padding">
+                <ion-row>
+                  <ion-col class="ion-padding-bottom">
+                    <ion-label position="stacked">Seleccione la  Tienda</ion-label>
+                  </ion-col>
+                </ion-row>
+                <ion-row *ngIf="alquiler" class="ion-padding-bottom">
                   <ion-select [(ngModel)]="alquiler.idtienda" ok-text="Seleccionar" 
-              cancel-text="Cancelar" formControlName="tindaSeleccion" (ionChange)="onSelectChange()">
+              cancel-text="Cancelar" formControlName="tindaSeleccion" (ionChange)="onSelectChange()" style="width: 100%;">
                 <ion-select-option *ngFor="let tienda of tiendas" [value]="tienda.id"> 
                   <ion-label>
                   {{ tienda.nombre}}
                 </ion-label>
                 </ion-select-option>
                 </ion-select>
-               
-          
+                </ion-row>
+              </ion-grid>
               
             </ion-item>
             <div class="validation-errors">
