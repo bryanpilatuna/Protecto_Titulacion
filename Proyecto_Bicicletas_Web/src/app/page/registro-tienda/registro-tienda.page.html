@@ -119,16 +119,38 @@
                     </div>
                     <div class="col">
                       <label position="stacked"><strong>Contraseña</strong></label>
+                      
                       <div class="row">
                         <div class="col-lg">
                           <ion-input formControlName="passwordControl" [type]="passwordTypeInput" #password 
                           placeholder="***********" style="background:white;border: 1px solid #dad9d9;"></ion-input>
                         </div>
-                        <div style="width: 20px !important;">
-                          <button item-end type="button" class="btn_eye_icon" color="royal" style="border: none;" (click)="showPassword()">
+                        
+                      </div>
+                      <div class="row" style="justify-content:center;">
+                        <div class="validation-errors">
+                          <p class="form-error"
+                            *ngIf="(formGroup.get('passwordControl').hasError('required') && formGroup.get('passwordControl').touched) || formGroup.get('passwordControl').untouched">
+                            *Requerido
+                          </p>
+                          <p class="form-error"
+                            *ngIf="formGroup.get('passwordControl').hasError('minlength') && formGroup.get('passwordControl').touched">
+                            *Mínimo 8 caracteres 
+                          </p>
+                          <p class="form-error"
+                            *ngIf="formGroup.get('emailControl').hasError('passwordControl') && formGroup.get('passwordControl').touched">
+                            *Máximo 40 caracteres  
+                          </p>
+                        </div>
+                        
+                      </div>
+                      <div class="row" style="justify-content:center;">
+                        <div style="width: 20px !important;" >
+                          <button type="button" class="btn_eye_icon" color="royal" style="border: none;" (click)="showPassword()">
                             <ion-icon [name]="(passwordTypeInput === 'text')?'eye-off':'eye'"></ion-icon>
                           </button>
                         </div>
+                        
                       </div>
                     </div>
                 </div>
