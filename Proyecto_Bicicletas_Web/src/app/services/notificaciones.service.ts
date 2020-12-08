@@ -61,8 +61,7 @@ export class NotificacionesService {
   }
 
   getMisnotificaciones(idtienda:string){
-
-    this.notificacionesCollection =this.db.collection<NotificacionesTienda>('notificacionestienda', ref => ref.where('idtienda', '==', idtienda));
+    this.notificacionesCollection =this.db.collection<NotificacionesTienda>('notificacionestienda', ref => ref.where('idtienda', '==', idtienda).where('visualizar', '==', 'No'));
     this.notificacion = this.notificacionesCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {

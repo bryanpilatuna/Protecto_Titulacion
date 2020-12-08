@@ -7,6 +7,7 @@ import { DatosUsuario } from '../../model/user.interface';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-tienda-donacion',
@@ -25,7 +26,8 @@ export class TiendaDonacionPage implements OnInit {
  
   constructor(private route: ActivatedRoute,
     public alertController: AlertController,
-    private donacionesservice: DonacionesService) {
+    private donacionesservice: DonacionesService,private router: Router,
+    private Service: AuthService,) {
       var user = firebase.auth().currentUser.uid;
       this.tiendaid = user;
 
@@ -43,6 +45,36 @@ export class TiendaDonacionPage implements OnInit {
   })
   }
 
+  
+  redihome(){
+    this.router.navigate(['/menu-tienda']);
+  }
+  
+  rediperfil(){
+    this.router.navigate(['/editar-tienda']);
+  
+  
+  }
+  redibicicletas(){
+    this.router.navigate(['/mis-bicis']);
+  }
+  redidonaciones(){
+    this.router.navigate(['/tienda-donacion']);
+  }
+  redialquileres(){
+    this.router.navigate(['/tienda-alquiler']);
+  }
+  
+  redinotifi(){
+    this.router.navigate(['/notificaciones-tienda']);
+      
+  
+  
+  }
+  salir(){
+  
+    this.Service.logout();
+  }
  
 
 }
