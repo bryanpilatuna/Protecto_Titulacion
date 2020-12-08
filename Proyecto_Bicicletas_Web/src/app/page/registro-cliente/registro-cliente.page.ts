@@ -72,7 +72,10 @@ export class RegistroClientePage implements OnInit {
         Validators.maxLength(40),
       
     ]));
-    const foto = new FormControl('', Validators.required)
+    const foto = new FormControl('', Validators.compose([
+      Validators.required,
+      
+    ]));
 
     this.formGroup = this.formBuilder.group({nombreControl,apellidoControl,cedulaControl,telefonoControl,emailControl,passwordControl,foto });
   }

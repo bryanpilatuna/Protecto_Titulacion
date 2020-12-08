@@ -22,10 +22,7 @@
               
                 <form [formGroup]="formGroup" (ngSubmit)="guardarbici()" *ngIf="bici" >
                   
-                  <div class="row" style="padding-top: 10px;">
-                    <label position="stacked" ><strong>Imagen: </strong></label>
-                    <input formControlName="foto" type="file" accept=".png, .jpg" (change)="enviarimagen($event)" style="color:black;padding-left: 5px;"/>
-                  </div>
+                  
                   <div class="form-group row">
                     <div class="col">
                       <label position="stacked"><strong>Nombre</strong></label>
@@ -103,7 +100,27 @@
                           <option value="Otro">Otro</option>
                         </select>
                     </div>
+                    
                   </div>
+                  <div class="validation-errors">
+                    <p class="form-error"
+                      *ngIf="(formGroup.get('tipoControl').hasError('required') && formGroup.get('tipoControl').touched) || formGroup.get('tipoControl').untouched">
+                      *Requerido
+                    </p>
+                  
+                  </div>
+                  <div class="row" style="padding-top: 10px;">
+                    <label position="stacked" ><strong>Imagen: </strong></label>
+                    <input formControlName="foto" type="file" accept=".png, .jpg" (change)="enviarimagen($event)" style="color:black;padding-left: 5px;"/>
+                  </div>
+                  <div class="validation-errors">
+                    <p class="form-error"
+                      *ngIf="(formGroup.get('foto').hasError('required') && formGroup.get('foto').touched) || formGroup.get('foto').untouched">
+                      *Requerido
+                    </p>
+                  
+                  </div>
+
                   <div class="form-group">
                     <ion-button type="submit" [disabled]="!formGroup.valid" expand="block">Guardar</ion-button>
                   </div>
