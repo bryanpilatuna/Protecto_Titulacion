@@ -44,9 +44,6 @@
   <section class="py-5 text-center">
     <div class="container"> 
       <div class="row" >
-      
-
-
         <div class="col" style="border: #3A6073 2px solid;display: flex;
         align-items: center;justify-content: center;">
         <div class="row" style="align-items: center;justify-content: center;">
@@ -57,7 +54,7 @@
         </div>
         </div>
         <div class="col" style="border: #3A6073 2px solid;" >   
-                <form [formGroup]="formGroup" *ngIf="donacion" (ngSubmit)="crearDonacion(content)" >
+                <form [formGroup]="formGroup" *ngIf="donacion" (ngSubmit)="crearDonacion()" >
                   <div class="form-group row">
                     <div class="col">
                       <ion-item>
@@ -70,6 +67,7 @@
                         cancelText="Cancelar"
                         doneText="Seleccionar"
                         formControlName="fechaControl"
+                        [(ngModel)]="fechdona"
                         >
                         </ion-datetime>
                       </ion-item>
@@ -165,18 +163,18 @@
                       <ion-item >
                         <ion-label>Tipo de entrega</ion-label>
                         <ion-select [(ngModel)]="donacion.modo" ok-text="Seleccionar" 
-                        formControlName="modoControl" cancel-text="Cancelar"  (ionChange)="onSelectChange()">
-                          <ion-select-option value=" A la tienda"> 
-                            <ion-label>
-                              A la tienda
-                            </ion-label>
-                          </ion-select-option>
-                          <ion-select-option value="A mi domicilio"> 
-                            <ion-label>
-                              A mi domicilio
-                            </ion-label>
-                          </ion-select-option>
-                    
+      formControlName="modoControl" cancel-text="Cancelar"  (ionChange)="onSelectChange()" style="width: 100%;">
+        <ion-select-option value="A la tienda"> 
+          <ion-label>
+            A la tienda
+          </ion-label>
+        </ion-select-option>
+        <ion-select-option value="A mi domicilio"> 
+          <ion-label>
+            A mi domicilio
+          </ion-label>
+        </ion-select-option>
+  
                         </ion-select>
                       </ion-item>
             
@@ -192,9 +190,9 @@
                   <div class="form-group row">
                     <div class="col">
                       <ion-item id="dir" style="display: none;">
-                        <ion-label position="stacked">Dirección</ion-label>
+                        <ion-label position="stacked">Dirección de entrega</ion-label>
                         <ion-input id="intro" required type="text" placeholder="Dirección" [(ngModel)]="donacion.direccion"
-                        formControlName="descripcionControl"></ion-input>
+                        formControlName="direccionControl"></ion-input>
                       </ion-item>
             
 
@@ -211,17 +209,6 @@
           
         </div>
       </div>
-      <ng-template #content let-c="close" let-d="dismiss">
-        <div class="modal-header">
-          <h4 class="modal-title" id="modal-basic-title">Mensaje</h4>
-        </div>
-        <div class="modal-body">
-          <p>Se envió correctamente su formulario de donación.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark" (click)="close()">Aceptar</button>
-        </div>
-      </ng-template>
     </div>
   </section>
   <app-footer></app-footer>

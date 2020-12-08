@@ -44,6 +44,7 @@ export class FormularioDonacionPage implements OnInit {
 
   };
   formGroup: FormGroup; 
+  fechdona="";
   
   constructor(
     private route: ActivatedRoute, 
@@ -54,7 +55,7 @@ export class FormularioDonacionPage implements OnInit {
     public Service:NotificaciontiendaService,
     private alertCtrl: AlertController,
     private router: Router, 
-    private Serviceau: AuthService
+    private Serviceau: AuthService,
      ) {
       var user = firebase.auth().currentUser.uid;
       this.donanteid = user;
@@ -144,7 +145,13 @@ export class FormularioDonacionPage implements OnInit {
         this.notificaciones.idtienda=this.donacion.idtienda;
         
         this.Service.addNotificacion(this.notificaciones);
-        this.nav.navigateForward('/menu');
+        this.nav.navigateForward('alquiler-donacion');
+        this.fechdona='';
+        this.donacion.idtienda='';
+        this.donacion.estado='';
+        this.donacion.descripcion='';
+        this.donacion.modo='';
+        this.donacion.direccion='.';
         this.mensaje="Se envió correctamente su formulario de donación.";
         this.mensajeconfirmacion();
         
@@ -163,7 +170,6 @@ export class FormularioDonacionPage implements OnInit {
   cancelarDonacion(){
     this.nav.navigateForward('/menu');
   }
-
 
 
 
