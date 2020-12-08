@@ -13,7 +13,7 @@ import { RouterLinkActive } from '@angular/router';
   styleUrls: ['./header-tienda.component.scss'],
 })
 export class HeaderTiendaComponent implements OnInit {
-  noti:string="No";  
+  noti:string="../../../assets/notificaciones/noti.png";  
   No='No';
   Si='Si';
   id=null;
