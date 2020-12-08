@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ModalAlquilerPageRoutingModule } from './modal-alquiler-routing.module';
 
 import { ModalAlquilerPage } from './modal-alquiler.page';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ModalAlquilerPageRoutingModule
+    ModalAlquilerPageRoutingModule,
+    NgxPaginationModule
   ],
   declarations: [ModalAlquilerPage]
 })

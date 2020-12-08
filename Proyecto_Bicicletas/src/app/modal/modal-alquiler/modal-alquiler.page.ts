@@ -8,6 +8,7 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./modal-alquiler.page.scss'],
 })
 export class ModalAlquilerPage implements OnInit {
+  pageActual: number= 1;
   bicicletas:datosBicicleta[];
   id="Z4G3rWPMf93WkhZ49H9Y";
   @Input() idtienda: string;

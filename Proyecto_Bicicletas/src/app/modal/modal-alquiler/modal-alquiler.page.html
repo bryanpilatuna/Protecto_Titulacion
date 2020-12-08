@@ -6,7 +6,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-item-sliding *ngFor="let bicicleta of bicicletas">
+    <ion-item-sliding *ngFor="let bicicleta of bicicletas | paginate: { itemsPerPage: 3, currentPage: pageActual }">
       <ion-item *ngIf="bicicleta.disponible==validacion" button (click)="seleccionbicicleta(bicicleta.id)">
         <ion-label>
           <img [src]="bicicleta.imagen" style="height: 130px;display:block;margin:auto;margin-bottom: 10px;"/>
@@ -16,5 +16,6 @@
         </ion-label>
       </ion-item> 
     </ion-item-sliding>
+    <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
   </ion-list>
 </ion-content>
