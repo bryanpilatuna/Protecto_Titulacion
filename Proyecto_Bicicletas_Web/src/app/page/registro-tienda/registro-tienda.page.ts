@@ -123,7 +123,7 @@ export class RegistroTiendaPage implements OnInit {
     } else {
       this.mensaje="Se envió un mensaje de confirmación al correo ingresado.";
       this.presentAlertConfirm();
-
+      this.router.navigate(['/iniciar-sesion']);
       //this.router.navigate(['verify-email']);
     }
   }
