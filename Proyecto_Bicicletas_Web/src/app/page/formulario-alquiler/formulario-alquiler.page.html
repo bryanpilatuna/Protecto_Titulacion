@@ -54,164 +54,112 @@
         </div>
         </div>
         <div class="col" style="border: #3A6073 2px solid;" >   
-           
-              
-                <form [formGroup]="formGroup" *ngIf="alquiler" >
-                  
-                  <div class="form-group row">
-                    <div class="col">
-                      <ion-item  >
-                        <ion-label position="stacked">Seleccione la fecha para el alquiler</ion-label>
-                        <ion-datetime displayFormat="DD MMMM YYYY"   
-                        (ionChange)="cambiofecha($event)"
-                        placeholder="Dia Mes Año"    
-                        min="{{fechaactual | date: 'yyyy-MM-dd'}}" 
-                        max="2021-12-31" 
-                        cancelText="Cancelar"
-                        doneText="Seleccionar"
-                        formControlName="fechaAlquiler"
-                        >
-                        </ion-datetime>
-                      </ion-item>
-                      <div class="validation-errors">
-                        <p class="form-error"
-                          *ngIf="(formGroup.get('fechaAlquiler').hasError('required') && formGroup.get('fechaAlquiler').touched) || formGroup.get('fechaAlquiler').untouched">
-                          *Requerido
-                        </p>
-                      
-                      </div>
-                    </div>
-                  </div>
-
-
-                  <div class="form-group row">
-                    <div class="col">
-                      <ion-item>
-                        <ion-label position="stacked">Hora alquiler</ion-label>
-                        <ion-datetime cancelText="Cancelar"
-                        doneText="Seleccionar" formControlName="horaAlquiler" min="{{fechaactual | date: 'HH:mm'}}" displayFormat="HH:mm" placeholder="Hora Minutos" (ionChange)="seleccionarhora($event)"></ion-datetime>
-                      </ion-item>
-                      <div class="validation-errors">
-                        <p class="form-error"
-                          *ngIf="(formGroup.get('horaAlquiler').hasError('required') && formGroup.get('horaAlquiler').touched) || formGroup.get('horaAlquiler').untouched">
-                          *Requerido
-                        </p>
-                      
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="form-group row">
-                    <div class="col">
-                      <ion-item>
-                        <ion-label position="stacked">Seleccione fecha de devolución</ion-label>
-                        <ion-datetime displayFormat="DD MMMM YYYY"   
-                        (ionChange)="cambiofecha2($event)"
-                        placeholder="Dia Mes Año"    
-                        min="{{alquiler.fechaalquiler | date: 'yyyy-MM-dd'}}" 
-                        max="2021-12-31" 
-                        cancelText="Cancelar"
-                        doneText="Seleccionar"
-                        formControlName="fechaDevolucion"
-                        >
-                        </ion-datetime>
-                      </ion-item>
-                      <div class="validation-errors">
-                        <p class="form-error"
-                          *ngIf="(formGroup.get('fechaDevolucion').hasError('required') && formGroup.get('fechaDevolucion').touched) || formGroup.get('fechaDevolucion').untouched">
-                          *Requerido
-                        </p>
-                      
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <div class="col">
-                      <ion-item>
-                        <ion-label position="stacked">Hora devolución</ion-label>
-                        <ion-datetime  cancelText="Cancelar"
-                        doneText="Seleccionar" formControlName="horaDonacion" displayFormat="HH:mm" placeholder="Hora Minutos" (ionChange)="seleccionarhoradev($event)"></ion-datetime>
-                      </ion-item>
-                      <div class="validation-errors">
-                        <p class="form-error"
-                          *ngIf="(formGroup.get('horaDonacion').hasError('required') && formGroup.get('horaDonacion').touched) || formGroup.get('horaDonacion').untouched">
-                          *Requerido
-                        </p>
-                      
-                      </div>
-                    </div>
-                    
-                  </div>
-                  
-                  
-                  <div class="form-group">
-                    <ion-item  *ngIf="alquiler">
-                      <ion-label>Seleccione la  Tienda</ion-label>
-                      <ion-select [(ngModel)]="alquiler.idtienda" ok-text="Seleccionar" 
-                      cancel-text="Cancelar" formControlName="tindaSeleccion" (ionChange)="onSelectChange(content)" >
-                        <ion-select-option *ngFor="let tienda of tiendas" [value]="tienda.id"> 
-                          <ion-label>
-                          {{ tienda.nombre}}
-                        </ion-label>
-                        </ion-select-option>
-                      </ion-select>
-                    </ion-item>   
-                    <div class="validation-errors">
-                      <p class="form-error"
-                        *ngIf="(formGroup.get('tindaSeleccion').hasError('required') && formGroup.get('tindaSeleccion').touched) || formGroup.get('tindaSeleccion').untouched">
-                        *Requerido
-                      </p>
-                    
-                    </div>
-                  </div>
-                  <ion-item *ngIf="direc">
-                    <ion-label position="stacked">Dirección Tienda</ion-label>
-                    <p>{{direc}}</p>
-                  </ion-item>
-                  <ion-item *ngIf="imgbici">
-                    <img height="100" [src]="imgbici" style="display:block;
-                            margin:auto;margin-top: 10px;margin-bottom: 10px;">
-                  </ion-item>
-                 
-              
-                  
-     
-                  <div class="form-group">
-                    <ion-button [disabled]="!formGroup.valid" expand="full" (click)="crearAlquiler(content2)">Realizar Alquiler</ion-button>
-                  </div>
-                </form>
-                <ng-template #content2 let-c="close" let-d="dismiss">
-                  <div class="modal-header">
-                    <h4 class="modal-title" id="modal-basic-title">Mensaje</h4>
-                  </div>
-                  <div class="modal-body">
-                    <p>Se envió correctamente su formulario de alquiler.</p>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-dark" (click)="close()">Aceptar</button>
-                  </div>
-                </ng-template>
-                <ng-template #content let-c="close" let-d="dismiss">
-                  <div class="modal-header">
-                    <h4 class="modal-title" id="modal-basic-title">Seleccionar Bicicleta</h4>
-                  </div>
-                  <div class="modal-body">
-                    <ion-item-sliding *ngFor="let bicicleta of bicicletas4">
-                      <ion-item button  (click)="seleccionarbici(bicicleta.id)">
-                        <ion-label>
-                          <img [src]="bicicleta.imagen" style="height: 130px;display:block;margin:auto;margin-bottom: 10px;"/>
-                     
-                
-                       
-                        </ion-label>
-                      </ion-item> 
-                    </ion-item-sliding>
-                  </div>
-             
-                </ng-template>
-                
-
+          <form [formGroup]="formGroup" *ngIf="alquiler">
+            <ion-item  >
+              <ion-label position="stacked">Seleccione la fecha para el alquiler</ion-label>
+              <ion-datetime displayFormat="DD MMMM YYYY"   
+              (ionChange)="cambiofecha($event)"
+              placeholder="Dia Mes Año"    
+              min="{{fechaactual | date: 'yyyy-MM-dd'}}" 
+              max="2021-12-31" 
+              cancelText="Cancelar"
+              doneText="Seleccionar"
+              formControlName="fechaAlquiler"
+              >
+              </ion-datetime>
+            </ion-item>
+            <div class="validation-errors">
+              <p class="form-error"
+                *ngIf="(formGroup.get('fechaAlquiler').hasError('required') && formGroup.get('fechaAlquiler').touched) || formGroup.get('fechaAlquiler').untouched">
+                *Requerido
+              </p>
             
+            </div>
+            
+            <ion-item>
+              <ion-label position="stacked">Hora alquiler</ion-label>
+              <ion-datetime cancelText="Cancelar"
+              doneText="Seleccionar" formControlName="horaAlquiler"  displayFormat="HH:mm" placeholder="Hora Minutos" (ionChange)="seleccionarhora($event)"></ion-datetime>
+            </ion-item>
+            <div class="validation-errors">
+              <p class="form-error"
+                *ngIf="(formGroup.get('horaAlquiler').hasError('required') && formGroup.get('horaAlquiler').touched) || formGroup.get('horaAlquiler').untouched">
+                *Requerido
+              </p>
+            
+            </div>
+        
+            <ion-item>
+              <ion-label position="stacked">Seleccione la fecha de devolución</ion-label>
+              <ion-datetime displayFormat="DD MMMM YYYY"   
+              (ionChange)="cambiofecha2($event)"
+              placeholder="Dia Mes Año"    
+              min="{{alquiler.fechaalquiler | date: 'yyyy-MM-dd'}}" 
+              max="2021-12-31" 
+              cancelText="Cancelar"
+              doneText="Seleccionar"
+              formControlName="fechaDevolucion"
+              >
+              </ion-datetime>
+            </ion-item>
+            <div class="validation-errors">
+              <p class="form-error"
+                *ngIf="(formGroup.get('fechaDevolucion').hasError('required') && formGroup.get('fechaDevolucion').touched) || formGroup.get('fechaDevolucion').untouched" >
+                *Requerido
+              </p>
+            
+            </div>
+            <ion-item>
+              <ion-label position="stacked">Hora devolución</ion-label>
+              <ion-datetime  cancelText="Cancelar"
+              doneText="Seleccionar" formControlName="horaDonacion" displayFormat="HH:mm" placeholder="Hora Minutos" (ionChange)="seleccionarhoradev($event)"></ion-datetime>
+            </ion-item>
+            <div class="validation-errors">
+              <p class="form-error"
+                *ngIf="(formGroup.get('horaDonacion').hasError('required') && formGroup.get('horaDonacion').touched) || formGroup.get('horaDonacion').untouched">
+                *Requerido
+              </p>
+            
+            </div>
+            <ion-item *ngIf="alquiler">
+              <ion-label>Seleccione la  Tienda</ion-label>
+    
+           
+                  <ion-select [(ngModel)]="alquiler.idtienda" ok-text="Seleccionar" 
+              cancel-text="Cancelar" formControlName="tindaSeleccion" (ionChange)="onSelectChange()">
+                <ion-select-option *ngFor="let tienda of tiendas" [value]="tienda.id"> 
+                  <ion-label>
+                  {{ tienda.nombre}}
+                </ion-label>
+                </ion-select-option>
+                </ion-select>
+               
+          
+              
+            </ion-item>
+            <div class="validation-errors">
+              <p class="form-error"
+                *ngIf="(formGroup.get('tindaSeleccion').hasError('required') && formGroup.get('tindaSeleccion').touched) || formGroup.get('tindaSeleccion').untouched">
+                *Requerido
+              </p>
+            
+            </div>
+            
+            <ion-item *ngIf="imgbici">
+              <img height="100" [src]="imgbici" style="display:block;
+                      margin:auto;margin-top: 10px;margin-bottom: 10px;">
+            </ion-item>
+            <ion-item *ngIf="direc">
+              <ion-label position="stacked">Dirección</ion-label>
+              <ion-input formControlName="dirDonacion" type="text" [(ngModel)]="direc"></ion-input>
+            </ion-item>
+        
+        
+            <!--<ion-button disabled={{desabilitarboton}} expand="full" (click)="abrirmodal()">Seleccione la Bicicleta</ion-button>-->
+        
+            <ion-button [disabled]="!formGroup.valid" expand="full" (click)="crearAlquiler()" style="border-style: solid;border-color: #01C642;border-radius: 10px;">Realizar Alquiler</ion-button>
+         
+          </form>
             
         </div>
       </div>
