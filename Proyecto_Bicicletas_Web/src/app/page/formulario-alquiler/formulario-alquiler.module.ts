@@ -9,6 +9,7 @@ import { FormularioAlquilerPageRoutingModule } from './formulario-alquiler-routi
 import { FormularioAlquilerPage } from './formulario-alquiler.page';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ComponentsModule } from '../../componentes/components.module';
+import {NgxPaginationModule} from 'ngx-pagination';
 @NgModule({
   imports: [
     CommonModule,
@@ -16,7 +17,8 @@ import { ComponentsModule } from '../../componentes/components.module';
     IonicModule,
     FormularioAlquilerPageRoutingModule,
     ReactiveFormsModule,
-    ComponentsModule
+    ComponentsModule,
+    NgxPaginationModule
   ],
   declarations: [FormularioAlquilerPage]
 })

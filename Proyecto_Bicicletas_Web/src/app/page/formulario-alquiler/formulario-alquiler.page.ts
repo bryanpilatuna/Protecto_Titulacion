@@ -16,13 +16,14 @@ import { NgbModalConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstra
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
+import {NgxPaginationModule} from 'ngx-pagination';
 @Component({
   selector: 'app-formulario-alquiler',
   templateUrl: './formulario-alquiler.page.html',
   styleUrls: ['./formulario-alquiler.page.scss'],
 })
 export class FormularioAlquilerPage implements OnInit {
-  
+  pageActual: number= 1;
   usuarioid= null;
   modal : NgbModalRef;
   modal2 : NgbModalRef;
