@@ -227,5 +227,40 @@ export class EditarTiendaPage implements OnInit {
     await alert.present();
   }
 
+///////////////////////////
+
+redihome(){
+  this.router.navigate(['/menu-tienda']);
+}
+
+rediperfil(){
+  this.router.navigate(['/editar-tienda']);
+
+
+}
+redibicicletas(){
+  this.router.navigate(['/mis-bicis']);
+}
+redidonaciones(){
+  this.router.navigate(['/tienda-donacion']);
+}
+redialquileres(){
+  this.router.navigate(['/tienda-alquiler']);
+}
+
+redinotifi(){
+  this.router.navigate(['/notificaciones-tienda']);
+    
+
+
+}
+salir(){
+
+  this.Service.logout();
+}
+
+
+
+
 
 }

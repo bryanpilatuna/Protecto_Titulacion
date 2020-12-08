@@ -13,7 +13,7 @@ import { RouterLinkActive } from '@angular/router';
   styleUrls: ['./header-tienda.component.scss'],
 })
 export class HeaderTiendaComponent implements OnInit {
-  noti='No';  
+  noti:string="No";  
   No='No';
   Si='Si';
   id=null;
@@ -41,14 +41,15 @@ export class HeaderTiendaComponent implements OnInit {
   ngOnInit() {
     
     this.notificacionesService.getMisnotificaciones(this.id).subscribe((notificaciones) =>{
-      this.notificaciones= notificaciones;
-      
-      for(let i in this.notificaciones){
-        if(this.notificaciones[i].visualizar=="No"){
-          this.noti="Si";
-        // console.log(this.notificaciones[i])
-        }
+      this.notificaciones= notificaciones
+      if(this.notificaciones.length==0){
+        //console.log("No tiene ");
+        this.noti="../../../assets/notificaciones/noti.png";
+      }else{
+        this.noti="../../../assets/notificaciones/notiactiva.png";
+        //console.log('Tiene');
       }
+     
       
     })
 

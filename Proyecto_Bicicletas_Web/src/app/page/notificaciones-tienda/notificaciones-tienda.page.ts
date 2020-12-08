@@ -35,6 +35,7 @@ export class NotificacionesTiendaPage implements OnInit {
   constructor(private router: Router,
     private Servicio:AuthService,
     private loadingController: LoadingController,
+    private Service: AuthService,
     private notificacionesService:NotificacionesService) {
       var user = firebase.auth().currentUser.uid;
       this.tiendaid = user;
@@ -72,7 +73,8 @@ export class NotificacionesTiendaPage implements OnInit {
       }
       
     }
-    window.location.href = '/tienda-alquiler' ;
+    //window.location.href = '/tienda-alquiler' ;
+    this.router.navigate(['/tienda-alquiler']);
     loading.dismiss();
       });
 
@@ -84,13 +86,14 @@ export class NotificacionesTiendaPage implements OnInit {
       await loading.present();
       notifi.visualizar='Si';
       this.notificacionesService.updateNotificacion(notifi,id).then(() => {
-        for (let index = 0; index < this.notificaciones.length; index++) {
-          if(this.notificaciones[index].tipo=='Donacion'){
-            this.notificaciones[index].visualizar='Si';
-            this.notificacionesService.updateNotificacion(this.notificaciones[index],this.notificaciones[index].id);
+        for (let index = 0; index < this.notificaciones2.length; index++) {
+          if(this.notificaciones2[index].tipo=='Donacion'){
+            this.notificaciones2[index].visualizar='Si';
+            this.notificacionesService.updateNotificacion(this.notificaciones2[index],this.notificaciones2[index].id);
           }
         }
-        window.location.href = '/tienda-donacion' ;
+        //window.location.href = '/tienda-donacion' ;
+        this.router.navigate(['/tienda-donacion']);
         loading.dismiss();
     });
     }
@@ -101,10 +104,10 @@ export class NotificacionesTiendaPage implements OnInit {
    
       notifi.visualizar='Si';
       this.notificacionesService.updateNotificacion(notifi,id).then(() => {
-    for (let index = 0; index < this.notificaciones.length; index++) {
-      if(this.notificaciones[index].tipo=='Alquiler'){
-        this.notificaciones[index].visualizar='Si';
-        this.notificacionesService.updateNotificacion(this.notificaciones[index],this.notificaciones[index].id);
+    for (let index = 0; index < this.notificaciones2.length; index++) {
+      if(this.notificaciones2[index].tipo=='Alquiler'){
+        this.notificaciones2[index].visualizar='Si';
+        this.notificacionesService.updateNotificacion(this.notificaciones2[index],this.notificaciones2[index].id);
       }
       
     }
@@ -126,5 +129,36 @@ export class NotificacionesTiendaPage implements OnInit {
     }
   }
 
+///////////////////////////////////
+
+redihome(){
+  this.router.navigate(['/menu-tienda']);
+}
+
+rediperfil(){
+  this.router.navigate(['/editar-tienda']);
+
+
+}
+redibicicletas(){
+  this.router.navigate(['/mis-bicis']);
+}
+redidonaciones(){
+  this.router.navigate(['/tienda-donacion']);
+}
+redialquileres(){
+  this.router.navigate(['/tienda-alquiler']);
+}
+
+redinotifi(){
+  this.router.navigate(['/notificaciones-tienda']);
+    
+
+
+}
+salir(){
+
+  this.Service.logout();
+}
 
 }
