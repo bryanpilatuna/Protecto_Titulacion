@@ -22,8 +22,7 @@ import { AuthService } from '../../service/auth.service';
   styleUrls: ['./formulario-alquiler.page.scss'],
 })
 export class FormularioAlquilerPage implements OnInit {
-  imgbici:string;
-  direc:string;
+  
   usuarioid= null;
   modal : NgbModalRef;
   modal2 : NgbModalRef;
@@ -69,9 +68,19 @@ export class FormularioAlquilerPage implements OnInit {
   contador=0;
   limite=false;
   alquilerid: datosAlquiler[];
+
+  fecal:string;
+  horal:string;
+  fecdev:string;
+  hordev:string;
+  tien:string;
+  direc:string;
+  imgbici:string;
+  
   constructor(private Serviceau: AuthService,private router: Router, config: NgbModalConfig, private modalService: NgbModal,private route: ActivatedRoute, private nav: NavController, private UsuarioService: UsuarioService,public Service:NotificaciontiendaService,
     private alquilerService: AlquilerService, private loadingController: LoadingController,public modalController: ModalController,public formBuilder: FormBuilder,private alertCtrl: AlertController) { 
       //this.disableSelector = false;
+     
       var user = firebase.auth().currentUser.uid;
       this.usuarioid = user;
       this.fechaac = new Date(this.fechaactual).toDateString();
@@ -89,7 +98,6 @@ export class FormularioAlquilerPage implements OnInit {
         }
         console.log(this.contador);
         if(this.contador<2){
-          alert('No se paso');
         }else{
           this.limite=true;
         }
@@ -222,8 +230,16 @@ export class FormularioAlquilerPage implements OnInit {
         this.notificaciones.idtienda=this.alquiler.idtienda;
         this.Service.addNotificacion(this.notificaciones);
         //this.modal2 =this.modalService.open(content2,{centered:true});
+        
         this.nav.navigateForward('alquiler-donacion'); 
-        //window.location.href = 'formulario-alquiler' ;
+        this.fecal=null;
+        this.horal=null;
+        this.fecdev=null;
+        this.hordev=null;
+        this.alquiler.idtienda=null;
+        this.direc='';
+        this.imgbici='';
+        //window.location.href = 'alquiler-donacion' ;
         this.mensaje="Se envió correctamente su formulario de alquiler.";
         this.mensajeconfirmacion();
       });

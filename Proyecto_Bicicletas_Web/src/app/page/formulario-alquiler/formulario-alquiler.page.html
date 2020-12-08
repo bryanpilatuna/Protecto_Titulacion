@@ -70,6 +70,7 @@
                         cancelText="Cancelar"
                         doneText="Seleccionar"
                         formControlName="fechaAlquiler"
+                        [(ngModel)]="fecal"
                         >
                         </ion-datetime>
                       </ion-item>
@@ -88,7 +89,7 @@
                     <div class="col">
                       <ion-item>
                         <ion-label position="stacked">Hora alquiler</ion-label>
-                        <ion-datetime cancelText="Cancelar"
+                        <ion-datetime cancelText="Cancelar" [(ngModel)]="horal"
                         doneText="Seleccionar" formControlName="horaAlquiler" min="{{fechaactual | date: 'HH:mm'}}" displayFormat="HH:mm" placeholder="Hora Minutos" (ionChange)="seleccionarhora($event)"></ion-datetime>
                       </ion-item>
                       <div class="validation-errors">
@@ -113,6 +114,7 @@
                         cancelText="Cancelar"
                         doneText="Seleccionar"
                         formControlName="fechaDevolucion"
+                        [(ngModel)]="fecdev"
                         >
                         </ion-datetime>
                       </ion-item>
@@ -129,7 +131,7 @@
                     <div class="col">
                       <ion-item>
                         <ion-label position="stacked">Hora devolución</ion-label>
-                        <ion-datetime  cancelText="Cancelar"
+                        <ion-datetime  cancelText="Cancelar" [(ngModel)]="hordev"
                         doneText="Seleccionar" formControlName="horaDonacion" displayFormat="HH:mm" placeholder="Hora Minutos" (ionChange)="seleccionarhoradev($event)"></ion-datetime>
                       </ion-item>
                       <div class="validation-errors">
