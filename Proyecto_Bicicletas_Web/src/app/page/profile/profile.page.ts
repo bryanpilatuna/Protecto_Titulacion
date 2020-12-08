@@ -146,7 +146,7 @@ export class ProfilePage implements OnInit {
   async guardarUsuario() {
     if (this.usuarioId) {
       this.usuarioService.updateUsuario(this.usuario, this.usuarioId).then(() => {
-        this.mensaje="Se actualizo su perfil correctamente.";
+        this.mensaje="Se actualizó correctamente su perfil.";
         this.mensajeconfirmacion();
       });
     } 
