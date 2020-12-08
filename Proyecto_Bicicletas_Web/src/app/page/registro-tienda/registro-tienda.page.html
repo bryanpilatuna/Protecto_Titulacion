@@ -128,6 +128,14 @@
                         
                       </div>
                       <div class="row" style="justify-content:center;">
+                        <div style="width: 20px !important;" >
+                          <button type="button" class="btn_eye_icon" color="royal" style="border: none;" (click)="showPassword()">
+                            <ion-icon [name]="(passwordTypeInput === 'text')?'eye-off':'eye'"></ion-icon>
+                          </button>
+                        </div>
+                        
+                      </div>
+                      <div class="row" style="justify-content:center;">
                         <div class="validation-errors">
                           <p class="form-error"
                             *ngIf="(formGroup.get('passwordControl').hasError('required') && formGroup.get('passwordControl').touched) || formGroup.get('passwordControl').untouched">
@@ -144,14 +152,7 @@
                         </div>
                         
                       </div>
-                      <div class="row" style="justify-content:center;">
-                        <div style="width: 20px !important;" >
-                          <button type="button" class="btn_eye_icon" color="royal" style="border: none;" (click)="showPassword()">
-                            <ion-icon [name]="(passwordTypeInput === 'text')?'eye-off':'eye'"></ion-icon>
-                          </button>
-                        </div>
-                        
-                      </div>
+                      
                     </div>
                 </div>
                
@@ -159,6 +160,13 @@
                     <label position="stacked"><strong>Logo</strong></label>
                     <br/>
                     <input formControlName="foto" type="file" accept=".png, .jpg" (change)="enviarimagen($event)" style="color:black"/>
+                  </div>
+                  <div class="validation-errors">
+                    <p class="form-error"
+                      *ngIf="(formGroup.get('foto').hasError('required') && formGroup.get('foto').touched) || formGroup.get('foto').untouched">
+                      *Requerido
+                    </p>
+                  
                   </div>
                   
                 

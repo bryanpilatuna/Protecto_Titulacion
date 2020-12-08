@@ -131,7 +131,7 @@
                     </div>
                   <div class="form-group row">
                     <div class="col">
-                      <ion-label  position="stacked"><strong>¿Realizas auxilio mecánico? </strong></ion-label >
+                      <label position="stacked"><strong>¿Realizas auxilio mecánico? </strong></label>
                         <select [(ngModel)]="tienda.auxilio" formControlName="tipoControl" class="form-control">
                           <option value="Si" selected>Si</option>
                           <option value="No">No</option>
@@ -140,7 +140,7 @@
                     <div class="col">
                       <div class="form-group">
                         <label position="stacked"><strong>Correo electrónico</strong></label>
-                        <p>{{tienda.correo}}</p>
+                        <p style="padding:10px;border: #3A6073 2px solid;border-radius: 5px;">{{tienda.correo}}</p>
                       </div>
                     </div>
                   </div>

@@ -68,7 +68,10 @@ export class RegistroTiendaPage implements OnInit {
         Validators.maxLength(40),
       
     ]));
-    const foto = new FormControl('', Validators.required)
+    const foto = new FormControl('', Validators.compose([
+      Validators.required,
+      
+    ]));
 
     this.formGroup = this.formBuilder.group({nombreControl,direccionControl,telefonoControl,emailControl,passwordControl,foto });
   }

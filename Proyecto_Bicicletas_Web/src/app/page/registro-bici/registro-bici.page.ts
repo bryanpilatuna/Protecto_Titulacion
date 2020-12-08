@@ -71,7 +71,10 @@ export class RegistroBiciPage implements OnInit {
 
     ]));
   
-    const foto = new FormControl('', Validators.required)
+    const foto = new FormControl('', Validators.compose([
+      Validators.required,
+      
+    ]));
 
     this.formGroup = this.formBuilder.group({nombreControl,descripcionControl,foto,tipoControl,colorControl });
   }
