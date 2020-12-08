@@ -43,7 +43,7 @@ export class EditClientePage implements OnInit {
   async saveTodo() {
     if (this.iduser) {
       this.Service.updateUsuario(this.usuario, this.iduser).then(() => {
-        this.mensaje='Se edito el cliente correctamente.'
+        this.mensaje='Se editó el cliente correctamente.'
         this.presentAlert(this.mensaje);
         this.nav.navigateForward('/cliente-administrador');
       });
