@@ -154,6 +154,7 @@ export class FormularioAlquilerPage implements OnInit {
    this.idbicicleta =idbici;
    this.alquilerService.getBicicleta(this.idbicicleta).subscribe((bicicletas) =>{
     this.bicicletas = bicicletas;
+    console.log(this.bicicletas);
     this.bicicletas.disponible="No";
     this.imgbici=bicicletas.imagen;
   })
@@ -201,6 +202,7 @@ export class FormularioAlquilerPage implements OnInit {
     this.alquiler.fecha= this.fechaactual;
     this.alquiler.bicicleta=this.idbicicleta;
     this.alquilerService.addAlquiler(this.alquiler).then(() => {
+   
       this.alquilerService.updateBicicletas(this.bicicletas, this.idbicicleta).then(() => {});
       this.notificaciones.idusuario=this.alquiler.idusuario;
       this.notificaciones.idtienda=this.alquiler.idtienda;
@@ -256,7 +258,7 @@ export class FormularioAlquilerPage implements OnInit {
   }
 
 
-    /*
+    
     async mensajeconfirmacionmapa() {
       const alert = await this.alertCtrl.create({
         cssClass: 'my-custom-class',
@@ -305,6 +307,6 @@ export class FormularioAlquilerPage implements OnInit {
     }
     salir(){
       this.Serviceau.logout();
-    }*/
+    }
   
 }
