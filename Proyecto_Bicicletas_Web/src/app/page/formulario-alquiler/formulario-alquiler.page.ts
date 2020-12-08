@@ -64,13 +64,37 @@ export class FormularioAlquilerPage implements OnInit {
   }
   desabilitarboton:boolean;
   formGroup: FormGroup; 
-
+  fechacom:any;
+  fechaac:any;
+  contador=0;
+  limite=false;
+  alquilerid: datosAlquiler[];
   constructor(private Serviceau: AuthService,private router: Router, config: NgbModalConfig, private modalService: NgbModal,private route: ActivatedRoute, private nav: NavController, private UsuarioService: UsuarioService,public Service:NotificaciontiendaService,
     private alquilerService: AlquilerService, private loadingController: LoadingController,public modalController: ModalController,public formBuilder: FormBuilder,private alertCtrl: AlertController) { 
       //this.disableSelector = false;
       var user = firebase.auth().currentUser.uid;
       this.usuarioid = user;
-      console.log(this.usuarioid);
+      this.fechaac = new Date(this.fechaactual).toDateString();
+      console.log(this.fechaac);
+      this.alquilerService.getAlquiler2(this.usuarioid).subscribe((alquileres) =>{
+        this.alquilerid = alquileres;
+        console.log(this.alquilerid);
+        for(let i in this.alquilerid){
+
+          this.fechacom = new Date(this.alquilerid[i].fecha['seconds']*1000).toDateString();
+          console.log(this.fechacom);
+          if(this.fechaac==this.fechacom){
+            this.contador=this.contador+1;
+          }
+        }
+        console.log(this.contador);
+        if(this.contador<2){
+          alert('No se paso');
+        }else{
+          this.limite=true;
+        }
+ 
+      })
       this.desabilitarboton = true;
       this.crearvalidaciones();
       config.backdrop = 'static';
@@ -83,27 +107,13 @@ export class FormularioAlquilerPage implements OnInit {
     this.alquiler.idusuario=this.usuarioid;
     
     this.alquilerService.getbustieact().subscribe((tiendas) =>{
-    
       this.tiendas = tiendas;
       for(let i in this.tiendas){
         this.alquilerService.getBicicletas(this.tiendas[i].id).subscribe((bicicletas) =>{
-          this.bicicletas2=bicicletas;
          if(bicicletas.length==0){    
           var l = this.tiendas.indexOf( this.tiendas[i] );
           this.tiendas.splice(l,1); 
-         }else{
-          var cont=0;
-          for(let m in this.bicicletas2){
-            if(this.bicicletas2[m].disponible=="Si"){
-              cont=cont+1;
-            }
-          }
-          if(cont==0){
-            var l = this.tiendas.indexOf( this.tiendas[i] );
-            this.tiendas.splice(l,1); 
-          }
          }
-  
         })
       }
     })
@@ -195,24 +205,29 @@ export class FormularioAlquilerPage implements OnInit {
     window.location.href = 'formulario-alquiler' ;
   }
   async crearAlquiler(content2){
-
-    this.alquiler.idusuario=this.usuarioid;
-    this.alquiler.idtienda=this.alquiler.idtienda;
-    this.alquiler.aprobacion= false;
-    this.alquiler.fecha= this.fechaactual;
-    this.alquiler.bicicleta=this.idbicicleta;
-    this.alquilerService.addAlquiler(this.alquiler).then(() => {
-   
-      this.alquilerService.updateBicicletas(this.bicicletas, this.idbicicleta).then(() => {});
-      this.notificaciones.idusuario=this.alquiler.idusuario;
-      this.notificaciones.idtienda=this.alquiler.idtienda;
-      this.Service.addNotificacion(this.notificaciones);
-      //this.modal2 =this.modalService.open(content2,{centered:true});
-      this.nav.navigateForward('alquiler-donacion'); 
-      //window.location.href = 'formulario-alquiler' ;
-      this.mensaje="Se envió correctamente su formulario de alquiler.";
+    if(this.limite==true){
+      //alert("Ya paso su limite");
+      this.mensaje="El limite de alquileres realizados en un día son 2.";
       this.mensajeconfirmacion();
-    });
+    }else{
+      this.alquiler.idusuario=this.usuarioid;
+      this.alquiler.idtienda=this.alquiler.idtienda;
+      this.alquiler.aprobacion= false;
+      this.alquiler.fecha= this.fechaactual;
+      this.alquiler.bicicleta=this.idbicicleta;
+      this.alquilerService.addAlquiler(this.alquiler).then(() => {
+    
+        this.alquilerService.updateBicicletas(this.bicicletas, this.idbicicleta).then(() => {});
+        this.notificaciones.idusuario=this.alquiler.idusuario;
+        this.notificaciones.idtienda=this.alquiler.idtienda;
+        this.Service.addNotificacion(this.notificaciones);
+        //this.modal2 =this.modalService.open(content2,{centered:true});
+        this.nav.navigateForward('alquiler-donacion'); 
+        //window.location.href = 'formulario-alquiler' ;
+        this.mensaje="Se envió correctamente su formulario de alquiler.";
+        this.mensajeconfirmacion();
+      });
+    }
   }
 
   async mensajeconfirmacion() {

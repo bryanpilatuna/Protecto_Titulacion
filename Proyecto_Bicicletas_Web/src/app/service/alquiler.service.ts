@@ -89,7 +89,7 @@ export class AlquilerService {
   }
 
   getBicicletas(idtienda:string){
-    this.BicicletaCollection = this.db.collection<datosBicicleta>('bicicleta', ref => ref.where('idtienda', '==', idtienda));
+    this.BicicletaCollection = this.db.collection<datosBicicleta>('bicicleta', ref => ref.where('idtienda', '==', idtienda).where('disponible', '==', 'Si'));
     this.bicicleta = this.BicicletaCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
@@ -102,6 +102,7 @@ export class AlquilerService {
     );
     return this.bicicleta;
   }
+
 
   getbustieact(){
     this.tiendaCollection2 = this.db.collection<datosTiendas>('tiendas', ref => ref.where('estado', '==', 'Activo'));

@@ -110,23 +110,10 @@ export class FormularioAlquilerPage implements OnInit {
       this.tiendas = tiendas;
       for(let i in this.tiendas){
         this.alquilerService.getBicicletas(this.tiendas[i].id).subscribe((bicicletas) =>{
-          this.bicicletas2=bicicletas;
          if(bicicletas.length==0){    
           var l = this.tiendas.indexOf( this.tiendas[i] );
           this.tiendas.splice(l,1); 
-         }else{
-          var cont=0;
-          for(let m in this.bicicletas2){
-            if(this.bicicletas2[m].disponible=="Si"){
-              cont=cont+1;
-            }
-          }
-          if(cont==0){
-            var l = this.tiendas.indexOf( this.tiendas[i] );
-            this.tiendas.splice(l,1); 
-          }
          }
-  
         })
       }
     })
