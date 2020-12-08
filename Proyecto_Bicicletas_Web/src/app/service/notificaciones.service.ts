@@ -47,7 +47,7 @@ export class NotificacionesService {
 
   getMisnotificaciones(iduser:string){
 
-    this.notificacionesCollection2 =this.db.collection<Notificaciones>('notificaciones', ref => ref.where('idusuario', '==', iduser));
+    this.notificacionesCollection2 =this.db.collection<Notificaciones>('notificaciones', ref => ref.where('idusuario', '==', iduser).where('visualizar', '==', 'No'));
     this.notificaciones2 = this.notificacionesCollection2.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
@@ -60,7 +60,6 @@ export class NotificacionesService {
     );
     return this.notificaciones2;
   }
-
   getMisnotificacionesalqui(iduser:string){
 
     this.notificacionesCollection2 =this.db.collection<Notificaciones>('notificaciones', ref => ref.where('idusuario', '==', iduser).where('tipo', '==', 'alquiler'));

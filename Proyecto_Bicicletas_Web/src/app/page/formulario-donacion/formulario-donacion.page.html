@@ -1,5 +1,43 @@
 <ion-header>
-  <app-menu></app-menu>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background: #EAEAEA !important;">
+    <a class="navbar-brand" (click)="rediperfil()">
+      <img src="assets/inicio/bicisquito.png" height="50">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+  
+        <li class="nav-item" id="tab-perfil">
+          <a class="btn nav-link" (click)="rediperfil()">Perfil</a>
+        </li>
+        <li class="nav-item" id="tab-tienda">
+          <a class="btn nav-link" (click)="alquileresnav()">Alquiler</a>
+        </li>
+        <li class="nav-item" id="tab-clientes">
+          <a class="btn nav-link active" (click)="donacionnav()" ><b>Donación</b></a>
+        </li>
+        <li class="nav-item" id="tab-clientes">
+          <a class="btn nav-link" (click)="mensajeconfirmacionmapa()" >Tiendas</a>
+        </li>
+        <li class="nav-item" id="tab-clientes">
+          <a class="btn nav-link" (click)="actividadesnav()" >Actividades</a>
+        </li>
+   
+   
+      </ul>
+      <form class="form-inline my-2 my-lg-0" >
+        <a style="padding: 10px;" (click)="notifinav()" >
+          <app-menu></app-menu>
+        </a>
+        
+        <a class="btn btn-outline-success my-2 my-sm-0" style="color: #3A6073;background-color: #fff;
+        border: 1px solid #3A6073;" (click)="salir()">Cerrar Sesión</a>
+      </form>
+    </div>
+  </nav>
 </ion-header>
 
 <ion-content> 

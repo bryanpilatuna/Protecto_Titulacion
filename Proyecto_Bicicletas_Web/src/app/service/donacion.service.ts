@@ -18,6 +18,7 @@ export class DonacionService {
 
   private tiendaCollection: AngularFirestoreCollection<datosTiendas>;
   private tienda: Observable<datosTiendas[]>;
+
   private tiendaCollection2: AngularFirestoreCollection<datosTiendas>;
   private tienda2: Observable<datosTiendas[]>;
 
@@ -56,20 +57,7 @@ export class DonacionService {
   getTiendas(){
     return this.tienda;
   }
-  getTienda(id: string){
-    return this.tiendaCollection.doc<datosTiendas>(id).valueChanges();
-  }
-
-  getDonacionid(id: string){
-    return this.donacionCollection.doc<datosDonacion>(id).valueChanges();
- 
-  }
-
-  updateDonacion(todo:datosDonacion, id: string){
-    return this.donacionCollection.doc(id).update(todo);
-  }
-
-  getbustieact(){
+  getTiendasActivas(){
     this.tiendaCollection2 = this.db.collection<datosTiendas>('tiendas', ref => ref.where('estado', '==', 'Activo'));
     this.tienda2 = this.tiendaCollection2.snapshotChanges().pipe(
       map(actions => {
@@ -83,7 +71,21 @@ export class DonacionService {
     );
     return this.tienda2;
   }
-  getdonacion(iduser:string){
+  getTienda(id: string){
+    return this.tiendaCollection.doc<datosTiendas>(id).valueChanges();
+  }
+
+  getDonacionid(id: string){
+    return this.donacionCollection.doc<datosDonacion>(id).valueChanges();
+ 
+  }
+
+  updateDonacion(todo:datosDonacion, id: string){
+    return this.donacionCollection.doc(id).update(todo);
+  }
+
+  
+  getdonacion(){
     this.listdonacionCollection = this.db.collection<datosDonacion>('donacion', ref => ref.orderBy("fechadonacion", "desc") );
     this.listdonacion = this.listdonacionCollection.snapshotChanges().pipe(
       map(actions => {

@@ -35,7 +35,7 @@ export class ProfilePage implements OnInit {
     private nav: NavController, 
     private usuarioService: UsuarioService, 
     private loadingController: LoadingController,
-    private Service: AuthService,
+    private Serviceau: AuthService,
     public formBuilder: FormBuilder,
     private alertCtrl: AlertController,
     ) 
@@ -73,7 +73,7 @@ export class ProfilePage implements OnInit {
 
   async cambiarcontra(){
 
-    this.Service.resetPassword(this.usuario.correo).then(() => {
+    this.Serviceau.resetPassword(this.usuario.correo).then(() => {
       this.mensaje="Se envió un correo para cambiar la contraseña. ";
       this.mensajeerror();
     });
@@ -150,5 +150,56 @@ export class ProfilePage implements OnInit {
         this.mensajeconfirmacion();
       });
     } 
+  }
+
+  //NAV
+  async mensajeconfirmacionmapa() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Mensaje',
+      message: 'Se necesita activar la ubicación de su dispositivo para visualizar las tiendas.',
+      buttons: [
+       {
+          text: 'Aceptar',
+          handler: () => {
+            this.irmapa()
+          }
+        },
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  rediperfil(){
+    this.router.navigate(['profile']);
+  }
+
+  alquileresnav(){
+    this.router.navigate(['formulario-alquiler']);
+  }
+
+  donacionnav(){
+    this.router.navigate(['formulario-donacion']);
+  }
+
+  actividadesnav(){
+    this.router.navigate(['alquiler-donacion']);
+
+  }
+  irmapa(){
+    this.router.navigate(['/ubicar-tienda',this.usuarioId]);
+  }
+
+  notifinav(){
+    this.router.navigate(['/notificacion']);
+  }
+  salir(){
+    this.Serviceau.logout();
   }
 }

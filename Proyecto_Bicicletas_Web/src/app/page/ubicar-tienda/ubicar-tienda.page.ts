@@ -5,6 +5,8 @@ import {UbicacionService} from '../../service/ubicacion.service';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import {NavController,LoadingController} from '@ionic/angular';
 import * as firebase from 'firebase';
+import { AlertController } from '@ionic/angular';
+import { AuthService } from '../../service/auth.service';
 declare var google;
 @Component({
   selector: 'app-ubicar-tienda',
@@ -23,7 +25,11 @@ export class UbicarTiendaPage implements OnInit {
     private geolocation: Geolocation,
     private nav: NavController,
     private loadinCtrl: LoadingController,
-    private route: ActivatedRoute) {
+    private router: Router, 
+    private route: ActivatedRoute,
+    private alertCtrl: AlertController,
+    private Serviceau: AuthService,
+    ) {
       this.desabilitarboton = true;
      }
 
@@ -108,6 +114,56 @@ this.nav.navigateForward(['/formulario-donacion', this.id]);
      // this.idtienda=marker.id;
       this.desabilitarboton = false;
     });
-    }    
+    }   
+    //NAV
+  async mensajeconfirmacionmapa() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Mensaje',
+      message: 'Se necesita activar la ubicación de su dispositivo para visualizar las tiendas.',
+      buttons: [
+       {
+          text: 'Aceptar',
+          handler: () => {
+            this.irmapa()
+          }
+        },
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  rediperfil(){
+    this.router.navigate(['profile']);
+  }
+
+  alquileresnav(){
+    this.router.navigate(['formulario-alquiler']);
+  }
+
+  donacionnav(){
+    this.router.navigate(['formulario-donacion']);
+  }
+
+  actividadesnav(){
+    this.router.navigate(['alquiler-donacion']);
+
+  }
+  irmapa(){
+    this.router.navigate(['/ubicar-tienda',this.id]);
+  }
+
+  notifinav(){
+    this.router.navigate(['/notificacion']);
+  }
+  salir(){
+    this.Serviceau.logout();
+  } 
 
 }

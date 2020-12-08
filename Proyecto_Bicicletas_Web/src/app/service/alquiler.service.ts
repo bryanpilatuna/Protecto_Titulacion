@@ -17,7 +17,8 @@ export class AlquilerService {
   private tiendaCollection: AngularFirestoreCollection<datosTiendas>;
   private tienda: Observable<datosTiendas[]>;
 
-
+  private tiendaCollection2: AngularFirestoreCollection<datosTiendas>;
+  private tienda2: Observable<datosTiendas[]>;
   private alquileridCollection: AngularFirestoreCollection<datosAlquiler>;
   private alquilerid: Observable<datosAlquiler[]>;
 
@@ -26,8 +27,7 @@ export class AlquilerService {
 
   private Bicicleta2Collection: AngularFirestoreCollection<datosBicicleta>;
   private bicicleta2: Observable<datosBicicleta[]>;
-  private tiendaCollection2: AngularFirestoreCollection<datosTiendas>;
-  private tienda2: Observable<datosTiendas[]>;
+
   constructor(private db:AngularFirestore) { 
     
     
@@ -89,7 +89,7 @@ export class AlquilerService {
   }
 
   getBicicletas(idtienda:string){
-    this.BicicletaCollection = this.db.collection<datosBicicleta>('bicicleta', ref => ref.where('idtienda', '==', idtienda).where('disponible','==','Si'));
+    this.BicicletaCollection = this.db.collection<datosBicicleta>('bicicleta', ref => ref.where('idtienda', '==', idtienda));
     this.bicicleta = this.BicicletaCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
@@ -102,6 +102,22 @@ export class AlquilerService {
     );
     return this.bicicleta;
   }
+
+  getbustieact(){
+    this.tiendaCollection2 = this.db.collection<datosTiendas>('tiendas', ref => ref.where('estado', '==', 'Activo'));
+    this.tienda2 = this.tiendaCollection2.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+        
+          return {id, ...data};
+        });
+      })
+    );
+    return this.tienda2;
+  }
+
 
   getAlquileres(id: string){
     return this.alquilerCollection.doc<datosAlquiler>(id).valueChanges();
@@ -126,7 +142,7 @@ export class AlquilerService {
     return this.alquilerCollection.doc(id).update(todo);
   }
 
-  getAlquiler(iduser:string){
+  getAlquiler(){
     this.alquileridCollection = this.db.collection<datosAlquiler>('alquiler', ref => ref.orderBy("fecha", "desc") );
     this.alquilerid = this.alquileridCollection.snapshotChanges().pipe(
       map(actions => {
@@ -142,9 +158,10 @@ export class AlquilerService {
     return this.alquilerid;
   }
 
-  getbustieact(){
-    this.tiendaCollection2 = this.db.collection<datosTiendas>('tiendas', ref => ref.where('estado', '==', 'Activo'));
-    this.tienda2 = this.tiendaCollection2.snapshotChanges().pipe(
+
+  getAlquiler2(iduser:string){
+    this.alquileridCollection = this.db.collection<datosAlquiler>('alquiler', ref => ref.where('idusuario', '==', iduser));
+    this.alquilerid = this.alquileridCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
           const data = a.payload.doc.data();
@@ -154,7 +171,15 @@ export class AlquilerService {
         });
       })
     );
-    return this.tienda2;
+   
+    return this.alquilerid;
+  }
+
+  formtDate(date: Date): string {
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
   }
 
 

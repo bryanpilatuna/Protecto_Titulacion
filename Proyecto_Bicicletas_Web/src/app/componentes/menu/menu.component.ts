@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NotificacionesService } from '../../service/notificaciones.service';
 import * as firebase from 'firebase';
 import { Notificaciones } from '../../model/notificaciones.interface';
+//import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+//import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
-import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -16,76 +16,49 @@ export class MenuComponent implements OnInit {
   noti:string="No";
   No='No';
   Si='Si';
+  cont=true;
+  contador=0;
   constructor(
     private router: Router,
+    //private localNotifications: LocalNotifications,
     private ServicioNoti:NotificacionesService,
-    private alertCtrl: AlertController,private Servicio:AuthService) { 
-      var user = firebase.auth().currentUser.uid;
+    //private storage: Storage
+  ) { 
+    var user = firebase.auth().currentUser.uid;
     this.id = user;
     this.ServicioNoti.getMisnotificaciones(this.id).subscribe((notificaciones) =>{
       this.notificaciones = notificaciones;
-    
-      for(let i in this.notificaciones){
+      if(this.notificaciones.length==0){
+        //console.log("No tiene ");
+        this.noti="../../../assets/notificaciones/noti.png";
+      }else{
+        this.noti="../../../assets/notificaciones/notiactiva.png";
+        //console.log('Tiene');
+      }
+      //this.noti="../../../assets/notificaciones/notiactiva.png";
+      /*for(let i in this.notificaciones){
         if(this.notificaciones[i].visualizar=="No"){
-          this.noti="Si";
-          
+          this.noti="../../../assets/notificaciones/notiactiva.png";
+          this.send();
+          this.contador=this.contador+1;
         }
       }
+      if(this.contador==0){
+        this.noti="../../../assets/notificaciones/noti.png";
+      }*/
+      
     })
+    
+
+    
     
   }
 
-  ngOnInit() {}
-
-  rediperfil(){
-    this.router.navigate(['profile']);
+  ngOnInit() {
+    
   }
 
-  alquiler(){
-    this.router.navigate(['formulario-alquiler']);
-  }
 
-  donacion(){
-    this.router.navigate(['formulario-donacion']);
-  }
 
-  acvididades(){
-    this.router.navigate(['alquiler-donacion']);
-
-  }
-
-  async mensajeconfirmacion() {
-    const alert = await this.alertCtrl.create({
-      cssClass: 'my-custom-class',
-      header: 'Mensaje',
-      message: 'Se necesita activar la ubicación de su dispositivo para visualizar las tiendas.',
-      buttons: [
-       {
-          text: 'Aceptar',
-          handler: () => {
-            this.irmapa()
-          }
-        },
-        {
-          text: 'Cancelar',
-          handler: () => {
-            console.log();
-          }
-        }
-      ]
-    });
-    await alert.present();
-  }
-
-  irmapa(){
-    this.router.navigate(['/ubicar-tienda',this.id]);
-  }
-
-  notifi(){
-    this.router.navigate(['/notificacion']);
-  }
-  salir(){
-    this.Servicio.logout();
-  }
 
 }

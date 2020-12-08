@@ -14,6 +14,8 @@ import { NotificaciontiendaService} from '../../service/notificaciontienda.servi
 import * as firebase from 'firebase';
 import { NgbModalConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { AuthService } from '../../service/auth.service';
 @Component({
   selector: 'app-formulario-alquiler',
   templateUrl: './formulario-alquiler.page.html',
@@ -63,7 +65,7 @@ export class FormularioAlquilerPage implements OnInit {
   desabilitarboton:boolean;
   formGroup: FormGroup; 
 
-  constructor(config: NgbModalConfig, private modalService: NgbModal,private route: ActivatedRoute, private nav: NavController, private UsuarioService: UsuarioService,public Service:NotificaciontiendaService,
+  constructor(private Serviceau: AuthService,private router: Router, config: NgbModalConfig, private modalService: NgbModal,private route: ActivatedRoute, private nav: NavController, private UsuarioService: UsuarioService,public Service:NotificaciontiendaService,
     private alquilerService: AlquilerService, private loadingController: LoadingController,public modalController: ModalController,public formBuilder: FormBuilder,private alertCtrl: AlertController) { 
       //this.disableSelector = false;
       var user = firebase.auth().currentUser.uid;
@@ -256,5 +258,56 @@ export class FormularioAlquilerPage implements OnInit {
     this.nav.navigateForward('/menu-cliente'); 
     this.idbicicleta=null;
   }*/
+
+    //NAV
+    async mensajeconfirmacionmapa() {
+      const alert = await this.alertCtrl.create({
+        cssClass: 'my-custom-class',
+        header: 'Mensaje',
+        message: 'Se necesita activar la ubicación de su dispositivo para visualizar las tiendas.',
+        buttons: [
+         {
+            text: 'Aceptar',
+            handler: () => {
+              this.irmapa()
+            }
+          },
+          {
+            text: 'Cancelar',
+            handler: () => {
+              console.log();
+            }
+          }
+        ]
+      });
+      await alert.present();
+    }
+  
+    rediperfil(){
+      this.router.navigate(['profile']);
+    }
+  
+    alquileresnav(){
+      this.router.navigate(['formulario-alquiler']);
+    }
+  
+    donacionnav(){
+      this.router.navigate(['formulario-donacion']);
+    }
+  
+    actividadesnav(){
+      this.router.navigate(['alquiler-donacion']);
+  
+    }
+    irmapa(){
+      this.router.navigate(['/ubicar-tienda',this.usuarioid]);
+    }
+  
+    notifinav(){
+      this.router.navigate(['/notificacion']);
+    }
+    salir(){
+      this.Serviceau.logout();
+    }
   
 }

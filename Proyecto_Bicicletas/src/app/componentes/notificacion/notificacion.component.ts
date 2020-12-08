@@ -29,11 +29,12 @@ export class NotificacionComponent implements OnInit {
     this.ServicioNoti.getMisnotificaciones(this.id).subscribe((notificaciones) =>{
       this.notificaciones = notificaciones;
       if(this.notificaciones.length==0){
-        console.log("No tiene ");
+        //console.log("No tiene ");
         this.noti="../../../assets/notificaciones/noti.png";
       }else{
+        this.send();
         this.noti="../../../assets/notificaciones/notiactiva.png";
-        console.log('Tiene');
+        //console.log('Tiene');
       }
       //this.noti="../../../assets/notificaciones/notiactiva.png";
       /*for(let i in this.notificaciones){

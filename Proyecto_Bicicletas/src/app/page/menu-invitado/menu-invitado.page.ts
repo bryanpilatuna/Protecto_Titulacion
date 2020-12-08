@@ -67,7 +67,7 @@ export class MenuInvitadoPage implements OnInit {
 
   //Mensaje de de alert en modulo perfil
   perfil(){
-    this.mensaje="Necesitas registrarte para visualizar y editar su perfil.";
+    this.mensaje="Necesitas registrarte para visualizar y editar tu perfil.";
     this.mensajemostrar();
   }
 
@@ -79,7 +79,7 @@ export class MenuInvitadoPage implements OnInit {
 
   //Mensaje de de alert en modulo alquiler
   alquiler(){
-    this.mensaje="Necesitas registrarte para alquilar una bicicleta.";
+    this.mensaje="Necesitas registrarte para alquilar bicicletas.";
     this.mensajemostrar();
   }
 

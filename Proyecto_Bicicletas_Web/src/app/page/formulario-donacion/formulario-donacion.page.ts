@@ -11,6 +11,8 @@ import * as firebase from 'firebase';
 import { AlertController } from '@ionic/angular';
 import { NgbModalConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { AuthService } from '../../service/auth.service';
+
 @Component({
   selector: 'app-formulario-donacion',
   templateUrl: './formulario-donacion.page.html',
@@ -21,7 +23,6 @@ export class FormularioDonacionPage implements OnInit {
   tiendas: datosTiendas[];
   donanteid= null;
   fechaactual: Date = new Date();
-  modal : NgbModalRef;
   notificaciones:NotificacionesTienda= {
     visualizar: 'No',
     fecha: this.fechaactual,
@@ -45,7 +46,6 @@ export class FormularioDonacionPage implements OnInit {
   formGroup: FormGroup; 
   
   constructor(
-    private router: Router,
     private route: ActivatedRoute, 
     private nav: NavController,
     private donacionService: DonacionService, 
@@ -53,39 +53,48 @@ export class FormularioDonacionPage implements OnInit {
     public formBuilder: FormBuilder,
     public Service:NotificaciontiendaService,
     private alertCtrl: AlertController,
-    config: NgbModalConfig, private modalService: NgbModal,
+    private router: Router, 
+    private Serviceau: AuthService
      ) {
-      config.backdrop = 'static';
-      config.keyboard = false;
       var user = firebase.auth().currentUser.uid;
       this.donanteid = user;
       this.crearvalidaciones();
       }
-      
+     
 
 
 
   ngOnInit() {
     this.donacion.iddonante=this.donanteid;
     this.donacion.fechadonacion=this.fechaactual;
-    this.donacionService.getbustieact().subscribe((tiendas) =>{
+    this.donacionService.getTiendasActivas().subscribe((tiendas) =>{
       this.tiendas = tiendas;
     })
-
-
+    this.donacion.direccion=".";
     
   }
 
-  close() {
-    this.modal.close();
-    
+  async mensajeconfirmacion() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Mensaje',
+      message: this.mensaje,
+      buttons: [
+       {
+          text: 'Aceptar',
+          handler: () => {
+            //this.nav.navigateForward('menu');
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
-
 
   onSelectChange(){
 
     var element = <HTMLInputElement> document.getElementById("dir");
-    if(this.donacion.modo=="Retirar"){
+    if(this.donacion.modo=="A mi domicilio"){
       element.style.display = 'inline';
     }else{
       element.style.display = 'none';
@@ -119,44 +128,30 @@ export class FormularioDonacionPage implements OnInit {
 
     ]));
     const direccionControl = new FormControl('', Validators.compose([
+      Validators.minLength(0),
       Validators.maxLength(50)
     ]));
     
     this.formGroup = this.formBuilder.group({fechaControl,tiendaControl,estadoControl,descripcionControl, modoControl,direccionControl });
   }
 
-  async mensajeconfirmacion() {
-    const alert = await this.alertCtrl.create({
-      cssClass: 'my-custom-class',
-      header: 'Mensaje',
-      message: this.mensaje,
-      buttons: [
-       {
-          text: 'Aceptar',
-          handler: () => {
-            //this.nav.navigateForward('alquiler-donacion');
-          }
-        }
-      ]
-    });
-    await alert.present();
-  }
+
 
   //Crear la donacion
-  async crearDonacion(content){
+  async crearDonacion(){
       this.donacionService.addDonacion(this.donacion).then(() => {
         this.notificaciones.idusuario=this.donacion.iddonante;
-        this.notificaciones.idtienda=this.donacion.idtienda; 
+        this.notificaciones.idtienda=this.donacion.idtienda;
+        
         this.Service.addNotificacion(this.notificaciones);
-        this.nav.navigateForward('alquiler-donacion');
-        //this.router.navigate(['alquiler-donacion']);
-        //this.modal =this.modalService.open(content,{centered:true});
+        this.nav.navigateForward('/menu');
         this.mensaje="Se envió correctamente su formulario de donación.";
         this.mensajeconfirmacion();
-        this.donacion.modo='';   
-        this.donacion.idtienda='';
-        this.donacion.descripcion='';     
+        
+      
       });
+    
+
   }
 
   //Cambio de fecha
@@ -167,6 +162,60 @@ export class FormularioDonacionPage implements OnInit {
   //Cancelar donacion
   cancelarDonacion(){
     this.nav.navigateForward('/menu');
+  }
+
+
+
+
+  //NAV
+  async mensajeconfirmacionmapa() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Mensaje',
+      message: 'Se necesita activar la ubicación de su dispositivo para visualizar las tiendas.',
+      buttons: [
+       {
+          text: 'Aceptar',
+          handler: () => {
+            this.irmapa()
+          }
+        },
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  rediperfil(){
+    this.router.navigate(['profile']);
+  }
+
+  alquileresnav(){
+    this.router.navigate(['formulario-alquiler']);
+  }
+
+  donacionnav(){
+    this.router.navigate(['formulario-donacion']);
+  }
+
+  actividadesnav(){
+    this.router.navigate(['alquiler-donacion']);
+
+  }
+  irmapa(){
+    this.router.navigate(['/ubicar-tienda',this.donanteid]);
+  }
+
+  notifinav(){
+    this.router.navigate(['/notificacion']);
+  }
+  salir(){
+    this.Serviceau.logout();
   }
 
 }

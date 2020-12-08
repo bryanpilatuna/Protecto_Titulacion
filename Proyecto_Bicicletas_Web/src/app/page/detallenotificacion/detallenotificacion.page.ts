@@ -41,7 +41,8 @@ export class DetallenotificacionPage implements OnInit {
   }
 
   irnotificacion(){
-    window.location.href = 'notificacion' ;
+    //window.location.href = 'notificacion' ;
+    this.nav.navigateForward('notificacion');
   }
 
   async loadTodo(){

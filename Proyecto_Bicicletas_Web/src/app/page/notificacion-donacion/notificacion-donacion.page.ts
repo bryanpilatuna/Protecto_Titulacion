@@ -15,7 +15,7 @@ export class NotificacionDonacionPage implements OnInit {
   id: any;
   pageActual: number= 1;
   tiendas:  datosTiendas[];
-  vacio:boolean=true;
+
   constructor(
     private nav: NavController, 
     private Service: NotificacionesService, 
@@ -24,14 +24,8 @@ export class NotificacionDonacionPage implements OnInit {
       this.id = firebase.auth().currentUser.uid;
   
       this.Service.getTodos().subscribe((notificaciones) =>{
-      this.notificaciones = notificaciones;
-      })
-      this.Service.getMisnotificacionesdona(this.id).subscribe((misnotificaciones) =>{
-        if( misnotificaciones.length==0){
-          this.vacio=true;
-        }else{
-          this.vacio=false;
-        }
+      this.notificaciones = notificaciones.filter(notificaciones=>notificaciones.idusuario == this.id && notificaciones.tipo == 'donacion');
+
       })
 
       this.Servicio.getTiendas().subscribe((tiendas) =>{

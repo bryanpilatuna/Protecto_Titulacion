@@ -31,14 +31,14 @@ export class AuthService {
     private router: Router, 
     private storage: AngularFireStorage,
     private nav: NavController) {
-      this.user$ = this.afAuth.authState.pipe(
-        switchMap((user) => {
-          if (user) {
-            return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
-          }
-          return of(null);
-        })
-      );
+    this.user$ = this.afAuth.authState.pipe(
+      switchMap((user) => {
+        if (user) {
+          return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+        }
+        return of(null);
+      })
+    );
 
     this.usuariosCollection = afs.collection<DatosUsuario>('users');
     this.usuario = this.usuariosCollection.snapshotChanges().pipe(
@@ -136,7 +136,7 @@ export class AuthService {
     try {
       await this.afAuth.signOut().then(() => {
        
-        this.nav.navigateForward('/iniciar-sesion'); 
+        this.nav.navigateForward('/login'); 
         //window.location.href = 'login' ;
       })
     } catch (error) {
