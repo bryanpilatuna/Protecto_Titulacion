@@ -61,7 +61,6 @@ export class EditTiendaPage implements OnInit {
   async loadTodo(){
     this.tiendaservice.getTienda(this.iduser).subscribe(tienda => {
 
-      console.log(tienda);
       this.tienda = tienda;
       this.addMarker(this.tienda.position.latitude,this.tienda.position.longitude,this.tienda.nombre);
      
@@ -152,7 +151,7 @@ export class EditTiendaPage implements OnInit {
   guardartienda(){
     this.tiendaservice.updateTienda(this.tienda, this.iduser).then(() => {
       //this.nav.navigateForward('menu-tienda');
-      this.mensaje='Se edito la tienda correctamente.'
+      this.mensaje='Se editó la tienda correctamente.'
      this.presentAlert(this.mensaje);
      this.router.navigate(['/tienda-administrador']);
     
