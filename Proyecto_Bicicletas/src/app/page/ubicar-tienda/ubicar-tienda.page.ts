@@ -112,7 +112,8 @@ this.nav.navigateForward(['/formulario-donacion', this.id]);
     }  
     
     salir(){
-      window.location.href = 'menu' ;
+      this.nav.navigateForward('/menu'); 
+      //window.location.href = 'menu' ;
     }
 
 }

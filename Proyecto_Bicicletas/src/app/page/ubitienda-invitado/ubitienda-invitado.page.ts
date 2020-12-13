@@ -76,7 +76,8 @@ export class UbitiendaInvitadoPage implements OnInit {
     });
     }    
     regresar(){
-      window.location.href = 'menu-invitado' ;
+      this.nav.navigateForward('/menu-invitado'); 
+      //window.location.href = 'menu-invitado' ;
     }
 
 }

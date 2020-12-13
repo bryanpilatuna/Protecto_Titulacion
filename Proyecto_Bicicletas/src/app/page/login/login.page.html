@@ -1,8 +1,5 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button routerLink="/bienvenida"></ion-back-button>
-    </ion-buttons>
     <ion-title>Iniciar Sesión </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -78,6 +75,10 @@
       <ion-button [disabled]="!formGroup.valid" type="submit" expand="block">
         Iniciar sesión
       </ion-button>
+    </div>
+    <br/>
+    <div class="row">
+      <ion-button routerLink="/bienvenida" expand="block" shape="round" style="--background: white !important;color:#10CAB9;border-style: solid;border-color: #10CAB9;border-radius: 10px;"><ion-icon name="arrow-undo-outline"></ion-icon>Regresar</ion-button>
     </div>
   </form>
 
