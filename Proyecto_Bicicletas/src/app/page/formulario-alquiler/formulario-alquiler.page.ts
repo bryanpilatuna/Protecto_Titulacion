@@ -25,6 +25,7 @@ export class FormularioAlquilerPage implements OnInit {
   mensaje:string;
   usuarioid= null;
   tiendas: datosTiendas[];
+  tiendas2: datosTiendas[];
   bicicletas:datosBicicleta;
   bicicletas2:datosBicicleta[];
   fechaactual: Date = new Date();
@@ -106,16 +107,25 @@ export class FormularioAlquilerPage implements OnInit {
     this.alquiler.idusuario=this.usuarioid;
 
     this.alquilerService.getbustieact().subscribe((tiendas) =>{
-    
       this.tiendas = tiendas;
+      /*for(let i in this.tiendas){
+        this.tiendas[i].bicidispo="disponible";
+        this.alquilerService.updateTienda(this.tiendas[i],this.tiendas[i].id);
+      }*/
       for(let i in this.tiendas){
         this.alquilerService.getBicicletas(this.tiendas[i].id).subscribe((bicicletas) =>{
          if(bicicletas.length==0){    
-          var l = this.tiendas.indexOf( this.tiendas[i] );
-          this.tiendas.splice(l,1); 
+          this.tiendas[i].bicidispo="ninguna";
+          this.alquilerService.updateTienda(this.tiendas[i],this.tiendas[i].id);
+         }else{
+          this.tiendas[i].bicidispo="disponible";
+          this.alquilerService.updateTienda(this.tiendas[i],this.tiendas[i].id);
          }
         })
       }
+      this.alquilerService.getbustieact2().subscribe((tiendas2) =>{
+        this.tiendas2 = tiendas2;
+      })
     })
   }
 

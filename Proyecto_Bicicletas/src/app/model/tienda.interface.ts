@@ -7,4 +7,5 @@ export interface datosTiendas{
     logo: string;
     correo: string;
     estado: string;  
+    bicidispo:string;
 }

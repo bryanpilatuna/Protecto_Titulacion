@@ -88,6 +88,10 @@ export class AlquilerService {
     return this.tiendaCollection.doc<datosTiendas>(id).valueChanges();
   }
 
+  updateTienda(tienda:datosTiendas, id: string){
+    return this.tiendaCollection.doc(id).update(tienda);
+  }
+
   getBicicletas(idtienda:string){
     this.BicicletaCollection = this.db.collection<datosBicicleta>('bicicleta', ref => ref.where('idtienda', '==', idtienda).where('disponible', '==', 'Si'));
     this.bicicleta = this.BicicletaCollection.snapshotChanges().pipe(
@@ -117,6 +121,22 @@ export class AlquilerService {
     );
     return this.tienda2;
   }
+  getbustieact2(){
+    this.tiendaCollection2 = this.db.collection<datosTiendas>('tiendas', ref => ref.where('estado', '==', 'Activo').where('bicidispo', '==', 'disponible'));
+    this.tienda2 = this.tiendaCollection2.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+        
+          return {id, ...data};
+        });
+      })
+    );
+    return this.tienda2;
+  }
+
+
 
 
   getAlquileres(id: string){
