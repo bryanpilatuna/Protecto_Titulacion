@@ -47,4 +47,9 @@ h4 {
   font-weight: normal;
   font-size: 25px;
 }
+.my-custom-class .alert-wrapper {      
+  .alert-button-group {
+    justify-content: center;
+  }
+}
 

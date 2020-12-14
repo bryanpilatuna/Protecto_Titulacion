@@ -232,8 +232,10 @@ export class AuthService {
                 direccion: direccionform,
                 correo : correo,
                 telefono : telefonoform,
-                estado : "Activo",
-                logo : this.photoURL,
+                estado : "Inactivo",
+                logo:"",
+                bicidispo:"ninguna",
+                documento : this.photoURL,
                 auxilio:"No",
                 position: {latitude:lat,longitude:lng}
                 

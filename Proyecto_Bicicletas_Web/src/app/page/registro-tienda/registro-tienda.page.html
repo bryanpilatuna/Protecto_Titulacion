@@ -157,7 +157,11 @@
                 </div>
                
                   <div class="form-group">
-                    <label position="stacked"><strong>Logo</strong></label>
+                    <ion-button fill="clear" (click)="mostrarpopup()">
+                      <ion-icon name="help-circle-outline"></ion-icon>       
+                      
+                    </ion-button>
+                    <label position="stacked"><strong>Imagen de Validación.</strong></label> 
                     <br/>
                     <input formControlName="foto" type="file" accept=".png, .jpg" (change)="enviarimagen($event)" style="color:black"/>
                   </div>

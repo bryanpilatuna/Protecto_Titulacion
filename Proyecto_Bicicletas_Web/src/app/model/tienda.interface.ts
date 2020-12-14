@@ -8,6 +8,8 @@ export interface Tienda {
     estado : string;
     auxilio: string;
     logo : string;
+    bicidispo:string;
+    documento:string;
     position: {latitude:number,
               longitude:number};
     

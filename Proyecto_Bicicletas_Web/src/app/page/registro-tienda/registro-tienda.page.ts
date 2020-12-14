@@ -124,7 +124,7 @@ export class RegistroTiendaPage implements OnInit {
     if (isVerified) {
       this.router.navigate(['menu']);
     } else {
-      this.mensaje="Se envió un mensaje de confirmación al correo ingresado.";
+      this.mensaje="Se envió un mensaje de confirmación al correo ingresado. Recuerdar actualizar tu foto de perfil cuando tu tienda sea activada";
       this.presentAlertConfirm();
       this.router.navigate(['/iniciar-sesion']);
       //this.router.navigate(['verify-email']);
@@ -156,6 +156,26 @@ tabs.forEach(e => {
 function setActive(id) {
     document.getElementById(id).setAttribute("class", "nav-item active");
 }
+
+  }
+
+  async mostrarpopup(){
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Documento de Validación',
+      message: 'Se debe adjuntar una imagen que servirá para la activación de tu tienda',
+      buttons: [
+       {
+          text: 'Aceptar',
+          handler: () => {
+            console.log('Confirm Ok');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+
 
   }
 

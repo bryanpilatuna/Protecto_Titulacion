@@ -32,6 +32,8 @@ export class EditTiendaPage implements OnInit {
     direccion:'',
     correo:'',
     telefono:'',
+    bicidispo:'',
+    documento:'',
     estado:'',
     logo:'',
     auxilio:'',
