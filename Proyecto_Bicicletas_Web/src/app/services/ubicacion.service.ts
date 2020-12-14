@@ -12,7 +12,7 @@ export class UbicacionService {
   private ubicaciones: Observable<datosUbicacion[]>;
   constructor(db:AngularFirestore) {
 
-    this.UbicacionesCollection = db.collection<datosUbicacion>('tiendas');
+    this.UbicacionesCollection = db.collection<datosUbicacion>('tiendas', ref => ref.where('estado', '==', 'Activo'));
     
     this.ubicaciones = this.UbicacionesCollection.snapshotChanges().pipe(
       map(actions => {
