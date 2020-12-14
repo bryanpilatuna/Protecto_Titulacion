@@ -71,6 +71,29 @@ export class MenuPage implements OnInit {
     await alert.present();
   }
 
+  async mensajeconfirmacionsalir() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Mensaje',
+      message: '¿Seguro de cerrar sesión?',
+      buttons: [
+       {
+          text: 'Aceptar',
+          handler: () => {
+            this.salir();
+          }
+        },
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
   irmapa(){
     this.router.navigate(['/ubicar-tienda',this.id]);
   }

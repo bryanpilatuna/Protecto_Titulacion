@@ -35,7 +35,7 @@
     
     <div class="validation-errors">
       <p class="form-error"
-        *ngIf="(formGroup.get('fechaControl').hasError('required') && formGroup.get('fechaControl').touched) || formGroup.get('fechaControl').untouched">
+        *ngIf="(formGroup.get('fechaControl').hasError('required') && formGroup.get('fechaControl').touched) || formGroup.get('fechaControl').pristine">
         *Requerido
       </p>
     </div>
@@ -47,7 +47,7 @@
 
     <div class="validation-errors">
       <p class="form-error"
-        *ngIf="(formGroup.get('descripcionControl').hasError('required') && formGroup.get('descripcionControl').touched) || formGroup.get('descripcionControl').untouched">
+        *ngIf="(formGroup.get('descripcionControl').hasError('required') && formGroup.get('descripcionControl').touched) || formGroup.get('descripcionControl').pristine">
         *Requerido
       </p>
       <p class="form-error"
@@ -83,7 +83,7 @@
     </ion-item>
     <div class="validation-errors">
       <p class="form-error"
-        *ngIf="(formGroup.get('tiendaControl').hasError('required') && formGroup.get('tiendaControl').touched) || formGroup.get('tiendaControl').untouched">
+        *ngIf="(formGroup.get('tiendaControl').hasError('required') && formGroup.get('tiendaControl').touched) || formGroup.get('tiendaControl').pristine">
         *Requerido
       </p>
     </div>
@@ -115,7 +115,7 @@
     </ion-item>
     <div class="validation-errors">
       <p class="form-error"
-        *ngIf="(formGroup.get('estadoControl').hasError('required') && formGroup.get('estadoControl').touched) || formGroup.get('estadoControl').untouched">
+        *ngIf="(formGroup.get('estadoControl').hasError('required') && formGroup.get('estadoControl').touched) || formGroup.get('estadoControl').pristine">
         *Requerido
       </p>
     </div>
@@ -150,7 +150,7 @@
 
     <div class="validation-errors">
       <p class="form-error"
-        *ngIf="(formGroup.get('modoControl').hasError('required') && formGroup.get('modoControl').touched) || formGroup.get('modoControl').untouched">
+        *ngIf="(formGroup.get('modoControl').hasError('required') && formGroup.get('modoControl').touched) || formGroup.get('modoControl').pristine">
         *Requerido
       </p>
     

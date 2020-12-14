@@ -19,7 +19,7 @@
     </ion-item>
 	  <div class="validation-errors">
         <p class="form-error"
-          *ngIf="(formGroup.get('emailControl').hasError('required') && formGroup.get('emailControl').touched) || formGroup.get('emailControl').untouched">
+          *ngIf="(formGroup.get('emailControl').hasError('required') && formGroup.get('emailControl').touched) || formGroup.get('emailControl').pristine">
           *Requerido
         </p>
         <p class="form-error"
@@ -50,7 +50,11 @@
     
     <div class="validation-errors">
       <p class="form-error"
-        *ngIf="(formGroup.get('passwordControl').hasError('required') && formGroup.get('passwordControl').touched) || formGroup.get('passwordControl').untouched">
+        *ngIf="(formGroup.get('passwordControl').hasError('required') && formGroup.get('passwordControl').touched) || formGroup.get('emailControl').pristine">
+        *Requerido
+      </p>
+      <p class="form-error"
+        *ngIf="formGroup.get('passwordControl').hasError('required') && formGroup.get('passwordControl').touched">
         *Requerido
       </p>
       <p class="form-error"

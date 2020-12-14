@@ -39,7 +39,7 @@
 
     <div class="validation-errors">
       <p class="form-error"
-        *ngIf="(formGroup.get('apellidoControl').hasError('required') && formGroup.get('apellidoControl').touched) || formGroup.get('apellidoControl').untouched">
+        *ngIf="(formGroup.get('apellidoControl').hasError('required') && formGroup.get('apellidoControl').touched) || formGroup.get('apellidoControl').pristine">
         *Requerido
       </p>
       <p class="form-error"
@@ -63,7 +63,7 @@
 
     <div class="validation-errors">
       <p class="form-error"
-        *ngIf="(formGroup.get('cedulaControl').hasError('required') && formGroup.get('cedulaControl').touched) || formGroup.get('cedulaControl').untouched">
+        *ngIf="(formGroup.get('cedulaControl').hasError('required') && formGroup.get('cedulaControl').touched) || formGroup.get('cedulaControl').pristine">
         *Requerido
       </p>
       <p class="form-error"
@@ -87,7 +87,7 @@
 
     <div class="validation-errors">
       <p class="form-error"
-        *ngIf="(formGroup.get('telefonoControl').hasError('required') && formGroup.get('telefonoControl').touched) || formGroup.get('telefonoControl').untouched">
+        *ngIf="(formGroup.get('telefonoControl').hasError('required') && formGroup.get('telefonoControl').touched) || formGroup.get('telefonoControl').pristine">
         *Requerido
       </p>
       <p class="form-error"
@@ -111,7 +111,7 @@
 
     <div class="validation-errors">
       <p class="form-error"
-        *ngIf="formGroup.get('emailControl').hasError('required') && formGroup.get('emailControl').touched || formGroup.get('emailControl').untouched">
+        *ngIf="formGroup.get('emailControl').hasError('required') && formGroup.get('emailControl').touched || formGroup.get('emailControl').pristine">
         *Requerido
       </p>
       <p class="form-error"
@@ -141,7 +141,7 @@
   </ion-item>
   <div class="validation-errors">
     <p class="form-error"
-      *ngIf="(formGroup.get('passwordControl').hasError('required') && formGroup.get('passwordControl').touched) || formGroup.get('passwordControl').untouched">
+      *ngIf="(formGroup.get('passwordControl').hasError('required') && formGroup.get('passwordControl').touched) || formGroup.get('passwordControl').pristine">
       *Requerido
     </p>
     <p class="form-error"
@@ -162,7 +162,7 @@
   </ion-item>
   <div class="validation-errors">
     <p class="form-error"
-      *ngIf="(formGroup.get('foto').hasError('required') && formGroup.get('foto').touched) || formGroup.get('foto').untouched">
+      *ngIf="(formGroup.get('foto').hasError('required') && formGroup.get('foto').touched) || formGroup.get('foto').pristine">
       *Requerido
     </p>
   </div>
