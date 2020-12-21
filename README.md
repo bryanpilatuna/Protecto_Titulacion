@@ -1,6 +1,7 @@
-# Título del Proyecto
+# Bicis Quito
 
-_Acá va un párrafo que describa lo que es el proyecto_
+
+DESARROLLO DE SISTEMA WEB Y APLICACIÓN MÓVIL PARA EL ALQUILER Y DONACIÓN DE BICICLETAS EN QUITO
 
 ## Comenzando 🚀
 
