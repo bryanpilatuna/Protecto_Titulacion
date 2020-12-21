@@ -54,10 +54,6 @@
         *Requerido
       </p>
       <p class="form-error"
-        *ngIf="formGroup.get('passwordControl').hasError('required') && formGroup.get('passwordControl').touched">
-        *Requerido
-      </p>
-      <p class="form-error"
         *ngIf="formGroup.get('passwordControl').hasError('minlength') && formGroup.get('passwordControl').touched">
         *Mínimo 8 caracteres 
       </p>
