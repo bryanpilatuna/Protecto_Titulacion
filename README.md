@@ -7,7 +7,7 @@ DESARROLLO DE SISTEMA WEB Y APLICACIÓN MÓVIL PARA EL ALQUILER Y DONACIÓN DE B
 ## Documentos 
 
 
-* [Informe Técnico](http://www.dropwizard.io/1.0.2/docs/) 
-* [Manual Técnico](https://maven.apache.org/)
-* [Manual de Instalación   ](https://rometools.github.io/rome/)
+* [Informe Técnico](https://github.com/bryanpilatuna/Protecto_Titulacion/blob/master/Documentos/Informe%20Técnico/Informe%20Técnico.docx) 
+* [Manual Técnico](https://github.com/bryanpilatuna/Protecto_Titulacion/blob/master/Documentos/Manual%20Técnico/Manual%20Técnico.docx)
+* [Manual de Instalación   ](https://github.com/bryanpilatuna/Protecto_Titulacion/blob/master/Documentos/Manual%20de%20Instalación/Manual%20de%20Instalación.docx)
 
