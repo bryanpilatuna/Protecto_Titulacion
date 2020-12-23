@@ -139,7 +139,7 @@ export class FormularioDonacionPage implements OnInit {
         this.notificaciones.idtienda=this.donacion.idtienda;
         
         this.Service.addNotificacion(this.notificaciones);
-        this.nav.navigateForward('/menu');
+        this.nav.navigateForward('/donacion');
         this.mensaje="Se envió correctamente su formulario de donación.";
         this.mensajeconfirmacion();
         

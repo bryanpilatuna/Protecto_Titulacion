@@ -41,11 +41,11 @@ export class MenuPage implements OnInit {
   }
 
   ngOnInit() {
-    this.usuarioService.enviarobjeto(this.id);
+    /*this.usuarioService.enviarobjeto(this.id);
     
     this.authservice.getUsuario().subscribe(user => {
       //this.name = user.displayName;
-    });
+    });*/
   }
 
   async mensajeconfirmacion() {
