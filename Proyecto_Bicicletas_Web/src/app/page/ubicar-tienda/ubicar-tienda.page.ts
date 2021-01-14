@@ -38,12 +38,12 @@ export class UbicarTiendaPage implements OnInit {
     this.loadmap();
   }
 alquilarbici(){
-  this.nav.navigateForward(['/formulario-alquiler', this.id]); 
+  this.nav.navigateForward(['/formulario-alquiler']); 
   }
 
 donabici(){
 
-this.nav.navigateForward(['/formulario-donacion', this.id]); 
+this.nav.navigateForward(['/formulario-donacion']); 
   }
   async loadmap(){
     
