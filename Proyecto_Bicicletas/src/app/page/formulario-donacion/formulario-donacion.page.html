@@ -21,7 +21,7 @@
     </div>
     <ion-item>
       <ion-label position="stacked">Seleccione fecha de donación</ion-label>
-      <ion-datetime displayFormat="DD MM YYYY" 
+      <ion-datetime displayFormat="DD/MM/YYYY" 
       placeholder="Dia Mes Año" 
       (ionChange)="cambiofecha($event)"
       min="{{fechaactual | date: 'yyyy-MM-dd'}}" 

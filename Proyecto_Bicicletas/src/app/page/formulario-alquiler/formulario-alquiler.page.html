@@ -18,7 +18,7 @@
   <form [formGroup]="formGroup" *ngIf="alquiler">
     <ion-item  >
       <ion-label position="stacked">Seleccione la fecha para el alquiler</ion-label>
-      <ion-datetime displayFormat="DD MM YYYY"   
+      <ion-datetime displayFormat="DD/MM/YYYY"   
       (ionChange)="cambiofecha($event)"
       placeholder="Dia Mes Año"    
       min="{{fechaactual | date: 'yyyy-MM-dd'}}" 
@@ -52,7 +52,7 @@
 
     <ion-item>
       <ion-label position="stacked">Seleccione la fecha de devolución</ion-label>
-      <ion-datetime displayFormat="DD MM YYYY"   
+      <ion-datetime displayFormat="DD/MM/YYYY"   
       (ionChange)="cambiofecha2($event)"
       placeholder="Dia Mes Año"    
       min="{{alquiler.fechaalquiler | date: 'yyyy-MM-dd'}}" 
