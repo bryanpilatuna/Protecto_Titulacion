@@ -19,19 +19,19 @@
     </ion-item>
 	  <div class="validation-errors">
         <p class="form-error"
-          *ngIf="(formGroup.get('emailControl').hasError('required') && formGroup.get('emailControl').touched) || formGroup.get('emailControl').pristine">
+          *ngIf="formGroup.get('emailControl').hasError('required')">
           *Requerido
         </p>
         <p class="form-error"
-          *ngIf="formGroup.get('emailControl').hasError('email') && formGroup.get('emailControl').touched">
-          *Ingrese un correo valido
+          *ngIf="formGroup.get('emailControl').hasError('email')">
+          *Ingrese un correo válido
         </p>
         <p class="form-error"
-          *ngIf="formGroup.get('emailControl').hasError('minlength') && formGroup.get('emailControl').touched">
+          *ngIf="formGroup.get('emailControl').hasError('minlength')">
           *Mínimo 10 caracteres 
         </p>
         <p class="form-error"
-          *ngIf="formGroup.get('emailControl').hasError('maxlength') && formGroup.get('emailControl').touched">
+          *ngIf="formGroup.get('emailControl').hasError('maxlength')">
           *Máximo 40 caracteres  
         </p>
     </div>
@@ -50,15 +50,15 @@
     
     <div class="validation-errors">
       <p class="form-error"
-        *ngIf="(formGroup.get('passwordControl').hasError('required') && formGroup.get('passwordControl').touched) || formGroup.get('passwordControl').pristine">
+        *ngIf="formGroup.get('passwordControl').hasError('required')">
         *Requerido
       </p>
       <p class="form-error"
-        *ngIf="formGroup.get('passwordControl').hasError('minlength') && formGroup.get('passwordControl').touched">
+        *ngIf="formGroup.get('passwordControl').hasError('minlength')">
         *Mínimo 8 caracteres 
       </p>
       <p class="form-error"
-        *ngIf="formGroup.get('emailControl').hasError('passwordControl') && formGroup.get('passwordControl').touched">
+        *ngIf="formGroup.get('passwordControl').hasError('passwordControl')">
         *Máximo 40 caracteres  
       </p>
     </div>

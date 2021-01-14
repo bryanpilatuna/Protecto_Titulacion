@@ -21,7 +21,7 @@
     </div>
     <ion-item>
       <ion-label position="stacked">Seleccione fecha de donación</ion-label>
-      <ion-datetime displayFormat="DD MMMM YYYY" 
+      <ion-datetime displayFormat="DD MM YYYY" 
       placeholder="Dia Mes Año" 
       (ionChange)="cambiofecha($event)"
       min="{{fechaactual | date: 'yyyy-MM-dd'}}" 
@@ -35,7 +35,7 @@
     
     <div class="validation-errors">
       <p class="form-error"
-        *ngIf="(formGroup.get('fechaControl').hasError('required') && formGroup.get('fechaControl').touched) || formGroup.get('fechaControl').pristine">
+        *ngIf="formGroup.get('fechaControl').hasError('required')">
         *Requerido
       </p>
     </div>
@@ -47,15 +47,15 @@
 
     <div class="validation-errors">
       <p class="form-error"
-        *ngIf="(formGroup.get('descripcionControl').hasError('required') && formGroup.get('descripcionControl').touched) || formGroup.get('descripcionControl').pristine">
+        *ngIf="formGroup.get('descripcionControl').hasError('required')">
         *Requerido
       </p>
       <p class="form-error"
-      *ngIf="formGroup.get('descripcionControl').hasError('minlength') && formGroup.get('descripcionControl').touched">
+      *ngIf="formGroup.get('descripcionControl').hasError('minlength')">
       *Mínimo 5 caracteres 
     </p>
     <p class="form-error"
-      *ngIf="formGroup.get('descripcionControl').hasError('maxlength') && formGroup.get('descripcionControl').touched">
+      *ngIf="formGroup.get('descripcionControl').hasError('maxlength')">
       *Máximo 30 caracteres  
     </p>
     </div>
@@ -83,7 +83,7 @@
     </ion-item>
     <div class="validation-errors">
       <p class="form-error"
-        *ngIf="(formGroup.get('tiendaControl').hasError('required') && formGroup.get('tiendaControl').touched) || formGroup.get('tiendaControl').pristine">
+        *ngIf="formGroup.get('tiendaControl').hasError('required')">
         *Requerido
       </p>
     </div>
@@ -115,7 +115,7 @@
     </ion-item>
     <div class="validation-errors">
       <p class="form-error"
-        *ngIf="(formGroup.get('estadoControl').hasError('required') && formGroup.get('estadoControl').touched) || formGroup.get('estadoControl').pristine">
+        *ngIf="formGroup.get('estadoControl').hasError('required')">
         *Requerido
       </p>
     </div>
@@ -150,7 +150,7 @@
 
     <div class="validation-errors">
       <p class="form-error"
-        *ngIf="(formGroup.get('modoControl').hasError('required') && formGroup.get('modoControl').touched) || formGroup.get('modoControl').pristine">
+        *ngIf="formGroup.get('modoControl').hasError('required')">
         *Requerido
       </p>
     

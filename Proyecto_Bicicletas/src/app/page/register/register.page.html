@@ -24,7 +24,7 @@
       </p>
       <p class="form-error"
         *ngIf="formGroup.get('nombreControl').hasError('maxlength')">
-        *Máximo 40 caracteres  
+        *Máximo 15 caracteres  
       </p>
       <p class="form-error"
         *ngIf="formGroup.get('nombreControl').hasError('pattern')">
@@ -48,7 +48,7 @@
       </p>
       <p class="form-error"
         *ngIf="formGroup.get('apellidoControl').hasError('maxlength')">
-        *Máximo 40 caracteres  
+        *Máximo 15 caracteres  
       </p>
       <p class="form-error"
         *ngIf="formGroup.get('apellidoControl').hasError('pattern')">
@@ -68,15 +68,11 @@
       </p>
       <p class="form-error"
         *ngIf="formGroup.get('cedulaControl').hasError('minlength')">
-        *Mínimo 10 números 
-      </p>
-      <p class="form-error"
-        *ngIf="formGroup.get('cedulaControl').hasError('maxlength')">
-        *Máximo 13 números 
+        *10 números 
       </p>
       <p class="form-error"
         *ngIf="formGroup.get('cedulaControl').hasError('pattern')">
-        *El nombre debe tener solo números
+        *El cédula debe tener solo números
       </p>
     </div>
 
@@ -115,15 +111,15 @@
         *Requerido
       </p>
       <p class="form-error"
-        *ngIf="formGroup.get('emailControl').hasError('email') && formGroup.get('emailControl').touched">
+        *ngIf="formGroup.get('emailControl').hasError('email')">
         *Ingrese un correo válido
       </p>
       <p class="form-error"
-        *ngIf="formGroup.get('emailControl').hasError('minlength') && formGroup.get('emailControl').touched">
+        *ngIf="formGroup.get('emailControl').hasError('minlength')">
         *Mínimo 10 caracteres 
       </p>
       <p class="form-error"
-        *ngIf="formGroup.get('emailControl').hasError('maxlength') && formGroup.get('emailControl').touched">
+        *ngIf="formGroup.get('emailControl').hasError('maxlength')">
         *Máximo 40 caracteres  
       </p>
   </div>
@@ -141,15 +137,15 @@
   </ion-item>
   <div class="validation-errors">
     <p class="form-error"
-      *ngIf="(formGroup.get('passwordControl').hasError('required') && formGroup.get('passwordControl').touched) || formGroup.get('passwordControl').pristine">
+      *ngIf="formGroup.get('passwordControl').hasError('required')">
       *Requerido
     </p>
     <p class="form-error"
-      *ngIf="formGroup.get('passwordControl').hasError('minlength') && formGroup.get('passwordControl').touched">
+      *ngIf="formGroup.get('passwordControl').hasError('minlength')">
       *Mínimo 8 caracteres 
     </p>
     <p class="form-error"
-      *ngIf="formGroup.get('passwordControl').hasError('maxlength') && formGroup.get('passwordControl').touched">
+      *ngIf="formGroup.get('passwordControl').hasError('maxlength')">
       *Máximo 40 caracteres 
     </p>
   </div>
@@ -162,7 +158,7 @@
   </ion-item>
   <div class="validation-errors">
     <p class="form-error"
-      *ngIf="(formGroup.get('foto').hasError('required') && formGroup.get('foto').touched) || formGroup.get('foto').pristine">
+      *ngIf="formGroup.get('foto').hasError('required')">
       *Requerido
     </p>
   </div>
