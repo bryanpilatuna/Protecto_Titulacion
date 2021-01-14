@@ -18,7 +18,7 @@
     <p style="text-align: left;padding-left: 10px"><ion-icon name="flag-outline" style="color:red;font-size: 20px;"></ion-icon> Rechazados </p> 
     <p style="text-align: left;padding-left: 10px"><ion-icon name="flag-outline" style="color:#ffbb00;font-size: 20px;"></ion-icon> Pendientes o anulados</p> 
     <ng-container *ngIf="!alquiler || alquiler.length == 0">
-      <p class="centrarmensaje">No existe registrós de alquileres.</p>
+      <p class="centrarmensaje">No existe registros de alquileres.</p>
     </ng-container>
     <div *ngFor="let alqui of alquiler | paginate: { itemsPerPage: 5, currentPage: pageActual };let indice=index">
       <ion-card *ngIf="alqui.idusuario==id">

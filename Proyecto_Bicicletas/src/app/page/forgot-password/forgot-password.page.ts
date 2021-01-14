@@ -74,7 +74,7 @@ export class ForgotPasswordPage implements OnInit {
   async onResetPassword(email) {
     try {
       await this.authSvc.resetPassword(email.value);
-      this.mensajeconfir="Se envió un mensaje de para la recuperación de contraseña al correo ingresado.";
+      this.mensajeconfir="Se envió un mensaje para la recuperación de contraseña al correo ingresado.";
       this.mensajeconfirmacion();
       
     } catch (error) {

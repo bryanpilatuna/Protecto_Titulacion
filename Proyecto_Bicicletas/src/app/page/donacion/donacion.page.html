@@ -15,7 +15,7 @@
     <p style="text-align: left;padding-left: 10px"><ion-icon name="flag-outline" style="color:red;font-size: 20px;"></ion-icon> Rechazados </p> 
     <p style="text-align: left;padding-left: 10px"><ion-icon name="flag-outline" style="color:#ffbb00;font-size: 20px;"></ion-icon> Pendientes o anulados</p> 
     <ng-container *ngIf="!donaciones || donaciones.length == 0">
-      <p class="centrarmensaje">No existe registrós de donaciones.</p>
+      <p class="centrarmensaje">No existe registros de donaciones.</p>
     </ng-container>
     <div *ngFor="let donacion of donaciones | paginate: { itemsPerPage: 5, currentPage: pageActual };let indice=index">
       <ion-card>
