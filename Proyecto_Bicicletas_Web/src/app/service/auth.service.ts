@@ -135,8 +135,8 @@ export class AuthService {
   async logout(): Promise<void> {
     try {
       await this.afAuth.signOut().then(() => {
-       
-        this.nav.navigateForward('/iniciar-sesion'); 
+        window.location.href = 'iniciar-sesion' ;
+        //this.nav.navigateForward('/iniciar-sesion'); 
         //window.location.href = 'login' ;
       })
     } catch (error) {
