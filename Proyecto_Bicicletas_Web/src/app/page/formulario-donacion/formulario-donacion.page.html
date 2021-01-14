@@ -143,7 +143,7 @@
             
                       <div class="validation-errors">
                         <p class="form-error"
-                          *ngIf="(formGroup.get('descripcionControl').hasError('required') && formGroup.get('descripcionControl').touched) || formGroup.get('descripcionControl').untouched">
+                          *ngIf="(formGroup.get('descripcionControl').hasError('required') && formGroup.get('descripcionControl').touched) || formGroup.get('descripcionControl').pristine">
                           *Requerido
                         </p>
                         <p class="form-error"
