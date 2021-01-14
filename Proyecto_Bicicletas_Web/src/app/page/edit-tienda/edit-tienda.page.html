@@ -37,15 +37,15 @@
                       <input class="form-control" type="text" placeholder="Bryan" formControlName="nombreControl" #nombre [(ngModel)]="tienda.nombre" >
                       <div class="validation-errors">
                         <p class="form-error"
-                          *ngIf="formGroup.get('nombreControl').hasError('required') && formGroup.get('nombreControl').touched">
+                          *ngIf="formGroup.get('nombreControl').hasError('required')">
                           *Requerido
                         </p>
                         <p class="form-error"
-                          *ngIf="formGroup.get('nombreControl').hasError('minlength') && formGroup.get('nombreControl').touched">
+                          *ngIf="formGroup.get('nombreControl').hasError('minlength')">
                           *Mínimo 3 caracteres 
                         </p>
                         <p class="form-error"
-                          *ngIf="formGroup.get('nombreControl').hasError('maxlength') && formGroup.get('nombreControl').touched">
+                          *ngIf="formGroup.get('nombreControl').hasError('maxlength')">
                           *Máximo 40 caracteres  
                         </p>
                       </div>
@@ -55,15 +55,15 @@
                       <input class="form-control" type="text" placeholder="0999999999" formControlName="telefonoControl" #telefono [(ngModel)]="tienda.telefono" >
                       <div class="validation-errors">
                         <p class="form-error"
-                          *ngIf="formGroup.get('telefonoControl').hasError('required') && formGroup.get('telefonoControl').touched">
+                          *ngIf="formGroup.get('telefonoControl').hasError('required')">
                           *Requerido
                         </p>
                         <p class="form-error"
-                          *ngIf="formGroup.get('telefonoControl').hasError('minlength') && formGroup.get('telefonoControl').touched">
+                          *ngIf="formGroup.get('telefonoControl').hasError('minlength')">
                           *Mínimo 7 números 
                         </p>
                         <p class="form-error"
-                          *ngIf="formGroup.get('telefonoControl').hasError('maxlength') && formGroup.get('telefonoControl').touched">
+                          *ngIf="formGroup.get('telefonoControl').hasError('maxlength')">
                           *Máximo 10 números 
                         </p>
                         <p class="form-error"
@@ -79,15 +79,15 @@
                   </div> 
                     <div class="validation-errors">
                       <p class="form-error"
-                        *ngIf="formGroup.get('direccionControl').hasError('required') && formGroup.get('direccionControl').touched">
+                        *ngIf="formGroup.get('direccionControl').hasError('required')">
                         *Requerido
                       </p>
                       <p class="form-error"
-                        *ngIf="formGroup.get('direccionControl').hasError('minlength') && formGroup.get('direccionControl').touched">
+                        *ngIf="formGroup.get('direccionControl').hasError('minlength')">
                         *Mínimo 3 caracteres 
                       </p>
                       <p class="form-error"
-                        *ngIf="formGroup.get('direccionControl').hasError('maxlength') && formGroup.get('direccionControl').touched">
+                        *ngIf="formGroup.get('direccionControl').hasError('maxlength')">
                         *Máximo 40 caracteres  
                       </p>
                     </div>

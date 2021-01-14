@@ -102,19 +102,19 @@
                       <input class="form-control" type="text" placeholder="0400887599" formControlName="cedulaControl" #cedula [(ngModel)]="usuario.cedula">
                       <div class="validation-errors">
                         <p class="form-error"
-                          *ngIf="formGroup.get('cedulaControl').hasError('required') && formGroup.get('cedulaControl').touched">
+                          *ngIf="formGroup.get('cedulaControl').hasError('required')">
                           *Requerido
                         </p>
                         <p class="form-error"
-                          *ngIf="formGroup.get('cedulaControl').hasError('minlength') && formGroup.get('cedulaControl').touched">
+                          *ngIf="formGroup.get('cedulaControl').hasError('minlength')">
                           *Mínimo 10 números 
                         </p>
                         <p class="form-error"
-                          *ngIf="formGroup.get('cedulaControl').hasError('maxlength') && formGroup.get('cedulaControl').touched">
+                          *ngIf="formGroup.get('cedulaControl').hasError('maxlength')">
                           *Máximo 13 números 
                         </p>
                         <p class="form-error"
-                          *ngIf="formGroup.get('cedulaControl').hasError('pattern') && formGroup.get('cedulaControl').touched">
+                          *ngIf="formGroup.get('cedulaControl').hasError('pattern')">
                           *La cédula debe tener solo números
                         </p>
                       </div>
@@ -124,19 +124,19 @@
                       <input class="form-control" type="text" placeholder="0999999999" formControlName="telefonoControl" #telefono [(ngModel)]="usuario.telefono">
                       <div class="validation-errors">
                         <p class="form-error"
-                          *ngIf="formGroup.get('telefonoControl').hasError('required') && formGroup.get('telefonoControl').touched">
+                          *ngIf="formGroup.get('telefonoControl').hasError('required')">
                           *Requerido
                         </p>
                         <p class="form-error"
-                          *ngIf="formGroup.get('telefonoControl').hasError('minlength') && formGroup.get('telefonoControl').touched">
+                          *ngIf="formGroup.get('telefonoControl').hasError('minlength')">
                           *Mínimo 7 números 
                         </p>
                         <p class="form-error"
-                          *ngIf="formGroup.get('telefonoControl').hasError('maxlength') && formGroup.get('telefonoControl').touched">
+                          *ngIf="formGroup.get('telefonoControl').hasError('maxlength')">
                           *Máximo 10 números 
                         </p>
                         <p class="form-error"
-                          *ngIf="formGroup.get('telefonoControl').hasError('pattern') && formGroup.get('telefonoControl').touched">
+                          *ngIf="formGroup.get('telefonoControl').hasError('pattern')">
                           *El teléfono debe tener solo números
                         </p>
                       </div>
