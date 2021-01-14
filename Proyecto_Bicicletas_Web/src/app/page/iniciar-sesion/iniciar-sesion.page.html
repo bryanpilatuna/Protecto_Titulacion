@@ -28,20 +28,20 @@
   
             <div class="validation-errors">
                 <p class="form-error"
-                  *ngIf="(formGroup.get('emailControl').hasError('required') && formGroup.get('emailControl').touched) || formGroup.get('emailControl').pristine">
-                  *Requerido
+                  *ngIf="formGroup.get('emailControl').hasError('required')">
+                  <b>*Requerido</b>
                 </p>
                 <p class="form-error"
-                  *ngIf="formGroup.get('emailControl').hasError('email') && formGroup.get('emailControl').touched">
-                  *Ingrese un correo válido
+                  *ngIf="formGroup.get('emailControl').hasError('email')">
+                  <b>*Ingrese un correo válido</b>
                 </p>
                 <p class="form-error"
-                  *ngIf="formGroup.get('emailControl').hasError('minlength') && formGroup.get('emailControl').touched">
-                  *Mínimo 10 caracteres 
+                  *ngIf="formGroup.get('emailControl').hasError('minlength')">
+                  <b>*Mínimo 10 caracteres </b>
                 </p>
                 <p class="form-error"
-                  *ngIf="formGroup.get('emailControl').hasError('maxlength') && formGroup.get('emailControl').touched">
-                  *Máximo 40 caracteres  
+                  *ngIf="formGroup.get('emailControl').hasError('maxlength')">
+                  <b>*Máximo 40 caracteres</b>
                 </p>
             </div>
   
@@ -62,16 +62,16 @@
         
             <div class="validation-errors" >
               <p class="form-error" 
-                *ngIf="(formGroup.get('passwordControl').hasError('required') && formGroup.get('passwordControl').touched) || formGroup.get('passwordControl').pristine">
-                *Requerido
+                *ngIf="formGroup.get('passwordControl').hasError('required')">
+                <b>*Requerido</b>
               </p>
               <p class="form-error"
-                *ngIf="formGroup.get('passwordControl').hasError('minlength') && formGroup.get('passwordControl').touched">
-                *Mínimo 8 caracteres 
+                *ngIf="formGroup.get('passwordControl').hasError('minlength')">
+                <b>*Mínimo 8 caracteres </b>
               </p>
               <p class="form-error"
-                *ngIf="formGroup.get('emailControl').hasError('passwordControl') && formGroup.get('passwordControl').touched">
-                *Máximo 40 caracteres  
+                *ngIf="formGroup.get('emailControl').hasError('passwordControl')">
+                <b>*Máximo 40 caracteres  </b>
               </p>
             </div>
         

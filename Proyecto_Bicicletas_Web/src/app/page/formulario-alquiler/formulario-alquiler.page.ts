@@ -85,20 +85,21 @@ export class FormularioAlquilerPage implements OnInit {
       var user = firebase.auth().currentUser.uid;
       this.usuarioid = user;
       this.fechaac = new Date(this.fechaactual).toDateString();
-      console.log(this.fechaac);
+      //console.log(this.fechaac);
       this.alquilerService.getAlquiler2(this.usuarioid).subscribe((alquileres) =>{
         this.alquilerid = alquileres;
-        console.log(this.alquilerid);
+        //console.log(this.alquilerid);
         for(let i in this.alquilerid){
 
           this.fechacom = new Date(this.alquilerid[i].fecha['seconds']*1000).toDateString();
-          console.log(this.fechacom);
+          //console.log(this.fechacom);
           if(this.fechaac==this.fechacom){
             this.contador=this.contador+1;
           }
         }
-        console.log(this.contador);
+      //console.log(this.contador);
         if(this.contador<2){
+          this.limite=false;
         }else{
           this.limite=true;
         }
@@ -156,10 +157,10 @@ export class FormularioAlquilerPage implements OnInit {
       this.direc=tienda.direccion;
     })
     this.desabilitarboton = false;
-    console.log(this.alquiler.idtienda);
+    //console.log(this.alquiler.idtienda);
     this.alquilerService.getBicicletas(this.alquiler.idtienda).subscribe((bicicletas) =>{
       this.bicicletas4 = bicicletas;
-      console.log(this.bicicletas4);
+      //console.log(this.bicicletas4);
      
     })
     this.modal =this.modalService.open(content,{centered:true});
@@ -173,7 +174,7 @@ export class FormularioAlquilerPage implements OnInit {
    this.idbicicleta =idbici;
    this.alquilerService.getBicicleta(this.idbicicleta).subscribe((bicicletas) =>{
     this.bicicletas = bicicletas;
-    console.log(this.bicicletas);
+    //console.log(this.bicicletas);
     this.bicicletas.disponible="No";
     this.imgbici=bicicletas.imagen;
   })
