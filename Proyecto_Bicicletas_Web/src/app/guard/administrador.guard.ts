@@ -15,7 +15,7 @@ export class AdministradorGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       return this.AFauth.authState.pipe(map( auth => {
 
-        if(auth.uid=="Ge5Aqe0G3oQG6TncEMtsk6nTEQ43"){
+        if(auth.uid=="bomMPgSEWJcgjmH7g1tGfCogajA3"){
           return true;
           
           

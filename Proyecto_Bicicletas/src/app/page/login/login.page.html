@@ -50,7 +50,7 @@
     
     <div class="validation-errors">
       <p class="form-error"
-        *ngIf="(formGroup.get('passwordControl').hasError('required') && formGroup.get('passwordControl').touched) || formGroup.get('emailControl').pristine">
+        *ngIf="(formGroup.get('passwordControl').hasError('required') && formGroup.get('passwordControl').touched) || formGroup.get('passwordControl').pristine">
         *Requerido
       </p>
       <p class="form-error"
