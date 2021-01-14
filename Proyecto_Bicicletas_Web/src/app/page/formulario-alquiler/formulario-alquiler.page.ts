@@ -28,6 +28,7 @@ export class FormularioAlquilerPage implements OnInit {
   modal : NgbModalRef;
   modal2 : NgbModalRef;
   tiendas: datosTiendas[];
+  tiendas2: datosTiendas[];
   bicicletas:datosBicicleta;
   
   bicicletas2:datosBicicleta[];
@@ -120,12 +121,18 @@ export class FormularioAlquilerPage implements OnInit {
       this.tiendas = tiendas;
       for(let i in this.tiendas){
         this.alquilerService.getBicicletas(this.tiendas[i].id).subscribe((bicicletas) =>{
-         if(bicicletas.length==0){    
-          var l = this.tiendas.indexOf( this.tiendas[i] );
-          this.tiendas.splice(l,1); 
-         }
+          if(bicicletas.length==0){    
+            this.tiendas[i].bicidispo="ninguna";
+            this.alquilerService.updateTienda(this.tiendas[i],this.tiendas[i].id);
+           }else{
+            this.tiendas[i].bicidispo="disponible";
+            this.alquilerService.updateTienda(this.tiendas[i],this.tiendas[i].id);
+           }
         })
       }
+      this.alquilerService.getbustieact2().subscribe((tiendas2) =>{
+        this.tiendas2 = tiendas2;
+      })
     })
   }
  
