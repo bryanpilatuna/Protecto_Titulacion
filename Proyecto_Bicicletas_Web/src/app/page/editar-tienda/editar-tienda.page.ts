@@ -153,7 +153,29 @@ export class EditarTiendaPage implements OnInit {
     
   }
 
- 
+  async mensajeconfirmacionsalir() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Mensaje',
+      message: '¿Seguro de cerrar sesión?',
+      buttons: [
+       {
+          text: 'Aceptar',
+          handler: () => {
+            this.salir();
+          }
+        },
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
 
   guardartienda(){
     this.tiendaservice.updateTienda(this.tienda, this.tiendaid).then(() => {

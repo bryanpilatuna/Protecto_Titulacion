@@ -34,14 +34,14 @@ export class RegistroClientePage implements OnInit {
     const nombreControl = new FormControl('', Validators.compose([
       Validators.required,
       Validators.minLength(3),
-      Validators.maxLength(40),
+      Validators.maxLength(15),
       Validators.pattern("(?=[^A-Z]*[A-Z])[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]*"),
     ]));
 
     const apellidoControl = new FormControl('', Validators.compose([
       Validators.required,
       Validators.minLength(3),
-      Validators.maxLength(40),
+      Validators.maxLength(15),
       Validators.pattern("(?=[^A-Z]*[A-Z])[a-zA-ZÑñÁÉÍÓÚáéíóú]*"),
     ]));
 

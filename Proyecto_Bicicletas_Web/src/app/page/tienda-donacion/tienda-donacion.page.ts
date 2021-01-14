@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from '../../services/auth.service';
 
+
 @Component({
   selector: 'app-tienda-donacion',
   templateUrl: './tienda-donacion.page.html',
@@ -76,5 +77,27 @@ export class TiendaDonacionPage implements OnInit {
     this.Service.logout();
   }
  
+  async mensajeconfirmacionsalir() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Mensaje',
+      message: '¿Seguro de cerrar sesión?',
+      buttons: [
+       {
+          text: 'Aceptar',
+          handler: () => {
+            this.salir();
+          }
+        },
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
 
 }

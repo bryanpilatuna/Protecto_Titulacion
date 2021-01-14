@@ -6,6 +6,7 @@ import { NotificacionesTienda}from '../../model/notificaciones.interface';
 import {NotificacionesService} from '../../services/notificaciones.service';
 import { DatosUsuario } from '../../model/user.interface';
 import { NavController, LoadingController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-notificaciones-tienda',
@@ -34,6 +35,7 @@ export class NotificacionesTiendaPage implements OnInit {
   }
   constructor(private router: Router,
     private Servicio:AuthService,
+    private alertCtrl: AlertController,
     private loadingController: LoadingController,
     private Service: AuthService,
     private notificacionesService:NotificacionesService) {
@@ -160,5 +162,29 @@ salir(){
 
   this.Service.logout();
 }
+
+async mensajeconfirmacionsalir() {
+  const alert = await this.alertCtrl.create({
+    cssClass: 'my-custom-class',
+    header: 'Mensaje',
+    message: '¿Seguro de cerrar sesión?',
+    buttons: [
+     {
+        text: 'Aceptar',
+        handler: () => {
+          this.salir();
+        }
+      },
+      {
+        text: 'Cancelar',
+        handler: () => {
+          console.log();
+        }
+      }
+    ]
+  });
+  await alert.present();
+}
+
 
 }

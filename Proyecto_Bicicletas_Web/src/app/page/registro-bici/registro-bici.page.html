@@ -33,16 +33,16 @@
                       <input class="form-control" type="text" placeholder="Ejemplo: Bicicleta102" formControlName="nombreControl" #nombre [(ngModel)]="bici.nombre">
                       <div class="validation-errors">
                         <p class="form-error"
-                        *ngIf="(formGroup.get('nombreControl').hasError('required') && formGroup.get('nombreControl').touched) || formGroup.get('nombreControl').pristine">
+                        *ngIf="formGroup.get('nombreControl').hasError('required')">
                           *Requerido
                         </p>
                         <p class="form-error"
-                          *ngIf="formGroup.get('nombreControl').hasError('minlength') && formGroup.get('nombreControl').touched">
+                          *ngIf="formGroup.get('nombreControl').hasError('minlength')">
                           *Mínimo 3 caracteres 
                         </p>
                         <p class="form-error"
-                          *ngIf="formGroup.get('nombreControl').hasError('maxlength') && formGroup.get('nombreControl').touched">
-                          *Máximo 40 caracteres  
+                          *ngIf="formGroup.get('nombreControl').hasError('maxlength')">
+                          *Máximo 20 caracteres  
                         </p>
                         
                       </div>
@@ -52,20 +52,20 @@
                       <input class="form-control" type="text" placeholder="Ejemplo: Rojo" formControlName="colorControl"  [(ngModel)]="bici.color">
                       <div class="validation-errors">
                         <p class="form-error"
-                        *ngIf="(formGroup.get('colorControl').hasError('required') && formGroup.get('colorControl').touched) || formGroup.get('colorControl').pristine">
+                        *ngIf="formGroup.get('colorControl').hasError('required')">
                         *Requerido
                          
                       </p>
                         <p class="form-error"
-                          *ngIf="formGroup.get('colorControl').hasError('minlength') && formGroup.get('colorControl').touched">
+                          *ngIf="formGroup.get('colorControl').hasError('minlength')">
                           *Mínimo 3 caracteres 
                         </p>
                         <p class="form-error"
-                          *ngIf="formGroup.get('colorControl').hasError('maxlength') && formGroup.get('colorControl').touched">
-                          *Máximo 40 caracteres  
+                          *ngIf="formGroup.get('colorControl').hasError('maxlength')">
+                          *Máximo 20 caracteres  
                         </p>
                         <p class="form-error"
-                              *ngIf="formGroup.get('colorControl').hasError('pattern') && formGroup.get('colorControl').touched">
+                              *ngIf="formGroup.get('colorControl').hasError('pattern')">
                               *El color debe tener solo letras.
                             </p>
                       </div>
@@ -77,15 +77,15 @@
                   </div> 
                   <div class="validation-errors">
                         <p class="form-error"
-                        *ngIf="(formGroup.get('descripcionControl').hasError('required') && formGroup.get('descripcionControl').touched) || formGroup.get('descripcionControl').pristine">
+                        *ngIf="formGroup.get('descripcionControl').hasError('required')">
                     *Requerido
                     </p>
                     <p class="form-error"
-                    *ngIf="formGroup.get('descripcionControl').hasError('minlength') && formGroup.get('descripcionControl').touched">
+                    *ngIf="formGroup.get('descripcionControl').hasError('minlength')">
                     *Mínimo 3 caracteres 
                     </p>
                     <p class="form-error"
-                    *ngIf="formGroup.get('descripcionControl').hasError('maxlength') && formGroup.get('descripcionControl').touched">
+                    *ngIf="formGroup.get('descripcionControl').hasError('maxlength')">
                     *Máximo 40 caracteres  
                     </p>
                 </div>
@@ -108,7 +108,7 @@
                   </div>
                   <div class="validation-errors">
                     <p class="form-error"
-                      *ngIf="(formGroup.get('tipoControl').hasError('required') && formGroup.get('tipoControl').touched) || formGroup.get('tipoControl').pristine">
+                      *ngIf="formGroup.get('tipoControl').hasError('required')">
                       *Requerido
                     </p>
                   
