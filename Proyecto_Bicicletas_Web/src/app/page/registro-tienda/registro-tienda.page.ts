@@ -124,7 +124,7 @@ export class RegistroTiendaPage implements OnInit {
     if (isVerified) {
       this.router.navigate(['menu']);
     } else {
-      this.mensaje="Se envió un mensaje de confirmación al correo ingresado. Recuerdar actualizar tu foto de perfil cuando tu tienda sea activada";
+      this.mensaje="Se envió un mensaje de confirmación al correo ingresado. Recuerda actualizar tu foto de perfil cuando tu tienda sea activada";
       this.presentAlertConfirm();
       this.router.navigate(['/iniciar-sesion']);
       //this.router.navigate(['verify-email']);

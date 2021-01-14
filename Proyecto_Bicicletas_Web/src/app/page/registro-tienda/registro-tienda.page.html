@@ -27,7 +27,7 @@
                       <input type="text" class="form-control" placeholder="Bici Quito" formControlName="nombreControl" #nombre>
                       <div class="validation-errors">
                         <p class="form-error"
-                        *ngIf="(formGroup.get('nombreControl').hasError('required') && formGroup.get('nombreControl').touched) || formGroup.get('nombreControl').untouched">                          *Requerido
+                        *ngIf="(formGroup.get('nombreControl').hasError('required') && formGroup.get('nombreControl').touched) || formGroup.get('nombreControl').pristine">                          *Requerido
                         </p>
                         <p class="form-error"
                           *ngIf="formGroup.get('nombreControl').hasError('minlength') && formGroup.get('nombreControl').touched">
@@ -49,7 +49,7 @@
                       <input type="tel" class="form-control" placeholder="0999999999" formControlName="telefonoControl" #telefono>
                       <div class="validation-errors">
                         <p class="form-error"
-                        *ngIf="(formGroup.get('telefonoControl').hasError('required') && formGroup.get('telefonoControl').touched) || formGroup.get('telefonoControl').untouched">   
+                        *ngIf="(formGroup.get('telefonoControl').hasError('required') && formGroup.get('telefonoControl').touched) || formGroup.get('telefonoControl').pristine">   
                          *Requerido
                         </p>
                         <p class="form-error"
@@ -62,7 +62,7 @@
                         </p>
                         <p class="form-error"
                           *ngIf="formGroup.get('telefonoControl').hasError('pattern') && formGroup.get('telefonoControl').touched">
-                          *El nombre debe tener solo números
+                          *El teléfono debe tener solo números
                         </p>
                       </div>
                     </div>
@@ -78,7 +78,7 @@
 
                   <div class="validation-errors">
                     <p class="form-error"
-                    *ngIf="(formGroup.get('direccionControl').hasError('required') && formGroup.get('direccionControl').touched) || formGroup.get('direccionControl').untouched">   
+                    *ngIf="(formGroup.get('direccionControl').hasError('required') && formGroup.get('direccionControl').touched) || formGroup.get('direccionControl').pristine">   
                     *Requerido
                     </p>
                     <p class="form-error"
@@ -99,13 +99,13 @@
                       <input type="email" class="form-control" placeholder="abc@gmail.com" formControlName="emailControl" #email>
                       <div class="validation-errors">
                         <p class="form-error"
-                        *ngIf="(formGroup.get('emailControl').hasError('required') && formGroup.get('emailControl').touched) || formGroup.get('emailControl').untouched">   
+                        *ngIf="(formGroup.get('emailControl').hasError('required') && formGroup.get('emailControl').touched) || formGroup.get('emailControl').pristine">   
 
                         *Requerido
                         </p>
                         <p class="form-error"
                           *ngIf="formGroup.get('emailControl').hasError('email') && formGroup.get('emailControl').touched">
-                          *Ingrese un correo valido
+                          *Ingrese un correo válido
                         </p>
                         <p class="form-error"
                           *ngIf="formGroup.get('emailControl').hasError('minlength') && formGroup.get('emailControl').touched">
@@ -138,7 +138,7 @@
                       <div class="row" style="justify-content:center;">
                         <div class="validation-errors">
                           <p class="form-error"
-                            *ngIf="(formGroup.get('passwordControl').hasError('required') && formGroup.get('passwordControl').touched) || formGroup.get('passwordControl').untouched">
+                            *ngIf="(formGroup.get('passwordControl').hasError('required') && formGroup.get('passwordControl').touched) || formGroup.get('passwordControl').pristine">
                             *Requerido
                           </p>
                           <p class="form-error"
@@ -167,7 +167,7 @@
                   </div>
                   <div class="validation-errors">
                     <p class="form-error"
-                      *ngIf="(formGroup.get('foto').hasError('required') && formGroup.get('foto').touched) || formGroup.get('foto').untouched">
+                      *ngIf="(formGroup.get('foto').hasError('required') && formGroup.get('foto').touched) || formGroup.get('foto').pristine">
                       *Requerido
                     </p>
                   

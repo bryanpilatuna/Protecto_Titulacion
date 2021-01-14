@@ -28,12 +28,12 @@
   
             <div class="validation-errors">
                 <p class="form-error"
-                  *ngIf="(formGroup.get('emailControl').hasError('required') && formGroup.get('emailControl').touched) || formGroup.get('emailControl').untouched">
+                  *ngIf="(formGroup.get('emailControl').hasError('required') && formGroup.get('emailControl').touched) || formGroup.get('emailControl').pristine">
                   *Requerido
                 </p>
                 <p class="form-error"
                   *ngIf="formGroup.get('emailControl').hasError('email') && formGroup.get('emailControl').touched">
-                  *Ingrese un correo valido
+                  *Ingrese un correo válido
                 </p>
                 <p class="form-error"
                   *ngIf="formGroup.get('emailControl').hasError('minlength') && formGroup.get('emailControl').touched">
@@ -62,7 +62,7 @@
         
             <div class="validation-errors" >
               <p class="form-error" 
-                *ngIf="(formGroup.get('passwordControl').hasError('required') && formGroup.get('passwordControl').touched) || formGroup.get('passwordControl').untouched">
+                *ngIf="(formGroup.get('passwordControl').hasError('required') && formGroup.get('passwordControl').touched) || formGroup.get('passwordControl').pristine">
                 *Requerido
               </p>
               <p class="form-error"
