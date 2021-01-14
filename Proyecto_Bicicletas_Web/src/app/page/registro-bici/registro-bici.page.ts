@@ -51,12 +51,12 @@ export class RegistroBiciPage implements OnInit {
     const nombreControl = new FormControl('', Validators.compose([
       Validators.required,
       Validators.minLength(3),
-      Validators.maxLength(40),
+      Validators.maxLength(20),
     ]));
     const colorControl = new FormControl('', Validators.compose([
       Validators.required,
       Validators.minLength(3),
-      Validators.maxLength(40),
+      Validators.maxLength(20),
       Validators.pattern("[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]*")
     ]));
 

@@ -26,19 +26,19 @@
                     <input type="text" class="form-control" placeholder="Bryan" formControlName="nombreControl" #nombre>
                     <div class="validation-errors">
                       <p class="form-error"
-                      *ngIf="(formGroup.get('nombreControl').hasError('required') && formGroup.get('nombreControl').touched) || formGroup.get('nombreControl').pristine">
+                      *ngIf="formGroup.get('nombreControl').hasError('required')">
                       *Requerido
                       </p>
                       <p class="form-error"
-                        *ngIf="formGroup.get('nombreControl').hasError('minlength') && formGroup.get('nombreControl').touched">
+                        *ngIf="formGroup.get('nombreControl').hasError('minlength')">
                         *Mínimo 3 caracteres 
                       </p>
                       <p class="form-error"
-                        *ngIf="formGroup.get('nombreControl').hasError('maxlength') && formGroup.get('nombreControl').touched">
-                        *Máximo 40 caracteres  
+                        *ngIf="formGroup.get('nombreControl').hasError('maxlength')">
+                        *Máximo 15 caracteres  
                       </p>
                       <p class="form-error"
-                        *ngIf="formGroup.get('nombreControl').hasError('pattern') && formGroup.get('nombreControl').touched">
+                        *ngIf="formGroup.get('nombreControl').hasError('pattern')">
                         *El nombre debe tener solo letras, la primera letra con mayúscula y sin espacios
                       </p>
                     </div>
@@ -49,19 +49,19 @@
                     <input type="text" class="form-control" placeholder="Molina" formControlName="apellidoControl" #apellido>
                     <div class="validation-errors">
                       <p class="form-error"
-                      *ngIf="(formGroup.get('apellidoControl').hasError('required') && formGroup.get('apellidoControl').touched) || formGroup.get('apellidoControl').pristine"> 
+                      *ngIf="formGroup.get('apellidoControl').hasError('required')"> 
                       *Requerido
                       </p>
                       <p class="form-error"
-                        *ngIf="formGroup.get('apellidoControl').hasError('minlength') && formGroup.get('apellidoControl').touched">
+                        *ngIf="formGroup.get('apellidoControl').hasError('minlength')">
                         *Mínimo 3 caracteres 
                       </p>
                       <p class="form-error"
-                        *ngIf="formGroup.get('apellidoControl').hasError('maxlength') && formGroup.get('apellidoControl').touched">
-                        *Máximo 40 caracteres  
+                        *ngIf="formGroup.get('apellidoControl').hasError('maxlength')">
+                        *Máximo 15 caracteres  
                       </p>
                       <p class="form-error"
-                        *ngIf="formGroup.get('apellidoControl').hasError('pattern') && formGroup.get('apellidoControl').touched">
+                        *ngIf="formGroup.get('apellidoControl').hasError('pattern')">
                         *El apellido debe tener solo letras, la primera letra con mayúscula y sin espacios
                       </p>
                     </div>
@@ -75,19 +75,19 @@
                     <input type="text" class="form-control" placeholder="0400887599" formControlName="cedulaControl" #cedula>
                     <div class="validation-errors">
                       <p class="form-error"
-                      *ngIf="(formGroup.get('cedulaControl').hasError('required') && formGroup.get('cedulaControl').touched) || formGroup.get('cedulaControl').pristine">
+                      *ngIf="formGroup.get('cedulaControl').hasError('required')">
                         *Requerido
                       </p>
                       <p class="form-error"
-                        *ngIf="formGroup.get('cedulaControl').hasError('minlength') && formGroup.get('cedulaControl').touched">
+                        *ngIf="formGroup.get('cedulaControl').hasError('minlength')">
                         *Mínimo 10 números 
                       </p>
                       <p class="form-error"
-                        *ngIf="formGroup.get('cedulaControl').hasError('maxlength') && formGroup.get('cedulaControl').touched">
+                        *ngIf="formGroup.get('cedulaControl').hasError('maxlength')">
                         *Máximo 13 números 
                       </p>
                       <p class="form-error"
-                        *ngIf="formGroup.get('cedulaControl').hasError('pattern') && formGroup.get('cedulaControl').touched">
+                        *ngIf="formGroup.get('cedulaControl').hasError('pattern')">
                         *La cédula debe tener solo números
                       </p>
                     </div>
@@ -97,20 +97,20 @@
                     <input type="text" class="form-control" placeholder="0999999999" formControlName="telefonoControl" #telefono>
                     <div class="validation-errors">
                       <p class="form-error"
-                      *ngIf="(formGroup.get('telefonoControl').hasError('required') && formGroup.get('telefonoControl').touched) || formGroup.get('telefonoControl').pristine">
+                      *ngIf="formGroup.get('telefonoControl').hasError('required')">
 
                       *Requerido
                       </p>
                       <p class="form-error"
-                        *ngIf="formGroup.get('telefonoControl').hasError('minlength') && formGroup.get('telefonoControl').touched">
+                        *ngIf="formGroup.get('telefonoControl').hasError('minlength')">
                         *Mínimo 7 números 
                       </p>
                       <p class="form-error"
-                        *ngIf="formGroup.get('telefonoControl').hasError('maxlength') && formGroup.get('telefonoControl').touched">
+                        *ngIf="formGroup.get('telefonoControl').hasError('maxlength')">
                         *Máximo 10 números 
                       </p>
                       <p class="form-error"
-                        *ngIf="formGroup.get('telefonoControl').hasError('pattern') && formGroup.get('telefonoControl').touched">
+                        *ngIf="formGroup.get('telefonoControl').hasError('pattern')">
                         *El teléfono debe tener solo números
                       </p>
                     </div>
@@ -127,19 +127,19 @@
                     <input type="email" class="form-control" placeholder="abc@gmail.com" formControlName="emailControl" #email>
                     <div class="validation-errors">
                       <p class="form-error"
-                      *ngIf="(formGroup.get('emailControl').hasError('required') && formGroup.get('emailControl').touched) || formGroup.get('emailControl').pristine">   
+                      *ngIf="formGroup.get('emailControl').hasError('required')">   
                       *Requerido
                       </p>
                       <p class="form-error"
-                        *ngIf="formGroup.get('emailControl').hasError('email') && formGroup.get('emailControl').touched">
+                        *ngIf="formGroup.get('emailControl').hasError('email')">
                         *Ingrese un correo válido
                       </p>
                       <p class="form-error"
-                        *ngIf="formGroup.get('emailControl').hasError('minlength') && formGroup.get('emailControl').touched">
+                        *ngIf="formGroup.get('emailControl').hasError('minlength')">
                         *Mínimo 10 caracteres 
                       </p>
                       <p class="form-error"
-                        *ngIf="formGroup.get('emailControl').hasError('maxlength') && formGroup.get('emailControl').touched">
+                        *ngIf="formGroup.get('emailControl').hasError('maxlength')">
                         *Máximo 40 caracteres  
                       </p>
                     </div>
@@ -165,15 +165,15 @@
                       <div class="row" style="justify-content:center;">
                         <div class="validation-errors">
                           <p class="form-error"
-                            *ngIf="(formGroup.get('passwordControl').hasError('required') && formGroup.get('passwordControl').touched) || formGroup.get('passwordControl').untouched">
+                            *ngIf="formGroup.get('passwordControl').hasError('required')">
                             *Requerido
                           </p>
                           <p class="form-error"
-                            *ngIf="formGroup.get('passwordControl').hasError('minlength') && formGroup.get('passwordControl').touched">
+                            *ngIf="formGroup.get('passwordControl').hasError('minlength')">
                             *Mínimo 8 caracteres 
                           </p>
                           <p class="form-error"
-                            *ngIf="formGroup.get('emailControl').hasError('passwordControl') && formGroup.get('passwordControl').touched">
+                            *ngIf="formGroup.get('emailControl').hasError('passwordControl')">
                             *Máximo 40 caracteres  
                           </p>
                         </div>
