@@ -223,6 +223,28 @@ export class FormularioDonacionPage implements OnInit {
   salir(){
     this.Serviceau.logout();
   }
+  async mensajeconfirmacionsalir() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Mensaje',
+      message: '¿Seguro de cerrar sesión?',
+      buttons: [
+       {
+          text: 'Aceptar',
+          handler: () => {
+            this.salir();
+          }
+        },
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
 
 }
 
