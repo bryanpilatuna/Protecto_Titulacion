@@ -69,7 +69,7 @@ export class NotificacionComponent implements OnInit {
    });
 
    this.localNotifications.on('click').subscribe(notification => {
-    this.router.navigate(['notificaciones']);
+    this.router.navigate(['notificacion']);
      });
   }
 

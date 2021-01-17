@@ -20,6 +20,7 @@ import * as firebase from 'firebase';
   styleUrls: ['./formulario-alquiler.page.scss'],
 })
 export class FormularioAlquilerPage implements OnInit {
+  validacion1:boolean=true;
   imgbici:string;
   direc:string;
   mensaje:string;
@@ -29,6 +30,9 @@ export class FormularioAlquilerPage implements OnInit {
   bicicletas:datosBicicleta;
   bicicletas2:datosBicicleta[];
   fechaactual: Date = new Date();
+  fechahoralq:string;
+  fechahoradev:string;
+  fechaalqutem:string;
   idbicicleta=null;
   idtienda=null;
   notificaciones:NotificacionesTienda= {
@@ -235,29 +239,81 @@ export class FormularioAlquilerPage implements OnInit {
   }
 
   cambiofecha(event){
+    var horas = new Date().getHours().toString();
+    if(horas=="8"||horas=="9"){
+      horas="0"+horas;
+    }
+    var minutos:string = new Date().getMinutes().toString();
+    if(minutos=="1"||minutos=="2"||minutos=="3"||minutos=="4"||minutos=="5"||minutos=="6"||minutos=="7"||minutos=="8"||minutos=="9"||minutos=="0"){
+      minutos="0"+minutos;
+    }
     this.alquiler.fechaalquiler= new Date(event.detail.value);
+    this.fechaalqutem=new Date(event.detail.value).toDateString();
+    console.log(this.fechaalqutem);
+    //console.log(new Date(event.detail.value).toDateString());
+    var actual = new Date().toDateString();
+    var seleccionada = new Date(event.detail.value).toDateString();
+    if(actual==seleccionada){
+      this.fechahoralq=horas+":"+minutos;
+    }else{
+      this.fechahoralq="08"+":"+"00";
+    }
+    this.formGroup.controls['horaAlquiler'].setValue(null);
+    this.formGroup.controls['fechaDevolucion'].setValue(null);
+    this.formGroup.controls['horaDonacion'].setValue(null);
+    this.fechahoradev=null;
+    this.validacion1=true;
+  }
+
+  cambiofecha2(event){
+    
+    this.alquiler.fechadevolucion= new Date(event.detail.value);
+    var seleccionada = new Date(event.detail.value).toDateString();
+    if(this.fechaalqutem==seleccionada){
+      this.fechahoradev=this.alquiler.horaalquiler;
+    }else{
+      this.fechahoradev="08:00";
+    }
   }
 
   seleccionarhora(event){
     
-    this.hora= new Date(event.detail.value).getHours();
-    this.minutos= new Date(event.detail.value).getMinutes();
-    var horaalquiler= this.hora+':'+this.minutos;
+    //this.hora= new Date(event.detail.value).getHours();
+    var horas = new Date(event.detail.value).getHours().toString();
+    if(horas=="8"||horas=="9"){
+      horas="0"+horas;
+    }
+    var minutos= new Date(event.detail.value).getMinutes().toString();
+    //var minutos:string = new Date().getMinutes().toString();
+    if(minutos=="1"||minutos=="2"||minutos=="3"||minutos=="4"||minutos=="5"||minutos=="6"||minutos=="7"||minutos=="8"||minutos=="9"||minutos=="0"){
+      minutos="0"+minutos;
+    }
+    var horaalquiler= horas+':'+minutos;
     this.alquiler.horaalquiler=horaalquiler;
+    console.log(this.alquiler.horaalquiler);
+    this.validacion1=false;
+    this.formGroup.controls['horaDonacion'].setValue(null);
   }
 
   seleccionarhoradev(event){
-    
-    this.hora= new Date(event.detail.value).getHours();
-    this.minutos= new Date(event.detail.value).getMinutes();
-    var horadev= this.hora+':'+this.minutos;
+    var horas = new Date(event.detail.value).getHours().toString();
+    if(horas=="8"||horas=="9"){
+      horas="0"+horas;
+    }
+    var minutos= new Date(event.detail.value).getMinutes().toString();
+    //var minutos:string = new Date().getMinutes().toString();
+    if(minutos=="1"||minutos=="2"||minutos=="3"||minutos=="4"||minutos=="5"||minutos=="6"||minutos=="7"||minutos=="8"||minutos=="9"||minutos=="0"){
+      minutos="0"+minutos;
+    }
+    //this.hora= new Date(event.detail.value).getHours();
+    //this.minutos= new Date(event.detail.value).getMinutes();
+    var horadev= horas+':'+minutos;
     this.alquiler.horadevolucion=horadev;
+    console.log(this.alquiler.horadevolucion);
 
   }
 
-  cambiofecha2(event){
-    this.alquiler.fechadevolucion= new Date(event.detail.value);
-  }
+  
   cancelarAlquiler(){
     this.nav.navigateForward('/menu'); 
     this.idbicicleta=null;
