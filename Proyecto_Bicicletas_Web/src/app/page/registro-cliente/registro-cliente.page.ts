@@ -48,7 +48,7 @@ export class RegistroClientePage implements OnInit {
     const cedulaControl = new FormControl('', Validators.compose([
       Validators.required,
       Validators.minLength(10),
-      Validators.maxLength(13),
+      Validators.maxLength(10),
       Validators.pattern("[0-9]*"),
     ]));
 
