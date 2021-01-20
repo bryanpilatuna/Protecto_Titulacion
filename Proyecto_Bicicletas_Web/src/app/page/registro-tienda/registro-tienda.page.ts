@@ -48,6 +48,10 @@ export class RegistroTiendaPage implements OnInit {
 
     ]));
 
+    const sectorControl = new FormControl('', Validators.compose([
+      Validators.required,
+    ]));
+
     const telefonoControl = new FormControl('', Validators.compose([
       Validators.required,
       Validators.minLength(7),
@@ -73,7 +77,7 @@ export class RegistroTiendaPage implements OnInit {
       
     ]));
 
-    this.formGroup = this.formBuilder.group({nombreControl,direccionControl,telefonoControl,emailControl,passwordControl,foto });
+    this.formGroup = this.formBuilder.group({nombreControl,direccionControl,sectorControl,telefonoControl,emailControl,passwordControl,foto });
   }
 
   enviarimagen(event: any): void {
@@ -101,9 +105,9 @@ export class RegistroTiendaPage implements OnInit {
     await alert.present();
   }
 
-  async onRegister(nombre,direccion,telefono,email,password ) {
+  async onRegister(nombre,direccion,sector,telefono,email,password ) {
     try {
-      const user = await this.authSvc.register(nombre.value,direccion.value,telefono.value,email.value,password.value,this.myLatLng.lat,this.myLatLng.lng,this.image);
+      const user = await this.authSvc.register(nombre.value,direccion.value,sector.value,telefono.value,email.value,password.value,this.myLatLng.lat,this.myLatLng.lng,this.image);
       if (user) {
         const isVerified = this.authSvc.isEmailVerified(user);
         this.redirectUser(isVerified);

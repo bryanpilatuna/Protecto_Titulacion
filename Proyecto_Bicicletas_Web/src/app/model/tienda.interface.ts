@@ -3,6 +3,7 @@ export interface Tienda {
     uid : string;
     nombre : string;
     direccion: string;
+    sector: string;
     correo : string;
     telefono : string;
     estado : string;

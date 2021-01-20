@@ -19,7 +19,7 @@
               <div class="row">
 
 
-                <form [formGroup]="formGroup" (ngSubmit)="onRegister(nombre,direccion,telefono,email,password)" id="login-form" class="form" style="padding-left: 30px;">
+                <form [formGroup]="formGroup" (ngSubmit)="onRegister(nombre,direccion,sector,telefono,email,password)" id="login-form" class="form" style="padding-left: 30px;">
                   <div class="form-group row">
                     <div class="col">
                       <br>
@@ -65,6 +65,120 @@
                           *El teléfono debe tener solo números
                         </p>
                       </div>
+                    </div>
+                    
+                  </div>
+                  <div class="form-group row">
+                    <div class="col">
+                      <label position="stacked"><strong>Sector</strong></label>
+                        <select formControlName="sectorControl" class="form-control" #sector>
+                          <optgroup label="Sur">
+                                <option value="5 Esquinas">5 Esquinas</option>
+                                <option value="Caupicho">Caupicho</option>
+                                <option value="Chilibulo">Chilibulo</option>
+                                <option value="Chillogallo">Chillogallo</option>
+                                <option value="Chimbacalle">Chimbacalle</option>
+                                <option value="Ciudadela Ejército">Ciudadela Ejército</option>
+                                <option value="Ciudadela Ibarra">Ciudadela Ibarra</option>
+                                <option value="Cornejo">Cornejo</option>
+                                <option value="El Beaterio">El Beaterio</option>
+                                <option value="El Calzado">El Calzado</option>
+                                <option value="El Camal">El Camal</option>
+                                <option value="El Pintado">El Pintado</option>
+                                <option value="El Troje">El Troje</option>
+                                <option value="Guajalo">Guajalo</option>
+                                <option value="Guamaní">Guamaní</option>
+                                <option value="La Argelia">La Argelia</option>
+                                <option value="La Ecuatoriana">La Ecuatoriana</option>
+                                <option value="La Ferroviaria">La Ferroviaria</option>
+                                <option value="La Forestal">La Forestal</option>
+                                <option value="La Magdalena">La Magdalena</option>
+                                <option value="La Mena 2">La Mena 2</option>
+                                <option value="La Victoria">La Victoria</option>
+                                <option value="Luluncoto">Luluncoto</option>
+                                <option value="Manuelita Saenz">Manuelita Saenz</option>
+                                <option value="Nueva Aurora">Nueva Aurora</option>
+                                <option value="Oriente Quiteño">Oriente Quiteño</option>
+                                <option value="Puengasí">Puengasí</option>
+                                <option value="Quito Sur">Quito Sur</option>
+                                <option value="Quitumbe">Quitumbe</option>
+                                <option value="Reino de Quito">Reino de Quito</option>
+                                <option value="San Bartolo">San Bartolo</option>
+                                <option value="San Martín">San Martín</option>
+                                <option value="Santa Rita">Santa Rita</option>
+                                <option value="Solanda">Solanda</option>
+                                <option value="Turubamba">Turubamba</option>
+                                <option value="Villaflora">Villaflora</option>
+                            </optgroup>
+                            <optgroup label="Centro">
+                                <option value="Centro Histórico">Centro Histórico</option>
+                                <option value="El Dorado">El Dorado</option>
+                                <option value="El Ejido">El Ejido</option>
+                                <option value="El Panecillo">El Panecillo</option>
+                                <option value="El Tejar">El Tejar</option>
+                                <option value="La Floresta">La Floresta</option>
+                                <option value="La Guaragua">La Guaragua</option>
+                                <option value="La Libertad">La Libertad</option>
+                                <option value="La Loma Grande">La Loma Grande</option>
+                                <option value="La Marín">La Marín</option>
+                                <option value="La Ronda">La Ronda</option>
+                                <option value="La Tola">La Tola</option>
+                                <option value="La Vicentina">La Vicentina</option>
+                                <option value="Miraflores">Miraflores</option>
+                                <option value="Monjas">Monjas</option>
+                                <option value="San Diego">San Diego</option>
+                                <option value="San Marcos">San Marcos</option>
+                                <option value="San Roque">San Roque</option>
+                                <option value="Toctiuco">Toctiuco</option>
+                            </optgroup>
+                            <optgroup label="Norte">
+                              <option value="Atucucho">Atucucho</option>
+                              <option value="Bellavista">Bellavista</option>
+                              <option value="Carcelén">Carcelén</option>
+                              <option value="Comité del Prueblo"> Comité del Pueblo</option>
+                              <option value="Cotocollao">Cotocollao</option>
+                              <option value="El Batán">El Batán</option>
+                              <option value="El Condado">El Condado</option>
+                              <option value="El Inca">El Inca</option>
+                              <option value="Guápulo">Guápulo</option>
+                              <option value="Iñaquito">Iñaquito</option>
+                              <option value="Kennedy">Kennedy</option>
+                              <option value="La Bota">La Bota</option>
+                              <option value="La Florida">La Florida</option>
+                              <option value="La Gonzáles Suárez">La Gonzáles Suárez</option>
+                              <option value="La Mariscal">La Mariscal</option>
+                              <option value="Las Casas">Las Casas</option>
+                              <option value="Mena de Hierro">Mena de Hierro</option>
+                              <option value="Ponceano">Ponceano</option>
+                              <option value="Quito Norte">Quito Norte</option>
+                              <option value="Quito Tennis">Quito Tennis</option>
+                              <option value="Rumiñahui">Rumiñahui</option>
+                              <option value="San Carlos">San Carlos</option>
+                            </optgroup>
+                            <optgroup label="Los Valles Nororiente y Suroriente">
+                              <option value="Alangasí">Alangasí</option>
+                              <option value="Amaguaña">Amaguaña</option>
+                              <option value="Conocoto">Conocoto</option>
+                              <option value="Cumbayá">Cumbayá</option>
+                              <option value="El Tingo">El Tingo</option>
+                              <option value="La Merced">La Merced</option>
+                              <option value="Pifo">Pifo</option>
+                              <option value="Pintag y Tolontag">Pintag y Tolontag</option>
+                              <option value="Puembo">Puembo</option>
+                              <option value="San Rafael">San Rafael</option>
+                              <option value="Tababela">Tababela</option>
+                              <option value="Tumbaco">Tumbaco</option>
+                            
+                            
+                            </optgroup>
+                        </select>
+                        <div class="validation-errors">
+                          <p class="form-error"
+                          *ngIf="formGroup.get('sectorControl').hasError('required')">   
+                          *Requerido
+                          </p>
+                        </div>
+                        
                     </div>
                     
                   </div>

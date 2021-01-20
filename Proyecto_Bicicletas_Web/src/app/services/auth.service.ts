@@ -208,7 +208,7 @@ export class AuthService {
     }
   }
 
-  async register(nombreform:string,direccionform:string,telefonoform,emailform:string,passwordform:string ,lat:number,lng:number,image?: FileI): Promise<User> {
+  async register(nombreform:string,direccionform:string,sectorform:string,telefonoform,emailform:string,passwordform:string ,lat:number,lng:number,image?: FileI): Promise<User> {
     try {
       
       const { user } = await this.afAuth.createUserWithEmailAndPassword(emailform, passwordform);
@@ -229,6 +229,7 @@ export class AuthService {
               this.afs.collection('tiendas').doc(uid).set({
                 uid : uid,
                 nombre : nombreform,
+                sector : sectorform,
                 direccion: direccionform,
                 correo : correo,
                 telefono : telefonoform,
