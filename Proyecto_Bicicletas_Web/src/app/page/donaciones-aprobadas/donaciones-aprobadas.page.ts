@@ -70,6 +70,16 @@ export class DonacionesAprobadasPage implements OnInit {
         this.donaciones = donacion.filter(donacion=>donacion.aprobacion==true );
         })
   }
+
+  rechazar(donacion:datosDonacion,id:string){
+      
+      donacion.aprobacion=false;
+      donacion.anular=true;
+      donacion.respuesta='Donación Anulada';   
+      this.donacionesservice.actualizarDonacion(donacion,id).then(() => {
+        this.router.navigate(['/tienda-donacion']);
+      });
+  }
   
  
 

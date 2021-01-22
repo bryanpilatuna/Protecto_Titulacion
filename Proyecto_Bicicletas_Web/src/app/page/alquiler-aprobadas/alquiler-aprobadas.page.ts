@@ -70,14 +70,29 @@ export class AlquilerAprobadasPage implements OnInit {
     })
     this.alquilerservice.getalquilerestiendafecha().subscribe((alquileres) =>{
       this.alquileres2 = alquileres.filter(alquileres=>alquileres.aprobacion==true );
-      console.log("alquileres 2",this.alquileres2);
+      
       })
 
       this.alquilerservice.getalquileresTienda(this.tiendaid).subscribe((alquileres) =>{
         this.alquileres = alquileres.filter(alquileres=>alquileres.aprobacion==true );
-        console.log("alquileres 2",this.alquileres);
+      
         })
     
   }
+
+
+  rechazaralquiler(alquiler:datosAlquiler,id:string){    
+
+  
+     // this.notificacionesalquiler();
+    alquiler.respuesta='Alquiler Anulado';
+    alquiler.aprobacion=false;
+    alquiler.anular=true;
+    this.alquilerservice.actualizarAlquiler(alquiler,id).then(() => {
+      this.router.navigate(['/tienda-alquiler']);
+    });
+  }
+  
+
 
 }

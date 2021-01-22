@@ -30,6 +30,7 @@ export class EditTiendaPage implements OnInit {
     uid:'',
     nombre:'',
     direccion:'',
+    sector:'',
     correo:'',
     telefono:'',
     bicidispo:'',
@@ -122,6 +123,9 @@ export class EditTiendaPage implements OnInit {
       Validators.maxLength(40),
     ]));
 
+    const sectorControl = new FormControl('', Validators.compose([
+      Validators.required,
+    ]));
     const direccionControl = new FormControl('', Validators.compose([
       Validators.required,
       Validators.minLength(3),
@@ -144,7 +148,7 @@ export class EditTiendaPage implements OnInit {
     ]));
     
 
-    this.formGroup = this.formBuilder.group({nombreControl,direccionControl,telefonoControl,tipoControl,auxilioControl });
+    this.formGroup = this.formBuilder.group({nombreControl,direccionControl,sectorControl,telefonoControl,tipoControl,auxilioControl });
     
   }
 
