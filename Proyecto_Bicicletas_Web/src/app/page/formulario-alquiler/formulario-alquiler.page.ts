@@ -178,6 +178,16 @@ export class FormularioAlquilerPage implements OnInit {
     
     //this.abrirmodal();
   }
+
+  cerrarmodal(){
+    console.log("entra cerrar");
+    this.modal.close();
+    this.alquiler.idtienda=null;
+    this.direc=null;
+    this.imgbici=null;
+   
+  }
+  
  
   seleccionarbici(idbici:string){
    this.modal.close();
@@ -250,8 +260,9 @@ export class FormularioAlquilerPage implements OnInit {
         this.fecdev=null;
         this.hordev=null;
         this.alquiler.idtienda=null;
-        this.direc='';
-        this.imgbici='';
+        this.direc=null;
+        this.imgbici=null;
+
         //window.location.href = 'alquiler-donacion' ;
         this.mensaje="Se envió correctamente su formulario de alquiler.";
         this.mensajeconfirmacion();

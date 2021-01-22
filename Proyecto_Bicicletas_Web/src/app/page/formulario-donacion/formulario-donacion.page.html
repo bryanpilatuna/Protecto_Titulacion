@@ -88,7 +88,7 @@
                         cancel-text="Cancelar" formControlName="tiendaControl" >
                           <ion-select-option *ngFor="let tienda of tiendas" [value]="tienda.id"> 
                             <ion-label>
-                            {{ tienda.nombre}}
+                            {{ tienda.nombre}} {{ tienda.sector}}
                           </ion-label>
                           
                           </ion-select-option>

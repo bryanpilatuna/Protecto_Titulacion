@@ -154,7 +154,7 @@
                       cancel-text="Cancelar" formControlName="tindaSeleccion" (ionChange)="onSelectChange(content)" >
                         <ion-select-option *ngFor="let tienda of tiendas2" [value]="tienda.id"> 
                           <ion-label>
-                          {{ tienda.nombre}}
+                          {{ tienda.nombre}} {{ tienda.sector}}
                         </ion-label>
                         </ion-select-option>
                       </ion-select>
@@ -197,6 +197,9 @@
                 <ng-template #content let-c="close" let-d="dismiss">
                   <div class="modal-header">
                     <h4 class="modal-title" id="modal-basic-title">Seleccionar Bicicleta</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="cerrarmodal()">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
                   </div>
                   <div class="modal-body">
                     <ion-item-sliding *ngFor="let bicicleta of bicicletas4 | paginate: { itemsPerPage: 2, currentPage: pageActual }">
@@ -211,6 +214,7 @@
                     </ion-item-sliding>
                     <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
                   </div>
+                  
              
                 </ng-template>
                 
