@@ -115,6 +115,10 @@
                           *ngIf="formGroup.get('cedulaControl').hasError('minlength')">
                           *10 números 
                         </p>
+                        <p class="form-error"
+                          *ngIf="formGroup.get('cedulaControl').hasError('maxlength')">
+                          *10 números 
+                        </p>
                     
                         <p class="form-error"
                           *ngIf="formGroup.get('cedulaControl').hasError('pattern')">
