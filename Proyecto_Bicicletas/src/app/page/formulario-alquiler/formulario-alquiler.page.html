@@ -95,10 +95,10 @@
         </ion-row>
         <ion-row *ngIf="alquiler" class="ion-padding-bottom">
           <ion-select [(ngModel)]="alquiler.idtienda" ok-text="Seleccionar" 
-      cancel-text="Cancelar" formControlName="tindaSeleccion" (ionChange)="onSelectChange()" style="width: 100%;">
+      cancel-text="Cancelar" formControlName="tindaSeleccion" (ionChange)="onSelectChange(content)" style="width: 100%;">
         <ion-select-option *ngFor="let tienda of tiendas2" [value]="tienda.id"> 
           <ion-label>
-          {{ tienda.nombre}}
+          {{ tienda.nombre}} {{ tienda.sector}}
         </ion-label>
         </ion-select-option>
         </ion-select>
@@ -114,22 +114,58 @@
     
     </div>
     
+    <ion-item *ngIf="direc">
+      <ion-label position="stacked">Dirección Tienda</ion-label>
+      <p>{{direc}}</p>
+    </ion-item>
     <ion-item *ngIf="imgbici">
       <img height="100" [src]="imgbici" style="display:block;
               margin:auto;margin-top: 10px;margin-bottom: 10px;">
     </ion-item>
-    <ion-item *ngIf="direc">
-      <ion-label position="stacked">Dirección</ion-label>
-      <ion-input formControlName="dirDonacion" type="text" [(ngModel)]="direc"></ion-input>
-    </ion-item>
 
 
     <!--<ion-button disabled={{desabilitarboton}} expand="full" (click)="abrirmodal()">Seleccione la Bicicleta</ion-button>-->
-
-    <ion-button [disabled]="!formGroup.valid" expand="full" (click)="crearAlquiler()" style="border-style: solid;border-color: #01C642;border-radius: 10px;">Realizar Alquiler</ion-button>
- 
-  </form>
+    <ion-row>
+      <ion-col>
+        <ion-button [disabled]="!formGroup.valid" expand="full" (click)="crearAlquiler()" style="border-style: solid;border-color: #01C642;border-radius: 10px;">Realizar Alquiler</ion-button>
+      </ion-col>
+    </ion-row>  
     
+  </form>
+  <ng-template #content2 let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Mensaje</h4>
+    </div>
+    <div class="modal-body">
+      <p>Se envió correctamente su formulario de alquiler.</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="close()">Aceptar</button>
+    </div>
+  </ng-template>
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Seleccionar Bicicleta</h4>
+      <button type="button" class="close" aria-label="Close" (click)="cerrarmodal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <ion-item-sliding *ngFor="let bicicleta of bicicletas4 | paginate: { itemsPerPage: 2, currentPage: pageActual }">
+        <ion-item button  (click)="seleccionarbici(bicicleta.id)">
+          <ion-label>
+            <img [src]="bicicleta.imagen" style="height: 130px;display:block;margin:auto;margin-bottom: 10px;"/>
+       
+  
+         
+          </ion-label>
+        </ion-item> 
+      </ion-item-sliding>
+      <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
+    </div>
+    
+
+  </ng-template>
 
       
 

@@ -8,4 +8,5 @@ export interface datosTiendas{
     correo: string;
     estado: string;  
     bicidispo:string;
+    sector: string;
 }

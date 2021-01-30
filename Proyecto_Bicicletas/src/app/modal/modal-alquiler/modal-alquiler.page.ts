@@ -28,12 +28,14 @@ export class ModalAlquilerPage implements OnInit {
   seleccionbicicleta(idbici:string){
 
     this.modalController.dismiss({
-      bici:idbici,
+      bici:idbici
     });
   }
 
   salirsinargumentos(){
-    this.modalController.dismiss();
+    this.modalController.dismiss({
+
+    });
   }
 
   

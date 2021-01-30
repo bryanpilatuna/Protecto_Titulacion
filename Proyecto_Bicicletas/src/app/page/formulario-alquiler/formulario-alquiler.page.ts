@@ -11,8 +11,12 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { ModalAlquilerPage } from 'src/app/modal/modal-alquiler/modal-alquiler.page';
 import { NotificacionesTienda } from '../../model/notificaciones.interface';
 import { NotificaciontiendaService} from '../../service/notificaciontienda.service';
-import { AlertController } from '@ionic/angular';
 import * as firebase from 'firebase';
+import { NgbModalConfig, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { AuthService } from '../../service/auth.service';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @Component({
   selector: 'app-formulario-alquiler',
@@ -20,15 +24,17 @@ import * as firebase from 'firebase';
   styleUrls: ['./formulario-alquiler.page.scss'],
 })
 export class FormularioAlquilerPage implements OnInit {
+  pageActual: number= 1;
   validacion1:boolean=true;
-  imgbici:string;
-  direc:string;
-  mensaje:string;
   usuarioid= null;
+  modal : NgbModalRef;
+  modal2 : NgbModalRef;
   tiendas: datosTiendas[];
   tiendas2: datosTiendas[];
   bicicletas:datosBicicleta;
+  
   bicicletas2:datosBicicleta[];
+  bicicletas4:datosBicicleta[];
   fechaactual: Date = new Date();
   fechahoralq:string;
   fechahoradev:string;
@@ -44,7 +50,7 @@ export class FormularioAlquilerPage implements OnInit {
   };
   hora:any;
   minutos:any;
-  
+  mensaje:string;
   //disableSelector:boolean;
 
   alquiler: datosAlquiler ={
@@ -64,67 +70,69 @@ export class FormularioAlquilerPage implements OnInit {
   }
   desabilitarboton:boolean;
   formGroup: FormGroup; 
-  alquilerid: datosAlquiler[];
-  id: any;
   fechacom:any;
   fechaac:any;
   contador=0;
   limite=false;
-  constructor(private alertCtrl: AlertController,private route: ActivatedRoute, private nav: NavController, private UsuarioService: UsuarioService,public Service:NotificaciontiendaService,
-    private alquilerService: AlquilerService, private loadingController: LoadingController,public modalController: ModalController,public formBuilder: FormBuilder,private Servicio:AlquilerService) { 
+  alquilerid: datosAlquiler[];
+
+  fecal:string;
+  horal:string;
+  fecdev:string;
+  hordev:string;
+  tien:string;
+  direc:string;
+  imgbici:string;
+  
+  constructor(private Serviceau: AuthService,private router: Router, config: NgbModalConfig, private modalService: NgbModal,private route: ActivatedRoute, private nav: NavController, private UsuarioService: UsuarioService,public Service:NotificaciontiendaService,
+    private alquilerService: AlquilerService, private loadingController: LoadingController,public modalController: ModalController,public formBuilder: FormBuilder,private alertCtrl: AlertController) { 
       //this.disableSelector = false;
-      this.id = firebase.auth().currentUser.uid;
+     
+      var user = firebase.auth().currentUser.uid;
+      this.usuarioid = user;
       this.fechaac = new Date(this.fechaactual).toDateString();
-      this.Servicio.getAlquiler2(this.id).subscribe((alquileres) =>{
+      //console.log(this.fechaac);
+      this.alquilerService.getAlquiler2(this.usuarioid).subscribe((alquileres) =>{
         this.alquilerid = alquileres;
+        //console.log(this.alquilerid);
         for(let i in this.alquilerid){
-          //console.log(this.contador);
+
           this.fechacom = new Date(this.alquilerid[i].fecha['seconds']*1000).toDateString();
+          //console.log(this.fechacom);
           if(this.fechaac==this.fechacom){
             this.contador=this.contador+1;
           }
         }
-        //console.log(this.contador);
+      //console.log(this.contador);
         if(this.contador<2){
           this.limite=false;
         }else{
           this.limite=true;
         }
-        //console.log(this.limite)
-        //console.log(new Date(this.alquilerid[0].fecha['seconds']*1000).toDateString());
-  
+ 
       })
-
       this.desabilitarboton = true;
       this.crearvalidaciones();
-      //console.log(new Date());
-    
+      config.backdrop = 'static';
+      config.keyboard = false;
+     
      
     }
 
   ngOnInit() {
-    this.UsuarioService.$getObjeto.subscribe(data=>{
-      this.idtienda=data;
-    });
-    
-    this.usuarioid=this.route.snapshot.params['id'];
     this.alquiler.idusuario=this.usuarioid;
-
+    
     this.alquilerService.getbustieact().subscribe((tiendas) =>{
       this.tiendas = tiendas;
-      /*for(let i in this.tiendas){
-        this.tiendas[i].bicidispo="disponible";
-        this.alquilerService.updateTienda(this.tiendas[i],this.tiendas[i].id);
-      }*/
       for(let i in this.tiendas){
         this.alquilerService.getBicicletas(this.tiendas[i].id).subscribe((bicicletas) =>{
-         if(bicicletas.length==0){    
-          this.tiendas[i].bicidispo="ninguna";
-          this.alquilerService.updateTienda(this.tiendas[i],this.tiendas[i].id);
-         }else{
-          this.tiendas[i].bicidispo="disponible";
-          this.alquilerService.updateTienda(this.tiendas[i],this.tiendas[i].id);
-         }
+          if(bicicletas.length==0){    
+            this.tiendas[i].bicidispo="ninguna";
+            this.alquilerService.updateTienda(this.tiendas[i],this.tiendas[i].id);
+           }else{
+            this.tiendas[i].bicidispo="disponible";
+            this.alquilerService.updateTienda(this.tiendas[i],this.tiendas[i].id);
+           }
         })
       }
       this.alquilerService.getbustieact2().subscribe((tiendas2) =>{
@@ -132,24 +140,7 @@ export class FormularioAlquilerPage implements OnInit {
       })
     })
   }
-
-
-  async mensajeconfirmacion() {
-    const alert = await this.alertCtrl.create({
-      cssClass: 'my-custom-class',
-      header: 'Mensaje',
-      message: this.mensaje,
-      buttons: [
-       {
-          text: 'Aceptar',
-          handler: () => {
-            //this.nav.navigateForward('menu');
-          }
-        }
-      ]
-    });
-    await alert.present();
-  }
+ 
 
   //Crear validaciones para el form 
   crearvalidaciones(){
@@ -168,21 +159,53 @@ export class FormularioAlquilerPage implements OnInit {
     const horaDonacion = new FormControl('', Validators.compose([
       Validators.required,
     ]));
-    const dirDonacion = new FormControl('', Validators.compose([
-      Validators.required,
-    ]));
+  
     
-    this.formGroup = this.formBuilder.group({fechaAlquiler,fechaDevolucion,tindaSeleccion,horaAlquiler,horaDonacion,dirDonacion});
+    this.formGroup = this.formBuilder.group({fechaAlquiler,fechaDevolucion,tindaSeleccion,horaAlquiler,horaDonacion});
   }
 
-  async onSelectChange(){
-    
+  async onSelectChange(content){
+    this.alquilerService.getTienda(this.alquiler.idtienda).subscribe((tienda) =>{
+      this.direc=tienda.direccion;
+    })
     this.desabilitarboton = false;
-    this.abrirmodal();
+    //console.log(this.alquiler.idtienda);
+    this.alquilerService.getBicicletas(this.alquiler.idtienda).subscribe((bicicletas) =>{
+      this.bicicletas4 = bicicletas;
+      //console.log(this.bicicletas4);
+     
+    })
+    this.modal =this.modalService.open(content,{centered:true});
+    
+    //this.abrirmodal();
   }
 
+  cerrarmodal(){
+    console.log("entra cerrar");
+    this.modal.close();
+    this.alquiler.idtienda=null;
+    this.direc=null;
+    this.imgbici=null;
+   
+  }
+  
+ 
+  seleccionarbici(idbici:string){
+   this.modal.close();
 
-  async abrirmodal(){
+   this.idbicicleta =idbici;
+   this.alquilerService.getBicicleta(this.idbicicleta).subscribe((bicicletas) =>{
+    this.bicicletas = bicicletas;
+    //console.log(this.bicicletas);
+    this.bicicletas.disponible="No";
+    this.imgbici=bicicletas.imagen;
+  })
+ 
+   
+ 
+  }
+
+  /*async abrirmodal(){
     const modal = await this.modalController.create({
       component: ModalAlquilerPage,
       componentProps: {
@@ -191,29 +214,29 @@ export class FormularioAlquilerPage implements OnInit {
       }
     });
     await modal.present();
-    
     const { data } = await modal.onDidDismiss();
-    if(data.bici){
-      this.alquilerService.getTienda(this.alquiler.idtienda).subscribe((tienda) =>{
-        this.direc=tienda.direccion;
-      })
-      this.idbicicleta = data.bici;
-      this.alquilerService.getBicicleta(this.idbicicleta).subscribe((bicicletas) =>{
-        this.bicicletas = bicicletas;
-        this.bicicletas.disponible="No";
-        this.imgbici=bicicletas.imagen;
-  
-      })
-    }else{
-      this.direc="";
-    }
+    this.idbicicleta = data.bici;
+    this.alquilerService.getBicicleta(this.idbicicleta).subscribe((bicicletas) =>{
+      this.bicicletas = bicicletas;
+      this.bicicletas.disponible="No";
     
+
+    })
+  }*/
+
+  /*async onSelectChange() : Promise<void> {
+    console.log(this.alquiler.idtienda);
+    this.alquilerService.getBicicletas(this.alquiler.idtienda).subscribe((bicicletas) =>{
+      this.bicicletas = bicicletas;
+      
+  
+    })
+  }*/
+  close() {
+    this.modal.close();
+    window.location.href = 'formulario-alquiler' ;
   }
-
-
-
-
-  async crearAlquiler(){
+  async crearAlquiler(content2){
     if(this.limite==true){
       //alert("Ya paso su limite");
       this.mensaje="El limite de alquileres realizados en un día son 2.";
@@ -225,17 +248,37 @@ export class FormularioAlquilerPage implements OnInit {
       this.alquiler.fecha= this.fechaactual;
       this.alquiler.bicicleta=this.idbicicleta;
       this.alquilerService.addAlquiler(this.alquiler).then(() => {
+    
         this.alquilerService.updateBicicletas(this.bicicletas, this.idbicicleta).then(() => {});
         this.notificaciones.idusuario=this.alquiler.idusuario;
         this.notificaciones.idtienda=this.alquiler.idtienda;
         this.Service.addNotificacion(this.notificaciones);
-        this.nav.navigateForward('/alquileres');
+        //this.modal2 =this.modalService.open(content2,{centered:true});
+        
+        this.nav.navigateForward('alquiler-donacion'); 
+
+        //window.location.href = 'alquiler-donacion' ;
         this.mensaje="Se envió correctamente su formulario de alquiler.";
         this.mensajeconfirmacion();
-      
       });
     }
+  }
 
+  async mensajeconfirmacion() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Mensaje',
+      message: this.mensaje,
+      buttons: [
+       {
+          text: 'Aceptar',
+          handler: () => {
+            //this.nav.navigateForward('alquiler-donacion');
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 
   cambiofecha(event){
@@ -265,17 +308,6 @@ export class FormularioAlquilerPage implements OnInit {
     this.validacion1=true;
   }
 
-  cambiofecha2(event){
-    
-    this.alquiler.fechadevolucion= new Date(event.detail.value);
-    var seleccionada = new Date(event.detail.value).toDateString();
-    if(this.fechaalqutem==seleccionada){
-      this.fechahoradev=this.alquiler.horaalquiler;
-    }else{
-      this.fechahoradev="08:00";
-    }
-  }
-
   seleccionarhora(event){
     
     //this.hora= new Date(event.detail.value).getHours();
@@ -296,6 +328,7 @@ export class FormularioAlquilerPage implements OnInit {
   }
 
   seleccionarhoradev(event){
+    
     var horas = new Date(event.detail.value).getHours().toString();
     if(horas=="8"||horas=="9"){
       horas="0"+horas;
@@ -313,12 +346,88 @@ export class FormularioAlquilerPage implements OnInit {
 
   }
 
-  
-  cancelarAlquiler(){
-    this.nav.navigateForward('/menu'); 
-    this.idbicicleta=null;
+  cambiofecha2(event){
+    this.alquiler.fechadevolucion= new Date(event.detail.value);
+    var seleccionada = new Date(event.detail.value).toDateString();
+    if(this.fechaalqutem==seleccionada){
+      this.fechahoradev=this.alquiler.horaalquiler;
+    }else{
+      this.fechahoradev="08:00";
+    }
   }
 
+
+    
+    async mensajeconfirmacionmapa() {
+      const alert = await this.alertCtrl.create({
+        cssClass: 'my-custom-class',
+        header: 'Mensaje',
+        message: 'Se necesita activar la ubicación de su dispositivo para visualizar las tiendas.',
+        buttons: [
+         {
+            text: 'Aceptar',
+            handler: () => {
+              this.irmapa()
+            }
+          },
+          {
+            text: 'Cancelar',
+            handler: () => {
+              console.log();
+            }
+          }
+        ]
+      });
+      await alert.present();
+    }
   
+    rediperfil(){
+      this.router.navigate(['profile']);
+    }
+  
+    alquileresnav(){
+      this.router.navigate(['formulario-alquiler']);
+    }
+  
+    donacionnav(){
+      this.router.navigate(['formulario-donacion']);
+    }
+  
+    actividadesnav(){
+      this.router.navigate(['alquiler-donacion']);
+  
+    }
+    irmapa(){
+      this.router.navigate(['/ubicar-tienda',this.usuarioid]);
+    }
+  
+    notifinav(){
+      this.router.navigate(['/notificacion']);
+    }
+    salir(){
+      this.Serviceau.logout();
+    }
+    async mensajeconfirmacionsalir() {
+      const alert = await this.alertCtrl.create({
+        cssClass: 'my-custom-class',
+        header: 'Mensaje',
+        message: '¿Seguro de cerrar sesión?',
+        buttons: [
+         {
+            text: 'Aceptar',
+            handler: () => {
+              this.salir();
+            }
+          },
+          {
+            text: 'Cancelar',
+            handler: () => {
+              console.log();
+            }
+          }
+        ]
+      });
+      await alert.present();
+    }
   
 }

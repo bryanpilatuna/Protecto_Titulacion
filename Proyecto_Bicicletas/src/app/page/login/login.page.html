@@ -63,23 +63,28 @@
       </p>
     </div>
 
-	  <div class="row">
+	  <ion-row>
+      <ion-col>
       <p class="center-span">
         <a routerLink="/forgot-password">
           ¿Olvidaste tu contraseña?
         </a>
       </p>
-    </div>
+      </ion-col>
+    </ion-row> 
 
-	  <div class="row">
-      <ion-button [disabled]="!formGroup.valid" type="submit" expand="block">
+	  <ion-row>
+      <ion-col>
+        <ion-button [disabled]="!formGroup.valid" type="submit" expand="block">
         Iniciar sesión
-      </ion-button>
-    </div>
-    <br/>
-    <div class="row">
-      <ion-button routerLink="/bienvenida" expand="block" shape="round" style="--background: white !important;color:#10CAB9;border-style: solid;border-color: #10CAB9;border-radius: 10px;"><ion-icon name="arrow-undo-outline"></ion-icon>Regresar</ion-button>
-    </div>
+        </ion-button>
+      </ion-col>
+    </ion-row> 
+    <ion-row>
+      <ion-col>
+        <ion-button routerLink="/bienvenida" expand="block" shape="round" style="--background: white !important;color:#10CAB9;border-style: solid;border-color: #10CAB9;border-radius: 10px;"><ion-icon name="arrow-undo-outline"></ion-icon>Regresar</ion-button>
+      </ion-col>
+    </ion-row>
   </form>
 
 </ion-content>

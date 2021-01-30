@@ -6,7 +6,7 @@
 
 <ion-content>
   <ng-container *ngIf="!notificaciones || notificaciones.length == 0">
-    <p class="centrarmensaje">No existe notificaciones de alquileres.</p>
+    <p class="centrarmensaje" style="margin-top: 10px;">No existe notificaciones de alquileres.</p>
   </ng-container>
   <ion-list>
     <div *ngFor="let noti of notificaciones | paginate: { itemsPerPage: 5, currentPage: pageActual };let indice=index">

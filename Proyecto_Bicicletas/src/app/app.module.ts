@@ -17,12 +17,13 @@ import { FCM } from '@ionic-native/fcm/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), NgxPaginationModule, AppRoutingModule,AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule,AngularFireStorageModule,IonicStorageModule.forRoot()],
+    AngularFireAuthModule,AngularFireStorageModule,IonicStorageModule.forRoot(), NgbModule],
   providers: [
     LocalNotifications,
     FCM,

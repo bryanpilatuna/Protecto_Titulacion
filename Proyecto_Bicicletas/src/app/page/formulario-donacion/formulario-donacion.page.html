@@ -72,7 +72,7 @@
           cancel-text="Cancelar" formControlName="tiendaControl" style="width: 100%;">
             <ion-select-option *ngFor="let tienda of tiendas" [value]="tienda.id"> 
               <ion-label>
-              {{ tienda.nombre}}
+              {{ tienda.nombre}} {{ tienda.sector}}
             </ion-label>
             
             </ion-select-option>
@@ -162,11 +162,13 @@
       formControlName="direccionControl"></ion-input>
     </ion-item>
 
-    <div class="row">
+    <ion-row>
+      <ion-col>
       <ion-button [disabled]="!formGroup.valid" type="submit" expand="full" style="border-style: solid;border-color: #01C642;border-radius: 10px;">
         Realizar Donación
       </ion-button>
-    </div>
+      </ion-col>
+    </ion-row> 
 
 </form>
 
