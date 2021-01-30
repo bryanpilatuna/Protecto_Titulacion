@@ -5,6 +5,10 @@ import { Notificaciones } from '../../model/notificaciones.interface';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
+import { DatosUsuario } from '../../model/user.interface';
+import { UsuarioService } from '../../service/usuario.service';
+import { AlertController } from '@ionic/angular';
+import { AuthService } from '../../service/auth.service';
 @Component({
   selector: 'app-notificacion',
   templateUrl: './notificacion.component.html',
@@ -18,11 +22,19 @@ export class NotificacionComponent implements OnInit {
   Si='Si';
   cont=true;
   contador=0;
+  mensaje:string;
+  iden:any;
+  usuario: DatosUsuario;
+  estado:string;
   constructor(
     private router: Router,
     private localNotifications: LocalNotifications,
     private ServicioNoti:NotificacionesService,
-    private storage: Storage
+    private storage: Storage,
+    private usuarioService: UsuarioService, 
+    private alertCtrl: AlertController,
+    private authservice : AuthService, 
+
   ) { 
     var user = firebase.auth().currentUser.uid;
     this.id = user;
@@ -49,6 +61,20 @@ export class NotificacionComponent implements OnInit {
       }*/
       
     })
+    this.usuarioService.getUsuario(this.id).subscribe(usuario => {
+      this.usuario = usuario;
+      if(this.usuario.estado=="Inactivo"){
+        //this.mensaje="El usuario esta inactivo.";
+        //this.mensajeerror();
+ 
+        this.authservice.logout();
+        this.id = null;
+        this.estado = "Inactivo";
+        this.savef();
+ 
+      }
+
+    });
     
 
     
@@ -57,6 +83,9 @@ export class NotificacionComponent implements OnInit {
 
   ngOnInit() {
     
+  }
+  savef(){
+    this.storage.set('estado', this.estado);
   }
 
 
@@ -72,5 +101,24 @@ export class NotificacionComponent implements OnInit {
     this.router.navigate(['notificacion']);
      });
   }
+
+  //Mostrar mensaje de alerta
+  async mensajeerror() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Mensaje',
+      message: this.mensaje,
+      buttons: [
+       {
+          text: 'Aceptar',
+          handler: () => {
+            console.log('Confirm Ok');
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
 
 }
