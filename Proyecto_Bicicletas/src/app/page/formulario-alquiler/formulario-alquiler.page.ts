@@ -104,7 +104,7 @@ export class FormularioAlquilerPage implements OnInit {
           }
         }
       //console.log(this.contador);
-        if(this.contador<2){
+        if(this.contador<4){
           this.limite=false;
         }else{
           this.limite=true;
@@ -239,7 +239,7 @@ export class FormularioAlquilerPage implements OnInit {
   async crearAlquiler(content2){
     if(this.limite==true){
       //alert("Ya paso su limite");
-      this.mensaje="El limite de alquileres realizados en un día son 2.";
+      this.mensaje="El limite de alquileres realizados en un día son 4.";
       this.mensajeconfirmacion();
     }else{
       this.alquiler.idusuario=this.usuarioid;
